@@ -1,18 +1,20 @@
 language: node_js
 node_js:
- — “8.9.4”
+ — “stable”
 branches:
  only:
  — Dev
 before_script:
- — npm install -g ionic
+ — npm install -g @ionic/cli
+ — npm install 
  — npm ci 
 script:
- — ionic build --prod -- --base-href ./
+ — ionic build 
 deploy:
  provider: pages
  skip-cleanup: true
  keep-history: true
+ github-token: $GITHUB_TOKEN
  on:
    branch: Dev
  local_dir: www
