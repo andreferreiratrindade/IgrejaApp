@@ -10,6 +10,27 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },
+  {
+    path: 'prestador-consultar',
+    loadChildren: () => import('./pages/prestador/prestador-consultar/prestador-consultar.module').then( m => m.PrestadorConsultarPageModule)
+  },
+  {
+    path: 'prestador-cadastro',
+    loadChildren: () => import('./pages/prestador/prestador-cadastro/prestador-cadastro.module').then( m => m.PrestadorCadastroPageModule)
+  },
+  {
+    path: 'prestador-cadastro-email',
+    loadChildren: () => import('./pages/prestador/prestador-cadastro-email/prestador-cadastro-email.module').then( m => m.PrestadorCadastroEmailPageModule)
+  },
+  {
+    path: 'sign-in',
+    loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule)
+  }
+  ,
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   }
 ];
 
