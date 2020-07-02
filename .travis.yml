@@ -9,10 +9,14 @@ before_script:
  — npm install 
  — npm ci 
 script:
- — ionic build --prod -- --base-href="https://andreferreiratrindade.github.io/IgrejaAppTeste/"
- — rm -rf public
- — mkdir public
- — cp -r www/* public
+ — ionic build 
+ — git clone --recursive -b gh-pages https://github.com/andreferreiratrindade/andreferreiratrindade.github.io.git /tmp/IgrejaApp/
+ — cp -r www*/ /tmp/IgrejaApp/
+ — cd /tmp/Igreja/
+ — git add .
+ — git commit -m "deploy"
+ — git push -u
+  
 deploy:
  provider: pages
  skip-cleanup: true
