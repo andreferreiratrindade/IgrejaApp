@@ -12,15 +12,15 @@ script:
  — ionic build 
 after_success:
 — rm -rf /tmp/IgrejaApp
-— && git clone  https://github.com/andreferreiratrindade/andreferreiratrindade.github.io.git --branch master /tmp/IgrejaApp/
+— && git clone  https://github.com/andreferreiratrindade/andreferreiratrindade.github.io.git  /tmp/IgrejaApp/
 — && cp -r www/* /tmp/IgrejaApp/
 — && cd /tmp/IgrejaApp/
 — && git config user.email "andreferreiratrindade@gmail.com"
 — && git config user.name "André"
 — && git add --all
 — && git commit -a -m "deploy"
-— && git checkout -b master
-— && git push --force origin master
+— && git checkout master
+— && git push --force
 deploy:
  provider: pages
  skip-cleanup: true
