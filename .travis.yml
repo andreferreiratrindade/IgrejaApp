@@ -11,7 +11,18 @@ before_script:
 script:
  — ionic build 
 after_success:
-  — ./push.sh  
+—rm -rf /tmp/IgrejaApp
+
+# clone remote repo to "_site"
+— git clone  https://github.com/andreferreiratrindade/andreferreiratrindade.github.io.git --branch master /tmp/IgrejaApp/
+— cp -r www/* /tmp/IgrejaApp/
+— cd /tmp/Igreja/
+— git config user.email "andreferreiratrindade@gmail.com"
+— git config user.name "André"
+— git add --all
+— git commit -a -m "deploy"
+— git checkout -b master
+— git push --force origin master
 deploy:
  provider: pages
  skip-cleanup: true
