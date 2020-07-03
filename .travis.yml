@@ -12,8 +12,6 @@ script:
  — ionic build 
 after_success:
 —rm -rf /tmp/IgrejaApp
-
-# clone remote repo to "_site"
 — git clone  https://github.com/andreferreiratrindade/andreferreiratrindade.github.io.git --branch master /tmp/IgrejaApp/
 — cp -r www/* /tmp/IgrejaApp/
 — cd /tmp/Igreja/
