@@ -20,6 +20,7 @@ after_success:
 — && git add --all
 — && git commit -a -m "deploy"
 — && git checkout master
+— && git remote add "https://$GITHUB_TOKEN@github.com/andreferreiratrindade/andreferreiratrindade.github.io.git"
 — && git push --force
 deploy:
  provider: pages
