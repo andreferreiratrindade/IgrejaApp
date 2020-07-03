@@ -10,14 +10,8 @@ before_script:
  — npm ci 
 script:
  — ionic build 
- — git clone --recursive -b master https://github.com/andreferreiratrindade/andreferreiratrindade.github.io.git /tmp/IgrejaApp/
- — cp -r www/* /tmp/IgrejaApp/
- — cd /tmp/Igreja/
-  — git checkout -b master
- — git add .
- — git commit -m "deploy"
- — git push -u
-  
+after_success:
+  — ./push.sh  
 deploy:
  provider: pages
  skip-cleanup: true
