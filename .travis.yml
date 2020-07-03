@@ -3,7 +3,7 @@ node_js:
  — “stable”
 branches:
  only:
- — Homologação
+ — Dev
 before_script:
  — npm install -g @ionic/cli
  — npm install 
@@ -28,5 +28,5 @@ deploy:
  keep-history: true
  github-token: $GITHUB_TOKEN
  on:
-   branch: Homologação
+   branch: Dev
  local_dir: www
