@@ -14,7 +14,7 @@ after_success:
 — rm -rf /tmp/IgrejaApp
 — && git clone  https://github.com/andreferreiratrindade/andreferreiratrindade.github.io.git --branch master /tmp/IgrejaApp/
 — && cp -r www/* /tmp/IgrejaApp/
-— && cd /tmp/Igreja/
+— && cd /tmp/IgrejaApp/
 — && git config user.email "andreferreiratrindade@gmail.com"
 — && git config user.name "André"
 — && git add --all
