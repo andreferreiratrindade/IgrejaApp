@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FirebaseAuthService } from 'src/app/providers/base-provider/firebase-auth-service.service';
+import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
+import { auth } from 'firebase';
+import { UsuarioEntity } from 'src/app/entity/usuario-entity';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,12 +20,18 @@ export class SignUpPage {
 
   validation_messages = {
     'email': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Enter a valid email.' }
+      { type: 'required', message: 'Email é de preenchimento obrigatório.' },
+      { type: 'pattern', message: 'Email inválido.' }
     ],
     'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 6 characters long.' }
+      { type: 'required', message: 'Senha é de preenchimento obrigatório.' },
+      { type: 'minlength', message: 'Senha deverá conter pelo menos 6 caracteres' }
+    ],
+    'nome': [
+      { type: 'required', message: 'Nome é de preenchimento obrigatório.' },
+    ],
+    'confirm_password': [
+      { type: 'required', message: 'Confirmar Senha é de preenchimento obrigatório.' },
     ]
   };
 
@@ -30,7 +39,8 @@ export class SignUpPage {
     public angularFire: AngularFireAuth,
     public router: Router,
     private ngZone: NgZone,
-    private authService: FirebaseAuthService
+    private authService: FirebaseAuthService,
+    public usuarioService:UsuarioService
   ) {
     this.signUpForm = new FormGroup({
       'email': new FormControl('', Validators.compose([
@@ -39,6 +49,12 @@ export class SignUpPage {
       ])),
       'password': new FormControl('', Validators.compose([
         Validators.minLength(6),
+        Validators.required
+      ])),
+      'confirm_password': new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      'nome': new FormControl('', Validators.compose([
         Validators.required
       ]))
     });
@@ -68,7 +84,15 @@ export class SignUpPage {
     this.authService.signUpWithEmail(this.signUpForm.value['email'], this.signUpForm.value['password'])
     .then(user => {
       // navigate to user profile
-      this.redirectLoggedUserToProfilePage();
+      let usuarioObj = new UsuarioEntity();
+       usuarioObj.nome = this.signUpForm.value['nome'];
+       usuarioObj.uid = user.user.uid;
+
+      this.usuarioService.AdicionarUsuario(usuarioObj).then(x=> {
+          this.redirectLoggedUserToProfilePage();
+      }).catch(error => {
+          this.submitError = error.message;
+      });
     })
     .catch(error => {
       this.submitError = error.message;
