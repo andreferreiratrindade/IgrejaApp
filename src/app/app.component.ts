@@ -15,6 +15,11 @@ export class AppComponent implements OnInit {
       title: 'Seja um Prestador',
       url: 'sign-up',
       icon: 'warning'
+    },
+    {
+      title: 'Adicione sua Igreja',
+      url: 'criar-igreja',
+      icon: 'warning'
     }
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];

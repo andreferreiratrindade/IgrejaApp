@@ -10,6 +10,7 @@
   <h2 class="auth-title">
     Cadastre-se
   </h2>
+
   <form [formGroup]="signUpForm" (ngSubmit)="signUpWithEmail()">
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item">
@@ -17,58 +18,31 @@
 
         <ion-input type="text" formControlName="nome" clearInput autocapitalize="off"></ion-input>
       </ion-item>
-      <div class="error-container">
-        <ng-container *ngFor="let validation of validation_messages.nome">
-          <div class="error-message" *ngIf="signUpForm.get('nome').hasError(validation.type) && (signUpForm.get('nome').dirty || signUpForm.get('nome').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
-            <span>{{ validation.message }}</span>
-          </div>
-        </ng-container>
-      </div>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.nome" [form]="signUpForm"
+        [nomeCampo]="'nome'"></app-mensagem-validacao>
 
       <ion-item class="input-item">
         <ion-label floating>Email:</ion-label>
 
-        <ion-input type="email"  formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
+        <ion-input type="email" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
       </ion-item>
-      <div class="error-container">
-        <ng-container *ngFor="let validation of validation_messages.email">
-          <div class="error-message" *ngIf="signUpForm.get('email').hasError(validation.type) && (signUpForm.get('email').dirty || signUpForm.get('email').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
-            <span>{{ validation.message }}</span>
-          </div>
-        </ng-container>
-      </div>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.email" [form]="signUpForm"
+        [nomeCampo]="'email'"></app-mensagem-validacao>
 
       <ion-item class="input-item">
         <ion-label floating>Senha:</ion-label>
 
-        <ion-input type="password"  formControlName="password"></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
-       
-      <div class="error-container">
-        <ng-container *ngFor="let validation of validation_messages.password">
-          <div class="error-message" *ngIf="signUpForm.get('password').hasError(validation.type) && (signUpForm.get('password').dirty || signUpForm.get('password').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
-            <span>{{ validation.message }}</span>
-          </div>
-        </ng-container>
-      </div>
-
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.password" [form]="signUpForm"
+        [nomeCampo]="'password'"></app-mensagem-validacao>
       <ion-item class="input-item">
         <ion-label floating>Confirmar Senha:</ion-label>
-
-        <ion-input type="password"  formControlName="confirm_password"></ion-input>
+        <ion-input type="password" formControlName="confirm_password"></ion-input>
       </ion-item>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.confirm_password" [form]="signUpForm"
+        [nomeCampo]="'confirm_password'"></app-mensagem-validacao>
 
-      <div class="error-container">
-        <ng-container *ngFor="let validation of validation_messages.confirm_password">
-          <div class="error-message" *ngIf="signUpForm.get('confirm_password').hasError(validation.type) && (signUpForm.get('confirm_password').dirty || signUpForm.get('confirm_password').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
-            <span>{{ validation.message }}</span>
-          </div>
-        </ng-container>
-      </div>
     </ion-list>
 
     <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!signUpForm.valid">Cadastrar</ion-button>
@@ -87,8 +61,9 @@
 
   <div class="social-auth-options">
     <p class="options-divider">Ou</p>
-    <ion-button class="social-auth-btn" color="primary" expand="block" (click)="facebookSignUp()">Facebook Sign Up</ion-button>
-    <ion-button class="social-auth-btn google-auth-btn" color="danger" expand="block" (click)="googleSignUp()">Google Sign Up</ion-button>
-    <ion-button class="social-auth-btn twitter-auth-btn" color="secondary" expand="block" (click)="twitterSignUp()">Twitter Sign Up</ion-button>
+    <ion-button class="social-auth-btn" color="primary" expand="block" (click)="facebookSignUp()">Facebook Sign Up
+    </ion-button>
+    <ion-button class="social-auth-btn google-auth-btn" color="danger" expand="block" (click)="googleSignUp()">Google
+      Sign Up</ion-button>
   </div>
 </ion-content>

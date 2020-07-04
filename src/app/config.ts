@@ -1,16 +1,23 @@
+import { User } from 'firebase';
+
 export class Config {    
 
-   
-    public static get apiUrl(): string { return "http://localhost:3000" };
+    private static _user: User;
+    public static set user(u: User) {
 
-    private static _token: string;
+        this._user = u
+    };
 
-    public static get token(): string {
-        return this._token;
-    }
-    public static set token(v: string) {
-        this._token = v;
+    public static get user(): User {
+        return this._user;
     }
 
+    public static getUserId(){
+        return this._user!= null ? this._user.uid : null;
+    }
+
+    public static loginAtivo(){
+       return this._user != null;
+    }
 }
 

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { UsuarioEntity } from 'src/app/entity/usuario-entity';
+import { IgrejaEntity } from 'src/app/entity/igrejaEntity';
 import { BaseRepository } from '../repository-interface/Repository-Base';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioRepService extends BaseRepository<UsuarioEntity>  {
+export class IgrejaRepService extends BaseRepository<IgrejaEntity>  {
 
 }

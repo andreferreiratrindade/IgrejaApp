@@ -41,16 +41,15 @@
       </div>
     </div>
     <ion-row class="sign-up-btn-wrapper">
-      <ion-button class="sign-up-btn" fill="clear" [routerLink]="['sign-up']">
-        Don't have an account?
+      <ion-button class="sign-up-btn" fill="clear" [routerLink]="['/sign-up']">
+        Cadastra-se
       </ion-button>
     </ion-row>
   </form>
 
   <div class="social-auth-options">
-    <p class="options-divider">Or</p>
+    <p class="options-divider">Ou</p>
     <ion-button class="social-auth-btn" color="primary" expand="block" (click)="facebookSignIn()">Facebook Sign In</ion-button>
     <ion-button class="social-auth-btn google-auth-btn" color="danger" expand="block" (click)="googleSignIn()">Google Sign In</ion-button>
-    <ion-button class="social-auth-btn twitter-auth-btn" color="secondary" expand="block" (click)="twitterSignIn()">Twitter Sign In</ion-button>
   </div>
 </ion-content>

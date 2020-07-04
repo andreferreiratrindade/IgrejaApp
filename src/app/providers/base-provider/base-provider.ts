@@ -1,36 +1,36 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
 // import { Observable } from 'rxjs/Observable';
 import { Config } from 'src/app/config';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 
 @Injectable()
 export class BaseProvider {
 
+  constructor(public http: Http) {
+
+  }
 
 
-  // constructor(public http: Http) {
+  apiGet(url: string):Promise<any> {
+    return this.http.get( url)
+    .toPromise()
+    .then(data => {
+      return data.json();
+    })
+    .catch(this.handleError);
 
-  // }
-
-/*
-  apiGet(url: string) {
-    return this.http.get(Config.apiUrl + url, this.getRequestOptions())
-      .toPromise()
-      .catch(e => console.log("reg error", e));
   }
 
   apiPost(url: string, obj: any) {
 
-    return this.http
-      .post(Config.apiUrl + url, obj, this.getRequestOptions())
-      .toPromise()
-      .then(data => {
-        return data.json();
-      })
-      .catch(this.handleError);
+    // return this.http
+    //   .post(Config.apiUrl + url, obj, this.getRequestOptions())
+    //   .toPromise()
+    //   .then(data => {
+    //     return data.json();
+    //   })
+    //   .catch(this.handleError);
   }
 
   getRequestOptions(): RequestOptions {
@@ -39,7 +39,7 @@ export class BaseProvider {
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('X-Requested-With', 'XMLHttpRequest');
-    headers.append('Authentication', Config.token);
+    // headers.append('Authentication', Config.token);
     return new RequestOptions({ headers: headers });
   }
 
@@ -53,5 +53,5 @@ export class BaseProvider {
     let body = res.json();
     return body || {};
   }
-  */
+  
 }

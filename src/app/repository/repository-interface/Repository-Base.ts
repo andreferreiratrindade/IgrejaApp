@@ -13,11 +13,11 @@ export abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
 	}
 
 	constructor() {
-		console.log("Teste");
-		if (firebase.apps.length) {
-			this._db = this._app.firestore();
-		}
-		this._firebase = this._app;
+		
+		// if (firebase.apps.length) {
+		// 	this._db = this._app.firestore();
+		// }
+		// this._firebase = this._app;
 	}
 
 	// success
