@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: PrestadorCadastroPage
+  },  {
+    path: 'prestador-cadastro-form1',
+    loadChildren: () => import('../prestadorCadastro/prestador-cadastro-form1/prestador-cadastro-form1.module').then( m => m.PrestadorCadastroForm1PageModule)
   }
+
 ];
 
 @NgModule({

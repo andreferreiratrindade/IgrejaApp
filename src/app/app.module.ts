@@ -12,13 +12,24 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FirebaseAuthService } from './providers/base-provider/firebase-auth-service.service';
 import { environment } from 'src/environments/environment';
+import { ComponentsModule } from './components/components.module';
+import { MensagemValidacaoComponent } from './components/mensagem-validacao/mensagem-validacao.component';
+import { BaseProvider } from './providers/base-provider/base-provider';
+import { BuscarCEPService } from './providers/buscaCEP/buscar-cep.service';
+import { Http, HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule ,
     IonicModule.forRoot(),
     AppRoutingModule,
+    ComponentsModule,
      AngularFireModule.initializeApp(environment.firebase),
      AngularFireAuthModule
   ],
@@ -26,6 +37,8 @@ import { environment } from 'src/environments/environment';
     StatusBar,
     SplashScreen,
     FirebaseAuthService,
+      BuscarCEPService,
+      BaseProvider,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

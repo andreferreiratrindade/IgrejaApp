@@ -1,0 +1,8 @@
+<div class="error-container">
+  <ng-container *ngFor="let validation of validation_messages_object">
+    <div class="error-message" *ngIf="form.get(nomeCampo).hasError(validation.type) && (form.get(nomeCampo).dirty || form.get(nomeCampo).touched)">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <span>{{ validation.message }}</span>
+    </div>
+  </ng-container>
+</div>

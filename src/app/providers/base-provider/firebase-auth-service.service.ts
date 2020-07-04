@@ -4,6 +4,7 @@ import { Observable, Subject, from } from 'rxjs';
 import { Platform } from '@ionic/angular';
 import { User, auth } from 'firebase/app';
 import { ProfileModel } from 'src/app/pages/profile/profile.model';
+import { Config } from 'src/app/config';
 
 @Injectable()
 export class FirebaseAuthService {
@@ -20,9 +21,11 @@ export class FirebaseAuthService {
       if (user) {
         // User is signed in.
         this.currentUser = user;
+        Config.user = user;
       } else {
         // No user is signed in.
         this.currentUser = null;
+        Config.user = null;
       }
     });
 
