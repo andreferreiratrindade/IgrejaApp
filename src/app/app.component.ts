@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Seja um Prestador',
-      url: 'sign-in',
+      url: 'sign-up',
       icon: 'warning'
     }
   ];
