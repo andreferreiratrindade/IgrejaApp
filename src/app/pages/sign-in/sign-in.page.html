@@ -9,7 +9,9 @@
   <form [formGroup]="signInForm" (ngSubmit)="signInWithEmail()">
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item">
-        <ion-input type="email" placeholder="Email" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
+        <ion-label position="floating">Email <ion-text color="danger">*</ion-text></ion-label>
+
+        <ion-input type="email"  formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
       </ion-item>
       <div class="error-container">
         <ng-container *ngFor="let validation of validation_messages.email">
@@ -21,7 +23,9 @@
       </div>
 
       <ion-item class="input-item">
-        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        <ion-label position="floating">Senha <ion-text color="danger">*</ion-text></ion-label>
+
+        <ion-input type="password"  formControlName="password"></ion-input>
       </ion-item>
       <div class="error-container">
         <ng-container *ngFor="let validation of validation_messages.password">
@@ -47,9 +51,9 @@
     </ion-row>
   </form>
 
-  <div class="social-auth-options">
+  <!-- <div class="social-auth-options">
     <p class="options-divider">Ou</p>
     <ion-button class="social-auth-btn" color="primary" expand="block" (click)="facebookSignIn()">Facebook Sign In</ion-button>
     <ion-button class="social-auth-btn google-auth-btn" color="danger" expand="block" (click)="googleSignIn()">Google Sign In</ion-button>
-  </div>
+  </div> -->
 </ion-content>

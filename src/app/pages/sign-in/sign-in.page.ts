@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { FirebaseAuthService } from 'src/app/providers/base-provider/firebase-auth-service.service';
+import { LoadingContr } from 'src/app/helpers/loadingContr';
 
 @Component({
   selector: 'app-sign-in',
@@ -18,12 +19,12 @@ export class SignInPage {
 
   validation_messages = {
     'email': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Enter a valid email.' }
+      { type: 'required', message: 'Campo de preenchimento obrigatório.' },
+      { type: 'pattern', message: 'Favor inserir email válido.' }
     ],
     'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 6 characters long.' }
+      { type: 'required', message: 'Campo de preenchimento obrigatório.' },
+      { type: 'minlength', message: 'Senha deve ter no minimo 6 caracteres.' }
     ]
   };
 
@@ -31,7 +32,8 @@ export class SignInPage {
     public angularFire: AngularFireAuth,
     public router: Router,
     private ngZone: NgZone,
-    private authService: FirebaseAuthService
+    private authService: FirebaseAuthService,
+    public loadControl :LoadingContr
   ) {
     this.signInForm = new FormGroup({
       'email': new FormControl('', Validators.compose([
@@ -61,12 +63,14 @@ export class SignInPage {
   redirectLoggedUserToProfilePage() {
     // As we are calling the Angular router navigation inside a subscribe method, the navigation will be triggered outside Angular zone.
     // That's why we need to wrap the router navigation call inside an ngZone wrapper
+    this.loadControl.hideLoader();
     this.ngZone.run(() => {
       this.router.navigate(['']);
     });
   }
 
   signInWithEmail() {
+    this.loadControl.showLoader();
     this.authService.signInWithEmail(this.signInForm.value['email'], this.signInForm.value['password'])
     .then(user => {
       // navigate to user profile
@@ -83,7 +87,7 @@ export class SignInPage {
 
             this.submitError = error.message;
           });
-    });
+    }).finally(()=>this.loadControl.hideLoader());
   }
 
   facebookSignIn() {

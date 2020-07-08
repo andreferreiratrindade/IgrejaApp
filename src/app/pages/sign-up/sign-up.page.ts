@@ -6,7 +6,10 @@ import { Subscription } from 'rxjs';
 import { FirebaseAuthService } from 'src/app/providers/base-provider/firebase-auth-service.service';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
 import { auth } from 'firebase';
-import { UsuarioEntity } from 'src/app/entity/usuario-entity';
+import { LoadingContr } from 'src/app/helpers/loadingContr';
+import { ToastCustom } from 'src/app/helpers/toastCustom';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -40,24 +43,27 @@ export class SignUpPage {
     public router: Router,
     private ngZone: NgZone,
     private authService: FirebaseAuthService,
-    public usuarioService:UsuarioService
+    public usuarioService:UsuarioService,
+    public loadCtr:LoadingContr,
+    public toastCtrl:ToastController
   ) {
     this.signUpForm = new FormGroup({
-      'email': new FormControl('', Validators.compose([
+      email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
-      'password': new FormControl('', Validators.compose([
+      password: new FormControl('', Validators.compose([
         Validators.minLength(6),
         Validators.required
       ])),
-      'confirm_password': new FormControl('', Validators.compose([
+      confirm_password: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      'nome': new FormControl('', Validators.compose([
+      nome: new FormControl('', Validators.compose([
         Validators.required
       ]))
     });
+
     // Get firebase authentication redirect result invoken when using signInWithRedirect()
     // signInWithRedirect() is only used when client is in web but not desktop
     this.authRedirectResult = this.authService.getRedirectResult()
@@ -75,20 +81,24 @@ export class SignUpPage {
   redirectLoggedUserToProfilePage() {
     // As we are calling the Angular router navigation inside a subscribe method, the navigation will be triggered outside Angular zone.
     // That's why we need to wrap the router navigation call inside an ngZone wrapper
+    this.loadCtr.hideLoader()
     this.ngZone.run(() => {
       this.router.navigate(['profile']);
     });
   }
 
   signUpWithEmail() {
+    this.loadCtr.showLoader();
     this.authService.signUpWithEmail(this.signUpForm.value['email'], this.signUpForm.value['password'])
     .then(user => {
       // navigate to user profile
-      let usuarioObj = new UsuarioEntity();
-       usuarioObj.nome = this.signUpForm.value['nome'];
-       usuarioObj.uid = user.user.uid;
-
+      let usuarioObj = {
+       nome :this.signUpForm.value['nome'],
+       uid :user.user.uid,
+       email :this.signUpForm.value['email'],
+      };
       this.usuarioService.AdicionarUsuario(usuarioObj).then(x=> {
+          ToastCustom.SucessoToast(this.toastCtrl);
           this.redirectLoggedUserToProfilePage();
       }).catch(error => {
           this.submitError = error.message;
@@ -96,7 +106,7 @@ export class SignUpPage {
     })
     .catch(error => {
       this.submitError = error.message;
-    });
+    }).finally(()=>{this.loadCtr.hideLoader()});
   }
 
   facebookSignUp() {

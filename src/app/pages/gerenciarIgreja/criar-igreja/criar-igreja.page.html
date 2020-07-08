@@ -1,19 +1,15 @@
-<ion-header class="ion-no-border">
+<ion-header translucent>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+    <ion-title>Cadastrar Igreja</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="sign-up-content">
-  <h2 class="auth-title">
-    Cadastrar Igreja
-  </h2>
-  <form [formGroup]="formData" (ngSubmit)="salvarIgreja()">
+<ion-content fullscreen>
+  <form [formGroup]="formData" (ngSubmit)="submitError='';salvarIgreja()">
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item">
-        <ion-label floating>Igreja:</ion-label>
+        <ion-label position="floating">Nome Igreja<ion-text color="danger">*</ion-text>
+        </ion-label>
 
         <ion-input type="text" formControlName="nomeIgreja" clearInput autocapitalize="off"></ion-input>
       </ion-item>
@@ -21,27 +17,38 @@
         [nomeCampo]="'nomeIgreja'"></app-mensagem-validacao>
 
       <ion-item class="input-item">
-        <ion-label floating>Cep:</ion-label>
+        <ion-label position="floating">Cep<ion-text color="danger">*</ion-text>
+        </ion-label>
         <ion-input type="text" formControlName="cep" clearInput autocapitalize="off"></ion-input>
       </ion-item>
+
+      <ion-chip color="tertiary" (click)="submitError='';buscarEnderecoPorCEP()" size="6">
+        <ion-label>Buscar Endereço</ion-label>
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-chip>
+      <ion-item class="input-item">
+        <ion-label>
+          <p>{{enderecoParte1}}</p>
+          <p>{{enderecoParte2}} </p>
+        </ion-label>
+
+      <!-- <ion-button color="tertiary" type="button" (click)="submitError='';buscarEnderecoPorCEP()" [submitError]="">Buscar endereço</ion-button> -->
       <app-mensagem-validacao [validation_messages_object]="validation_messages.cep" [form]="formData"
         [nomeCampo]="'cep'"></app-mensagem-validacao>
-      <button type="button" (click)="buscarEnderecoPorCEP()">Buscar endereço</button>
 
-      <ion-item class="input-item">
-        <ion-label floating>{{enderecoCompleto}}</ion-label>
+    
+
       </ion-item>
-     
-    </ion-list>
 
-    <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!formData.valid && igrejaEntity.cep.lenght > 0">Cadastrar</ion-button>
-    <div class="error-container" *ngIf="submitError">
-      <div class="error-message">
-        <ion-icon name="information-circle-outline"></ion-icon>
-        <span>{{ submitError }}</span>
+      <div class="error-container" *ngIf="submitError">
+        <div class="error-message">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ submitError }}</span>
+        </div>
       </div>
-    </div>
-
+    </ion-list>
+    <ion-button class="sign-up-btn" type="submit" [submitError]="" expand="block" [disabled]="!formData.valid > 0 ">
+      Cadastrar</ion-button>
   </form>
 
 

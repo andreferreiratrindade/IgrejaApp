@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { MensagemValidacaoComponent } from './mensagem-validacao/mensagem-validacao.component';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { MenuLateralComponent } from './menuLateral/menu-lateral/menu-lateral.component';
 
 const PAGES_COMPONENTS = [
-  MensagemValidacaoComponent
+  MensagemValidacaoComponent,
+  MenuLateralComponent
 ];
 
 @NgModule({

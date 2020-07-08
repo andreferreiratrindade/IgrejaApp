@@ -1,9 +1,52 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar>
-    <ion-title>prestador-consultar</ion-title>
+    <ion-title>Consultar Prestador</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <form [formGroup]="formulario" (ngSubmit)="ConsultarPrestador()">
+     <ion-list  lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item class="input-item">
+        <ion-label>UF <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select class="ion-text-end" name="uf" formControlName="uf" (ionChange)="buscarCidades()" interface="popover" >
+          <ion-select-option *ngFor="let item of UfList" value="{{item}}">
+              {{ item }}
+          </ion-select-option>
+        </ion-select>
+    
+      </ion-item>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.uf" [form]="formulario"
+      [nomeCampo]="'uf'"></app-mensagem-validacao>
 
-</ion-content>
+      <ion-item>
+        <ion-label>Cidade</ion-label>
+        <ion-select class="ion-text-end" name="cidade" formControlName="cidade"  [disabled]="!formulario.value['uf']" interface="popover" >
+          <ion-select-option *ngFor="let item of cidadeList"  selected="selected" value="{{item}}">
+              {{ item }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.cidade" [form]="formulario"
+      [nomeCampo]="'cidade'"></app-mensagem-validacao> 
+    </ion-list> 
+    <div class="error-container" *ngIf="submitError">
+      <div class="error-message">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <span>{{ submitError }}</span>
+      </div>
+    </div>
+    <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!formulario.valid">Pesquisar</ion-button>
+  </form>
+
+
+  <ion-item *ngFor="let item of prestadores" value="{{item}}">
+
+    <ion-label>
+      <h2>{{item.nome}}</h2>
+      <p>{{item.cidade}} / {{item.uf}}</p>
+      <p>{{item.nomeIgreja}}</p>
+    </ion-label>
+  </ion-item>
+
+</ion-content> 

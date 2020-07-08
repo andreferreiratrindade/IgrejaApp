@@ -1,86 +1,70 @@
-<ion-header class="ion-no-border">
+<ion-header translucent>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+    <ion-title>Seja um Prestador - Cadastro</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-  <h2 >
-    Cadastro Prestador
-  </h2>
-  <form [formGroup]="CadastroPrestadorForm1" (ngSubmit)="SalvarForm1()">
-    <ion-list class="inputs-list" lines="full">
-      <ion-item class="input-item">
-        <ion-label floating>CPF / CNPJ:</ion-label>
+<ion-content fullscreen>
 
-        <ion-input type="text" formControlName="cnpcnpj" clearInput autocapitalize="off"></ion-input>
+  <form [formGroup]="form1" (ngSubmit)="submitError='';SalvarForm1()">
+    <ion-list  lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item class="input-item">
+        <ion-label position="floating">CPF / CNPJ <ion-text color="danger">*</ion-text></ion-label>
+
+        <ion-input type="text" [brmasker]="{person: true}" formControlName="cnpcnpj" clearInput autocapitalize="off"></ion-input>
       </ion-item>
-      <div class="error-container">
-        <ng-container *ngFor="let validation of validation_messages.cnpcnpj">
-          <div class="error-message" *ngIf="signUpForm.get('cnpcnpj').hasError(validation.type) && (signUpForm.get('cnpcnpj').dirty || signUpForm.get('cnpcnpj').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
-            <span>{{ validation.message }}</span>
-          </div>
-        </ng-container>
-      </div>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.cnpcnpj" [form]="form1"
+      [nomeCampo]="'cnpcnpj'"></app-mensagem-validacao>
 
       <ion-item class="input-item">
-        <ion-label floating>Telefone:</ion-label>
+        <ion-label position="floating" >Telefone <ion-text color="danger">*</ion-text></ion-label>
 
-        <ion-input type="text"  formControlName="telefone" clearInput autocapitalize="off" ></ion-input>
+        <ion-input type="text"  [brmasker]="{phone: true}" formControlName="telefone" clearInput autocapitalize="off" ></ion-input>
       </ion-item>
-      <div class="error-container">
-        <ng-container *ngFor="let validation of validation_messages.telefone">
-          <div class="error-message" *ngIf="signUpForm.get('telefone').hasError(validation.type) && (signUpForm.get('telefone').dirty || signUpForm.get('telefone').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
-            <span>{{ validation.message }}</span>
-          </div>
-        </ng-container>
-      </div>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.telefone" [form]="form1"
+      [nomeCampo]="'telefone'"></app-mensagem-validacao>
 
       <ion-item class="input-item">
-        <ion-label floating>CEP:</ion-label>
-
-        <ion-input type="text"  formControlName="cep" clearInput autocapitalize="off" ></ion-input>
+        <ion-label position="floating">Cep <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input type="number" maxlength="8" formControlName="cep" clearInput autocapitalize="off"></ion-input>
       </ion-item>
-      <div class="error-container">
-        <ng-container *ngFor="let validation of validation_messages.cep">
-          <div class="error-message" *ngIf="signUpForm.get('cep').hasError(validation.type) && (signUpForm.get('cep').dirty || signUpForm.get('cep').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
-            <span>{{ validation.message }}</span>
-          </div>
-        </ng-container>
-      </div>
-      <ion-label floating>UF: </ion-label>
-      <ion-label floating>Cidade: </ion-label>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.cep" [form]="form1"
+        [nomeCampo]="'cep'"></app-mensagem-validacao>
+       
+        <ion-chip color="tertiary" (click)="submitError='';buscarEnderecoPorCEP()" size="6">
+          <ion-label>Buscar Endereço</ion-label>
+          <ion-icon name="search-outline"></ion-icon>
+        </ion-chip>
+        <ion-item class="input-item">
+          <ion-label>
+            <p>{{enderecoParte1}}</p>
+            <p>{{enderecoParte2}} </p>
+          </ion-label>
+        </ion-item>
+        <!-- <ion-button class="ion-align-self-end" position="right" color="tertiary" type="button" (click)="submitError='';buscarEnderecoPorCEP()" [disabled]="!form1.value['cep']">Buscar endereço</ion-button> -->
+    
       <ion-item>
-        <ion-label>Igreja Vinculo</ion-label>
-        <ion-select formControlName="igrejaVinculo">
-          <ion-option value="1">Igreja Metodista Central</ion-option>
-          <ion-option value="2">Igreja Metodista Filadelfia</ion-option>
-          <ion-option value="3">Igreja Metodista Carapina</ion-option>
+        <ion-label>Igreja Vinculo <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select class="ion-text-end" name="igrejaVinculo" formControlName="igrejaVinculo"  interface="popover" [disabled]="!igrejas.length>0">
+          <ion-select-option *ngFor="let item of igrejas" value="{{item.id}}">
+              {{ item.nomeIgreja }}
+          </ion-select-option>
         </ion-select>
       </ion-item>
-      <div class="error-container">
-        <ng-container *ngFor="let validation of validation_messages.igrejaVinculo">
-          <div class="error-message" *ngIf="signUpForm.get('igrejaVinculo').hasError(validation.type) && (signUpForm.get('igrejaVinculo').dirty || signUpForm.get('igrejaVinculo').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
-            <span>{{ validation.message }}</span>
-          </div>
-        </ng-container>
-      </div>
-    </ion-list>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.igrejaVinculo" [form]="form1"
+      [nomeCampo]="'igrejaVinculo'"></app-mensagem-validacao>
 
-    <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!CadastroPrestadorForm1.valid">Prosseguir</ion-button>
+      <ion-item>
+        <ion-label>Membro da Igreja vinculada</ion-label>
+        <ion-toggle slot="start" name="StaMembro" checked></ion-toggle>
+      </ion-item>
+    </ion-list>
     <div class="error-container" *ngIf="submitError">
       <div class="error-message">
         <ion-icon name="information-circle-outline"></ion-icon>
         <span>{{ submitError }}</span>
       </div>
     </div>
-    
+    <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!form1.valid">Prosseguir</ion-button>
   </form>
-
 </ion-content>
