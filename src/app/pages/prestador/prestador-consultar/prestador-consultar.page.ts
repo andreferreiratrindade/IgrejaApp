@@ -56,7 +56,7 @@ export class PrestadorConsultarPage implements OnInit {
 
   buscarCidades(){
     this.loadingContr.showLoader();
-
+    this.formulario.value['cidade']= "";
     this.prestadorService.RecuperaCidadePrestadorDisponiveis(this.formulario.value['uf'])
     .then(result => {
       this.cidadeList = result;
