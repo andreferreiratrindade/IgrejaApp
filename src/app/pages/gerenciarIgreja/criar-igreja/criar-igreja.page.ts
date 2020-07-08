@@ -55,6 +55,7 @@ export class CriarIgrejaPage implements OnInit {
     this.loadingControll.showLoader()
     this.usuarioService.recuperaUsuarioLogado().then(x => {
       if (x == null) {
+        this.loadingControll.hideLoader()
         this.ngZone.run(() => {
           this.router.navigate(['sign-in']);
         });
