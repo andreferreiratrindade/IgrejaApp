@@ -1,38 +1,40 @@
 import { LoadingController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 @Injectable({
-    providedIn: 'root'
-  })
-export  class LoadingContr {
+  providedIn: 'root'
+})
+export class LoadingContr {
 
-    public static  getLoadingContent():any{
 
-        return {content:'Processando.'}
-    }
-    /**
-     *
-     */
-    constructor(public loadingController:LoadingController) {
-            
-    }
-    
-     showLoader() {
+  isLoading = false;
 
-        this.loadingController.create({
-          message: 'Processando...'
-        }).then((res) => {
-          res.present();
-        });
-    
-      }
-    
-      // Hide the loader if already created otherwise return error
-      hideLoader() {
-    
-        this.loadingController.dismiss().then((res) => {
-          console.log('Loading dismissed!', res);
-        }).catch((error) => {
-          console.log('error', error);
-        });
-      }
+  public static getLoadingContent(): any {
+
+    return { content: 'Processando.' }
+  }
+  /**
+   *
+   */
+  constructor(public loadingController: LoadingController) {
+
+  }
+
+  async showLoader() {
+    this.isLoading = true;
+    return await this.loadingController.create({
+      // duration: 5000,
+    }).then(a => {
+      a.present().then(() => {
+        if (!this.isLoading) {
+          a.dismiss();
+        }
+      });
+    });
+  }
+
+  // Hide the loader if already created otherwise return error
+  async hideLoader() {
+    this.isLoading = false;
+    return await this.loadingController.dismiss().then(() => console.log('dismissed'));
+  }
 }
