@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Config } from './config';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +11,19 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
+  public dadosUsuario = Config.recuperaUsuario()
   public appPages = [
     {
-      title: 'Seja um Prestador',
-      url: 'sign-up',
+      title: 'Consultar Prestador',
+      url: 'prestador-consultar',
       icon: 'warning'
     },
+    {
+      title: 'Seja um Prestador',
+      url: 'prestador-Form1',
+      icon: 'warning'
+    },
+    
     {
       title: 'Adicione sua Igreja',
       url: 'criar-igreja',
@@ -34,6 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   initializeApp() {
+    
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();

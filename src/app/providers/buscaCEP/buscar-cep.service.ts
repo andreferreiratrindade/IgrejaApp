@@ -10,4 +10,8 @@ export class BuscarCEPService {
        return this.baseProvider.apiGet("https://viacep.com.br/ws/"+cep+"/json/");
   }
 
+  RecuperaEnderecoCompleto(item:any):string{
+      return  item.logradouro + ", " + item.bairro+ " - " +item.cidade + "/" +item.uf + " - " + item.cep;
+  }
+
 }

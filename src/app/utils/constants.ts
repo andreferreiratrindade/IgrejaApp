@@ -1,5 +1,16 @@
 export module Constants{
 
+   export class TipoSituacaoPrestador{
+      public static Form1 = 0;
+      public static Form2 = 1;
+      public static Form3 = 2;
+      public static PendenteAutorizacao = 3;
+      public static Ativo = 4;
+      public static Suspenso = 5;
+      public static Cancelado = 6;
+      
+   }
+
    export class TipoMinisterio{
        public static louvor = 1;
        public static educacao= 2;

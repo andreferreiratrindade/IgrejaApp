@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PrestadorCadastroEmailPage } from './prestador-cadastro-email.page';
+import { MenuLateralComponent } from './menu-lateral.component';
 
-describe('PrestadorCadastroEmailPage', () => {
-  let component: PrestadorCadastroEmailPage;
-  let fixture: ComponentFixture<PrestadorCadastroEmailPage>;
+describe('MenuLateralComponent', () => {
+  let component: MenuLateralComponent;
+  let fixture: ComponentFixture<MenuLateralComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrestadorCadastroEmailPage ],
+      declarations: [ MenuLateralComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PrestadorCadastroEmailPage);
+    fixture = TestBed.createComponent(MenuLateralComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

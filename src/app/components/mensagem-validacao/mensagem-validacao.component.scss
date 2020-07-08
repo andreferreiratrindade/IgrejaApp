@@ -1,0 +1,15 @@
+
+  .error-container {
+    .error-message {
+      margin: 16px 0px;
+      display: flex;
+      align-items: center;
+      color: var(--ion-color-danger);
+      font-size: 14px;
+
+      ion-icon {
+        font-size: 16px;
+        padding-inline-end: 8px;
+      }
+    }
+  }

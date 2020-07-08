@@ -14,15 +14,15 @@
   <form [formGroup]="signUpForm" (ngSubmit)="signUpWithEmail()">
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item">
-        <ion-label floating>Nome:</ion-label>
+        <ion-label position="floating">Nome<ion-text color="danger">*</ion-text></ion-label>
 
-        <ion-input type="text" formControlName="nome" clearInput autocapitalize="off"></ion-input>
+        <ion-input type="text" formControlName="nome" clearInput autocapitalize="off" ></ion-input>
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.nome" [form]="signUpForm"
-        [nomeCampo]="'nome'"></app-mensagem-validacao>
+        [nomeCampo]="'nome'" ></app-mensagem-validacao>
 
       <ion-item class="input-item">
-        <ion-label floating>Email:</ion-label>
+        <ion-label position="floating">Email<ion-text color="danger">*</ion-text></ion-label>
 
         <ion-input type="email" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
       </ion-item>
@@ -30,14 +30,14 @@
         [nomeCampo]="'email'"></app-mensagem-validacao>
 
       <ion-item class="input-item">
-        <ion-label floating>Senha:</ion-label>
+        <ion-label position="floating">Senha<ion-text color="danger">*</ion-text></ion-label>
 
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.password" [form]="signUpForm"
         [nomeCampo]="'password'"></app-mensagem-validacao>
       <ion-item class="input-item">
-        <ion-label floating>Confirmar Senha:</ion-label>
+        <ion-label position="floating">Confirmar Senha<ion-text color="danger">*</ion-text></ion-label>
         <ion-input type="password" formControlName="confirm_password"></ion-input>
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.confirm_password" [form]="signUpForm"
@@ -59,11 +59,11 @@
     </ion-row>
   </form>
 
-  <div class="social-auth-options">
+  <!-- <div class="social-auth-options">
     <p class="options-divider">Ou</p>
     <ion-button class="social-auth-btn" color="primary" expand="block" (click)="facebookSignUp()">Facebook Sign Up
     </ion-button>
     <ion-button class="social-auth-btn google-auth-btn" color="danger" expand="block" (click)="googleSignUp()">Google
       Sign Up</ion-button>
-  </div>
+  </div> -->
 </ion-content>

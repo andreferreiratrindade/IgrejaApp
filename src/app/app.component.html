@@ -1,10 +1,11 @@
-<ion-app>
+<ion-app class="ios">
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>seu@email.com</ion-note>
+          
+          <ion-list-header>{{nome}}</ion-list-header>
+          <ion-note>{{email}}</ion-note>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">

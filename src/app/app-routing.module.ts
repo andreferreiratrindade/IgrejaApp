@@ -12,18 +12,6 @@ const routes: Routes = [
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
-    path: 'prestador-consultar',
-    loadChildren: () => import('./pages/prestador/prestador-consultar/prestador-consultar.module').then( m => m.PrestadorConsultarPageModule)
-  },
-  {
-    path: 'prestador-cadastro',
-    loadChildren: () => import('./pages/prestador/prestador-cadastro/prestador-cadastro.module').then( m => m.PrestadorCadastroPageModule)
-  },
-  {
-    path: 'prestador-cadastro-email',
-    loadChildren: () => import('./pages/prestador/prestador-cadastro-email/prestador-cadastro-email.module').then( m => m.PrestadorCadastroEmailPageModule)
-  },
-  {
     path: 'sign-in',
     loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule)
   },
@@ -35,15 +23,26 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
-  },  {
+  },
+  {
     path: 'criar-igreja',
     loadChildren: () => import('./pages/gerenciarIgreja/criar-igreja/criar-igreja.module').then( m => m.CriarIgrejaPageModule)
+  }, 
+  {
+    path: 'prestador-Form1',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form1/prestador-cadastro-form1.module').then( m => m.PrestadorCadastroForm1PageModule)
+  }, 
+  {
+    path: 'prestador-consultar',
+    loadChildren: () => import('./pages/prestador/prestador-consultar/prestador-consultar.module').then( m => m.PrestadorConsultarPageModule)
   }
+
 
 
 ];
 
 @NgModule({
+  
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
