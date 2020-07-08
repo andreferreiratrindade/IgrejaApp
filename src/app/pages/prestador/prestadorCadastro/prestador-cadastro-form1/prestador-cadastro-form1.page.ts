@@ -87,7 +87,7 @@ export class PrestadorCadastroForm1Page implements OnInit {
     this.usuarioService.recuperaUsuarioLogado().then(x => {
       if (x == null) {
 
-        this.loadingContr.hideLoader();
+        this.loadingContr.hideLoader()
         this.ngZone.run(() => {
           this.router.navigate(['sign-in']);
         });
