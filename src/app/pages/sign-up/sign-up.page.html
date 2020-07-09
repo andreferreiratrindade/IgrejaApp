@@ -1,16 +1,15 @@
-<ion-header class="ion-no-border">
+<ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+      <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>
+     Cadastre-se
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="sign-up-content">
-  <h2 class="auth-title">
-    Cadastre-se
-  </h2>
-
   <form [formGroup]="signUpForm" (ngSubmit)="signUpWithEmail()">
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item">
@@ -45,25 +44,12 @@
 
     </ion-list>
 
-    <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!signUpForm.valid">Cadastrar</ion-button>
-    <div class="error-container" *ngIf="submitError">
-      <div class="error-message">
-        <ion-icon name="information-circle-outline"></ion-icon>
-        <span>{{ submitError }}</span>
-      </div>
-    </div>
+    <ion-button class="sign-up-btn" type="submit" expand="block" >Cadastrar</ion-button>
+
     <ion-row class="sign-in-btn-wrapper">
-      <ion-button class="sign-in-btn" fill="clear" [routerLink]="['/sign-in']">
+      <ion-button class="sign-in-btn" fill="clear" [routerLink]="['/sign-in']" routerDirection="root">
         Já possui login?
       </ion-button>
     </ion-row>
   </form>
-
-  <!-- <div class="social-auth-options">
-    <p class="options-divider">Ou</p>
-    <ion-button class="social-auth-btn" color="primary" expand="block" (click)="facebookSignUp()">Facebook Sign Up
-    </ion-button>
-    <ion-button class="social-auth-btn google-auth-btn" color="danger" expand="block" (click)="googleSignUp()">Google
-      Sign Up</ion-button>
-  </div> -->
 </ion-content>

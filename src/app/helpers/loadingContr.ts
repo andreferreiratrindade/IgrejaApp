@@ -35,6 +35,6 @@ export class LoadingContr {
   // Hide the loader if already created otherwise return error
   async hideLoader() {
     this.isLoading = false;
-    return await this.loadingController.dismiss().then(() => console.log('dismissed'));
+    return await this.loadingController.dismiss();
   }
 }

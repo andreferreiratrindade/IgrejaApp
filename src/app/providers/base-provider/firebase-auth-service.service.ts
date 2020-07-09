@@ -22,7 +22,7 @@ export class FirebaseAuthService {
   verificaUsuarioLogado():Promise<any> {
     return new Promise((resolve, reject) => {
        this.angularFire.onAuthStateChanged(usr => resolve(usr));
-      });
+    });
   }
 
 
@@ -90,6 +90,8 @@ getLoggedInUser() {
 }
 
 signOut(): Observable < any > {
+
+  Config.RecuperaInstancia().adicionaUsuario(null);
   return from(this.angularFire.signOut());
 }
 

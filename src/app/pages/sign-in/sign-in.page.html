@@ -1,11 +1,15 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar></ion-toolbar>
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="sign-in-content">
-  <h2 class="auth-title">
-    Login
-  </h2>
   <form [formGroup]="signInForm" (ngSubmit)="signInWithEmail()">
     <ion-list class="inputs-list" lines="full">
       <ion-item class="input-item">
@@ -13,47 +17,25 @@
 
         <ion-input type="email"  formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
       </ion-item>
-      <div class="error-container">
-        <ng-container *ngFor="let validation of validation_messages.email">
-          <div class="error-message" *ngIf="signInForm.get('email').hasError(validation.type) && (signInForm.get('email').dirty || signInForm.get('email').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
-            <span>{{ validation.message }}</span>
-          </div>
-        </ng-container>
-      </div>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.email" [form]="signInForm"
+      [nomeCampo]="'email'"></app-mensagem-validacao>
 
       <ion-item class="input-item">
         <ion-label position="floating">Senha <ion-text color="danger">*</ion-text></ion-label>
 
         <ion-input type="password"  formControlName="password"></ion-input>
       </ion-item>
-      <div class="error-container">
-        <ng-container *ngFor="let validation of validation_messages.password">
-          <div class="error-message" *ngIf="signInForm.get('password').hasError(validation.type) && (signInForm.get('password').dirty || signInForm.get('password').touched)">
-            <ion-icon name="information-circle-outline"></ion-icon>
-            <span>{{ validation.message }}</span>
-          </div>
-        </ng-container>
-      </div>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.password" [form]="signInForm"
+      [nomeCampo]="'password'"></app-mensagem-validacao>
     </ion-list>
 
-    <ion-button class="sign-in-btn" type="submit" expand="block" [disabled]="!signInForm.valid">Sign In</ion-button>
-    <div class="error-container" *ngIf="submitError">
-      <div class="error-message">
-        <ion-icon name="information-circle-outline"></ion-icon>
-        <span>{{ submitError }}</span>
-      </div>
-    </div>
+    <ion-button class="sign-in-btn" type="submit" expand="block">Entrar</ion-button>
+
     <ion-row class="sign-up-btn-wrapper">
-      <ion-button class="sign-up-btn" fill="clear" [routerLink]="['/sign-up']">
-        Cadastra-se
+      <ion-button class="sign-up-btn" fill="clear" [routerLink]="['/sign-up']" routerDirection="root">
+        Cadastre-se
       </ion-button>
     </ion-row>
   </form>
 
-  <!-- <div class="social-auth-options">
-    <p class="options-divider">Ou</p>
-    <ion-button class="social-auth-btn" color="primary" expand="block" (click)="facebookSignIn()">Facebook Sign In</ion-button>
-    <ion-button class="social-auth-btn google-auth-btn" color="danger" expand="block" (click)="googleSignIn()">Google Sign In</ion-button>
-  </div> -->
 </ion-content>

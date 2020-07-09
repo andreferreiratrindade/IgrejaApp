@@ -29,7 +29,6 @@ export class ProfilePage implements OnInit {
       // Sign-out successful.
       this.router.navigate(['sign-in']);
     }, (error) => {
-      console.log('signout error', error);
     });
   }
 

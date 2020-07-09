@@ -9,6 +9,7 @@ import { auth } from 'firebase';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { ToastController } from '@ionic/angular';
+import { HandlerError } from 'src/app/helpers/handlerError';
 
 
 @Component({
@@ -88,13 +89,19 @@ export class SignUpPage {
   }
 
   signUpWithEmail() {
+
+    if(!this.signUpForm.valid ){
+      HandlerError.handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.",this.toastCtrl)
+      return false;
+    }
+
     this.loadCtr.showLoader();
     this.authService.signUpWithEmail(this.signUpForm.value['email'], this.signUpForm.value['password'])
     .then(user => {
       // navigate to user profile
       let usuarioObj = {
        nome :this.signUpForm.value['nome'],
-       uid :user.user.uid,
+       usuarioId :user.user.uid,
        email :this.signUpForm.value['email'],
       };
       this.usuarioService.AdicionarUsuario(usuarioObj).then(x=> {
@@ -121,7 +128,6 @@ export class SignUpPage {
       this.redirectLoggedUserToProfilePage();
     }).catch((error) => {
       // Handle Errors here.
-      console.log(error);
     });
   }
 
@@ -137,7 +143,6 @@ export class SignUpPage {
       this.redirectLoggedUserToProfilePage();
     }).catch((error) => {
       // Handle Errors here.
-      console.log(error);
     });
   }
 
@@ -153,7 +158,6 @@ export class SignUpPage {
       this.redirectLoggedUserToProfilePage();
     }).catch((error) => {
       // Handle Errors here.
-      console.log(error);
     });
   }
 }

@@ -3,6 +3,11 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Config } from './config';
+import { Observable } from 'rxjs/internal/Observable';
+import { observable, Subject, BehaviorSubject } from 'rxjs';
+import { UsuarioService } from './providers/usuario/usuario.service';
+import { FirebaseAuthService } from './providers/base-provider/firebase-auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +16,7 @@ import { Config } from './config';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  public dadosUsuario = Config.recuperaUsuario()
+
   public appPages = [
     {
       title: 'Consultar Prestador',
@@ -35,7 +40,9 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private firebaseAuthService:FirebaseAuthService,
+    private router: Router
 
   ) {
     this.initializeApp();
@@ -54,5 +61,19 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+    get recuperaDadosUsuario(){
+      
+      return Config.RecuperaInstancia().recuperaUsuario()?? {nome:"", email:""};
+  }
+
+  get usuarioLogado(){
+      return Config.RecuperaInstancia().recuperaUsuario();
+  }
+
+  logoff(){
+    this.firebaseAuthService.signOut();
+    this.router.navigate(['/home']);
+
   }
 }

@@ -1,14 +1,26 @@
 import { User } from 'firebase';
 
-export class Config {    
+export  class  Config {    
 
-    private static usuario: any;
-    public static adicionaUsuario(u:any){
+    private static instance: Config;
+    protected usuario:any;
+    public  adicionaUsuario(u:any){
+        
         this.usuario = u;
     }
 
-    public static recuperaUsuario():any{
-        return this.usuario!= null ? this.usuario : null;
+    public static RecuperaInstancia():any{
+        if(!Config.instance){
+            Config.instance = new Config();
+        }
+
+       return Config.instance;
     }
+
+    public recuperaUsuario(){
+
+        return this.usuario;
+    }
+
 }
 

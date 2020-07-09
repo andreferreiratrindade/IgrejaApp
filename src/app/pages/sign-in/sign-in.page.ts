@@ -1,11 +1,14 @@
 import { Component, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { FirebaseAuthService } from 'src/app/providers/base-provider/firebase-auth-service.service';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
+import { HandlerError } from 'src/app/helpers/handlerError';
+import { ToastController } from '@ionic/angular';
+import { Config } from 'src/app/config';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +19,7 @@ export class SignInPage {
   signInForm: FormGroup;
   submitError: string;
   authRedirectResult: Subscription;
-
+ private returnUrl:string;
   validation_messages = {
     'email': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
@@ -31,9 +34,10 @@ export class SignInPage {
   constructor(
     public angularFire: AngularFireAuth,
     public router: Router,
-    private ngZone: NgZone,
+    private route: ActivatedRoute,
     private authService: FirebaseAuthService,
-    public loadControl :LoadingContr
+    public loadControl :LoadingContr,
+    public toast:ToastController
   ) {
     this.signInForm = new FormGroup({
       'email': new FormControl('', Validators.compose([
@@ -46,95 +50,36 @@ export class SignInPage {
       ]))
     });
 
-    // Get firebase authentication redirect result invoken when using signInWithRedirect()
-    // signInWithRedirect() is only used when client is in web but not desktop
-    this.authRedirectResult = this.authService.getRedirectResult()
-    .subscribe(result => {
-      if (result.user) {
-        this.redirectLoggedUserToProfilePage();
-      } else if (result.error) {
-        this.submitError = result.error;
-      }
-    });
-  }
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
-  // Once the auth provider finished the authentication flow, and the auth redirect completes,
-  // redirect the user to the profile page
-  redirectLoggedUserToProfilePage() {
-    // As we are calling the Angular router navigation inside a subscribe method, the navigation will be triggered outside Angular zone.
-    // That's why we need to wrap the router navigation call inside an ngZone wrapper
-    this.loadControl.hideLoader();
-    this.ngZone.run(() => {
-      this.router.navigate(['']);
-    });
+    // // Get firebase authentication redirect result invoken when using signInWithRedirect()
+    // // signInWithRedirect() is only used when client is in web but not desktop
+    // this.authRedirectResult = this.authService.getRedirectResult()
+    // .subscribe(result => {
+    //   if (result.user) {
+    //     this.redirectLoggedUserToProfilePage();
+    //   } else if (result.error) {
+    //     this.submitError = result.error;
+    //   }
+    // });
   }
 
   signInWithEmail() {
+
+    if(!this.signInForm.valid ){
+      HandlerError.handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.",this.toast)
+      return false;
+    }
+
     this.loadControl.showLoader();
     this.authService.signInWithEmail(this.signInForm.value['email'], this.signInForm.value['password'])
     .then(user => {
-      // navigate to user profile
-      this.redirectLoggedUserToProfilePage();
+      
+      Config.RecuperaInstancia().adicionaUsuario({usuarioId:user.user.uid});
+      this.router.navigate([this.returnUrl]);
     })
     .catch(error => {
-
-          this.authService.signUpWithEmail(this.signInForm.value['email'], this.signInForm.value['password'])
-          .then(user => {
-            // navigate to user profile
-            this.redirectLoggedUserToProfilePage();
-          })
-          .catch(error => {
-
-            this.submitError = error.message;
-          });
+       HandlerError.handler("Email ou senha incorreto(s)",this.toast)
     }).finally(()=>this.loadControl.hideLoader());
-  }
-
-  facebookSignIn() {
-    this.authService.signInWithFacebook()
-    .then((result: any) => {
-      if (result.additionalUserInfo) {
-        this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
-      }
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
-    }).catch((error) => {
-      // Handle Errors here.
-      console.log(error);
-    });
-  }
-
-  googleSignIn() {
-    this.authService.signInWithGoogle()
-    .then((result: any) => {
-      if (result.additionalUserInfo) {
-        this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
-      }
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
-    }).catch((error) => {
-      // Handle Errors here.
-      console.log(error);
-    });
-  }
-
-  twitterSignIn() {
-    this.authService.signInWithTwitter()
-    .then((result: any) => {
-      if (result.additionalUserInfo) {
-        this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
-      }
-      // This gives you a Twitter Access Token. You can use it to access the Twitter API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
-    }).catch((error) => {
-      // Handle Errors here.
-      console.log(error);
-    });
   }
 }

@@ -14,26 +14,26 @@ export class UsuarioService {
    }
 
   AdicionarUsuario(item:any) : Promise<any>{
-    return this.usuarioRepository.add(item,item.uid);
+    return this.usuarioRepository.add(item,item.usuarioId);
   }
 
   RecuperaNomeUsuarios(usuarios: string[]) {
-    return this.usuarioRepository.find({elemento:"id", tipoComparacao:"in", comparacao:usuarios});
+    return this.usuarioRepository.find({elemento:"usuarioId", tipoComparacao:"in", comparacao:usuarios});
   }
 
   recuperaUsuarioLogado():Promise<any>{
     return new Promise((resolve, reject) => {
       
       this.firebaseAutentication.verificaUsuarioLogado().then(user=>{
-
+        
       if(user!=null){
         this.usuarioRepository.findOne(user.uid)
         .then(result=>{
-            Config.adicionaUsuario(result);
+            Config.RecuperaInstancia().adicionaUsuario(result);
              resolve(result);
         });
       }else{
-        Config.adicionaUsuario(null);
+        Config.RecuperaInstancia().adicionaUsuario(null);
       resolve(null);
       }
     });

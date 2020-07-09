@@ -1,17 +1,22 @@
-<ion-header translucent>
+<ion-header>
   <ion-toolbar>
-    <ion-title>Seja um Prestador - Cadastro</ion-title>
+      <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>
+      Seja um Prestador - Cadastro
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
 
-  <form [formGroup]="form1" (ngSubmit)="submitError='';SalvarForm1()">
+  <form [formGroup]="form1" (ngSubmit)="SalvarForm1()">
     <ion-list  lines="full" class="ion-no-margin ion-no-padding">
       <ion-item class="input-item">
         <ion-label position="floating">CPF / CNPJ <ion-text color="danger">*</ion-text></ion-label>
 
-        <ion-input type="text" [brmasker]="{person: true}" formControlName="cnpcnpj" clearInput autocapitalize="off"></ion-input>
+        <ion-input type="number" [brmasker]="{person: true}" formControlName="cnpcnpj" clearInput autocapitalize="off"></ion-input>
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.cnpcnpj" [form]="form1"
       [nomeCampo]="'cnpcnpj'"></app-mensagem-validacao>
@@ -19,7 +24,7 @@
       <ion-item class="input-item">
         <ion-label position="floating" >Telefone <ion-text color="danger">*</ion-text></ion-label>
 
-        <ion-input type="text"  [brmasker]="{phone: true}" formControlName="telefone" clearInput autocapitalize="off" ></ion-input>
+        <ion-input type="number"  [brmasker]="{phone: true}" formControlName="telefone" clearInput autocapitalize="off" ></ion-input>
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.telefone" [form]="form1"
       [nomeCampo]="'telefone'"></app-mensagem-validacao>
@@ -45,7 +50,7 @@
     
       <ion-item>
         <ion-label>Igreja Vinculo <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select class="ion-text-end" name="igrejaVinculo" formControlName="igrejaVinculo"  interface="popover" [disabled]="!igrejas.length>0">
+        <ion-select class="ion-text-end" name="igrejaVinculo" formControlName="igrejaVinculo"  [disabled]="!igrejas.length>0"  interface="action-sheet">
           <ion-select-option *ngFor="let item of igrejas" value="{{item.id}}">
               {{ item.nomeIgreja }}
           </ion-select-option>
@@ -59,12 +64,7 @@
         <ion-toggle slot="start" name="StaMembro" checked></ion-toggle>
       </ion-item>
     </ion-list>
-    <div class="error-container" *ngIf="submitError">
-      <div class="error-message">
-        <ion-icon name="information-circle-outline"></ion-icon>
-        <span>{{ submitError }}</span>
-      </div>
-    </div>
-    <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!form1.valid">Prosseguir</ion-button>
+
+    <ion-button class="sign-up-btn" type="submit" expand="block" >Prosseguir</ion-button>
   </form>
 </ion-content>

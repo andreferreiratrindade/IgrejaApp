@@ -26,10 +26,10 @@ export class PrestadorConsultarPage implements OnInit {
 
   constructor(public prestadorService: PrestadorService,
     public toastCtrl: ToastController,
-    public igrejaService :IgrejaService,
-    public usuarioService:UsuarioService,
-    public loadingContr:LoadingContr
-    ) {
+    public igrejaService: IgrejaService,
+    public usuarioService: UsuarioService,
+    public loadingContr: LoadingContr
+  ) {
 
     this.formulario = new FormGroup({
       'uf': new FormControl('', Validators.compose([
@@ -49,61 +49,60 @@ export class PrestadorConsultarPage implements OnInit {
         this.UfList = result;
       }).catch(x => {
         HandlerError.handler(x, this.toastCtrl);
-      }).finally(()=> {
+      }).finally(() => {
         this.loadingContr.hideLoader();
-    });
+      });
   }
 
-  buscarCidades(){
+  buscarCidades() {
     this.loadingContr.showLoader();
-    this.formulario.value['cidade']= "";
+    this.formulario.value['cidade'] = "";
     this.prestadorService.RecuperaCidadePrestadorDisponiveis(this.formulario.value['uf'])
-    .then(result => {
-      this.cidadeList = result;
-    }).catch(x => {
-      HandlerError.handler(x, this.toastCtrl);
-    }).finally(()=> {
-      this.loadingContr.hideLoader();
-  });
+      .then(result => {
+        this.cidadeList = result;
+      }).catch(x => {
+        HandlerError.handler(x, this.toastCtrl);
+      }).finally(() => {
+        this.loadingContr.hideLoader();
+      });
   }
 
-  ConsultarPrestador(){
+  ConsultarPrestador() {
     this.loadingContr.showLoader();
     this.prestadores = [];
 
     this.prestadorService.RecuperaPestadoresPorCidadeEhUF(this.formulario.value['uf'], this.formulario.value['cidade'])
-    .then(prestadoresResult => {
-      let igrejas = [];
-      igrejas = prestadoresResult.map(x=>{ return x.igrejas[0].igrejaId});
+      .then(prestadoresResult => {
+        let igrejas = [];
+        igrejas = prestadoresResult.map(x => { return x.igrejas[0].igrejaId });
 
-      this.igrejaService.RecuperaNomeIgreja(igrejas).then(resultIgreja=>{
-        
-        let usuarios = [];
-        usuarios = prestadoresResult.map(x=>{return x.uid});
-        this.usuarioService.RecuperaNomeUsuarios(usuarios)
-        .then(usuariosResult =>{
+        this.igrejaService.RecuperaNomeIgreja(igrejas).then(resultIgreja => {
 
+          let usuarios = [];
+          usuarios = prestadoresResult.map(x => { return x.usuarioId });
+          this.usuarioService.RecuperaNomeUsuarios(usuarios)
+            .then(usuariosResult => {
+              this.prestadores = prestadoresResult.map(x => {
+                return {
+                  nome: usuariosResult.find(y => y.id == x.usuarioId).data.nome,
+                  nomeIgreja: resultIgreja.find(y => y.id == x.igrejas[0].igrejaId).data.nomeIgreja,
+                  cidade: x.cidade,
+                  uf: x.uf,
+                  telefone: x.telefone,
+                  usuarioId: x.usuarioId,
+                  igrejaId: x.igrejas[0].igrejaId
+                };
+              });
+            }).finally(() => {
+              this.loadingContr.hideLoader();
+            });
+        }
+        )
 
-         this.prestadores = prestadoresResult.map(x=>{
-            return {
-              nome: usuariosResult.find(y=>y.id==x.uid).data.nome,
-              nomeIgreja: resultIgreja.find(y=>y.id==x.igrejas[0].igrejaId).data.nomeIgreja,
-              cidade:x.cidade,
-              uf:x.uf,
-              usuarioId: x.uid,
-              igrejaId:x.igrejas[0].igrejaId
-            };
-          });
-        });
-
-      }
-      )
-      
-    }).catch(x => {
-      HandlerError.handler(x, this.toastCtrl);
-    })
-    .finally(()=> {
+      }).catch(x => {
+        HandlerError.handler(x, this.toastCtrl);
         this.loadingContr.hideLoader();
-    });
+      })
+
   }
 }

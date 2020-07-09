@@ -23,7 +23,6 @@ export class PrestadorCadastroForm1Page implements OnInit {
 
   igrejas: any[]
   form1: FormGroup;
-  submitError: string;
   authRedirectResult: Subscription;
   prestador: any;
   enderecoCompleto: string;
@@ -101,7 +100,7 @@ export class PrestadorCadastroForm1Page implements OnInit {
     this.prestador = {};
     this.enderecoCompleto ="";
     this.buscarCEPService.buscarCEP(this.form1.value['cep']).then(x => {
-      debugger
+
       if (x && !x.erro) {
         this.prestador.cidade = x.localidade;
         this.prestador.bairro = x.bairro;
@@ -137,13 +136,18 @@ export class PrestadorCadastroForm1Page implements OnInit {
   SalvarForm1() {
     
     if (!this.prestador || !this.prestador.cidade) {
-      this.submitError = "Favor inserir CEP válido, antes de continuar.";
+      HandlerError.handler("Favor inserir CEP válido, antes de continuar.",this.toastCtrl)
+      return false;
+    }
+
+    if(!this.form1.valid ){
+      HandlerError.handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.",this.toastCtrl)
       return false;
     }
     this.loadingContr.showLoader()
-
+debugger
     this.prestador.igrejas = [{igrejaId: this.form1.value['igrejaVinculo']}];
-    this.prestador.uid = Config.recuperaUsuario().uid;
+    this.prestador.usuarioId = Config.RecuperaInstancia().recuperaUsuario().usuarioId;
     this.prestador.situacaoPrestador = Constants.TipoSituacaoPrestador.Form2;
     this.prestadorService.AdicionarNovoPrestador(this.prestador)
     .then(()=>{

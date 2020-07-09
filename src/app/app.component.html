@@ -1,12 +1,25 @@
-<ion-app class="ios">
+<ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
+    <ion-menu contentId="main-content" type="overlay" menuId="mainContent" side="start">
+      <ion-content class="background">
         <ion-list id="inbox-list">
           
-          <ion-list-header>{{nome}}</ion-list-header>
-          <ion-note>{{email}}</ion-note>
+         <span *ngIf="usuarioLogado">
+          <ion-list-header>{{recuperaDadosUsuario.nome}}</ion-list-header>
+          <ion-note>{{recuperaDadosUsuario.email}}</ion-note>
 
+          <ion-chip color="tertiary" (click)="logoff()" routerDirection="root" [routerLink]="prestador-consultar"  size="6">
+            <ion-label>Sair</ion-label>
+            <ion-icon name="log-out-outline"></ion-icon>
+          </ion-chip>
+          </span>
+
+          <span *ngIf="!usuarioLogado" class="row justify-content-md-center">
+            <ion-chip color="tertiary" (click)="logoff()" routerDirection="root" [routerLink]="prestador-consultar"  size="6">
+              <ion-label>Login</ion-label>
+              <ion-icon name="log-in-outline"></ion-icon>
+            </ion-chip>
+          </span>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>

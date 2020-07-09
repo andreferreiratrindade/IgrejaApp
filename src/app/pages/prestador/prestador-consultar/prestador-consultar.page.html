@@ -1,6 +1,11 @@
-<ion-header translucent>
+<ion-header>
   <ion-toolbar>
-    <ion-title>Consultar Prestador</ion-title>
+      <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>
+      Consultar Prestador
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +14,7 @@
      <ion-list  lines="full" class="ion-no-margin ion-no-padding">
       <ion-item class="input-item">
         <ion-label>UF <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select class="ion-text-end" name="uf" formControlName="uf" (ionChange)="buscarCidades()" interface="popover" >
+        <ion-select class="ion-text-end" name="uf" formControlName="uf" (ionChange)="buscarCidades()" interface="action-sheet">
           <ion-select-option *ngFor="let item of UfList" value="{{item}}">
               {{ item }}
           </ion-select-option>
@@ -21,7 +26,7 @@
 
       <ion-item>
         <ion-label>Cidade</ion-label>
-        <ion-select class="ion-text-end" name="cidade" formControlName="cidade"  [disabled]="!formulario.value['uf']" interface="popover" >
+        <ion-select class="ion-text-end" name="cidade" formControlName="cidade"  [disabled]="!formulario.value['uf']" interface="action-sheet">
           <ion-select-option *ngFor="let item of cidadeList"  selected="selected" value="{{item}}">
               {{ item }}
           </ion-select-option>
@@ -44,6 +49,7 @@
 
     <ion-label>
       <h2>{{item.nome}}</h2>
+      <h3>{{item.telefone}}</h3>
       <p>{{item.cidade}} / {{item.uf}}</p>
       <p>{{item.nomeIgreja}}</p>
     </ion-label>

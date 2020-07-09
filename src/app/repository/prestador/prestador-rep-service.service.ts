@@ -34,7 +34,6 @@ export class PrestadorRepServiceService extends BaseRepository {
 
           let lst = [];
           result.forEach(function (doc) {
-            console.log(doc.data());
             if (!lst.includes(doc.data().cidade)) {
               lst.push(doc.data().cidade);
             }
@@ -52,7 +51,6 @@ export class PrestadorRepServiceService extends BaseRepository {
         .get().then(result => {
           let lst = [];
           result.forEach(function (doc) {
-            console.log(doc.data());
             if (!lst.includes(doc.data().uf)) {
               lst.push(doc.data().uf);
             }
@@ -63,6 +61,6 @@ export class PrestadorRepServiceService extends BaseRepository {
   }
 
   AdicionaPrestador(prestador: any): Promise<any> {
-    return this.db.collection("usuario").doc(prestador.uid).collection("prestador").doc().set({ ...prestador });
+    return this.db.collection("usuario").doc(prestador.usuarioId).collection("prestador").doc().set({ ...prestador });
   }
 }

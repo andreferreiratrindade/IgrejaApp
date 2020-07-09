@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './providers/AuthGuard/AuthGuard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -26,19 +27,22 @@ const routes: Routes = [
   },
   {
     path: 'criar-igreja',
+     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/gerenciarIgreja/criar-igreja/criar-igreja.module').then( m => m.CriarIgrejaPageModule)
   }, 
   {
     path: 'prestador-Form1',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form1/prestador-cadastro-form1.module').then( m => m.PrestadorCadastroForm1PageModule)
   }, 
   {
     path: 'prestador-consultar',
     loadChildren: () => import('./pages/prestador/prestador-consultar/prestador-consultar.module').then( m => m.PrestadorConsultarPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/prestador/prestador-consultar/prestador-consultar.module').then( m => m.PrestadorConsultarPageModule)
   }
-
-
-
 ];
 
 @NgModule({

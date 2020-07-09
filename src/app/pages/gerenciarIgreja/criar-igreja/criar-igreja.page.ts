@@ -21,7 +21,6 @@ export class CriarIgrejaPage implements OnInit {
 
   private igrejaEntity: any
   public formData: FormGroup;
-  public submitError :string;
   public enderecoParte1:string;
   public enderecoParte2:string;
   validation_messages = {
@@ -49,18 +48,11 @@ export class CriarIgrejaPage implements OnInit {
         Validators.required
       ]))
     });
+
   }
 
   ngOnInit() {
-    this.loadingControll.showLoader()
-    this.usuarioService.recuperaUsuarioLogado().then(x => {
-      if (x == null) {
-        this.loadingControll.hideLoader()
-        this.ngZone.run(() => {
-          this.router.navigate(['sign-in']);
-        });
-      }
-    }).finally(()=>{this.loadingControll.hideLoader()});
+    
   }
 
   buscarEnderecoPorCEP() {
@@ -100,10 +92,15 @@ export class CriarIgrejaPage implements OnInit {
       return false;
     }
 
+    if(!this.formData.valid ){
+      HandlerError.handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.",this.toastCtrl)
+      return false;
+    }
+
     this.loadingControll.showLoader()
     
     this.igrejaEntity.nomeIgreja = this.formData.value['nomeIgreja'];
-    this.igrejaEntity.administradores = [{uid:Config.recuperaUsuario().uid}];
+    this.igrejaEntity.administradores = [{usuarioId:Config.RecuperaInstancia().recuperaUsuario().usuarioId}];
     this.igrejaService.AdicionarNovaIgreja(this.igrejaEntity).then(x => {
       ToastCustom.SucessoToast(this.toastCtrl);
 
