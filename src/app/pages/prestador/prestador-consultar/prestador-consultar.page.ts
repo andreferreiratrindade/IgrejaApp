@@ -93,6 +93,7 @@ this.loadingContr.hideLoader();
                   usuarioId: x.usuarioId,
                   igrejaId: x.igrejas[0].igrejaId
                 };
+this.loadingContr.hideLoader();
               });
             }).catch(x => {
               HandlerError.handler(x, this.toastCtrl);
