@@ -113,9 +113,10 @@ export class PrestadorCadastroForm1Page implements OnInit {
             this.igrejas = [];
             HandlerError.handler("Nenhuma igreja encontrada para localidade informada.", this.toastCtrl);
           }
+          this.loadingContr.hideLoader();
         }).catch(err => {
           HandlerError.handler(err, this.toastCtrl);
-          this.loadingContr.hideLoader()
+          this.loadingContr.hideLoader();
         });
       } else {
         this.igrejas = [];
@@ -146,7 +147,7 @@ export class PrestadorCadastroForm1Page implements OnInit {
     this.prestador.situacaoPrestador = Constants.TipoSituacaoPrestador.Form2;
     this.prestadorService.AdicionarNovoPrestador(this.prestador)
       .then(() => {
-
+           this.loadingContr.hideLoader();
         ToastCustom.SucessoToast(this.toastCtrl);
         this.ngZone.run(() => {
           this.router.navigate(['prestador-Form2']);

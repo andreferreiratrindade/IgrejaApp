@@ -5,8 +5,8 @@ import { PrestadorRepServiceService } from 'src/app/repository/prestador/prestad
   providedIn: 'root'
 })
 export class PrestadorService {
-  AlteraSituacaoPrestador(usuarioId: any, TipoSituacaoPrestador: any) {
-    // return this.prestador
+  AtualizaPrestador(usuarioId: any, obj: any):Promise<any> {
+     return this.prestadorRepService.AtualizaPrestador(usuarioId,obj);
   }
   ExcluirServico(usuarioId: any, servicoId: any):Promise<any> {
     return this.prestadorRepService.ExcluirServico(usuarioId, servicoId);
@@ -20,6 +20,12 @@ AdicionaServicoAoPrestador(usuarioId: any, servico: any):Promise<any> {
   
 
   }
+
+  RecuperaPrestador(usuarioId:string):Promise<any>{
+
+    return this.prestadorRepService.RecuperaPrestador(usuarioId);
+  }
+
 
   RecuperaUfPrestadorDisponiveis():Promise<any[]> {
     return this.prestadorRepService.recuperaUfPrestadorDisponiveis();

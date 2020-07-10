@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './providers/AuthGuard/AuthGuard';
-
+import { PrestadorSituacaoRedirect } from './providers/AuthGuard/PrestadorSituacaoRedirect';
 const routes: Routes = [
   {
     path: '',
@@ -32,7 +32,7 @@ const routes: Routes = [
   }, 
   {
     path: 'prestador-Form1',
-    canActivate: [AuthGuard],
+    canActivate: [PrestadorSituacaoRedirect],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form1/prestador-cadastro-form1.module').then( m => m.PrestadorCadastroForm1PageModule)
   }, 
   {
@@ -49,7 +49,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form2/prestador-cadastro-form2.module').then( m => m.PrestadorCadastroForm2PageModule)
   },
   {
-    path: 'prestador-cadastro-form3',
+    path: 'prestador-Form3',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form3/prestador-cadastro-form3.module').then( m => m.PrestadorCadastroForm3PageModule)
   },
   {
