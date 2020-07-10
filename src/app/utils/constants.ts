@@ -1,5 +1,8 @@
 export module Constants{
 
+
+   
+
    export class TipoSituacaoPrestador{
       public static Form1 = 0;
       public static Form2 = 1;

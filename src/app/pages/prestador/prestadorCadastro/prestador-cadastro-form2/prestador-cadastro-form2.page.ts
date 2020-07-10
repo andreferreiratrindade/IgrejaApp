@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-servico.service';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
@@ -9,6 +9,7 @@ import { ModalDominioServicosPageModule } from '../modal-dominio-servicos/modal-
 import { HandlerError } from 'src/app/helpers/handlerError';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { Constants } from 'src/app/utils/constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prestador-cadastro-form2',
@@ -25,7 +26,9 @@ export class PrestadorCadastroForm2Page implements OnInit {
     public prestadorService: PrestadorService,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private ngZone: NgZone,
+    public router: Router
   ) { }
 
   ngOnInit() {
@@ -173,8 +176,22 @@ export class PrestadorCadastroForm2Page implements OnInit {
     await alert.present();
 
   }
+  
   Prosseguir(){
+      this.loadingContr.showLoader();
+      let obj = {situacaoPrestador : Constants.TipoSituacaoPrestador.Form3};
+
       this.prestadorService
-        .AlteraSituacaoPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId,Constants.TipoSituacaoPrestador.Form3 );
+        .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId,obj ).then(()=>{
+
+             this.loadingContr.hideLoader();
+             ToastCustom.SucessoToast(this.toastCtrl);
+               this.ngZone.run(() => {
+          this.router.navigate(['prestador-Form3']);
+        });
+      }).catch(err => {
+      HandlerError.handler(err, this.toastCtrl);
+      this.loadingContr.hideLoader();
+    });
   }
 }
