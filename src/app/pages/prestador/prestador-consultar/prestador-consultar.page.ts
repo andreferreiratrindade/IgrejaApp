@@ -84,7 +84,8 @@ this.loadingContr.hideLoader();
           this.usuarioService.RecuperaNomeUsuarios(usuarios)
             .then(usuariosResult => {
               this.prestadores = prestadoresResult.map(x => {
-                return {
+                this.loadingContr.hideLoader();
+return {
                   nome: usuariosResult.find(y => y.id == x.usuarioId).data.nome,
                   nomeIgreja: resultIgreja.find(y => y.id == x.igrejas[0].igrejaId).data.nomeIgreja,
                   cidade: x.cidade,
@@ -93,7 +94,7 @@ this.loadingContr.hideLoader();
                   usuarioId: x.usuarioId,
                   igrejaId: x.igrejas[0].igrejaId
                 };
-this.loadingContr.hideLoader();
+;
               });
             }).catch(x => {
               HandlerError.handler(x, this.toastCtrl);
