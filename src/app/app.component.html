@@ -8,14 +8,14 @@
           <ion-list-header>{{recuperaDadosUsuario.nome}}</ion-list-header>
           <ion-note>{{recuperaDadosUsuario.email}}</ion-note>
 
-          <ion-chip color="tertiary" (click)="logoff()" routerDirection="root" [routerLink]="prestador-consultar"  size="6">
+          <ion-chip color="tertiary" (click)="logoff()"  slot="close" routerDirection="root" [routerLink]="prestador-consultar"  size="6">
             <ion-label>Sair</ion-label>
             <ion-icon name="log-out-outline"></ion-icon>
           </ion-chip>
           </span>
 
           <span *ngIf="!usuarioLogado" class="row justify-content-md-center">
-            <ion-chip color="tertiary" (click)="logoff()" routerDirection="root" [routerLink]="prestador-consultar"  size="6">
+            <ion-chip color="tertiary" (click)="login()"  size="6">
               <ion-label>Login</ion-label>
               <ion-icon name="log-in-outline"></ion-icon>
             </ion-chip>

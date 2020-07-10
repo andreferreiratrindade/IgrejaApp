@@ -26,9 +26,9 @@ export class PrestadorCadastroForm1Page implements OnInit {
   authRedirectResult: Subscription;
   prestador: any;
   enderecoCompleto: string;
-  StaMembro : boolean;
-  enderecoParte1:string;
-  enderecoParte2:string;
+  StaMembro: boolean;
+  enderecoParte1: string;
+  enderecoParte2: string;
   validation_messages = {
     'cnpcnpj': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
@@ -58,9 +58,9 @@ export class PrestadorCadastroForm1Page implements OnInit {
     public router: Router,
     public toastCtrl: ToastController,
     private ngZone: NgZone,
-    public prestadorService:PrestadorService,
+    public prestadorService: PrestadorService,
     public buscarCEPService: BuscarCEPService,
-    public loadingContr:LoadingContr
+    public loadingContr: LoadingContr
   ) {
 
     this.form1 = new FormGroup({
@@ -82,23 +82,16 @@ export class PrestadorCadastroForm1Page implements OnInit {
   }
 
   ngOnInit() {
-    this.loadingContr.showLoader()
-    this.usuarioService.recuperaUsuarioLogado().then(x => {
-      if (x == null) {
 
-        this.loadingContr.hideLoader()
-        this.ngZone.run(() => {
-          this.router.navigate(['sign-in']);
-        });
-      }
-    }).finally(()=>this.loadingContr.hideLoader());
   }
 
   buscarEnderecoPorCEP() {
 
 
     this.prestador = {};
-    this.enderecoCompleto ="";
+    this.enderecoCompleto = "";
+    this.loadingContr.showLoader();
+
     this.buscarCEPService.buscarCEP(this.form1.value['cep']).then(x => {
 
       if (x && !x.erro) {
@@ -108,11 +101,10 @@ export class PrestadorCadastroForm1Page implements OnInit {
         this.prestador.logradouro = x.logradouro;
         this.prestador.cep = x.cep;
         this.enderecoParte1 = x.logradouro + ", " + x.bairro;
-        this.enderecoParte2 = x.localidade + "/" +x.uf;
-
+        this.enderecoParte2 = x.localidade + "/" + x.uf;
         this.igrejaService.RecuperaIgrejasPorCidade(this.prestador.cidade).then(x => {
-          
-          if (x && x.length> 0 ) {
+
+          if (x && x.length > 0) {
 
             this.igrejas = x.map(map => {
               return { id: map.id, nomeIgreja: map.data.nomeIgreja }
@@ -121,6 +113,9 @@ export class PrestadorCadastroForm1Page implements OnInit {
             this.igrejas = [];
             HandlerError.handler("Nenhuma igreja encontrada para localidade informada.", this.toastCtrl);
           }
+        }).catch(err => {
+          HandlerError.handler(err, this.toastCtrl);
+          this.loadingContr.hideLoader()
         });
       } else {
         this.igrejas = [];
@@ -129,36 +124,37 @@ export class PrestadorCadastroForm1Page implements OnInit {
 
     }).catch(x => {
       this.igrejas = [];
+      this.loadingContr.hideLoader()
       HandlerError.handler(x, this.toastCtrl);
-    });
+    })
   }
 
   SalvarForm1() {
-    
+
     if (!this.prestador || !this.prestador.cidade) {
-      HandlerError.handler("Favor inserir CEP válido, antes de continuar.",this.toastCtrl)
+      HandlerError.handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl)
       return false;
     }
 
-    if(!this.form1.valid ){
-      HandlerError.handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.",this.toastCtrl)
+    if (!this.form1.valid) {
+      HandlerError.handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.", this.toastCtrl)
       return false;
     }
     this.loadingContr.showLoader()
-debugger
-    this.prestador.igrejas = [{igrejaId: this.form1.value['igrejaVinculo']}];
+    this.prestador.igrejas = [{ igrejaId: this.form1.value['igrejaVinculo'] }];
     this.prestador.usuarioId = Config.RecuperaInstancia().recuperaUsuario().usuarioId;
     this.prestador.situacaoPrestador = Constants.TipoSituacaoPrestador.Form2;
     this.prestadorService.AdicionarNovoPrestador(this.prestador)
-    .then(()=>{
-      ToastCustom.SucessoToast(this.toastCtrl);
-    })
-    .catch((error) => {
-      HandlerError.handler(error, this.toastCtrl);
-    })    
-    .finally(()=>this.loadingContr.hideLoader());
+      .then(() => {
 
+        ToastCustom.SucessoToast(this.toastCtrl);
+        this.ngZone.run(() => {
+          this.router.navigate(['prestador-Form2']);
+        });
+      })
+      .catch((error) => {
+        HandlerError.handler(error, this.toastCtrl);
+        this.loadingContr.hideLoader();
+      });
   }
-
-
 }

@@ -110,10 +110,10 @@ export class SignUpPage {
       }).catch(error => {
           this.submitError = error.message;
       });
+    }).catch(err => {
+      HandlerError.handler(err, this.toastCtrl);
+      this.loadCtr.hideLoader();
     })
-    .catch(error => {
-      this.submitError = error.message;
-    }).finally(()=>{this.loadCtr.hideLoader()});
   }
 
   facebookSignUp() {

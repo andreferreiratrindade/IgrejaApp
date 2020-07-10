@@ -6,6 +6,37 @@ import { Constants } from 'src/app/utils/constants';
   providedIn: 'root'
 })
 export class PrestadorRepServiceService extends BaseRepository {
+  ExcluirServico(usuarioId: any, servicoId: any) :Promise<any> {
+    return this.db.collection("usuario").doc(usuarioId)
+      .collection("prestador").doc(usuarioId)
+      .collection("servico").doc(servicoId)
+      .delete();
+  }
+
+
+
+  AdicionaServicoAoPrestador(usuarioId: any, servico: any):Promise<any> {
+    return this.db.collection("usuario").doc(usuarioId)
+      .collection("prestador").doc(usuarioId)
+      .collection("servico").doc(servico.servicoId)
+      .set({...servico}, {merge:true});
+  }
+
+
+  recuperaServicosPorPrestador(usuarioId:any):Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      this.db.collection("usuario").doc(usuarioId).collection("prestador")
+      .doc(usuarioId)
+      .collection("servico")
+      .get().then(result=>{
+        let lst = [];
+          result.forEach(function (doc) {           
+            lst.push(doc.data());
+          });
+          resolve(lst)
+      })      
+    });
+  }
 
   RecuperaPestadoresPorCidadeEhUF(ufSelecionado: string, cidadeSelecionado: string):Promise<any[]> {
     return new Promise((resolve, reject) => {
@@ -61,6 +92,6 @@ export class PrestadorRepServiceService extends BaseRepository {
   }
 
   AdicionaPrestador(prestador: any): Promise<any> {
-    return this.db.collection("usuario").doc(prestador.usuarioId).collection("prestador").doc().set({ ...prestador });
+    return this.db.collection("usuario").doc(prestador.usuarioId).collection("prestador").doc(prestador.usuarioId).set({ ...prestador });
   }
 }

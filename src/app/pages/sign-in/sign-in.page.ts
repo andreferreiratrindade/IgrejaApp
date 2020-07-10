@@ -76,10 +76,13 @@ export class SignInPage {
     .then(user => {
       
       Config.RecuperaInstancia().adicionaUsuario({usuarioId:user.user.uid});
+      this.loadControl.hideLoader();
+
       this.router.navigate([this.returnUrl]);
     })
     .catch(error => {
-       HandlerError.handler("Email ou senha incorreto(s)",this.toast)
-    }).finally(()=>this.loadControl.hideLoader());
+       HandlerError.handler("Email ou senha incorreto(s)",this.toast);
+       this.loadControl.hideLoader();
+    });
   }
 }

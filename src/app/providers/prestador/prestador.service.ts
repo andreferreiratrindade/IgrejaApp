@@ -5,11 +5,17 @@ import { PrestadorRepServiceService } from 'src/app/repository/prestador/prestad
   providedIn: 'root'
 })
 export class PrestadorService {
+  AlteraSituacaoPrestador(usuarioId: any, TipoSituacaoPrestador: any) {
+    // return this.prestador
+  }
+  ExcluirServico(usuarioId: any, servicoId: any):Promise<any> {
+    return this.prestadorRepService.ExcluirServico(usuarioId, servicoId);
 
-  
-  /**
-   *
-   */
+  }
+AdicionaServicoAoPrestador(usuarioId: any, servico: any):Promise<any> {
+  return this.prestadorRepService.AdicionaServicoAoPrestador(usuarioId, servico);
+  }
+
   constructor(public prestadorRepService:PrestadorRepServiceService) {
   
 
@@ -28,6 +34,10 @@ export class PrestadorService {
   RecuperaCidadePrestadorDisponiveis(ufSelecionado: string) {
     return this.prestadorRepService.RecuperaCidadePrestadorDisponiveis(ufSelecionado);
 
+  }
+
+  recuperaServicosPorPrestador(usuarioId: any):Promise<any[]> {
+    return this.prestadorRepService.recuperaServicosPorPrestador(usuarioId);
   }
 
 }

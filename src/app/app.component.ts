@@ -76,4 +76,8 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/home']);
 
   }
+  login(){
+    this.router.navigate(['sign-in']);
+
+  }
 }

@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
       </ion-buttons>
     <ion-title>
-      Seja um Prestador - Cadastro
+    Prestador - Informações Iniciais 
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -61,7 +61,7 @@
 
       <ion-item>
         <ion-label>Membro da Igreja vinculada</ion-label>
-        <ion-toggle slot="start" name="StaMembro" checked></ion-toggle>
+        <ion-toggle slot="start" name="StaMembro" checked [disabled]="!form1.value['igrejaVinculo']"></ion-toggle>
       </ion-item>
     </ion-list>
 

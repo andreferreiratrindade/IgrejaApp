@@ -47,10 +47,11 @@ export class PrestadorConsultarPage implements OnInit {
     this.prestadorService.RecuperaUfPrestadorDisponiveis()
       .then(result => {
         this.UfList = result;
-      }).catch(x => {
-        HandlerError.handler(x, this.toastCtrl);
-      }).finally(() => {
         this.loadingContr.hideLoader();
+
+      }).catch(x => {
+        this.loadingContr.hideLoader();
+        HandlerError.handler(x, this.toastCtrl);
       });
   }
 
@@ -61,9 +62,8 @@ export class PrestadorConsultarPage implements OnInit {
       .then(result => {
         this.cidadeList = result;
       }).catch(x => {
-        HandlerError.handler(x, this.toastCtrl);
-      }).finally(() => {
         this.loadingContr.hideLoader();
+        HandlerError.handler(x, this.toastCtrl);
       });
   }
 
@@ -93,11 +93,11 @@ export class PrestadorConsultarPage implements OnInit {
                   igrejaId: x.igrejas[0].igrejaId
                 };
               });
-            }).finally(() => {
+            }).catch(x => {
+              HandlerError.handler(x, this.toastCtrl);
               this.loadingContr.hideLoader();
             });
-        }
-        )
+        })
 
       }).catch(x => {
         HandlerError.handler(x, this.toastCtrl);

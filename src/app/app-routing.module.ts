@@ -42,7 +42,26 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/prestador/prestador-consultar/prestador-consultar.module').then( m => m.PrestadorConsultarPageModule)
+  },
+  {
+    path: 'prestador-Form2',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form2/prestador-cadastro-form2.module').then( m => m.PrestadorCadastroForm2PageModule)
+  },
+  {
+    path: 'prestador-cadastro-form3',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form3/prestador-cadastro-form3.module').then( m => m.PrestadorCadastroForm3PageModule)
+  },
+  {
+    path: 'prestador-cadastro-form4',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form4/prestador-cadastro-form4.module').then( m => m.PrestadorCadastroForm4PageModule)
+  },
+  {
+    path: 'modal-dominio-servicos',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/modal-dominio-servicos/modal-dominio-servicos.module').then( m => m.ModalDominioServicosPageModule)
   }
+
+
 ];
 
 @NgModule({
