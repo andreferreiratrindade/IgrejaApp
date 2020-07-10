@@ -61,6 +61,7 @@ export class PrestadorConsultarPage implements OnInit {
     this.prestadorService.RecuperaCidadePrestadorDisponiveis(this.formulario.value['uf'])
       .then(result => {
         this.cidadeList = result;
+this.loadingContr.hideLoader();
       }).catch(x => {
         this.loadingContr.hideLoader();
         HandlerError.handler(x, this.toastCtrl);
