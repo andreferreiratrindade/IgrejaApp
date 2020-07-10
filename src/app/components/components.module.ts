@@ -4,10 +4,12 @@ import { MensagemValidacaoComponent } from './mensagem-validacao/mensagem-valida
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { MenuLateralComponent } from './menuLateral/menu-lateral/menu-lateral.component';
+import { AccordionComponent } from './accordion/accordion/accordion.component';
 
 const PAGES_COMPONENTS = [
   MensagemValidacaoComponent,
-  MenuLateralComponent
+  MenuLateralComponent,
+  AccordionComponent
 ];
 
 @NgModule({

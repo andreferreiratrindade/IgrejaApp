@@ -58,11 +58,13 @@ export class CriarIgrejaPage implements OnInit {
   buscarEnderecoPorCEP() {
 
     this.igrejaEntity = {};
-    // this.loadingControll.showLoader()
     if(!this.formData.value['cep'] || this.formData.value['cep'].length != "8"){
       HandlerError.handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl);
       return false;
     }
+    this.loadingControll.showLoader();
+
+
     this.buscarCEPService.buscarCEP(this.formData.value['cep']).then(x => {
   
       if (x && !x.erro) {
@@ -82,7 +84,7 @@ export class CriarIgrejaPage implements OnInit {
     }).catch(x => {
       this.loadingControll.hideLoader();
       HandlerError.handler(x, this.toastCtrl);
-    }).finally(()=>{this.loadingControll.hideLoader()});
+    });
 
   }
 
@@ -102,12 +104,14 @@ export class CriarIgrejaPage implements OnInit {
     this.igrejaEntity.nomeIgreja = this.formData.value['nomeIgreja'];
     this.igrejaEntity.administradores = [{usuarioId:Config.RecuperaInstancia().recuperaUsuario().usuarioId}];
     this.igrejaService.AdicionarNovaIgreja(this.igrejaEntity).then(x => {
+      this.loadingControll.hideLoader();
+
       ToastCustom.SucessoToast(this.toastCtrl);
 
     }).catch((error) => {
       HandlerError.handler(error, this.toastCtrl);
-    }).finally(()=>{this.loadingControll.hideLoader()});
+      this.loadingControll.hideLoader();
 
+    });  
   }
-
 }
