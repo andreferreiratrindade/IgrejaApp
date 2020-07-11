@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Prestador - Finalizar
+      Prestador - Visualizar
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -24,6 +24,12 @@
       <ion-label class="ion-text-wrap">
         <p>Email</p>
         <h3>{{usuario.email}}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-wrap">
+        <p>Situação Prestador</p>
+        <h3>{{prestador.nomeSituacaoPrestador}}</h3>
       </ion-label>
     </ion-item>
     <ion-item>
@@ -69,6 +75,4 @@
       </ion-label>
     </ion-item>
   </ion-list>
-
-  <ion-button class="btn-success" type="button" expand="block" (click)="finalizar()">Finalizar</ion-button>
 </ion-content>

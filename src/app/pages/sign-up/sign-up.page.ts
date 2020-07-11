@@ -105,10 +105,13 @@ export class SignUpPage {
        email :this.signUpForm.value['email'],
       };
       this.usuarioService.AdicionarUsuario(usuarioObj).then(x=> {
+        this.loadCtr.hideLoader();
           ToastCustom.SucessoToast(this.toastCtrl);
           this.redirectLoggedUserToProfilePage();
       }).catch(error => {
-          this.submitError = error.message;
+          HandlerError.handler(error, this.toastCtrl);
+      this.loadCtr.hideLoader();
+
       });
     }).catch(err => {
       HandlerError.handler(err, this.toastCtrl);

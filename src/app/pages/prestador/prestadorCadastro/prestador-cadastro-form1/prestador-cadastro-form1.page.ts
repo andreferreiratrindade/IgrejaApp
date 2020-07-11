@@ -24,31 +24,23 @@ export class PrestadorCadastroForm1Page implements OnInit {
   igrejas: any[]
   form1: FormGroup;
   authRedirectResult: Subscription;
-  prestador: any;
-  enderecoCompleto: string;
+  prestador: any = {}
   StaMembro: boolean;
-  enderecoParte1: string;
-  enderecoParte2: string;
+
   validation_messages = {
-    'cnpcnpj': [
+    'cpfcnpj': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
     ],
     'telefone': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
     ],
-    'estadoOrigem': [
-      { type: 'required', message: 'campo de preenchimento obrigatório.' },
-    ],
-    'cidadeOrigem': [
-      { type: 'required', message: 'Campo de preenchimento obrigatório.' },
-    ],
     'igrejaVinculo': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
     ],
-    'staMembro': [
+    'cep': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
     ],
-    'cep': [
+    'razaoSocial': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
     ]
   };
@@ -64,7 +56,7 @@ export class PrestadorCadastroForm1Page implements OnInit {
   ) {
 
     this.form1 = new FormGroup({
-      'cnpcnpj': new FormControl('', Validators.compose([
+      'cpfcnpj': new FormControl('', Validators.compose([
         Validators.required
       ])),
       'telefone': new FormControl('', Validators.compose([
@@ -73,12 +65,18 @@ export class PrestadorCadastroForm1Page implements OnInit {
       'cep': new FormControl('', Validators.compose([
         Validators.required
       ])),
+      'razaoSocial': new FormControl('', Validators.compose([
+        Validators.required
+      ])),
       'igrejaVinculo': new FormControl('', Validators.compose([
         Validators.required
+      ])),
+      'staMembro': new FormControl('', Validators.compose([
       ]))
     });
     this.igrejas = [];
-
+    this.form1.value.staMembro = true;
+    this.form1.value["staMembro"] = true;
   }
 
   ngOnInit() {
@@ -86,22 +84,29 @@ export class PrestadorCadastroForm1Page implements OnInit {
   }
 
   buscarEnderecoPorCEP() {
+    if(!this.form1.value['cep'] || this.form1.value['cep'].toString().length != "8"){
+      this.prestador.cidade = null;
+      this.prestador.bairro = null;
+      this.prestador.uf = null;
+      this.prestador.logradouro = null;
 
+      HandlerError.handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl);
+      return false;
+    }
 
-    this.prestador = {};
-    this.enderecoCompleto = "";
     this.loadingContr.showLoader();
 
     this.buscarCEPService.buscarCEP(this.form1.value['cep']).then(x => {
 
+
+      
       if (x && !x.erro) {
         this.prestador.cidade = x.localidade;
         this.prestador.bairro = x.bairro;
         this.prestador.uf = x.uf;
         this.prestador.logradouro = x.logradouro;
         this.prestador.cep = x.cep;
-        this.enderecoParte1 = x.logradouro + ", " + x.bairro;
-        this.enderecoParte2 = x.localidade + "/" + x.uf;
+
         this.igrejaService.RecuperaIgrejasPorCidade(this.prestador.cidade).then(x => {
 
           if (x && x.length > 0) {
@@ -142,12 +147,14 @@ export class PrestadorCadastroForm1Page implements OnInit {
       return false;
     }
     this.loadingContr.showLoader()
-    this.prestador.igrejas = [{ igrejaId: this.form1.value['igrejaVinculo'] }];
+    this.prestador.igrejas = [{ igrejaId: this.form1.value['igrejaVinculo'], staMembro: this.form1.value['staMembro'] }];
     this.prestador.usuarioId = Config.RecuperaInstancia().recuperaUsuario().usuarioId;
     this.prestador.situacaoPrestador = Constants.TipoSituacaoPrestador.Form2;
-    this.prestadorService.AdicionarNovoPrestador(this.prestador)
+    let obj = this.MontaPrestadorParaSalvar(this.prestador, this.form1);
+
+    this.prestadorService.AdicionarNovoPrestador(obj)
       .then(() => {
-           this.loadingContr.hideLoader();
+        this.loadingContr.hideLoader();
         ToastCustom.SucessoToast(this.toastCtrl);
         this.ngZone.run(() => {
           this.router.navigate(['prestador-Form2']);
@@ -157,5 +164,16 @@ export class PrestadorCadastroForm1Page implements OnInit {
         HandlerError.handler(error, this.toastCtrl);
         this.loadingContr.hideLoader();
       });
+  }
+
+  MontaPrestadorParaSalvar(prestador: any, formulario: any) {
+    let obj = prestador;
+    obj.cpfcnpj = formulario.value['cpfcnpj'];
+    obj.telefone = formulario.value['telefone'];
+    obj.razaoSocial = formulario.value['razaoSocial'];
+    return obj;
+  }
+  updateToggleSet(obj:any){
+    console.log(this.form1.value['staMembro'].value);
   }
 }

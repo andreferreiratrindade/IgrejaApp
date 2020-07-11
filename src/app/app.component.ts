@@ -21,18 +21,18 @@ export class AppComponent implements OnInit {
     {
       title: 'Consultar Prestador',
       url: 'prestador-consultar',
-      icon: 'warning'
+      icon: 'search'
     },
     {
       title: 'Seja um Prestador',
       url: 'prestador-Form1',
-      icon: 'warning'
+      icon: 'people'
     },
     
     {
       title: 'Adicione sua Igreja',
       url: 'criar-igreja',
-      icon: 'warning'
+      icon: 'business'
     }
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
@@ -42,7 +42,8 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private firebaseAuthService:FirebaseAuthService,
-    private router: Router
+    private router: Router,
+    private usuarioService:UsuarioService
 
   ) {
     this.initializeApp();
@@ -61,6 +62,7 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+    this.usuarioService.recuperaUsuarioLogado();
   }
     get recuperaDadosUsuario(){
       

@@ -45,12 +45,12 @@ const routes: Routes = [
   },
   {
     path: 'prestador-Form2',
-    canActivate: [AuthGuard],
+    canActivate: [PrestadorSituacaoRedirect],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form2/prestador-cadastro-form2.module').then( m => m.PrestadorCadastroForm2PageModule)
   },
   {
     path: 'prestador-Form3',
-    canActivate: [AuthGuard],
+    canActivate: [PrestadorSituacaoRedirect],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form3/prestador-cadastro-form3.module').then( m => m.PrestadorCadastroForm3PageModule)
   },
   {
@@ -60,7 +60,17 @@ const routes: Routes = [
   {
     path: 'modal-dominio-servicos',
     loadChildren: () => import('./pages/prestador/prestadorCadastro/modal-dominio-servicos/modal-dominio-servicos.module').then( m => m.ModalDominioServicosPageModule)
+  },
+  {
+    path: 'visualizar-prestador',
+    loadChildren: () => import('./pages/prestador/visualizar-prestador/visualizar-prestador.module').then( m => m.VisualizarPrestadorPageModule)
+  },
+  {
+    path: 'consultar-prestador-adm',
+    loadChildren: () => import('./pages/gerenciarIgreja/manterPrestadores/consultar-prestador-adm/consultar-prestador-adm.module').then( m => m.ConsultarPrestadorAdmPageModule)
   }
+
+
 
 
 ];

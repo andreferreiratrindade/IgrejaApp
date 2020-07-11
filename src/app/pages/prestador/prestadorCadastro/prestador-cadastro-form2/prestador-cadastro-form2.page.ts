@@ -86,7 +86,11 @@ export class PrestadorCadastroForm2Page implements OnInit {
           if (resultModal) {
             this.prestadorService
               .AdicionaServicoAoPrestador(Config.RecuperaInstancia()
-                .recuperaUsuario().usuarioId, { servicoId: this.servicoAdicionado.servicoId })
+                .recuperaUsuario().usuarioId, {
+                servicoId: this.servicoAdicionado.servicoId,
+                usuarioId: Config.RecuperaInstancia()
+                  .recuperaUsuario().usuarioId
+              })
               .then((result) => {
                 this.servicoAdicionado.expanded = false;
                 this.prestadorServicos.push(this.servicoAdicionado);
@@ -140,21 +144,21 @@ export class PrestadorCadastroForm2Page implements OnInit {
       });
   }
 
-  excluirServico(item){
+  excluirServico(item) {
     this.loadingContr.showLoader();
 
     this.prestadorService
-    .ExcluirServico(Config.RecuperaInstancia()
-      .recuperaUsuario().usuarioId, item.servicoId)
-    .then((result) => {
-      
-      this.prestadorServicos = this.prestadorServicos.filter(y=>y.servicoId != item.servicoId);
-      this.loadingContr.hideLoader();
-      ToastCustom.SucessoToast(this.toastCtrl);
-    }).catch(err => {
-      HandlerError.handler(err, this.toastCtrl);
-      this.loadingContr.hideLoader();
-    });
+      .ExcluirServico(Config.RecuperaInstancia()
+        .recuperaUsuario().usuarioId, item.servicoId)
+      .then((result) => {
+
+        this.prestadorServicos = this.prestadorServicos.filter(y => y.servicoId != item.servicoId);
+        this.loadingContr.hideLoader();
+        ToastCustom.SucessoToast(this.toastCtrl);
+      }).catch(err => {
+        HandlerError.handler(err, this.toastCtrl);
+        this.loadingContr.hideLoader();
+      });
 
   }
 
@@ -176,22 +180,27 @@ export class PrestadorCadastroForm2Page implements OnInit {
     await alert.present();
 
   }
-  
-  Prosseguir(){
-      this.loadingContr.showLoader();
-      let obj = {situacaoPrestador : Constants.TipoSituacaoPrestador.Form3};
 
-      this.prestadorService
-        .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId,obj ).then(()=>{
+  Prosseguir() {
+    if(this.prestadorServicos.length == 0){
+      ToastCustom.CustomToast(this.toastCtrl,"Favor adicionar serviço, antes de continuar" , "danger", 4000);
+      return false;
+    }
 
-             this.loadingContr.hideLoader();
-             ToastCustom.SucessoToast(this.toastCtrl);
-               this.ngZone.run(() => {
+    this.loadingContr.showLoader();
+    let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.Form3 };
+
+    this.prestadorService
+      .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
+
+        this.loadingContr.hideLoader();
+        ToastCustom.SucessoToast(this.toastCtrl);
+        this.ngZone.run(() => {
           this.router.navigate(['prestador-Form3']);
         });
       }).catch(err => {
-      HandlerError.handler(err, this.toastCtrl);
-      this.loadingContr.hideLoader();
-    });
+        HandlerError.handler(err, this.toastCtrl);
+        this.loadingContr.hideLoader();
+      });
   }
 }

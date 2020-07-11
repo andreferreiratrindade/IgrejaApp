@@ -1,11 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { BuscarCEPService } from 'src/app/providers/buscaCEP/buscar-cep.service';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 import { Config } from 'src/app/config';
 import { Router } from '@angular/router';
-import { FirebaseAuthService } from 'src/app/providers/base-provider/firebase-auth-service.service';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
 import { HandlerError } from 'src/app/helpers/handlerError';
 import { ToastController } from '@ionic/angular';
@@ -19,7 +18,7 @@ import { ToastCustom } from 'src/app/helpers/toastCustom';
 })
 export class CriarIgrejaPage implements OnInit {
 
-  private igrejaEntity: any
+  private igrejaEntity: any = {}
   public formData: FormGroup;
   public enderecoParte1:string;
   public enderecoParte2:string;
@@ -35,8 +34,6 @@ export class CriarIgrejaPage implements OnInit {
     public igrejaService: IgrejaService,
     public router: Router,
     public toastCtrl: ToastController,
-    private ngZone: NgZone,
-    private usuarioService: UsuarioService,
     public loadingControll:LoadingContr
   ) {
 
@@ -58,7 +55,7 @@ export class CriarIgrejaPage implements OnInit {
   buscarEnderecoPorCEP() {
 
     this.igrejaEntity = {};
-    if(!this.formData.value['cep'] || this.formData.value['cep'].length != "8"){
+    if(!this.formData.value['cep'] || this.formData.value['cep'].toString().length != "8"){
       HandlerError.handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl);
       return false;
     }
@@ -73,8 +70,7 @@ export class CriarIgrejaPage implements OnInit {
         this.igrejaEntity.uf = x.uf;
         this.igrejaEntity.logradouro = x.logradouro;
         this.igrejaEntity.cep = x.cep;
-        this.enderecoParte1 = x.logradouro + ", " + x.bairro;
-        this.enderecoParte2 = x.localidade + "/" +x.uf;
+
         this.loadingControll.hideLoader();
       }else{
         this.loadingControll.hideLoader()
@@ -103,7 +99,7 @@ export class CriarIgrejaPage implements OnInit {
     
     this.igrejaEntity.nomeIgreja = this.formData.value['nomeIgreja'];
     this.igrejaEntity.administradores = [{usuarioId:Config.RecuperaInstancia().recuperaUsuario().usuarioId}];
-    this.igrejaService.AdicionarNovaIgreja(this.igrejaEntity).then(x => {
+    this.igrejaService.AdicionarNovaIgreja(this.igrejaEntity).then(() => {
       this.loadingControll.hideLoader();
 
       ToastCustom.SucessoToast(this.toastCtrl);

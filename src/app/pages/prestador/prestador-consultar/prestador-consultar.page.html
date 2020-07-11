@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      </ion-buttons>
+    </ion-buttons>
     <ion-title>
       Consultar Prestador
     </ion-title>
@@ -11,30 +11,44 @@
 
 <ion-content fullscreen>
   <form [formGroup]="formulario" (ngSubmit)="ConsultarPrestador()">
-     <ion-list  lines="full" class="ion-no-margin ion-no-padding">
-      <ion-item class="input-item">
-        <ion-label>UF <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select class="ion-text-end" name="uf" formControlName="uf" (ionChange)="buscarCidades()" interface="action-sheet">
-          <ion-select-option *ngFor="let item of UfList" value="{{item}}">
-              {{ item }}
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label>Serviço <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-select class="ion-text-end" name="servicoId" formControlName="servicoId" interface="action-sheet">
+          <ion-select-option *ngFor="let item of servicos" selected="selected" value="{{item.servicoId}}">
+            {{ item.nomeServico }}
           </ion-select-option>
         </ion-select>
-    
+      </ion-item>
+      <ion-item class="input-item">
+        <ion-label>UF <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-select class="ion-text-end" name="uf" formControlName="uf" (ionChange)="buscarCidades()"
+          interface="action-sheet">
+          <ion-select-option *ngFor="let item of UfList" value="{{item}}">
+            {{ item }}
+          </ion-select-option>
+        </ion-select>
+
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.uf" [form]="formulario"
-      [nomeCampo]="'uf'"></app-mensagem-validacao>
+        [nomeCampo]="'uf'"></app-mensagem-validacao>
 
       <ion-item>
         <ion-label>Cidade</ion-label>
-        <ion-select class="ion-text-end" name="cidade" formControlName="cidade"  [disabled]="!formulario.value['uf']" interface="action-sheet">
-          <ion-select-option *ngFor="let item of cidadeList"  selected="selected" value="{{item}}">
-              {{ item }}
+        <ion-select class="ion-text-end" name="cidade" formControlName="cidade" [disabled]="!formulario.value['uf']"
+          interface="action-sheet">
+          <ion-select-option *ngFor="let item of cidadeList" selected="selected" value="{{item}}">
+            {{ item }}
           </ion-select-option>
         </ion-select>
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.cidade" [form]="formulario"
-      [nomeCampo]="'cidade'"></app-mensagem-validacao> 
-    </ion-list> 
+        [nomeCampo]="'cidade'"></app-mensagem-validacao>
+
+
+    </ion-list>
     <div class="error-container" *ngIf="submitError">
       <div class="error-message">
         <ion-icon name="information-circle-outline"></ion-icon>
@@ -44,15 +58,28 @@
     <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!formulario.valid">Pesquisar</ion-button>
   </form>
 
+  <ion-card *ngFor="let item of prestadores" value="{{item}}">
+    <ion-card-header>
+      <ion-card-title>{{item.nome}} </ion-card-title>
+    </ion-card-header>
 
-  <ion-item *ngFor="let item of prestadores" value="{{item}}">
+    <ion-card-content>
+      <ion-item>
+        <ion-label>
+          <h2>{{item.telefone}}</h2>
+          <h2>{{item.email}}</h2>
+          <p>{{item.nomeIgreja}}</p>
+          <p>{{item.cidade}} / {{item.uf}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button  color="warning" (click)="detalhes(item.usuarioId)">
+            <ion-icon name="eye-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-label>
-      <h2>{{item.nome}}</h2>
-      <h3>{{item.telefone}}</h3>
-      <p>{{item.cidade}} / {{item.uf}}</p>
-      <p>{{item.nomeIgreja}}</p>
-    </ion-label>
-  </ion-item>
-
-</ion-content> 
+</ion-content>

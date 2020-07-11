@@ -1,43 +1,50 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
-import { Config } from 'src/app/config';
-import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-servico.service';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
-import { HandlerError } from 'src/app/helpers/handlerError';
+import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-servico.service';
+import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { ToastController } from '@ionic/angular';
-
-import { ToastCustom } from 'src/app/helpers/toastCustom';
-import { Constants } from 'src/app/utils/constants';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Config } from 'src/app/config';
+import { HandlerError } from 'src/app/helpers/handlerError';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
+import { Constants } from 'src/app/utils/constants';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 
 @Component({
-  selector: 'app-prestador-cadastro-form3',
-  templateUrl: './prestador-cadastro-form3.page.html',
-  styleUrls: ['./prestador-cadastro-form3.page.scss'],
+  selector: 'app-visualizar-prestador',
+  templateUrl: './visualizar-prestador.page.html',
+  styleUrls: ['./visualizar-prestador.page.scss'],
 })
-export class PrestadorCadastroForm3Page implements OnInit {
+export class VisualizarPrestadorPage implements OnInit {
 
   prestador: any = {};
-  prestadorUsuario = {};
   prestadorServicos = [];
   usuario = {};
+  usuarioId : string;
   constructor(public prestadorService: PrestadorService,
     public dominioServicoService: DominioServicoService,
     public loadingContr: LoadingContr,
     public ngZone: NgZone,
     public router: Router,
-    public usuarioService: UsuarioService,
     public toastCtrl: ToastController,
-    public igrejaService: IgrejaService) { }
+    public igrejaService: IgrejaService,
+    private route: ActivatedRoute,
+    private usuarioService : UsuarioService,
+    ) { 
+
+      this.usuarioId = this.route.snapshot.queryParams['usuarioId'] ;
+    }
 
   ngOnInit() {
     this.loadingContr.showLoader();
+    
+    this.usuarioService.RecuperaNomeUsuarios([this.usuarioId])
+    .then(resultado=>{
 
-    this.usuario = Config.RecuperaInstancia().recuperaUsuario();
+      this.usuario = resultado[0].data;
+    })
 
-    this.prestadorService.RecuperaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+    this.prestadorService.RecuperaPrestador(this.usuarioId)
       .then((result) => {
         this.prestador = result;
         this.prestador.nomeSituacaoPrestador = Constants.ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(this.prestador.situacaoPrestador);
@@ -49,14 +56,12 @@ export class PrestadorCadastroForm3Page implements OnInit {
           HandlerError.handler(err, this.toastCtrl);
           this.loadingContr.hideLoader();
         });
-
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
       });
 
-
-    this.prestadorService.recuperaServicosPorPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+    this.prestadorService.recuperaServicosPorPrestador(this.usuarioId)
       .then(result => {
         this.prestadorServicos = result;
         this.dominioServicoService.recuperaDominioServico().then(x => {
@@ -69,9 +74,6 @@ export class PrestadorCadastroForm3Page implements OnInit {
             return listItem;
           });
           this.loadingContr.hideLoader();
-        }).catch(err => {
-          HandlerError.handler(err, this.toastCtrl);
-          this.loadingContr.hideLoader();
         });
 
       }).catch(err => {
@@ -80,22 +82,5 @@ export class PrestadorCadastroForm3Page implements OnInit {
       });
   }
 
-  finalizar() {
-    this.loadingContr.showLoader();
-    let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PendenteAutorizacao };
 
-    this.prestadorService
-      .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
-
-        this.loadingContr.hideLoader();
-        ToastCustom.CustomToast(this.toastCtrl, "Operação realizadao com sucesso. Sua solicitação foi encaminhada para o administrador da igreja.", "success", 5000);
-
-        this.ngZone.run(() => {
-          this.router.navigate(['home']);
-        });
-      }).catch(err => {
-        HandlerError.handler(err, this.toastCtrl);
-        this.loadingContr.hideLoader();
-      });
-  }
 }

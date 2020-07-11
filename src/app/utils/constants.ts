@@ -1,7 +1,23 @@
 export module Constants{
 
+   export class ListTipoSituacaoPrestador{
+      public static RecuperaListagem():any[]{
+         return [ 
+            {valor:TipoSituacaoPrestador.Form1,descricao:"Informações Iniciais" },
+            {valor:TipoSituacaoPrestador.Form2,descricao:"Serviços" },
+            {valor:TipoSituacaoPrestador.Form3,descricao:"Confirmar Dados" },
+            {valor:TipoSituacaoPrestador.PendenteAutorizacao,descricao:"Pendente de Autorização" },
+            {valor:TipoSituacaoPrestador.Ativo,descricao:"Ativo" },
+            {valor:TipoSituacaoPrestador.Suspenso,descricao:"Suspenso" }
+         ];
 
-   
+      }
+
+      public static RecuperaDescricaoPorValor(valor:any):string {
+         return  this.RecuperaListagem().filter(y=> y.valor == valor)[0].descricao;
+      }
+
+   }
 
    export class TipoSituacaoPrestador{
       public static Form1 = 0;
