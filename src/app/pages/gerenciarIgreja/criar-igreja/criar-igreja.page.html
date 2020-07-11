@@ -32,9 +32,8 @@
         <ion-icon name="search-outline"></ion-icon>
       </ion-chip>
       <ion-item class="input-item">
-        <ion-label>
-          <p>{{enderecoParte1}}</p>
-          <p>{{enderecoParte2}} </p>
+        <ion-label class="ion-text-wrap" *ngIf="igrejaEntity.logradouro">
+          <p>{{igrejaEntity.logradouro}}, {{igrejaEntity.bairro}} -  {{igrejaEntity.cidade}}  / {{igrejaEntity.uf}}</p>
         </ion-label>
 
       <!-- <ion-button color="tertiary" type="button" (click)="submitError='';buscarEnderecoPorCEP()" [submitError]="">Buscar endereço</ion-button> -->

@@ -7,36 +7,55 @@ import { Config } from 'src/app/config';
   providedIn: 'root'
 })
 export class UsuarioService {
- 
 
-  constructor(public usuarioRepository:UsuarioRepService, public firebaseAutentication :FirebaseAuthService) {
 
-   }
+  constructor(public usuarioRepository: UsuarioRepService, public firebaseAutentication: FirebaseAuthService) {
 
-  AdicionarUsuario(item:any) : Promise<any>{
-    return this.usuarioRepository.add(item,item.usuarioId);
+  }
+
+  AdicionarUsuario(item: any): Promise<any> {
+    return this.usuarioRepository.add(item, item.usuarioId);
   }
 
   RecuperaNomeUsuarios(usuarios: string[]) {
-    return this.usuarioRepository.find({elemento:"usuarioId", tipoComparacao:"in", comparacao:usuarios});
+    return this.usuarioRepository.find({ elemento: "usuarioId", tipoComparacao: "in", comparacao: usuarios });
   }
 
-  recuperaUsuarioLogado():Promise<any>{
+  RecuperaUsuarioPorUsuarioId(usuarioId: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      
-      this.firebaseAutentication.verificaUsuarioLogado().then(user=>{
-        
-      if(user!=null){
-        this.usuarioRepository.findOne(user.uid)
-        .then(result=>{
-            Config.RecuperaInstancia().adicionaUsuario(result);
-             resolve(result);
+      this.usuarioRepository.findOne(usuarioId)
+        .then(result => {
+
+          resolve(result);
+        }).catch(err => {
+
+          reject(err);
         });
-      }else{
-        Config.RecuperaInstancia().adicionaUsuario(null);
-      resolve(null);
-      }
     });
-  });
+  }
+
+  recuperaUsuarioLogado(): Promise<any> {
+    console.log("Verifica Usuario Logado;");
+    return new Promise((resolve, reject) => {
+
+      this.firebaseAutentication.verificaUsuarioLogado().then(user => {
+
+        if (user != null) {
+          this.usuarioRepository.findOne(user.uid)
+            .then(result => {
+
+              Config.RecuperaInstancia().adicionaUsuario(result);
+              resolve(result);
+            });
+        } else {
+          Config.RecuperaInstancia().adicionaUsuario(null);
+          resolve(null);
+        }
+      }).catch(err => {
+
+        reject(err);
+      });
+    });
   }
 }
+

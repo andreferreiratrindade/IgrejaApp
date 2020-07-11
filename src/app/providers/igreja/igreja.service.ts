@@ -10,6 +10,11 @@ export class IgrejaService {
   constructor(public igrejaRepService: IgrejaRepService) { }
 
 
+  RecuperaIgrejaPorAdministrador(usuarioId:any):Promise<any>{
+    return  this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
+
+  }
+
   AdicionarNovaIgreja(obj : any) : Promise<any>{
     return  this.igrejaRepService.add(obj,null);
   }

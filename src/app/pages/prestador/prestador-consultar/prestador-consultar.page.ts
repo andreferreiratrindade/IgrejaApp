@@ -6,6 +6,8 @@ import { ToastController, LoadingController } from '@ionic/angular';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
+import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-servico.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prestador-consultar',
@@ -16,10 +18,14 @@ export class PrestadorConsultarPage implements OnInit {
 
   UfList: any[];
   cidadeList: any[];
+  servicos: any[];
   formulario: FormGroup;
   prestadores: any[];
   validation_messages = {
     'uf': [
+      { type: 'required', message: 'Campo de preenchimento obrigatório.' }
+    ],
+    'servicoId': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' }
     ]
   };
@@ -28,14 +34,19 @@ export class PrestadorConsultarPage implements OnInit {
     public toastCtrl: ToastController,
     public igrejaService: IgrejaService,
     public usuarioService: UsuarioService,
-    public loadingContr: LoadingContr
+    public loadingContr: LoadingContr,
+    public dominioServicoService: DominioServicoService,
+    public router:Router
   ) {
 
     this.formulario = new FormGroup({
       'uf': new FormControl('', Validators.compose([
         Validators.required
       ])),
-      'cidade': new FormControl()
+      'cidade': new FormControl(),
+      'servicoId': new FormControl('', Validators.compose([
+        Validators.required
+      ]))
     });
     this.prestadores = [];
 
@@ -53,6 +64,16 @@ export class PrestadorConsultarPage implements OnInit {
         this.loadingContr.hideLoader();
         HandlerError.handler(x, this.toastCtrl);
       });
+
+    this.dominioServicoService.recuperaDominioServico()
+      .then(result => {
+        this.servicos = result;
+        this.loadingContr.hideLoader();
+
+      }).catch(x => {
+        this.loadingContr.hideLoader();
+        HandlerError.handler(x, this.toastCtrl);
+      });
   }
 
   buscarCidades() {
@@ -61,7 +82,7 @@ export class PrestadorConsultarPage implements OnInit {
     this.prestadorService.RecuperaCidadePrestadorDisponiveis(this.formulario.value['uf'])
       .then(result => {
         this.cidadeList = result;
-this.loadingContr.hideLoader();
+        this.loadingContr.hideLoader();
       }).catch(x => {
         this.loadingContr.hideLoader();
         HandlerError.handler(x, this.toastCtrl);
@@ -72,40 +93,94 @@ this.loadingContr.hideLoader();
     this.loadingContr.showLoader();
     this.prestadores = [];
 
-    this.prestadorService.RecuperaPestadoresPorCidadeEhUF(this.formulario.value['uf'], this.formulario.value['cidade'])
+    this.prestadorService
+      .RecuperaPestadoresPorCidadeEhUFEhServico(this.formulario.value['uf']
+        , this.formulario.value['cidade']
+        , this.formulario.value['servicoId'])
       .then(prestadoresResult => {
-        let igrejas = [];
-        igrejas = prestadoresResult.map(x => { return x.igrejas[0].igrejaId });
 
-        this.igrejaService.RecuperaNomeIgreja(igrejas).then(resultIgreja => {
+        let lstusuarioId = [];
+        lstusuarioId = prestadoresResult.map(x => { return x.usuarioId });
+        this.prestadores = prestadoresResult;
 
-          let usuarios = [];
-          usuarios = prestadoresResult.map(x => { return x.usuarioId });
-          this.usuarioService.RecuperaNomeUsuarios(usuarios)
-            .then(usuariosResult => {
-              this.prestadores = prestadoresResult.map(x => {
-                this.loadingContr.hideLoader();
-return {
-                  nome: usuariosResult.find(y => y.id == x.usuarioId).data.nome,
-                  nomeIgreja: resultIgreja.find(y => y.id == x.igrejas[0].igrejaId).data.nomeIgreja,
-                  cidade: x.cidade,
-                  uf: x.uf,
-                  telefone: x.telefone,
-                  usuarioId: x.usuarioId,
-                  igrejaId: x.igrejas[0].igrejaId
-                };
-;
-              });
-            }).catch(x => {
-              HandlerError.handler(x, this.toastCtrl);
-              this.loadingContr.hideLoader();
-            });
-        })
+        let lstIgrejaId = [];
+        lstIgrejaId = prestadoresResult.map(x => { return x.igrejas[0].igrejaId });
+
+        this.consultaMasterPrestador(lstusuarioId,lstIgrejaId).then(() => {
+          this.loadingContr.hideLoader();
+
+        }).catch(x => {
+          HandlerError.handler(x, this.toastCtrl);
+          this.loadingContr.hideLoader();
+        });
 
       }).catch(x => {
         HandlerError.handler(x, this.toastCtrl);
         this.loadingContr.hideLoader();
-      })
+      });
+  }
 
+  private consultaMasterPrestador(lstusuarioId, lstIgrejaId): Promise<any> {
+    return new Promise<any>((result, reject) => {
+      // Recupera igreja 
+      this.recuperaNomeIgreja(lstIgrejaId);
+
+      // Recupera Nome 
+      this.recuperaNomePrestadores(lstusuarioId);
+
+      // Recupera Servicos
+      //this.recuperaServicosPorPrestadores(lstusuarioId);
+    });
+  }
+
+
+  private recuperaServicosPorPrestadores(lstusuarioId): Promise<any> {
+    return new Promise(() => {
+      this.prestadorService.recuperaServicosPorPrestadores(lstusuarioId)
+        .then(servicosPorPrestador => {
+          this.prestadores.map(x => {
+            x.servicos = servicosPorPrestador.find(y => { y.usuarioId == x.usuarioId });
+          })
+          this.loadingContr.hideLoader();
+
+        }).catch(x => {
+          HandlerError.handler(x, this.toastCtrl);
+          this.loadingContr.hideLoader();
+        });
+    });
+  }
+
+  private recuperaNomePrestadores(lstusuarioId): Promise<any> {
+    return new Promise(() => {
+      this.usuarioService.RecuperaNomeUsuarios(lstusuarioId)
+        .then(usuariosResult => {
+          this.prestadores.map(x => {
+            x.nome = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.nome;
+            x.email = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.email;
+          });
+          this.loadingContr.hideLoader();
+        }).catch(x => {
+          HandlerError.handler(x, this.toastCtrl);
+          this.loadingContr.hideLoader();
+        });
+    });
+  }
+
+  private recuperaNomeIgreja(lstIgrejaId): Promise<any> {
+    return new Promise(() => {
+      this.igrejaService.RecuperaNomeIgreja(lstIgrejaId)
+        .then(resultIgreja => {
+          this.prestadores.map(x => {
+            x.nomeIgreja = resultIgreja.find(y => y.data.id == x.igrejas[0].igrejaId).data.nomeIgreja;
+          });
+        }).catch(x => {
+          HandlerError.handler(x, this.toastCtrl);
+          this.loadingContr.hideLoader();
+        });
+    });
+  }
+
+  public detalhes(usuarioId){
+    this.router.navigate(['/visualizar-prestador'], { queryParams: { usuarioId: usuarioId } });
   }
 }

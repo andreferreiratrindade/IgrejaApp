@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseAuthService } from 'src/app/providers/base-provider/firebase-auth-service.service';
 import { Config } from 'src/app/config';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
+import { config } from 'process';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -29,16 +30,18 @@ export class MenuLateralComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-   
+
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
-   
-    this.usuarioService.recuperaUsuarioLogado().then(usuario => {
+
+    if (!Config.RecuperaInstancia()) {
+      this.usuarioService.recuperaUsuarioLogado().then(usuario => {
         if (usuario) {
           this.usuario = usuario;
         }
-        });
+      });
+    }
   }
 }
