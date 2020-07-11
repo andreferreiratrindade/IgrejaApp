@@ -49,6 +49,6 @@ export class PrestadorSituacaoRedirect implements CanActivate {
                     });
             }
             return true;
-        }).catch(() => { this.loadingControll.showLoader(); return true; });
+        }).catch(() => { this.loadingControll.hideLoader(); return true; });
     }
 }
