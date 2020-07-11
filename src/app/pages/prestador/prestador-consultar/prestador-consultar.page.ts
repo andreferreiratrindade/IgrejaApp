@@ -8,6 +8,7 @@ import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-servico.service';
 import { Router } from '@angular/router';
+import { ToastCustom } from 'src/app/helpers/toastCustom';
 
 @Component({
   selector: 'app-prestador-consultar',
@@ -99,6 +100,11 @@ export class PrestadorConsultarPage implements OnInit {
         , this.formulario.value['servicoId'])
       .then(prestadoresResult => {
 
+        if(!prestadoresResult){
+          ToastCustom.CustomToast(this.toastCtrl,"Nenhum prestador encontrado.","danger",4000);
+          this.loadingContr.hideLoader();
+          return false;
+        }
         let lstusuarioId = [];
         lstusuarioId = prestadoresResult.map(x => { return x.usuarioId });
         this.prestadores = prestadoresResult;

@@ -34,7 +34,8 @@ export class CriarIgrejaPage implements OnInit {
     public igrejaService: IgrejaService,
     public router: Router,
     public toastCtrl: ToastController,
-    public loadingControll:LoadingContr
+    public loadingControll:LoadingContr,
+    public ngZone:NgZone
   ) {
 
     this.formData = new FormGroup({
@@ -103,6 +104,9 @@ export class CriarIgrejaPage implements OnInit {
       this.loadingControll.hideLoader();
 
       ToastCustom.SucessoToast(this.toastCtrl);
+      this.ngZone.run(() => {
+        this.router.navigate(['home']);
+      });
 
     }).catch((error) => {
       HandlerError.handler(error, this.toastCtrl);

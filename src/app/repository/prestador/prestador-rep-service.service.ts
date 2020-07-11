@@ -137,7 +137,7 @@ export class PrestadorRepServiceService extends BaseRepository {
         return new Promise((resolve, reject) => {
             this.db.collectionGroup("prestador")
                 .where("uf", "==", ufSelecionado)
-                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Form2)
+                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.PendenteAutorizacao)
                 .get().then(result => {
 
                     let lst = [];
@@ -157,7 +157,7 @@ export class PrestadorRepServiceService extends BaseRepository {
 
         return new Promise((resolve, reject) => {
             this.db.collectionGroup("prestador")
-                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Form2)
+                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.PendenteAutorizacao)
                 .get().then(result => {
                     let lst = [];
                     result.forEach(function (doc) {
