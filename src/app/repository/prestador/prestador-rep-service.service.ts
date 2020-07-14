@@ -112,14 +112,15 @@ export class PrestadorRepServiceService extends BaseRepository {
 
     RecuperaPestadoresPorCidadeEhUFEhServico(ufSelecionado: string, cidadeSelecionado: string, servicoId:string): Promise<any[]> {
         return new Promise((resolve, reject) => {
-            var query = this.db.collectionGroup("prestador")
+            var query = this.db.collectionGroup("servico")
                 .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.PendenteAutorizacao)
-                .where("uf", "==", ufSelecionado)
+                .where("uf", "==", ufSelecionado);
             if (cidadeSelecionado) {
-                query.where("cidade", "==", cidadeSelecionado)
+                query = query.where("cidade", "==", cidadeSelecionado);
             }
+            // debugger
             if (servicoId) {
-                query.firestore.collectionGroup("servico").where("servicoId", "==", servicoId)
+                 query = query.where("servicoId", "==", servicoId)
             }
             query.get().then(result => {
                 let lst = [];
