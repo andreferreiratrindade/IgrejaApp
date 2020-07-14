@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
+    <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      </ion-buttons>
+    </ion-buttons>
     <ion-title>
       Adicionar Igreja
     </ion-title>
@@ -33,15 +33,31 @@
       </ion-chip>
       <ion-item class="input-item">
         <ion-label class="ion-text-wrap" *ngIf="igrejaEntity.logradouro">
-          <p>{{igrejaEntity.logradouro}}, {{igrejaEntity.bairro}} -  {{igrejaEntity.cidade}}  / {{igrejaEntity.uf}}</p>
+          <p>{{igrejaEntity.logradouro}}, {{igrejaEntity.bairro}} - {{igrejaEntity.cidade}} / {{igrejaEntity.uf}}</p>
         </ion-label>
 
-      <!-- <ion-button color="tertiary" type="button" (click)="submitError='';buscarEnderecoPorCEP()" [submitError]="">Buscar endereço</ion-button> -->
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.cep" [form]="formData"
-        [nomeCampo]="'cep'"></app-mensagem-validacao>
+        <!-- <ion-button color="tertiary" type="button" (click)="submitError='';buscarEnderecoPorCEP()" [submitError]="">Buscar endereço</ion-button> -->
+        <app-mensagem-validacao [validation_messages_object]="validation_messages.cep" [form]="formData"
+          [nomeCampo]="'cep'"></app-mensagem-validacao>
+      </ion-item>
 
-    
-
+      <ion-item class="input-item">
+        <ion-label position="floating">Email do Administrador da Igreja <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="text" formControlName="emailAdministrador" clearInput autocapitalize="off"></ion-input>
+      </ion-item>
+      <ion-chip color="tertiary" (click)="submitError='';buscarUsuarioAdministradorIgreja()" size="6">
+        <ion-label>Buscar Usuário</ion-label>
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-chip>
+      <ion-item class="input-item">
+        <ion-label class="ion-text-wrap" *ngIf="igrejaEntity.nomeUsuarioAdministrador">
+          <p>{{igrejaEntity.nomeUsuarioAdministrador}}</p>
+          <p>{{igrejaEntity.emailUsuarioAdministrador}}</p>
+        </ion-label>
+      </ion-item>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.emailAdministrador" [form]="formData"
+        [nomeCampo]="'emailAdministrador'"></app-mensagem-validacao>
       </ion-item>
 
     </ion-list>

@@ -114,4 +114,8 @@ export class CriarIgrejaPage implements OnInit {
 
     });  
   }
+
+  buscarUsuarioAdministradorIgreja(){
+    
+  }
 }
