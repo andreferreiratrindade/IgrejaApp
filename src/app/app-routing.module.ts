@@ -68,6 +68,10 @@ const routes: Routes = [
   {
     path: 'consultar-prestador-adm',
     loadChildren: () => import('./pages/gerenciarIgreja/manterPrestadores/consultar-prestador-adm/consultar-prestador-adm.module').then( m => m.ConsultarPrestadorAdmPageModule)
+  },
+  {
+    path: 'modal-servicos',
+    loadChildren: () => import('./pages/servico/modal-servicos/modal-servicos.module').then( m => m.ModalServicosPageModule)
   }
 
 

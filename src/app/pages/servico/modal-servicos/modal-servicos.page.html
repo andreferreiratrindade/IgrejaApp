@@ -1,0 +1,16 @@
+<ion-content>
+    <ion-searchbar type="text" debounce="500" (ionChange)="recuperaServicos($event)"></ion-searchbar>
+  <ion-list>
+      <ion-item *ngFor="let item of servicos" (click)="selecionarServico(item)" detail>
+        <ion-label>{{item.nomeServico}}</ion-label>
+      </ion-item>
+  </ion-list>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-button tyep="button" color="light" (click)="closeModal()" >Voltar</ion-button>
+  </ion-toolbar>
+</ion-footer>
