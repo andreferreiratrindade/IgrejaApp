@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './providers/AuthGuard/AuthGuard';
-import { PrestadorSituacaoRedirect } from './providers/AuthGuard/PrestadorSituacaoRedirect';
+import {  UsuarioLogadoValidation } from './providers/AuthGuard/UsuarioLogadoValidation';
+import { PrestadorSituacaoValidation } from './providers/AuthGuard/PrestadorSituacaoValidation';
+import { PerfilValidation_AdministradorSistema } from './providers/AuthGuard/PerfilValidation_AdministradorSistema';
 const routes: Routes = [
   {
     path: '',
@@ -27,12 +28,12 @@ const routes: Routes = [
   },
   {
     path: 'criar-igreja',
-     canActivate: [AuthGuard],
+     canActivate: [PerfilValidation_AdministradorSistema],
     loadChildren: () => import('./pages/gerenciarIgreja/criar-igreja/criar-igreja.module').then( m => m.CriarIgrejaPageModule)
   }, 
   {
     path: 'prestador-Form1',
-    canActivate: [PrestadorSituacaoRedirect],
+    canActivate: [PrestadorSituacaoValidation],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form1/prestador-cadastro-form1.module').then( m => m.PrestadorCadastroForm1PageModule)
   }, 
   {
@@ -45,12 +46,12 @@ const routes: Routes = [
   },
   {
     path: 'prestador-Form2',
-    canActivate: [PrestadorSituacaoRedirect],
+    canActivate: [PrestadorSituacaoValidation],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form2/prestador-cadastro-form2.module').then( m => m.PrestadorCadastroForm2PageModule)
   },
   {
     path: 'prestador-Form3',
-    canActivate: [PrestadorSituacaoRedirect],
+    canActivate: [PrestadorSituacaoValidation],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form3/prestador-cadastro-form3.module').then( m => m.PrestadorCadastroForm3PageModule)
   },
   {
@@ -72,7 +73,8 @@ const routes: Routes = [
   {
     path: 'modal-servicos',
     loadChildren: () => import('./pages/servico/modal-servicos/modal-servicos.module').then( m => m.ModalServicosPageModule)
-  },  {
+  },
+  {
     path: 'modal-cidade',
     loadChildren: () => import('./pages/cidade/modal-cidade/modal-cidade.module').then( m => m.ModalCidadePageModule)
   },

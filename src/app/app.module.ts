@@ -18,7 +18,7 @@ import { BaseProvider } from './providers/base-provider/base-provider';
 import { BuscarCEPService } from './providers/buscaCEP/buscar-cep.service';
 import { Http, HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {  AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 
@@ -32,23 +32,23 @@ firebase.initializeApp(environment.firebase);
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule ,
-    IonicModule.forRoot({mode: 'ios'}),
+    HttpModule,
+    IonicModule.forRoot({ mode: 'ios' }),
     AppRoutingModule,
     ComponentsModule,
-     AngularFireModule.initializeApp(environment.firebase),
-     AngularFireAuthModule,
-     AngularFirestoreModule
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-      BuscarCEPService,
+    BuscarCEPService,
     CallNumber,
     BaseProvider,
-      FirebaseAuthService,
+    FirebaseAuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

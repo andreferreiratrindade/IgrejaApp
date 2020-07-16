@@ -10,7 +10,7 @@
     <ion-searchbar type="text" 
     debounce = 1
     placeholder="Pesquisar"
-    animated
+    animated #searchbar
     (ionChange)="recuperaServicos($event)" animated></ion-searchbar>
   <ion-list>
       <ion-item *ngFor="let item of servicos" (click)="selecionarServico(item)" detail>

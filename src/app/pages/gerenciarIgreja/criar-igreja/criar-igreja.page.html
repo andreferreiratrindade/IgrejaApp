@@ -32,8 +32,8 @@
         <ion-icon name="search-outline"></ion-icon>
       </ion-chip>
       <ion-item class="input-item">
-        <ion-label class="ion-text-wrap" *ngIf="igrejaEntity.logradouro">
-          <p>{{igrejaEntity.logradouro}}, {{igrejaEntity.bairro}} - {{igrejaEntity.cidade}} / {{igrejaEntity.uf}}</p>
+        <ion-label class="ion-text-wrap" *ngIf="formData.value.logradouro">
+          <p>{{formData.value.logradouro}}, {{formData.value.bairro}} - {{formData.value.cidade}} / {{formData.value.uf}}</p>
         </ion-label>
 
         <!-- <ion-button color="tertiary" type="button" (click)="submitError='';buscarEnderecoPorCEP()" [submitError]="">Buscar endereço</ion-button> -->
@@ -42,28 +42,23 @@
       </ion-item>
 
       <ion-item class="input-item">
-        <ion-label position="floating">Email do Administrador da Igreja <ion-text color="danger">*</ion-text>
+        <ion-label position="floating" class="ion-text-wrap">Email do administrador da igreja <ion-text color="danger">*</ion-text>
         </ion-label>
         <ion-input type="text" formControlName="emailAdministrador" clearInput autocapitalize="off"></ion-input>
       </ion-item>
       <ion-chip color="tertiary" (click)="buscarUsuarioAdministradorIgreja()" size="6">
-        <ion-label>Buscar Usuário</ion-label>
+        <ion-label>Buscar Administrador</ion-label>
         <ion-icon name="search-outline"></ion-icon>
       </ion-chip>
       <ion-item class="input-item">
-        <ion-label class="ion-text-wrap" *ngIf="igrejaEntity.nomeUsuarioAdministrador">
-          <p>{{igrejaEntity.nomeUsuarioAdministrador}}</p>
-          <p>{{igrejaEntity.emailUsuarioAdministrador}}</p>
+        <ion-label class="ion-text-wrap" *ngIf="formData.value.administradorUsuarioId">
+          <p>{{formData.value.emailAdministrador}}</p>
+          <p>{{formData.value.nomeAdministrador}}</p>
         </ion-label>
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.emailAdministrador" [form]="formData"
-        [nomeCampo]="'emailAdministrador'"></app-mensagem-validacao>
       </ion-item>
 
     </ion-list>
     <ion-button class="sign-up-btn" type="submit" [submitError]="" expand="block">
-      Cadastrar</ion-button>
+      Adicionar Igreja</ion-button>
   </form>
-
-
 </ion-content>

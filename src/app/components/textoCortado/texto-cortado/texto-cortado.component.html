@@ -1,0 +1,7 @@
+<ion-buttons slot="end" *ngIf="texto.length > qtdCaracteres">
+ <h3>{{textoCortado}}...</h3> 
+  <ion-button (click)=presentPopover() interface="popover">
+    <ion-icon name="eye-outline" color="dark"></ion-icon>
+  </ion-button>
+</ion-buttons>
+
