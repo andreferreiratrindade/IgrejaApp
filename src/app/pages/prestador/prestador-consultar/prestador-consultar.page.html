@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -9,101 +9,106 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-  <form [formGroup]="formulario" (ngSubmit)="ConsultarPrestador()">
-    <ion-list lines="full" class="ion-no-margin ion-no-padding">
-      <ion-item (click)="abrirModalServicos()" detail>
-        <ion-label>Serviço<ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-note slot="end" color="primary">{{formulario.value.nomeServico}}</ion-note>
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.servico" [form]="formulario"
-        [nomeCampo]="'servico'"></app-mensagem-validacao>
 
-      <ion-item (click)="abrirModalUF()" detail>
-        <ion-label>UF<ion-text color="danger">*</ion-text>
-         
-        </ion-label>
-        <ion-note slot="end" color="primary"> {{formulario.value.uf}}</ion-note>
+<ion-content>
 
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.uf" [form]="formulario"
-        [nomeCampo]="'uf'"></app-mensagem-validacao>
-
-      <ion-item (click)="abrirModalCidade()" detail [disabled]="!formulario.value.uf">
-        <ion-label>Cidade<ion-text color="danger">*</ion-text>
-          
-        </ion-label>
-        <ion-note slot="end" color="primary"> {{formulario.value.cidade}}</ion-note>
-
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.cidade" [form]="formulario"
-        [nomeCampo]="'cidade'"></app-mensagem-validacao>
-
-      <ion-item (click)="abrirModalBairro()" detail [disabled]="!formulario.value.cidade">
-        <ion-label>Bairro
-         
-        </ion-label>
-        <ion-note slot="end" color="primary">  {{formulario.value.bairro}}</ion-note>
-
-      </ion-item>
-      <ion-item (click)="abrirModalIgreja()" detail [disabled]="!formulario.value.cidade">
-        <ion-label>Igreja
-         
-        </ion-label>
-        <ion-note slot="end" color="primary">  {{formulario.value.nomeIgreja}}</ion-note>
-
-      </ion-item>
-
-    </ion-list>
-    <div class="error-container" *ngIf="submitError">
-      <div class="error-message">
-        <ion-icon name="information-circle-outline"></ion-icon>
-        <span>{{ submitError }}</span>
-      </div>
-    </div>
-    <ion-button class="sign-up-btn" type="submit" expand="block">Pesquisar</ion-button>
-  </form>
-
-  <ion-card *ngFor="let item of prestadores" value="{{item}}">
-    <ion-card-header>
-      <ion-card-title>{{item.nome}}  <span *ngIf="item.staMembro"><ion-icon name="cube-outline" ></ion-icon></span> </ion-card-title>
-    </ion-card-header>
-
+  <ion-card>
     <ion-card-content>
-      <ion-item (click)="ligarTelefone(item.telefone)">
-        <ion-icon name="call-outline" slot="start"></ion-icon>
-        <ion-label color="primary">
+      <form [formGroup]="formulario" (ngSubmit)="ConsultarPrestador()">
+        <ion-item (click)="abrirModalServicos()" detail>
+          <ion-label>Serviço</ion-label>
+          <ion-note color="primary" slot="end">{{formulario.value.nomeServico}}</ion-note>
+          <ion-note color="primary" slot="end" *ngIf="!formulario.value.nomeServico">Todos</ion-note>
+        </ion-item>
+
+        <ion-item (click)="abrirModalUF()" detail>
+          <ion-label>UF<ion-text color="danger">*</ion-text>
+
+          </ion-label>
+          <ion-note slot="end" color="primary"> {{formulario.value.uf}}</ion-note>
+
+        </ion-item>
+        <app-mensagem-validacao [validation_messages_object]="validation_messages.uf" [form]="formulario"
+          [nomeCampo]="'uf'"></app-mensagem-validacao>
+
+        <ion-item (click)="abrirModalCidade()" detail [disabled]="!formulario.value.uf">
+          <ion-label>Cidade<ion-text color="danger">*</ion-text>
+
+          </ion-label>
+          <ion-note slot="end" color="primary"> {{formulario.value.cidade}}</ion-note>
+
+        </ion-item>
+        <app-mensagem-validacao [validation_messages_object]="validation_messages.cidade" [form]="formulario"
+          [nomeCampo]="'cidade'"></app-mensagem-validacao>
+
+        <ion-item (click)="abrirModalBairro()" detail [disabled]="!formulario.value.cidade">
+          <ion-label>Bairro
+
+          </ion-label>
+          <ion-note slot="end" color="primary"> {{formulario.value.bairro}}</ion-note>
+
+        </ion-item>
+        <ion-item (click)="abrirModalIgreja()" detail [disabled]="!formulario.value.cidade">
+          <ion-label>Igreja
+
+          </ion-label>
+          <ion-note slot="end" color="primary"> {{formulario.value.nomeIgreja}}</ion-note>
+
+        </ion-item>
+
+        <ion-button class="primary" type="submit" expand="block">Pesquisar</ion-button>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let item of prestadores" value="{{item}}" class="ion-no-border">
+  <ion-card-header>
+
+      <ion-card-title><h3>{{item.nome}} </h3>
+        
+     
+        </ion-card-title>
+    </ion-card-header> 
+
+      <ion-item (click)="ligarTelefone(item.telefone)"  >
+                <ion-icon name="call-outline" slot="start"></ion-icon>
+        <ion-label color="primary" class="ion-no-border">
           <h2>{{item.telefone}}</h2>
-          
         </ion-label>
       </ion-item>
-      <ion-item>
-        <ion-icon name="mail-outline" slot="start"></ion-icon>
-        <ion-label>
-          <h2>{{item.email}}</h2>
-        </ion-label>
-      </ion-item>
-      <ion-item>
+      <ion-item  class="ion-no-border">
         <ion-icon name="business-outline" slot="start"></ion-icon>
-        <ion-label>
-          <h2>{{item.nomeIgreja}} </h2> 
+        <ion-label class="ion-text-wrap on-no-border">
+          <h2>{{item.nomeIgreja}} </h2>
         </ion-label>
+        <ion-note color="tertiary" slot="end" *ngIf="item.staMembro">
+         membro 
+        </ion-note>
       </ion-item>
       <ion-item>
         <ion-icon name="golf-outline" slot="start"></ion-icon>
-        <ion-label>
+        <ion-label class="ion-text-wrap on-no-border">
           <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>
         </ion-label>
       </ion-item>
       <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col size="4">
             <ion-button size="small" (click)="detalhes(item.usuarioId)">Detalhes</ion-button>
           </ion-col>
+          <!-- <ion-col size="4">
+            <ion-button size="small" (click)="compartilhar()" >
+              <ion-icon name="share-social"></ion-icon></ion-button>
+          </ion-col>
+          <ion-col size="4">
+
+            <ion-button size="small" (click)="adicionarFavorito(item.usuarioId)" fill="outline">
+              <ion-icon name="star-outline"></ion-icon></ion-button>
+          </ion-col> -->
         </ion-row>
       </ion-grid>
-    </ion-card-content>
+    <!-- </ion-card-content> -->
   </ion-card>
 
 </ion-content>

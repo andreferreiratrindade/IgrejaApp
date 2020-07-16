@@ -71,7 +71,6 @@ export class PrestadorRepServiceService extends BaseRepository {
                         prestador.servicos = [servico];
                         transaction.set(ref, prestador);
                     } else {
-                        debugger
                         let prestador = doc.data();
                         prestador.servicos = prestador.servicos.filter(y => { return y.servicoId != servico.servicoId });
                         prestador.servicos.push(servico);
@@ -159,7 +158,7 @@ export class PrestadorRepServiceService extends BaseRepository {
 
                     if (doc.data().servicos) {
                         let servicosTemp = doc.data().servicos.filter(y => { return y.servicoId == servicoId });
-                        if (servicosTemp.length > 0) {
+                        if (servicosTemp.length > 0 ||  !servicoId) {
 
                             let prestador = doc.data();
                             if (igrejaId) {

@@ -10,7 +10,7 @@ import { ToastCustom } from 'src/app/helpers/toastCustom';
 
 
 @Injectable({ providedIn: 'root' })
-export class PrestadorSituacaoRedirect implements CanActivate {
+export class PrestadorSituacaoValidation implements CanActivate {
     constructor(
         private router: Router,
         private usuarioService: UsuarioService,

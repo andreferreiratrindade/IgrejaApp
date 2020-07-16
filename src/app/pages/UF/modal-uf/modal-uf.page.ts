@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { HandlerError } from 'src/app/helpers/handlerError';
-import { ToastController, ModalController } from '@ionic/angular';
+import { ToastController, ModalController, IonInput } from '@ionic/angular';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 
 @Component({
@@ -9,15 +9,17 @@ import { PrestadorService } from 'src/app/providers/prestador/prestador.service'
   templateUrl: './modal-uf.page.html',
   styleUrls: ['./modal-uf.page.scss'],
 })
-export class ModalUFPage implements OnInit {
+export class ModalUFPage implements OnInit, AfterViewInit {
 
-  private dominioUF: any[] = []
-  itens: any[] = []
+  private dominioUF: any[] = [];
+  itens: any[] = [];
+  @ViewChild('searchbar') inputElement: IonInput;
+
   constructor(public loadingContr: LoadingContr,
     public toastCtrl: ToastController,
     public prestadorService: PrestadorService,
     public modalController: ModalController) {
-      this.loadingContr.showLoader();
+    this.loadingContr.showLoader();
     this.prestadorService.RecuperaUfPrestadorDisponiveis()
       .then(result => {
         this.dominioUF = result;
@@ -31,8 +33,17 @@ export class ModalUFPage implements OnInit {
 
   }
 
+  ngAfterViewInit() {
+
+    setTimeout(() => {
+      this.inputElement.setFocus();
+    }, 800);
+  }
+
   ngOnInit() {
   }
+
+
 
   recuperaItens(ev: any) {
     const val = ev.target.value;

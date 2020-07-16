@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
-import { ToastController, ModalController, NavParams } from '@ionic/angular';
+import { ToastController, ModalController, NavParams, IonInput } from '@ionic/angular';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 
@@ -9,10 +9,12 @@ import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
   templateUrl: './modal-igreja.page.html',
   styleUrls: ['./modal-igreja.page.scss'],
 })
-export class ModalIgrejaPage implements OnInit {
+export class ModalIgrejaPage implements OnInit , AfterViewInit {
 
-  itens : any[] = []
-  dominioIgrejas: any[] = []
+  itens : any[] = [];
+  dominioIgrejas: any[] = [];
+  @ViewChild('searchbar') inputElement: IonInput;
+
   constructor(public loadingContr: LoadingContr,
     public toastCtrl: ToastController,
     public igrejaService:IgrejaService,
@@ -35,6 +37,13 @@ export class ModalIgrejaPage implements OnInit {
     }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+
+    setTimeout(() => {
+      this.inputElement.setFocus();
+    }, 800);
   }
 
 

@@ -6,7 +6,7 @@ import { Config } from 'src/app/config';
 
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
+export class UsuarioLogadoValidation implements CanActivate {
     constructor(
         private router: Router,
         private usuarioService: UsuarioService,
@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         this.loadingControll.showLoader();
-
        return  this.usuarioService.recuperaUsuarioLogado().then(x => {
            
             this.loadingControll.hideLoader();

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-servico.service';
-import { ToastController, ModalController, NavParams } from '@ionic/angular';
+import { ToastController, ModalController, NavParams, IonInput } from '@ionic/angular';
 import { HandlerError } from 'src/app/helpers/handlerError';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 
@@ -9,10 +9,12 @@ import { LoadingContr } from 'src/app/helpers/loadingContr';
     templateUrl: './modal-servicos.page.html',
     styleUrls: ['./modal-servicos.page.scss'],
 })
-export class ModalServicosPage implements OnInit {
+export class ModalServicosPage implements OnInit , AfterViewInit {
 
     private dominioServicos: any[] = [];
     servicos: any[] = [];
+  @ViewChild('searchbar') inputElement: IonInput;
+
     constructor(
         public toast: ToastController,
         public loadControl: LoadingContr,
@@ -25,6 +27,14 @@ export class ModalServicosPage implements OnInit {
 
     ngOnInit() {
     }
+
+    ngAfterViewInit() {
+
+        setTimeout(() => {
+          this.inputElement.setFocus();
+        }, 800);
+      }
+    
     recuperaServicos(ev: any) {
         const val = ev.target.value;
         if (val && val.trim() !== '') {

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HandlerError } from 'src/app/helpers/handlerError';
-import { ToastController, LoadingController, ModalController } from '@ionic/angular';
+import { ToastController, LoadingController, ModalController, IonContent } from '@ionic/angular';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
@@ -15,13 +15,16 @@ import { ModalCidadePage } from '../../cidade/modal-cidade/modal-cidade.page';
 import { ModalUFPage } from '../../UF/modal-uf/modal-uf.page';
 import { ModalIgrejaPage } from '../../igreja/modal-igreja/modal-igreja.page';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { Constants } from 'src/app/utils/constants';
+import { FavoritoService } from 'src/app/providers/favorito/favorito.service';
+import { Config } from 'src/app/config';
 @Component({
     selector: 'app-prestador-consultar',
     templateUrl: './prestador-consultar.page.html',
     styleUrls: ['./prestador-consultar.page.scss'],
 })
 export class PrestadorConsultarPage implements OnInit {
-
+    @ViewChild(IonContent) ionContent: IonContent;
     UfList: any[];
     cidadeList: any[];
     servicos: any[];
@@ -44,7 +47,8 @@ export class PrestadorConsultarPage implements OnInit {
         public dominioServicoService: DominioServicoService,
         public router: Router,
         public modalCtrl: ModalController,
-        private callNumber: CallNumber
+        private callNumber: CallNumber,
+        private favoritoService: FavoritoService
     ) {
 
         this.formulario = new FormGroup({
@@ -58,7 +62,6 @@ export class PrestadorConsultarPage implements OnInit {
             'igrejaId': new FormControl(),
         });
         this.prestadores = [];
-
     }
 
     ngOnInit() {
@@ -89,8 +92,8 @@ export class PrestadorConsultarPage implements OnInit {
     }
 
     ConsultarPrestador() {
-        if(!this.formularioValido()){
-            ToastCustom.CustomToast(this.toastCtrl, "Favor preencher campos obrigatórios", "danger", 4000);
+        if (!this.formularioValido()) {
+            ToastCustom.CustomToast(this.toastCtrl, Constants.Mensagens.CamposObrigatorios, "danger", 4000);
 
             return false;
         }
@@ -99,7 +102,7 @@ export class PrestadorConsultarPage implements OnInit {
 
         this.prestadorService
             .RecuperaPestadoresPesquisar(
-                   this.formulario.value['uf']
+                this.formulario.value['uf']
                 , this.formulario.value['cidade']
                 , this.formulario.value['bairro']
                 , this.formulario.value['servicoId']
@@ -134,10 +137,10 @@ export class PrestadorConsultarPage implements OnInit {
     private consultaMasterPrestador(lstusuarioId, lstIgrejaId): Promise<any> {
         return new Promise<any>((result, reject) => {
             // Recupera igreja 
-            this.recuperaNomeIgreja(lstIgrejaId);
+            this.recuperaNomeIgreja(lstIgrejaId).then(() => { result() }).catch(err => { reject(err) });
 
             // Recupera Nome 
-            this.recuperaNomePrestadores(lstusuarioId);
+            this.recuperaNomePrestadores(lstusuarioId).then(() => { result() }).catch(err => { reject(err) });
 
             // Recupera Servicos
             //this.recuperaServicosPorPrestadores(lstusuarioId);
@@ -162,15 +165,18 @@ export class PrestadorConsultarPage implements OnInit {
     }
 
     private recuperaNomePrestadores(lstusuarioId): Promise<any> {
-        return new Promise(() => {
+        return new Promise((result, reject) => {
             this.usuarioService.RecuperaNomeUsuarios(lstusuarioId)
                 .then(usuariosResult => {
                     this.prestadores.map(x => {
                         x.nome = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.nome;
                         x.email = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.email;
                     });
-                    this.loadingContr.hideLoader();
+                  
+                    this.ionContent.scrollToPoint(0, 350, 800);
+                    result();
                 }).catch(x => {
+                  
                     HandlerError.handler(x, this.toastCtrl);
                     this.loadingContr.hideLoader();
                 });
@@ -178,14 +184,17 @@ export class PrestadorConsultarPage implements OnInit {
     }
 
     private recuperaNomeIgreja(lstIgrejaId): Promise<any> {
-        return new Promise(() => {
+        return new Promise((result, reject) => {
+
             this.igrejaService.RecuperaNomeIgreja(lstIgrejaId)
                 .then(resultIgreja => {
                     this.prestadores.map(x => {
                         x.nomeIgreja = resultIgreja.find(y => y.data.id == x.igrejas[0].igrejaId).data.nomeIgreja;
-                        x.staMembro = resultIgreja.find(y => y.data.id == x.igrejas[0].igrejaId).data.staMembro;
+                        x.staMembro = x.igrejas[0].staMembro;
                     });
+                    result()
                 }).catch(x => {
+                    reject(x)
                     HandlerError.handler(x, this.toastCtrl);
                     this.loadingContr.hideLoader();
                 });
@@ -204,7 +213,7 @@ export class PrestadorConsultarPage implements OnInit {
         }).then((modal) => {
             modal.present();
             modal.onWillDismiss().then(resultModal => {
-           
+
                 if (resultModal) {
                     this.formulario.value.nomeServico = resultModal.data.nomeServico;
                     this.formulario.value.servicoId = resultModal.data.servicoId;
@@ -268,11 +277,11 @@ export class PrestadorConsultarPage implements OnInit {
     public abrirModalIgreja() {
         const modal = this.modalCtrl.create({
             component: ModalIgrejaPage,
-            componentProps: { 
-                                uf: this.formulario.value.uf, 
-                                cidade: this.formulario.value.cidade,
-                                bairro:this.formulario.value.bairro 
-                            },
+            componentProps: {
+                uf: this.formulario.value.uf,
+                cidade: this.formulario.value.cidade,
+                bairro: this.formulario.value.bairro
+            },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();
@@ -284,16 +293,25 @@ export class PrestadorConsultarPage implements OnInit {
             });
         });
     }
-    public formularioValido():boolean{
-       return this.formulario.value.uf && this.formulario.value.cidade && this.formulario.value.servicoId;
+    public formularioValido(): boolean {
+        return this.formulario.value.uf && this.formulario.value.cidade;
     }
 
-    public ligarTelefone(telefone:any){
-        this.callNumber.callNumber(telefone, true).then(()=>{
-            
+    public ligarTelefone(telefone: any) {
+        this.callNumber.callNumber(telefone, true).then(() => {
+
 
         }).catch(x => {
             HandlerError.handler(x, this.toastCtrl);
         });
+    }
+    public adicionarPrestadorFavorito(usuarioId:string){
+        this.favoritoService.AdicionaPrestadorFavorito(usuarioId, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+        .then(()=>{});
+    }
+
+    public removePrestadorFavorito(usuarioId:string){
+        this.favoritoService.RemovePrestadorFavorito(usuarioId, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+        .then(()=>{});
     }
 }

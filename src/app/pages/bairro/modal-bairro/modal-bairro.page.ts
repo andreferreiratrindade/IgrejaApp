@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
-import { ToastController, ModalController, NavParams } from '@ionic/angular';
+import { ToastController, ModalController, NavParams, IonInput } from '@ionic/angular';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { HandlerError } from 'src/app/helpers/handlerError';
 
@@ -9,12 +9,14 @@ import { HandlerError } from 'src/app/helpers/handlerError';
   templateUrl: './modal-bairro.page.html',
   styleUrls: ['./modal-bairro.page.scss'],
 })
-export class ModalBairroPage implements OnInit {
+export class ModalBairroPage implements OnInit , AfterViewInit {
 
-  private dominioBairro: any[] = []
-  uf: string
-  cidade: string
-  itens: any[] = []
+  private dominioBairro: any[] = [];
+  uf: string;
+  cidade: string;
+  itens: any[] = [];
+  @ViewChild('searchbar') inputElement: IonInput;
+
   constructor(public loadingContr: LoadingContr,
     public toastCtrl: ToastController,
     public prestadorService: PrestadorService,
@@ -37,6 +39,12 @@ export class ModalBairroPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.inputElement.setFocus();
+    }, 800);
   }
 
   recuperaItens(ev: any) {

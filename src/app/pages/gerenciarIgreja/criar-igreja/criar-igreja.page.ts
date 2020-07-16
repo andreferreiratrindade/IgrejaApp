@@ -10,6 +10,7 @@ import { HandlerError } from 'src/app/helpers/handlerError';
 import { ToastController } from '@ionic/angular';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
+import { Constants } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-criar-igreja',
@@ -20,15 +21,17 @@ export class CriarIgrejaPage implements OnInit {
 
   private igrejaEntity: any = {}
   public formData: FormGroup;
-  public enderecoParte1:string;
-  public enderecoParte2:string;
+  public enderecoParte1: string;
+  public enderecoParte2: string;
   validation_messages = {
     'nomeIgreja': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
     ],
     'cep': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
-    ], 'emailAdministrador': [
+    ], 'nomeAdministrador': [
+      { type: 'required', message: 'Campo de preenchimento obrigatório.' },
+    ], 'administradorUsuarioId': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
     ]
   };
@@ -36,9 +39,9 @@ export class CriarIgrejaPage implements OnInit {
     public igrejaService: IgrejaService,
     public router: Router,
     public toastCtrl: ToastController,
-    public loadingControll:LoadingContr,
-    public ngZone:NgZone,
-    public usuarioService:UsuarioService,
+    public loadingControll: LoadingContr,
+    public ngZone: NgZone,
+    public usuarioService: UsuarioService,
   ) {
 
     this.formData = new FormGroup({
@@ -47,40 +50,56 @@ export class CriarIgrejaPage implements OnInit {
       ])),
       'nomeIgreja': new FormControl('', Validators.compose([
         Validators.required
+      ])), 'logradouro': new FormControl('', Validators.compose([
+        Validators.required
+      ])), 'bairro': new FormControl('', Validators.compose([
+        Validators.required
+      ])), 'uf': new FormControl('', Validators.compose([
+        Validators.required
+      ])), 'cidade': new FormControl('', Validators.compose([
+        Validators.required
       ])),
       'emailAdministrador': new FormControl('', Validators.compose([
         Validators.required
+      ])), 'nomeAdministrador': new FormControl('', Validators.compose([
+        Validators.required
+      ])), 'administradorUsuarioId': new FormControl('', Validators.compose([
+        Validators.required
       ])),
-      
+
+
     });
 
   }
 
   ngOnInit() {
-    
+
   }
 
   buscarEnderecoPorCEP() {
 
-    this.igrejaEntity = {};
-    if(!this.formData.value['cep'] || this.formData.value['cep'].toString().length != "8"){
+    this.formData.controls['cidade'].setValue(null);
+    this.formData.controls['bairro'].setValue(null);
+    this.formData.controls['uf'].setValue(null);
+    this.formData.controls['logradouro'].setValue(null);
+
+    if (!this.formData.value.cep || this.formData.value.cep.toString().length != "8") {
       HandlerError.handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl);
       return false;
     }
     this.loadingControll.showLoader();
 
 
-    this.buscarCEPService.buscarCEP(this.formData.value['cep']).then(x => {
-  
+    this.buscarCEPService.buscarCEP(this.formData.value.cep).then(x => {
+
       if (x && !x.erro) {
-        this.igrejaEntity.cidade = x.localidade;
-        this.igrejaEntity.bairro = x.bairro;
-        this.igrejaEntity.uf = x.uf;
-        this.igrejaEntity.logradouro = x.logradouro;
-        this.igrejaEntity.cep = x.cep;
+        this.formData.controls['cidade'].setValue(x.localidade);
+        this.formData.controls['bairro'].setValue(x.bairro);
+        this.formData.controls['uf'].setValue(x.uf);
+        this.formData.controls['logradouro'].setValue(x.logradouro);
 
         this.loadingControll.hideLoader();
-      }else{
+      } else {
         this.loadingControll.hideLoader()
         HandlerError.handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl);
       }
@@ -93,48 +112,60 @@ export class CriarIgrejaPage implements OnInit {
   }
 
   salvarIgreja() {
-    if (!this.igrejaEntity || !this.igrejaEntity.cidade) {
+    if (!this.formData.value.cidade) {
       HandlerError.handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl);
       return false;
     }
 
-    if(!this.formData.valid ){
-      HandlerError.handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.",this.toastCtrl)
+    if (!this.formData.valid) {
+      HandlerError.handler(Constants.Mensagens.CamposObrigatorios, this.toastCtrl)
       return false;
     }
 
     this.loadingControll.showLoader()
-    
-    this.igrejaEntity.nomeIgreja = this.formData.value['nomeIgreja'];
-    this.igrejaEntity.administradores = [{usuarioId:Config.RecuperaInstancia().recuperaUsuario().usuarioId}];
-    this.igrejaService.AdicionarNovaIgreja(this.igrejaEntity).then(() => {
-      this.loadingControll.hideLoader();
 
-      ToastCustom.SucessoToast(this.toastCtrl);
-      this.ngZone.run(() => {
-        this.router.navigate(['home']);
-      });
+    this.igrejaEntity = this.formData.value;
+    this.igrejaEntity.administradores = [{ usuarioId: this.formData.value.administradorUsuarioId }];
+    this.igrejaService.AdicionarNovaIgreja(this.igrejaEntity).then(() => {
+
+      this.usuarioService
+        .AdicionaPerfilAoUsuario(this.formData.value.administradorUsuarioId, Constants.PerfilUsuario.AdministradorIgreja)
+        .then(() => {
+          ToastCustom.SucessoToast(this.toastCtrl);
+          this.loadingControll.hideLoader();
+          this.ngZone.run(() => {
+            this.router.navigate(['home']);
+          });
+        }).catch((error) => {
+          HandlerError.handler(error, this.toastCtrl);
+          this.loadingControll.hideLoader();
+
+        });
 
     }).catch((error) => {
       HandlerError.handler(error, this.toastCtrl);
       this.loadingControll.hideLoader();
 
-    });  
+    });
   }
 
-  buscarUsuarioAdministradorIgreja(){
+  buscarUsuarioAdministradorIgreja() {
     this.loadingControll.showLoader();
 
-    this.usuarioService.RecuperaUsuarioPorEmail(this.formData.value.emailAdministrador).then(result=>{
-        if(result.length > 0){
-           this.formData.value.administradorUsuarioId = result[0].usuarioId;
-        }else{
-          HandlerError.handler("Nenhum usuário encontrado com este e-mail.", this.toastCtrl);
-        }
-      }).catch((error) => {
-        HandlerError.handler(error, this.toastCtrl);
-        this.loadingControll.hideLoader();
-  
-      });  
-    }
+    this.usuarioService.RecuperaUsuarioPorEmail(this.formData.value.emailAdministrador).then(result => {
+      if (result.length > 0) {
+        this.formData.controls['administradorUsuarioId'].setValue(result[0].data.usuarioId);
+        this.formData.controls['emailAdministrador'].setValue(result[0].data.email);
+        this.formData.controls['nomeAdministrador'].setValue(result[0].data.nome);
+      } else {
+        HandlerError.handler("Nenhum usuário encontrado com este e-mail.", this.toastCtrl);
+      }
+      this.loadingControll.hideLoader();
+
+    }).catch((error) => {
+      HandlerError.handler(error, this.toastCtrl);
+      this.loadingControll.hideLoader();
+
+    });
+  }
 }

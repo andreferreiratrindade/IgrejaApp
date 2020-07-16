@@ -7,6 +7,9 @@ import { Config } from 'src/app/config';
   providedIn: 'root'
 })
 export class UsuarioService {
+  AdicionaPerfilAoUsuario(usuarioId: any, perfil: number) {
+    return this.usuarioRepository.AdicionaPerfilAoUsuario(usuarioId, perfil);
+  }
   RecuperaUsuarioPorEmail(emailAdministrador: string) {
     return this.usuarioRepository.find({elemento:"email", tipoComparacao:"==", comparacao:emailAdministrador});
   }
