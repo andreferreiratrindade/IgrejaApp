@@ -68,7 +68,27 @@ const routes: Routes = [
   {
     path: 'consultar-prestador-adm',
     loadChildren: () => import('./pages/gerenciarIgreja/manterPrestadores/consultar-prestador-adm/consultar-prestador-adm.module').then( m => m.ConsultarPrestadorAdmPageModule)
+  },
+  {
+    path: 'modal-servicos',
+    loadChildren: () => import('./pages/servico/modal-servicos/modal-servicos.module').then( m => m.ModalServicosPageModule)
+  },  {
+    path: 'modal-cidade',
+    loadChildren: () => import('./pages/cidade/modal-cidade/modal-cidade.module').then( m => m.ModalCidadePageModule)
+  },
+  {
+    path: 'modal-bairro',
+    loadChildren: () => import('./pages/bairro/modal-bairro/modal-bairro.module').then( m => m.ModalBairroPageModule)
+  },
+  {
+    path: 'modal-uf',
+    loadChildren: () => import('./pages/UF/modal-uf/modal-uf.module').then( m => m.ModalUFPageModule)
+  },
+  {
+    path: 'modal-igreja',
+    loadChildren: () => import('./pages/igreja/modal-igreja/modal-igreja.module').then( m => m.ModalIgrejaPageModule)
   }
+
 
 
 

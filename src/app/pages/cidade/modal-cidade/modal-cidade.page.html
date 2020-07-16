@@ -1,0 +1,18 @@
+<ion-header translucent={true}>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="closeModal()" text="Voltar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cidades</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-searchbar type="text"  debounce = 1
+  placeholder="Pesquisar"
+  animated (ionChange)="recuperaItens($event)"></ion-searchbar>
+<ion-list>
+    <ion-item *ngFor="let item of itens" (click)="selecionar(item)" detail>
+      <ion-label>{{item}}</ion-label>
+    </ion-item>
+</ion-list>
+</ion-content>

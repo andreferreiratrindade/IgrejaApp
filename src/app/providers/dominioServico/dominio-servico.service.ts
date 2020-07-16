@@ -5,6 +5,9 @@ import { DominioServicoRepositoryService } from 'src/app/repository/dominioServi
   providedIn: 'root'
 })
 export class DominioServicoService {
+  recuperaServicoAutoComplete(ev: string) {
+     return this.dominioServico.recuperaServicoAutoComplete(ev);
+  }
 
   constructor(public dominioServico: DominioServicoRepositoryService) { }
 
