@@ -74,7 +74,7 @@ export abstract class BaseRepository implements IWrite, IRead {
 				resolve(lst);
 			})
 			.catch(function (error) {
-				console.log("Error getting documents: ", error);
+				reject(error)
 			});
 		});
 	}

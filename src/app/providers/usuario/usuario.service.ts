@@ -7,6 +7,9 @@ import { Config } from 'src/app/config';
   providedIn: 'root'
 })
 export class UsuarioService {
+  RecuperaUsuarioPorEmail(emailAdministrador: string) {
+    return this.usuarioRepository.find({elemento:"email", tipoComparacao:"==", comparacao:emailAdministrador});
+  }
 
 
   constructor(public usuarioRepository: UsuarioRepService, public firebaseAutentication: FirebaseAuthService) {

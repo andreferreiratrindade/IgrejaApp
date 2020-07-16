@@ -1,7 +1,8 @@
 {
   "name": "IgrejaApp",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

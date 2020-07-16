@@ -13,7 +13,7 @@ export class ModalServicosPage implements OnInit {
 
     private dominioServicos: any[] = [];
     servicos: any[] = [];
-    constructor(public dominioServicoService: DominioServicoService,
+    constructor(
         public toast: ToastController,
         public loadControl: LoadingContr,
         public modalController: ModalController,
@@ -26,7 +26,6 @@ export class ModalServicosPage implements OnInit {
     ngOnInit() {
     }
     recuperaServicos(ev: any) {
-        debugger
         const val = ev.target.value;
         if (val && val.trim() !== '') {
                 this.servicos = this.dominioServicos.filter(item=>{return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1});

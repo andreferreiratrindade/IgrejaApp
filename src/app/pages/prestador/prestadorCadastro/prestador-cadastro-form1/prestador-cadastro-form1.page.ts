@@ -7,12 +7,13 @@ import { Router } from '@angular/router';
 import { BuscarCEPService } from 'src/app/providers/buscaCEP/buscar-cep.service';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 import { HandlerError } from 'src/app/helpers/handlerError';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
 import { Config } from 'src/app/config';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { Constants } from 'src/app/utils/constants';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
+import { ModalIgrejaPage } from 'src/app/pages/igreja/modal-igreja/modal-igreja.page';
 
 @Component({
   selector: 'app-prestador-cadastro-form1',
@@ -28,13 +29,10 @@ export class PrestadorCadastroForm1Page implements OnInit {
   StaMembro: boolean;
 
   validation_messages = {
-    'cpfcnpj': [
-      { type: 'required', message: 'Campo de preenchimento obrigatório.' },
-    ],
     'telefone': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
     ],
-    'igrejaVinculo': [
+    'igrejaId': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
     ],
     'cep': [
@@ -52,13 +50,12 @@ export class PrestadorCadastroForm1Page implements OnInit {
     private ngZone: NgZone,
     public prestadorService: PrestadorService,
     public buscarCEPService: BuscarCEPService,
-    public loadingContr: LoadingContr
+    public loadingContr: LoadingContr,
+    public modalCtrl :ModalController
   ) {
 
     this.form1 = new FormGroup({
-      'cpfcnpj': new FormControl('', Validators.compose([
-        Validators.required
-      ])),
+     
       'telefone': new FormControl('', Validators.compose([
         Validators.required
       ])),
@@ -68,15 +65,17 @@ export class PrestadorCadastroForm1Page implements OnInit {
       'razaoSocial': new FormControl('', Validators.compose([
         Validators.required
       ])),
-      'igrejaVinculo': new FormControl('', Validators.compose([
+      'igrejaId': new FormControl('', Validators.compose([
         Validators.required
       ])),
-      'staMembro': new FormControl('', Validators.compose([
+      'nomeIgreja': new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      'staMembro': new FormControl({value:false}, Validators.compose([
       ]))
     });
     this.igrejas = [];
-    this.form1.value.staMembro = true;
-    this.form1.value["staMembro"] = true;
+    this.form1.controls['staMembro'].setValue(true);
   }
 
   ngOnInit() {
@@ -147,7 +146,7 @@ export class PrestadorCadastroForm1Page implements OnInit {
       return false;
     }
     this.loadingContr.showLoader()
-    this.prestador.igrejas = [{ igrejaId: this.form1.value['igrejaVinculo'], staMembro: this.form1.value['staMembro'] }];
+    this.prestador.igrejas = [{ igrejaId: this.form1.value['igrejaId'], staMembro: this.form1.value['staMembro'] }];
     this.prestador.usuarioId = Config.RecuperaInstancia().recuperaUsuario().usuarioId;
     this.prestador.situacaoPrestador = Constants.TipoSituacaoPrestador.Form2;
     let obj = this.MontaPrestadorParaSalvar(this.prestador, this.form1);
@@ -168,7 +167,6 @@ export class PrestadorCadastroForm1Page implements OnInit {
 
   MontaPrestadorParaSalvar(prestador: any, formulario: any) {
     let obj = prestador;
-    obj.cpfcnpj = formulario.value['cpfcnpj'];
     obj.telefone = formulario.value['telefone'];
     obj.razaoSocial = formulario.value['razaoSocial'];
     return obj;
@@ -176,4 +174,27 @@ export class PrestadorCadastroForm1Page implements OnInit {
   updateToggleSet(obj:any){
     console.log(this.form1.value['staMembro'].value);
   }
+
+  public abrirModalIgreja() {
+    const modal = this.modalCtrl.create({
+        component: ModalIgrejaPage,
+        componentProps: { 
+                            uf: this.prestador.uf, 
+                            cidade: this.prestador.cidade,
+                            bairro:this.prestador.bairro 
+                        },
+        backdropDismiss: false,
+    }).then((modal) => {
+        modal.present();
+        modal.onWillDismiss().then(resultModal => {
+            if (resultModal) {
+              
+              this.form1.controls['nomeIgreja'].setValue(resultModal.data.nomeIgreja);
+              this.form1.controls['igrejaId'].setValue(resultModal.data.id);
+                // this.form1.value.nomeIgreja = resultModal.data.nomeIgreja;
+                // this.form1.value.igrejaId = resultModal.data.id;
+            }
+        });
+    });
+}
 }

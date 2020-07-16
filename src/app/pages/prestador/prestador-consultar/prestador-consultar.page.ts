@@ -10,7 +10,11 @@ import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-
 import { Router } from '@angular/router';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { ModalServicosPage } from '../../servico/modal-servicos/modal-servicos.page';
-
+import { ModalBairroPage } from '../../bairro/modal-bairro/modal-bairro.page';
+import { ModalCidadePage } from '../../cidade/modal-cidade/modal-cidade.page';
+import { ModalUFPage } from '../../UF/modal-uf/modal-uf.page';
+import { ModalIgrejaPage } from '../../igreja/modal-igreja/modal-igreja.page';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 @Component({
     selector: 'app-prestador-consultar',
     templateUrl: './prestador-consultar.page.html',
@@ -39,7 +43,8 @@ export class PrestadorConsultarPage implements OnInit {
         public loadingContr: LoadingContr,
         public dominioServicoService: DominioServicoService,
         public router: Router,
-        public modalCtrl: ModalController
+        public modalCtrl: ModalController,
+        private callNumber: CallNumber
     ) {
 
         this.formulario = new FormGroup({
@@ -47,10 +52,10 @@ export class PrestadorConsultarPage implements OnInit {
                 Validators.required
             ])),
             'cidade': new FormControl(),
+            'bairro': new FormControl(),
             'nomeServico': new FormControl(),
-            'servicoId': new FormControl('', Validators.compose([
-                Validators.required
-            ]))
+            'nomeIgreja': new FormControl(),
+            'igrejaId': new FormControl(),
         });
         this.prestadores = [];
 
@@ -58,16 +63,6 @@ export class PrestadorConsultarPage implements OnInit {
 
     ngOnInit() {
         this.loadingContr.showLoader();
-
-        this.prestadorService.RecuperaUfPrestadorDisponiveis()
-            .then(result => {
-                this.UfList = result;
-                this.loadingContr.hideLoader();
-
-            }).catch(x => {
-                this.loadingContr.hideLoader();
-                HandlerError.handler(x, this.toastCtrl);
-            });
 
         this.dominioServicoService.recuperaDominioServico()
             .then(result => {
@@ -94,16 +89,23 @@ export class PrestadorConsultarPage implements OnInit {
     }
 
     ConsultarPrestador() {
-        this.loadingContr.showLoader();
+        if(!this.formularioValido()){
+            ToastCustom.CustomToast(this.toastCtrl, "Favor preencher campos obrigatórios", "danger", 4000);
+
+            return false;
+        }
         this.prestadores = [];
+        this.loadingContr.showLoader();
 
         this.prestadorService
-            .RecuperaPestadoresPorCidadeEhUFEhServico(this.formulario.value['uf']
+            .RecuperaPestadoresPesquisar(
+                   this.formulario.value['uf']
                 , this.formulario.value['cidade']
-                , this.formulario.value['servicoId'])
+                , this.formulario.value['bairro']
+                , this.formulario.value['servicoId']
+                , this.formulario.value.igrejaId)
             .then(prestadoresResult => {
-
-                if (!prestadoresResult) {
+                if (!prestadoresResult || prestadoresResult.length == 0) {
                     ToastCustom.CustomToast(this.toastCtrl, "Nenhum prestador encontrado.", "danger", 4000);
                     this.loadingContr.hideLoader();
                     return false;
@@ -181,6 +183,7 @@ export class PrestadorConsultarPage implements OnInit {
                 .then(resultIgreja => {
                     this.prestadores.map(x => {
                         x.nomeIgreja = resultIgreja.find(y => y.data.id == x.igrejas[0].igrejaId).data.nomeIgreja;
+                        x.staMembro = resultIgreja.find(y => y.data.id == x.igrejas[0].igrejaId).data.staMembro;
                     });
                 }).catch(x => {
                     HandlerError.handler(x, this.toastCtrl);
@@ -201,12 +204,96 @@ export class PrestadorConsultarPage implements OnInit {
         }).then((modal) => {
             modal.present();
             modal.onWillDismiss().then(resultModal => {
-                debugger
-                if(resultModal){
+           
+                if (resultModal) {
                     this.formulario.value.nomeServico = resultModal.data.nomeServico;
                     this.formulario.value.servicoId = resultModal.data.servicoId;
                 }
             });
+        });
+    }
+
+    public abrirModalUF() {
+        const modal = this.modalCtrl.create({
+            component: ModalUFPage,
+            backdropDismiss: false,
+        }).then((modal) => {
+            modal.present();
+            modal.onWillDismiss().then(resultModal => {
+                if (resultModal) {
+                    this.formulario.value.uf = resultModal.data;
+                    this.formulario.value.cidade = null;
+                    this.formulario.value.bairro = null;
+                    this.formulario.value.nomeIgreja = null;
+                    this.formulario.value.igrejaId = null;
+                }
+            });
+        });
+    }
+
+    public abrirModalCidade() {
+        const modal = this.modalCtrl.create({
+            component: ModalCidadePage,
+            componentProps: { uf: this.formulario.value.uf },
+            backdropDismiss: false,
+        }).then((modal) => {
+            modal.present();
+            modal.onWillDismiss().then(resultModal => {
+                if (resultModal) {
+                    this.formulario.value.cidade = resultModal.data;
+                    this.formulario.value.bairro = null;
+                    this.formulario.value.nomeIgreja = null;
+                    this.formulario.value.igrejaId = null;
+                }
+            });
+        });
+    }
+
+    public abrirModalBairro() {
+        const modal = this.modalCtrl.create({
+            component: ModalBairroPage,
+            componentProps: { uf: this.formulario.value.uf, cidade: this.formulario.value.cidade },
+            backdropDismiss: false,
+        }).then((modal) => {
+            modal.present();
+            modal.onWillDismiss().then(resultModal => {
+                if (resultModal) {
+                    this.formulario.value.bairro = resultModal.data;
+                    this.formulario.value.nomeIgreja = null;
+                    this.formulario.value.igrejaId = null;
+                }
+            });
+        });
+    }
+    public abrirModalIgreja() {
+        const modal = this.modalCtrl.create({
+            component: ModalIgrejaPage,
+            componentProps: { 
+                                uf: this.formulario.value.uf, 
+                                cidade: this.formulario.value.cidade,
+                                bairro:this.formulario.value.bairro 
+                            },
+            backdropDismiss: false,
+        }).then((modal) => {
+            modal.present();
+            modal.onWillDismiss().then(resultModal => {
+                if (resultModal) {
+                    this.formulario.value.nomeIgreja = resultModal.data.nomeIgreja;
+                    this.formulario.value.igrejaId = resultModal.data.id;
+                }
+            });
+        });
+    }
+    public formularioValido():boolean{
+       return this.formulario.value.uf && this.formulario.value.cidade && this.formulario.value.servicoId;
+    }
+
+    public ligarTelefone(telefone:any){
+        this.callNumber.callNumber(telefone, true).then(()=>{
+            
+
+        }).catch(x => {
+            HandlerError.handler(x, this.toastCtrl);
         });
     }
 }

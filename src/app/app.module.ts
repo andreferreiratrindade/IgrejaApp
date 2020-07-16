@@ -20,6 +20,7 @@ import { Http, HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 firebase.initializeApp(environment.firebase);
 
@@ -43,7 +44,8 @@ firebase.initializeApp(environment.firebase);
     StatusBar,
     SplashScreen,
       BuscarCEPService,
-      BaseProvider,
+    CallNumber,
+    BaseProvider,
       FirebaseAuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

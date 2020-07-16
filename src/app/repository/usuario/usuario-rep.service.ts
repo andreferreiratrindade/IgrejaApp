@@ -8,7 +8,6 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class UsuarioRepService extends BaseRepository  {
 
-
     constructor() {
       super();
       this._collectionName = "usuario";        

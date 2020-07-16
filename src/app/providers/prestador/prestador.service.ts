@@ -21,7 +21,6 @@ AdicionaServicoAoPrestador(usuarioId: any, servico: any):Promise<any> {
 
   constructor(public prestadorRepService:PrestadorRepServiceService) {
   
-
   }
 
   RecuperaPrestador(usuarioId:string):Promise<any>{
@@ -29,6 +28,9 @@ AdicionaServicoAoPrestador(usuarioId: any, servico: any):Promise<any> {
     return this.prestadorRepService.RecuperaPrestador(usuarioId);
   }
 
+  RecuperaBairroPrestadorDisponiveis(uf:string,cidade:string):Promise<any[]> {
+    return this.prestadorRepService.RecuperaBairroPrestadorDisponiveis(uf,cidade);
+  }
 
   RecuperaUfPrestadorDisponiveis():Promise<any[]> {
     return this.prestadorRepService.recuperaUfPrestadorDisponiveis();
@@ -38,8 +40,10 @@ AdicionaServicoAoPrestador(usuarioId: any, servico: any):Promise<any> {
     return this.prestadorRepService.AdicionaPrestador(prestador);
   }
 
-  RecuperaPestadoresPorCidadeEhUFEhServico(ufSelecionado: string, cidadeSelecionado: string, servicoId : string):Promise<any[]> {
-    return this.prestadorRepService.RecuperaPestadoresPorCidadeEhUFEhServico(ufSelecionado,cidadeSelecionado, servicoId);
+  RecuperaPestadoresPesquisar(ufSelecionado: string, cidadeSelecionado: string
+                              ,bairro:string, servicoId : string
+                              ,igrejaId:string):Promise<any[]> {
+    return this.prestadorRepService.RecuperaPestadoresPesquisar(ufSelecionado,cidadeSelecionado,bairro, servicoId,igrejaId);
   }
   RecuperaCidadePrestadorDisponiveis(ufSelecionado: string) {
     return this.prestadorRepService.RecuperaCidadePrestadorDisponiveis(ufSelecionado);

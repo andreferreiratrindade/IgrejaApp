@@ -22,6 +22,10 @@ export class IgrejaService {
   RecuperaIgrejasPorCidade(cidade:string) : Promise<any[]>{
     return this.igrejaRepService.RecuperaIgrejasPorCidade(cidade);
   }
+  
+  RecuperaIgrejasPorEndereco(uf:string, cidade:string, bairro:string) : Promise<any[]>{
+    return this.igrejaRepService.RecuperaIgrejasPorEndereco(uf,cidade,bairro);
+  }
 
   RecuperaNomeIgreja(igrejas: string[]) {
     return this.igrejaRepService.RecuperaNomeIgreja(igrejas);

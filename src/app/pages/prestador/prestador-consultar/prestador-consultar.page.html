@@ -13,44 +13,47 @@
   <form [formGroup]="formulario" (ngSubmit)="ConsultarPrestador()">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item (click)="abrirModalServicos()" detail>
-       <ion-label>Serviço <ion-text color="danger">*</ion-text>
-        {{formulario.value.nomeServico}}
-       </ion-label>
-      </ion-item>
-      <!-- <ion-item>
-     
-        <ion-select class="ion-text-end" name="servicoId" formControlName="servicoId" interface="action-sheet">
-          <ion-select-option *ngFor="let item of servicos" selected="selected" value="{{item.servicoId}}">
-            {{ item.nomeServico }}
-          </ion-select-option>
-        </ion-select>
-      </ion-item> -->
-      <ion-item  detail>
-        <ion-label>UF <ion-text color="danger">*</ion-text>
+        <ion-label>Serviço<ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-select class="ion-text-end" name="uf" formControlName="uf" (ionChange)="buscarCidades()"
-          interface="action-sheet">
-          <ion-select-option *ngFor="let item of UfList" value="{{item}}">
-            {{ item }}
-          </ion-select-option>
-        </ion-select>
+        <ion-note slot="end" color="primary">{{formulario.value.nomeServico}}</ion-note>
+      </ion-item>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.servico" [form]="formulario"
+        [nomeCampo]="'servico'"></app-mensagem-validacao>
+
+      <ion-item (click)="abrirModalUF()" detail>
+        <ion-label>UF<ion-text color="danger">*</ion-text>
+         
+        </ion-label>
+        <ion-note slot="end" color="primary"> {{formulario.value.uf}}</ion-note>
 
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.uf" [form]="formulario"
         [nomeCampo]="'uf'"></app-mensagem-validacao>
 
-      <ion-item detail>
-        <ion-label>Cidade</ion-label>
-        <ion-select class="ion-text-end" name="cidade" formControlName="cidade" [disabled]="!formulario.value['uf']"
-          interface="action-sheet">
-          <ion-select-option *ngFor="let item of cidadeList" selected="selected" value="{{item}}">
-            {{ item }}
-          </ion-select-option>
-        </ion-select>
+      <ion-item (click)="abrirModalCidade()" detail [disabled]="!formulario.value.uf">
+        <ion-label>Cidade<ion-text color="danger">*</ion-text>
+          
+        </ion-label>
+        <ion-note slot="end" color="primary"> {{formulario.value.cidade}}</ion-note>
+
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.cidade" [form]="formulario"
         [nomeCampo]="'cidade'"></app-mensagem-validacao>
 
+      <ion-item (click)="abrirModalBairro()" detail [disabled]="!formulario.value.cidade">
+        <ion-label>Bairro
+         
+        </ion-label>
+        <ion-note slot="end" color="primary">  {{formulario.value.bairro}}</ion-note>
+
+      </ion-item>
+      <ion-item (click)="abrirModalIgreja()" detail [disabled]="!formulario.value.cidade">
+        <ion-label>Igreja
+         
+        </ion-label>
+        <ion-note slot="end" color="primary">  {{formulario.value.nomeIgreja}}</ion-note>
+
+      </ion-item>
 
     </ion-list>
     <div class="error-container" *ngIf="submitError">
@@ -59,30 +62,47 @@
         <span>{{ submitError }}</span>
       </div>
     </div>
-    <ion-button class="sign-up-btn" type="submit" expand="block" [disabled]="!formulario.valid">Pesquisar</ion-button>
+    <ion-button class="sign-up-btn" type="submit" expand="block">Pesquisar</ion-button>
   </form>
 
   <ion-card *ngFor="let item of prestadores" value="{{item}}">
     <ion-card-header>
-      <ion-card-title>{{item.nome}} </ion-card-title>
+      <ion-card-title>{{item.nome}}  <span *ngIf="item.staMembro"><ion-icon name="cube-outline" ></ion-icon></span> </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-item>
-        <ion-label>
+      <ion-item (click)="ligarTelefone(item.telefone)">
+        <ion-icon name="call-outline" slot="start"></ion-icon>
+        <ion-label color="primary">
           <h2>{{item.telefone}}</h2>
-          <h2>{{item.email}}</h2>
-          <p>{{item.nomeIgreja}}</p>
-          <p>{{item.cidade}} / {{item.uf}}</p>
+          
         </ion-label>
       </ion-item>
-      <ion-row>
-        <ion-col>
-          <ion-button  color="warning" (click)="detalhes(item.usuarioId)">
-            <ion-icon name="eye-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
+      <ion-item>
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>{{item.email}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="business-outline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>{{item.nomeIgreja}} </h2> 
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="golf-outline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button size="small" (click)="detalhes(item.usuarioId)">Detalhes</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 

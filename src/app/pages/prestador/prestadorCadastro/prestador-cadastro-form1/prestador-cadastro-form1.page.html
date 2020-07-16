@@ -20,15 +20,9 @@
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.razaoSocial" [form]="form1"
       [nomeCampo]="'razaoSocial'"></app-mensagem-validacao>
+     
       <ion-item class="input-item">
-        <ion-label position="floating">CPF / CNPJ <ion-text color="danger">*</ion-text></ion-label>
-
-        <ion-input type="number" [brmasker]="{person: true}" formControlName="cpfcnpj" clearInput autocapitalize="off"></ion-input>
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.cpfcnpj" [form]="form1"
-      [nomeCampo]="'cpfcnpj'"></app-mensagem-validacao>
-      <ion-item class="input-item">
-        <ion-label position="floating" >Telefone <ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="floating" >Telefone<ion-text color="danger">*</ion-text></ion-label>
 
         <ion-input type="number"  [brmasker]="{phone: true}" formControlName="telefone" clearInput autocapitalize="off" ></ion-input>
       </ion-item>
@@ -36,7 +30,7 @@
       [nomeCampo]="'telefone'"></app-mensagem-validacao>
 
       <ion-item class="input-item">
-        <ion-label position="floating">Cep <ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="floating">Cep<ion-text color="danger">*</ion-text></ion-label>
         <ion-input type="number" maxlength="8" formControlName="cep" clearInput autocapitalize="off"></ion-input>
       </ion-item>
       <app-mensagem-validacao [validation_messages_object]="validation_messages.cep" [form]="form1"
@@ -53,21 +47,20 @@
         </ion-item>
         <!-- <ion-button class="ion-align-self-end" position="right" color="tertiary" type="button" (click)="submitError='';buscarEnderecoPorCEP()" [disabled]="!form1.value['cep']">Buscar endereço</ion-button> -->
     
-      <ion-item>
-        <ion-label>Igreja Vinculo <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select class="ion-text-end" name="igrejaVinculo" formControlName="igrejaVinculo"  [disabled]="!igrejas.length>0"  interface="action-sheet">
-          <ion-select-option *ngFor="let item of igrejas" value="{{item.id}}">
-              {{ item.nomeIgreja }}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.igrejaVinculo" [form]="form1"
-      [nomeCampo]="'igrejaVinculo'"></app-mensagem-validacao>
+        <ion-item (click)="abrirModalIgreja()" detail [disabled]="!prestador.cidade">
+          <ion-label>Igreja<ion-text color="danger">*</ion-text>
+           
+          </ion-label>
+          <ion-note slot="end" color="primary">  {{form1.value.nomeIgreja}}</ion-note>
+  
+        </ion-item>
+      <app-mensagem-validacao [validation_messages_object]="validation_messages.igrejaId" [form]="form1"
+      [nomeCampo]="'igrejaId'"></app-mensagem-validacao>
 
       <ion-item>
         <ion-label>Membro da Igreja vinculada</ion-label>
         <ion-toggle  name="staMembro" formControlName="staMembro" 
-         checked [disabled]="!form1.value['igrejaVinculo']"></ion-toggle>
+          [disabled]="!form1.value.igrejaId"></ion-toggle>
       </ion-item>
     </ion-list>
 

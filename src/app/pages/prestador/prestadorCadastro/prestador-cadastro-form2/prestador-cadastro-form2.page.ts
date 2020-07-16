@@ -10,6 +10,7 @@ import { HandlerError } from 'src/app/helpers/handlerError';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { Constants } from 'src/app/utils/constants';
 import { Router } from '@angular/router';
+import { ModalServicosPage } from 'src/app/pages/servico/modal-servicos/modal-servicos.page';
 
 @Component({
   selector: 'app-prestador-cadastro-form2',
@@ -38,7 +39,7 @@ export class PrestadorCadastroForm2Page implements OnInit {
       .then(result => {
         this.prestadorServicos = result;
         this.dominioServicoService.recuperaDominioServico().then(x => {
-
+          this.dominioServicos  = x;
           this.prestadorServicos.map((listItem) => {
             listItem.expanded = false;
 
@@ -47,6 +48,11 @@ export class PrestadorCadastroForm2Page implements OnInit {
             return listItem;
           });
           this.loadingContr.hideLoader();
+          
+          if(this.prestadorServicos.length == 0){
+            this.abreModalSelecionaServico();
+          }
+
         });
 
       }).catch(err => {
@@ -55,35 +61,21 @@ export class PrestadorCadastroForm2Page implements OnInit {
       })
   }
 
-  recuperaListagemDominioService() {
 
-    this.loadingContr.showLoader()
-
-    this.dominioServicoService.recuperaDominioServico().then(x => {
-      this.dominioServicos = x;
-      this.loadingContr.hideLoader();
-    }).catch(err => {
-      HandlerError.handler(err, this.toastCtrl);
-      this.loadingContr.hideLoader();
-    })
-  }
 
   abreModalSelecionaServico() {
-    this.loadingContr.showLoader()
-
-    this.dominioServicoService.recuperaDominioServico().then(x => {
-      this.loadingContr.hideLoader();
       const modal = this.modalCtrl.create({
-        component: ModalDominioServicosPage,
-        componentProps: { servicos: x },
+        component: ModalServicosPage,
+        componentProps: { servicos: this.dominioServicos },
         backdropDismiss: false,
       }).then((modal) => {
         modal.present();
 
         modal.onWillDismiss().then(resultModal => {
-          this.loadingContr.showLoader();
           this.servicoAdicionado = resultModal.data;
-          if (resultModal) {
+          if (this.servicoAdicionado) {
+            this.loadingContr.showLoader();
+
             this.prestadorService
               .AdicionaServicoAoPrestador(Config.RecuperaInstancia()
                 .recuperaUsuario().usuarioId, {
@@ -92,7 +84,6 @@ export class PrestadorCadastroForm2Page implements OnInit {
                   .recuperaUsuario().usuarioId
               })
               .then((result) => {
-                this.servicoAdicionado.expanded = false;
                 this.prestadorServicos.push(this.servicoAdicionado);
                 this.loadingContr.hideLoader();
                 ToastCustom.SucessoToast(this.toastCtrl);
@@ -106,29 +97,10 @@ export class PrestadorCadastroForm2Page implements OnInit {
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
-      })
-    }).catch(err => {
-      HandlerError.handler(err, this.toastCtrl);
-      this.loadingContr.hideLoader();
-    })
-  }
-
-  expandItem(item): void {
-
-    if (item.expanded) {
-      item.expanded = false;
-    } else {
-      this.prestadorServicos.map(listItem => {
-        if (item == listItem) {
-          listItem.expanded = !listItem.expanded;
-        } else {
-          listItem.expanded = false;
-        }
-        return listItem;
       });
-    }
   }
 
+ 
   salvarBreveDescricao(item) {
     let servico = { servicoId: item.servicoId, breveDescricao: item.breveDescricao };
     this.prestadorService
@@ -170,7 +142,7 @@ export class PrestadorCadastroForm2Page implements OnInit {
         {
           text: 'Não',
         }, {
-          text: 'Okay',
+          text: 'Sim',
           handler: () => {
             this.excluirServico(item)
           }

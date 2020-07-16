@@ -28,6 +28,8 @@ export class CriarIgrejaPage implements OnInit {
     ],
     'cep': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
+    ], 'emailAdministrador': [
+      { type: 'required', message: 'Campo de preenchimento obrigatório.' },
     ]
   };
   constructor(public buscarCEPService: BuscarCEPService,
@@ -35,7 +37,8 @@ export class CriarIgrejaPage implements OnInit {
     public router: Router,
     public toastCtrl: ToastController,
     public loadingControll:LoadingContr,
-    public ngZone:NgZone
+    public ngZone:NgZone,
+    public usuarioService:UsuarioService,
   ) {
 
     this.formData = new FormGroup({
@@ -44,7 +47,11 @@ export class CriarIgrejaPage implements OnInit {
       ])),
       'nomeIgreja': new FormControl('', Validators.compose([
         Validators.required
-      ]))
+      ])),
+      'emailAdministrador': new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      
     });
 
   }
@@ -116,6 +123,18 @@ export class CriarIgrejaPage implements OnInit {
   }
 
   buscarUsuarioAdministradorIgreja(){
-    
-  }
+    this.loadingControll.showLoader();
+
+    this.usuarioService.RecuperaUsuarioPorEmail(this.formData.value.emailAdministrador).then(result=>{
+        if(result.length > 0){
+           this.formData.value.administradorUsuarioId = result[0].usuarioId;
+        }else{
+          HandlerError.handler("Nenhum usuário encontrado com este e-mail.", this.toastCtrl);
+        }
+      }).catch((error) => {
+        HandlerError.handler(error, this.toastCtrl);
+        this.loadingControll.hideLoader();
+  
+      });  
+    }
 }
