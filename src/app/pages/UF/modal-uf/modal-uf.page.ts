@@ -48,7 +48,7 @@ export class ModalUFPage implements OnInit, AfterViewInit {
   recuperaItens(ev: any) {
     const val = ev.target.value;
     if (val && val.trim() !== '') {
-      this.itens = this.dominioUF.filter(item => { return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1 });
+      this.itens = this.dominioUF.filter(item => { return item.toLowerCase().indexOf(val.toLowerCase()) > -1 });
     } else {
       this.itens = this.dominioUF;
     }
