@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { PrestadorRepServiceService } from 'src/app/repository/prestador/prestador-rep-service.service';
+import { AnyAaaaRecord } from 'dns';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrestadorService {
+  RecuperaPestadoresPesquisarPorAdministrador(situacaoPrestador: string, igrejaId: string, usuarioId: string, igrejasDoAdmin:any[]):Promise<any[]>   {
+    return this.prestadorRepService.RecuperaPestadoresPesquisarPorAdministrador(situacaoPrestador,igrejaId,usuarioId,igrejasDoAdmin);
+
+  }
   recuperaPrestadoresPorIgreja(igrejaId: any):Promise<any[]>   {
     return this.prestadorRepService.recuperaPrestadoresPorIgreja(igrejaId);
   }

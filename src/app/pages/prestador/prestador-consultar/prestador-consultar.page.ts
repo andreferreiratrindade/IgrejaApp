@@ -172,11 +172,11 @@ export class PrestadorConsultarPage implements OnInit {
                         x.nome = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.nome;
                         x.email = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.email;
                     });
-                  
+
                     this.ionContent.scrollToPoint(0, 350, 800);
                     result();
                 }).catch(x => {
-                  
+
                     HandlerError.handler(x, this.toastCtrl);
                     this.loadingContr.hideLoader();
                 });
@@ -305,13 +305,13 @@ export class PrestadorConsultarPage implements OnInit {
             HandlerError.handler(x, this.toastCtrl);
         });
     }
-    public adicionarPrestadorFavorito(usuarioId:string){
+    public adicionarPrestadorFavorito(usuarioId: string) {
         this.favoritoService.AdicionaPrestadorFavorito(usuarioId, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
-        .then(()=>{});
+            .then(() => { });
     }
 
-    public removePrestadorFavorito(usuarioId:string){
+    public removePrestadorFavorito(usuarioId: string) {
         this.favoritoService.RemovePrestadorFavorito(usuarioId, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
-        .then(()=>{});
+            .then(() => { });
     }
 }

@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {  UsuarioLogadoValidation } from './providers/AuthGuard/UsuarioLogadoValidation';
 import { PrestadorSituacaoValidation } from './providers/AuthGuard/PrestadorSituacaoValidation';
 import { PerfilValidation_AdministradorSistema } from './providers/AuthGuard/PerfilValidation_AdministradorSistema';
+import { PerfilValidation_AdministradorIgreja } from './providers/AuthGuard/PerfilValidation_AdministradorIgreja';
 const routes: Routes = [
   {
     path: '',
@@ -68,6 +69,7 @@ const routes: Routes = [
   },
   {
     path: 'consultar-prestador-adm',
+    canActivate: [PerfilValidation_AdministradorIgreja],
     loadChildren: () => import('./pages/gerenciarIgreja/manterPrestadores/consultar-prestador-adm/consultar-prestador-adm.module').then( m => m.ConsultarPrestadorAdmPageModule)
   },
   {
@@ -89,7 +91,18 @@ const routes: Routes = [
   {
     path: 'modal-igreja',
     loadChildren: () => import('./pages/igreja/modal-igreja/modal-igreja.module').then( m => m.ModalIgrejaPageModule)
+  },
+  {
+    path: 'modal-situacao-prestador',
+    loadChildren: () => import('./pages/gerenciarIgreja/manterPrestadores/modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.module').then( m => m.ModalSituacaoPrestadorPageModule)
+  },
+  
+  {
+    path: 'manter-prestador',
+    canActivate: [PerfilValidation_AdministradorIgreja],
+    loadChildren: () => import('./pages/gerenciarIgreja/manterPrestadores/manter-prestador/manter-prestador.module').then( m => m.ManterPrestadorPageModule)
   }
+
 
 
 

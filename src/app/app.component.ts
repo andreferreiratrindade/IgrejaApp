@@ -7,6 +7,7 @@ import { UsuarioService } from './providers/usuario/usuario.service';
 import { FirebaseAuthService } from './providers/base-provider/firebase-auth-service.service';
 import { Router } from '@angular/router';
 import { Constants } from './utils/constants';
+import { appVersion } from 'src/environments/appVersion';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +16,7 @@ import { Constants } from './utils/constants';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  public paginas: any[] = [];
-  
+  public version = appVersion.version;
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
@@ -42,12 +42,11 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     
     this.usuarioService.recuperaUsuarioLogado().then(()=>{
-      this.inicializaPaginas();
     });
   }
 
-  inicializaPaginas() {
-    this.paginas = this.RecuperaPaginasMenuLateral().filter(page => {
+  get paginas() {
+    return  this.RecuperaPaginasMenuLateral().filter(page => {
       let retorno = true;
       if (page.perfil) {
         retorno = page.perfil.filter(x => {
@@ -66,7 +65,8 @@ export class AppComponent implements OnInit {
         }).length > 0;
       }
       return retorno
-    })
+    });
+    console.log(this.paginas);
   }
 
   get recuperaDadosUsuario() {
@@ -83,7 +83,6 @@ export class AppComponent implements OnInit {
   logoff() {
     this.firebaseAuthService.signOut();
     this.router.navigate(['/home']);
-    this.inicializaPaginas();
   }
   login() {
     this.router.navigate(['sign-in']);
@@ -110,10 +109,9 @@ export class AppComponent implements OnInit {
         perfil: [Constants.PerfilUsuario.AdministradorSistema]
       }
       ,
-  
       {
         title: 'Manter Prestadores',
-        url: 'manter-prestador',
+        url: 'consultar-prestador-adm',
         icon: 'business',
         perfil: [Constants.PerfilUsuario.AdministradorIgreja]
       }

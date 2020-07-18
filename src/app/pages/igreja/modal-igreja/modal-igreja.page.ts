@@ -9,32 +9,38 @@ import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
   templateUrl: './modal-igreja.page.html',
   styleUrls: ['./modal-igreja.page.scss'],
 })
-export class ModalIgrejaPage implements OnInit , AfterViewInit {
+export class ModalIgrejaPage implements OnInit, AfterViewInit {
 
-  itens : any[] = [];
+  itens: any[] = [];
   dominioIgrejas: any[] = [];
   @ViewChild('searchbar') inputElement: IonInput;
 
   constructor(public loadingContr: LoadingContr,
     public toastCtrl: ToastController,
-    public igrejaService:IgrejaService,
+    public igrejaService: IgrejaService,
     public modalController: ModalController,
-    public navParams: NavParams) { 
+    public navParams: NavParams) {
+
+    if (this.navParams.data.igrejas) {
+      this.dominioIgrejas = this.navParams.data.igrejas;
+      this.itens = this.navParams.data.igrejas;
+    }
+    else {
       loadingContr.showLoader();
       this.igrejaService.RecuperaIgrejasPorEndereco(
-          this.navParams.data.uf,
-          this.navParams.data.cidade,
-          this.navParams.data.bairro).then(result=>{
-            this.itens = result;
-            this.dominioIgrejas = result;
-            loadingContr.hideLoader();
-          }).catch(err=>{
+        this.navParams.data.uf,
+        this.navParams.data.cidade,
+        this.navParams.data.bairro).then(result => {
+          this.itens = result;
+          this.dominioIgrejas = result;
+          loadingContr.hideLoader();
+        }).catch(err => {
 
-            loadingContr.hideLoader();
-            console.log(err);
-          });
-
+          loadingContr.hideLoader();
+          console.log(err);
+        });
     }
+  }
 
   ngOnInit() {
   }
@@ -47,21 +53,21 @@ export class ModalIgrejaPage implements OnInit , AfterViewInit {
   }
 
 
-recuperaItens(ev: any) {
-  const val = ev.target.value;
-  if (val && val.trim() !== '') {
-    this.itens = this.dominioIgrejas.filter(item => { return item.nomeIgreja.toLowerCase().indexOf(val.toLowerCase()) > -1 });
-  } else {
-    this.itens = this.dominioIgrejas;
+  recuperaItens(ev: any) {
+    const val = ev.target.value;
+    if (val && val.trim() !== '') {
+      this.itens = this.dominioIgrejas.filter(item => { return item.nomeIgreja.toLowerCase().indexOf(val.toLowerCase()) > -1 });
+    } else {
+      this.itens = this.dominioIgrejas;
+    }
   }
-}
 
-closeModal() {
-  this.modalController.dismiss(null, 'cancel');
-}
+  closeModal() {
+    this.modalController.dismiss(null, 'cancel');
+  }
 
-selecionar(item: any) {
-  this.modalController.dismiss(item, 'success');
-}
+  selecionar(item: any) {
+    this.modalController.dismiss(item, 'success');
+  }
 
 }
