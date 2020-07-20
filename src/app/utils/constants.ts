@@ -1,88 +1,132 @@
-export module Constants{
+export module Constants {
 
    export class PerfilUsuario {
-         public static AdministradorSistema:number  = 1;
-         public static AdministradorIgreja : number = 2;
+      public static AdministradorSistema: number = 1;
+      public static AdministradorIgreja: number = 2;
    }
 
-   export class Mensagens{
+   export class Mensagens {
       public static CamposObrigatorios = "Favor preencher todos os campos obrigatorios sinalizados com *"
    }
-   export class ListTipoSituacaoPrestador{
-      public static RecuperaListagem():any[]{
-         return [ 
-            {valor:TipoSituacaoPrestador.Form1,descricao:"Informações Iniciais" },
-            {valor:TipoSituacaoPrestador.Form2,descricao:"Serviços" },
-            {valor:TipoSituacaoPrestador.Form3,descricao:"Confirmar Dados" },
-            {valor:TipoSituacaoPrestador.PendenteAutorizacao,descricao:"Pendente de Autorização" },
-            {valor:TipoSituacaoPrestador.Ativo,descricao:"Ativo" },
-            {valor:TipoSituacaoPrestador.Suspenso,descricao:"Suspenso" }
+   export class ListTipoSituacaoPrestador {
+      public static RecuperaListagem(): any[] {
+         return [
+            { valor: TipoSituacaoPrestador.CadastroDadosEmpresa, descricao: "Informações Iniciais" },
+            { valor: TipoSituacaoPrestador.CadastroServicos, descricao: "Serviços" },
+            { valor: TipoSituacaoPrestador.CadastroIgrejaVinculo, descricao: "Igreja Vinculada" },
+            { valor: TipoSituacaoPrestador.PendenteAutorizacao, descricao: "Pendente de Autorização" },
+            { valor: TipoSituacaoPrestador.Ativo, descricao: "Ativo" },
+            { valor: TipoSituacaoPrestador.Suspenso, descricao: "Suspenso" }
          ];
       }
 
-      public static RecuperaDescricaoPorValor(valor:any):string {
-         return  this.RecuperaListagem().filter(y=> y.valor == valor)[0].descricao;
+      public static RecuperaDescricaoPorValor(valor: any): string {
+         return this.RecuperaListagem().filter(y => y.valor == valor)[0].descricao;
       }
 
    }
 
-   export class TipoSituacaoPrestador{
-      public static Form1:number= 0;
-      public static Form2:number= 1;
-      public static Form3:number= 2;
-      public static PendenteAutorizacao:number = 3;
-      public static Ativo:number = 4;
-      public static Suspenso:number = 5;
-      public static Cancelado :number= 6;
-      
+   export class TipoSituacaoPrestador {
+      public static CadastroDadosEmpresa: number = 0;
+      public static CadastroLocalAtendimento: number = 1;
+      public static CadastroServicos: number = 2;
+      public static CadastroIgrejaVinculo: number = 3;
+      public static FinalizarCadastro: number = 4;
+      public static PendenteAutorizacao: number = 5;
+      public static Ativo: number = 6;
+      public static Suspenso: number = 7;
+      public static Cancelado: number = 8;
    }
 
-   export class TipoMinisterio{
-       public static louvor:number = 1;
-       public static educacao:number= 2;
-       public static infantil:number = 3;
+   export class TipoMinisterio {
+      public static louvor: number = 1;
+      public static educacao: number = 2;
+      public static infantil: number = 3;
 
 
-    };;
+   };;
 
-    export class TipoPessoaIgreja {
-        public static admin:number= 1;
-        public static participante:number= 2;
-        public static pendente:number= 3;
-        public static naoSolicitado:number= 4;
-        public static naoAceito:number = 5
-    };
+   export class TipoPessoaIgreja {
+      public static admin: number = 1;
+      public static participante: number = 2;
+      public static pendente: number = 3;
+      public static naoSolicitado: number = 4;
+      public static naoAceito: number = 5
+   };
 
-    export class TipoPessoaMinisterio {
-       public static admin:number= 7;
-       public static adminSecundario:number= 1;
-       public static pessoa:number= 2;
-       public static pendente:number= 3;
-       public static naoSolicitado:number= 4;
-       public static naoAceito:number = 5
-    };
+   export class TipoPessoaMinisterio {
+      public static admin: number = 7;
+      public static adminSecundario: number = 1;
+      public static pessoa: number = 2;
+      public static pendente: number = 3;
+      public static naoSolicitado: number = 4;
+      public static naoAceito: number = 5
+   };
 
-    export class TipoFuncaoPessoaEquipe{
-       public static guitarra:number= 7;
-       public static vocal:number= 1;
-       public static violao:number= 2;
-       public static teclado:number= 3;
-       public static dataShow:number = 4;
-       public static bateria:number= 5;
-       public static baixo:number=6;
-    };
+   export class TipoFuncaoPessoaEquipe {
+      public static guitarra: number = 7;
+      public static vocal: number = 1;
+      public static violao: number = 2;
+      public static teclado: number = 3;
+      public static dataShow: number = 4;
+      public static bateria: number = 5;
+      public static baixo: number = 6;
+   };
 
-    export class TipoLinkMusica{
-      public static youtube:number= 0;
-      public static cifra:number=1;
-      public static letra:number=2;
-      public static outro:number=3
-    };
+   export class TipoLinkMusica {
+      public static youtube: number = 0;
+      public static cifra: number = 1;
+      public static letra: number = 2;
+      public static outro: number = 3
+   };
 
-    export class TipoPeriodoMinistracao{
-       public static manha:number=1;
-       public static tarde:number=2;
-       public static noite:number=3
-    }
+   export class TipoPeriodoMinistracao {
+      public static manha: number = 1;
+      public static tarde: number = 2;
+      public static noite: number = 3
+   }
+
+   export class ListagemUF {
+      public static RecuperaListagem() {
+         return [
+            { "nome": "Acre", "sigla": "AC" },
+            { "nome": "Alagoas", "sigla": "AL" },
+            { "nome": "Amapá", "sigla": "AP" },
+            { "nome": "Amazonas", "sigla": "AM" },
+            { "nome": "Bahia", "sigla": "BA" },
+            { "nome": "Ceará", "sigla": "CE" },
+            { "nome": "Distrito Federal", "sigla": "DF" },
+            { "nome": "Espírito Santo", "sigla": "ES" },
+            { "nome": "Goiás", "sigla": "GO" },
+            { "nome": "Maranhão", "sigla": "MA" },
+            { "nome": "Mato Grosso", "sigla": "MT" },
+            { "nome": "Mato Grosso do Sul", "sigla": "MS" },
+            { "nome": "Minas Gerais", "sigla": "MG" },
+            { "nome": "Pará", "sigla": "PA" },
+            { "nome": "Paraíba", "sigla": "PB" },
+            { "nome": "Paraná", "sigla": "PR" },
+            { "nome": "Pernambuco", "sigla": "PE" },
+            { "nome": "Piauí", "sigla": "PI" },
+            { "nome": "Rio de Janeiro", "sigla": "RJ" },
+            { "nome": "Rio Grande do Norte", "sigla": "RN" },
+            { "nome": "Rio Grande do Sul", "sigla": "RS" },
+            { "nome": "Rondônia", "sigla": "RO" },
+            { "nome": "Roraima", "sigla": "RR" },
+            { "nome": "Santa Catarina", "sigla": "SC" },
+            { "nome": "São Paulo", "sigla": "SP" },
+            { "nome": "Sergipe", "sigla": "SE" },
+            { "nome": "Tocantins", "sigla": "TO" }
+         ]
+      }
+
+      public static RecuperaObjetoPorUF(uf: string): any {
+         return this.RecuperaListagem().filter(y => y.sigla == uf)[0];
+      }
+
+      public static RecuperaDescricaoPorUF(uf: string): any {
+         let obj = this.RecuperaObjetoPorUF(uf);
+         return obj.nome + " / " + obj.sigla;
+      }
+   }
 
 }

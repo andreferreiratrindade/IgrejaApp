@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ManterPrestadorPageRoutingModule } from './manter-prestador-routing.module';
+import { LocalAtendimentoPageRoutingModule } from './local-atendimento-routing.module';
 
-import { ManterPrestadorPage } from './manter-prestador.page';
+import { LocalAtendimentoPage } from './local-atendimento.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -16,8 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ReactiveFormsModule,
     ComponentsModule,
     IonicModule,
-    ManterPrestadorPageRoutingModule
+    LocalAtendimentoPageRoutingModule
   ],
-  declarations: [ManterPrestadorPage]
+  declarations: [LocalAtendimentoPage]
 })
-export class ManterPrestadorPageModule {}
+export class LocalAtendimentoPageModule {}

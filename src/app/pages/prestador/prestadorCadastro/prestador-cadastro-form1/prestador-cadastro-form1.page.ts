@@ -148,7 +148,7 @@ export class PrestadorCadastroForm1Page implements OnInit {
     this.loadingContr.showLoader()
     this.prestador.igrejas = [{ igrejaId: this.form1.value['igrejaId'], staMembro: this.form1.value['staMembro'] }];
     this.prestador.usuarioId = Config.RecuperaInstancia().recuperaUsuario().usuarioId;
-    this.prestador.situacaoPrestador = Constants.TipoSituacaoPrestador.Form2;
+    this.prestador.situacaoPrestador = 2;
     let obj = this.MontaPrestadorParaSalvar(this.prestador, this.form1);
 
     this.prestadorService.AdicionarNovoPrestador(obj)

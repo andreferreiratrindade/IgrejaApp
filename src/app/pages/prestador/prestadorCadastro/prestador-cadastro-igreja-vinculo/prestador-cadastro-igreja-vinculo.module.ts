@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ManterPrestadorPageRoutingModule } from './manter-prestador-routing.module';
+import { PrestadorCadastroIgrejaVinculoPageRoutingModule } from './prestador-cadastro-igreja-vinculo-routing.module';
 
-import { ManterPrestadorPage } from './manter-prestador.page';
+import { PrestadorCadastroIgrejaVinculoPage } from './prestador-cadastro-igreja-vinculo.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -16,8 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ReactiveFormsModule,
     ComponentsModule,
     IonicModule,
-    ManterPrestadorPageRoutingModule
+    PrestadorCadastroIgrejaVinculoPageRoutingModule
   ],
-  declarations: [ManterPrestadorPage]
+  declarations: [PrestadorCadastroIgrejaVinculoPage]
 })
-export class ManterPrestadorPageModule {}
+export class PrestadorCadastroIgrejaVinculoPageModule {}

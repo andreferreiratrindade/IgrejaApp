@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ManterPrestadorPageRoutingModule } from './manter-prestador-routing.module';
+import { DadosEmpresaPageRoutingModule } from './dados-empresa-routing.module';
 
-import { ManterPrestadorPage } from './manter-prestador.page';
+import { DadosEmpresaPage } from './dados-empresa.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -16,8 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ReactiveFormsModule,
     ComponentsModule,
     IonicModule,
-    ManterPrestadorPageRoutingModule
+    DadosEmpresaPageRoutingModule
   ],
-  declarations: [ManterPrestadorPage]
+  declarations: [DadosEmpresaPage]
 })
-export class ManterPrestadorPageModule {}
+export class DadosEmpresaPageModule {}

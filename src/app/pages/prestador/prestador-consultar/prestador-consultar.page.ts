@@ -60,28 +60,39 @@ export class PrestadorConsultarPage implements OnInit {
             'nomeServico': new FormControl(),
             'nomeIgreja': new FormControl(),
             'igrejaId': new FormControl(),
+            'ufApresentacao': new FormControl(),
         });
         this.prestadores = [];
     }
 
     ngOnInit() {
         this.loadingContr.showLoader();
-
+        
         this.dominioServicoService.recuperaDominioServico()
             .then(result => {
                 this.servicos = result;
                 this.loadingContr.hideLoader();
+            }).catch(x => {
+                this.loadingContr.hideLoader();
+                HandlerError.handler(x, this.toastCtrl);
+            });
 
+        this.prestadorService.RecuperaUfPrestadorDisponiveis()
+            .then(result => {
+                
+                this.UfList = result.map(x=>{return Constants.ListagemUF.RecuperaObjetoPorUF(x)});
+                this.loadingContr.hideLoader();
             }).catch(x => {
                 this.loadingContr.hideLoader();
                 HandlerError.handler(x, this.toastCtrl);
             });
     }
 
-    buscarCidades() {
+    buscarCidades(uf:string) {
         this.loadingContr.showLoader();
-        this.formulario.value['cidade'] = "";
-        this.prestadorService.RecuperaCidadePrestadorDisponiveis(this.formulario.value['uf'])
+        this.formulario.controls['cidade'].setValue(null);
+        this.cidadeList = [];
+        this.prestadorService.RecuperaCidadePrestadorDisponiveis(uf)
             .then(result => {
                 this.cidadeList = result;
                 this.loadingContr.hideLoader();
@@ -189,8 +200,7 @@ export class PrestadorConsultarPage implements OnInit {
             this.igrejaService.RecuperaNomeIgreja(lstIgrejaId)
                 .then(resultIgreja => {
                     this.prestadores.map(x => {
-                        x.nomeIgreja = resultIgreja.find(y => y.data.id == x.igrejas[0].igrejaId).data.nomeIgreja;
-                        x.staMembro = x.igrejas[0].staMembro;
+                        x.nomeIgreja = resultIgreja.find(y => y.data.id == x.igrejaId).data.nomeIgreja;
                     });
                     result()
                 }).catch(x => {
@@ -225,16 +235,19 @@ export class PrestadorConsultarPage implements OnInit {
     public abrirModalUF() {
         const modal = this.modalCtrl.create({
             component: ModalUFPage,
+            componentProps: { UFs: this.UfList },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();
             modal.onWillDismiss().then(resultModal => {
                 if (resultModal) {
-                    this.formulario.value.uf = resultModal.data;
-                    this.formulario.value.cidade = null;
-                    this.formulario.value.bairro = null;
-                    this.formulario.value.nomeIgreja = null;
-                    this.formulario.value.igrejaId = null;
+                    this.formulario.controls["ufApresentacao"].setValue(resultModal.data.nome + " / " + resultModal.data.sigla);
+                    this.formulario.controls["uf"].setValue(resultModal.data.sigla);
+                    this.formulario.controls["cidade"].setValue(null);
+                    this.formulario.controls["bairro"].setValue(null);
+                    this.formulario.controls["nomeIgreja"].setValue(null);
+                    this.formulario.controls["igrejaId"].setValue(null);
+                    this.buscarCidades(resultModal.data.sigla);
                 }
             });
         });
@@ -243,7 +256,7 @@ export class PrestadorConsultarPage implements OnInit {
     public abrirModalCidade() {
         const modal = this.modalCtrl.create({
             component: ModalCidadePage,
-            componentProps: { uf: this.formulario.value.uf },
+            componentProps: { cidades:this.cidadeList },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();

@@ -98,7 +98,7 @@ export class AppComponent implements OnInit {
       },
       {
         title: 'Seja um Prestador',
-        url: 'prestador-Form1',
+        url: 'dados-empresa',
         icon: 'people'
       },
   

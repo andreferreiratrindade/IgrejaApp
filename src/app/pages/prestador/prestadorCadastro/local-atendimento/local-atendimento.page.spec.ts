@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ModalDominioServicosPage } from './modal-dominio-servicos.page';
+import { LocalAtendimentoPage } from './local-atendimento.page';
 
-describe('ModalDominioServicosPage', () => {
-  let component: ModalDominioServicosPage;
-  let fixture: ComponentFixture<ModalDominioServicosPage>;
+describe('LocalAtendimentoPage', () => {
+  let component: LocalAtendimentoPage;
+  let fixture: ComponentFixture<LocalAtendimentoPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalDominioServicosPage ],
+      declarations: [ LocalAtendimentoPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ModalDominioServicosPage);
+    fixture = TestBed.createComponent(LocalAtendimentoPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

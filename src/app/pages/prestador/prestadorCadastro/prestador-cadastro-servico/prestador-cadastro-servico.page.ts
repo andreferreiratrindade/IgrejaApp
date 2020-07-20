@@ -1,20 +1,22 @@
 import { Component, OnInit, NgZone } from '@angular/core';
+import { ToastCustom } from 'src/app/helpers/toastCustom';
+import { Constants } from 'src/app/utils/constants';
+import { HandlerError } from 'src/app/helpers/handlerError';
+import { Config } from 'src/app/config';
+import { ModalServicosPage } from 'src/app/pages/servico/modal-servicos/modal-servicos.page';
+import { AlertController, ToastController, ModalController } from '@ionic/angular';
 import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-servico.service';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
-import { Config } from 'src/app/config';
-import { ModalController, ToastController, AlertController } from '@ionic/angular';
-import { HandlerError } from 'src/app/helpers/handlerError';
-import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { Router } from '@angular/router';
-import { ModalServicosPage } from 'src/app/pages/servico/modal-servicos/modal-servicos.page';
 
 @Component({
-  selector: 'app-prestador-cadastro-form2',
-  templateUrl: './prestador-cadastro-form2.page.html',
-  styleUrls: ['./prestador-cadastro-form2.page.scss'],
+  selector: 'app-prestador-cadastro-servico',
+  templateUrl: './prestador-cadastro-servico.page.html',
+  styleUrls: ['./prestador-cadastro-servico.page.scss'],
 })
-export class PrestadorCadastroForm2Page implements OnInit {
+export class PrestadorCadastroServicoPage implements OnInit {
+
 
   dominioServicos: any[];
   prestadorServicos: any[];
@@ -36,7 +38,7 @@ export class PrestadorCadastroForm2Page implements OnInit {
       .then(result => {
         this.prestadorServicos = result;
         this.dominioServicoService.recuperaDominioServico().then(x => {
-          this.dominioServicos  = x;
+          this.dominioServicos = x;
           this.prestadorServicos.map((listItem) => {
             listItem.expanded = false;
 
@@ -45,8 +47,8 @@ export class PrestadorCadastroForm2Page implements OnInit {
             return listItem;
           });
           this.loadingContr.hideLoader();
-          
-          if(this.prestadorServicos.length == 0){
+
+          if (this.prestadorServicos.length == 0) {
             this.abreModalSelecionaServico();
           }
 
@@ -58,46 +60,49 @@ export class PrestadorCadastroForm2Page implements OnInit {
       })
   }
 
-
-
   abreModalSelecionaServico() {
-      const modal = this.modalCtrl.create({
-        component: ModalServicosPage,
-        componentProps: { servicos: this.dominioServicos },
-        backdropDismiss: false,
-      }).then((modal) => {
-        modal.present();
 
-        modal.onWillDismiss().then(resultModal => {
-          this.servicoAdicionado = resultModal.data;
-          if (this.servicoAdicionado) {
-            this.loadingContr.showLoader();
+    let servicos = this.dominioServicos.filter(x=>{
+      return  this.prestadorServicos.filter(y=> {return y.servicoId == x.servicoId} ).length ==0
+    });
 
-            this.prestadorService
-              .AdicionaServicoAoPrestador(Config.RecuperaInstancia()
-                .recuperaUsuario().usuarioId, {
-                servicoId: this.servicoAdicionado.servicoId,
-                usuarioId: Config.RecuperaInstancia()
-                  .recuperaUsuario().usuarioId
-              })
-              .then((result) => {
-                this.prestadorServicos.push(this.servicoAdicionado);
-                this.loadingContr.hideLoader();
-                ToastCustom.SucessoToast(this.toastCtrl);
+    const modal = this.modalCtrl.create({
+      component: ModalServicosPage,
+      componentProps: { servicos: servicos},
+      backdropDismiss: false,
+    }).then((modal) => {
+      modal.present();
 
-              }).catch(err => {
-                HandlerError.handler(err, this.toastCtrl);
-                this.loadingContr.hideLoader();
-              })
-          }
-        });
-      }).catch(err => {
-        HandlerError.handler(err, this.toastCtrl);
-        this.loadingContr.hideLoader();
+      modal.onWillDismiss().then(resultModal => {
+        this.servicoAdicionado = resultModal.data;
+        if (this.servicoAdicionado) {
+          this.loadingContr.showLoader();
+
+          this.prestadorService
+            .AdicionaServicoAoPrestador(Config.RecuperaInstancia()
+              .recuperaUsuario().usuarioId, {
+              servicoId: this.servicoAdicionado.servicoId,
+              usuarioId: Config.RecuperaInstancia()
+                .recuperaUsuario().usuarioId
+            })
+            .then((result) => {
+              this.prestadorServicos.push(this.servicoAdicionado);
+              this.loadingContr.hideLoader();
+              ToastCustom.SucessoToast(this.toastCtrl);
+
+            }).catch(err => {
+              HandlerError.handler(err, this.toastCtrl);
+              this.loadingContr.hideLoader();
+            })
+        }
       });
+    }).catch(err => {
+      HandlerError.handler(err, this.toastCtrl);
+      this.loadingContr.hideLoader();
+    });
   }
 
- 
+
   salvarBreveDescricao(item) {
     let servico = { servicoId: item.servicoId, breveDescricao: item.breveDescricao };
     this.prestadorService
@@ -151,13 +156,13 @@ export class PrestadorCadastroForm2Page implements OnInit {
   }
 
   Prosseguir() {
-    if(this.prestadorServicos.length == 0){
-      ToastCustom.CustomToast(this.toastCtrl,"Favor adicionar serviço, antes de continuar" , "danger", 4000);
+    if (this.prestadorServicos.length == 0) {
+      ToastCustom.CustomToast(this.toastCtrl, "Favor adicionar serviço, antes de continuar", "danger", 4000);
       return false;
     }
 
     this.loadingContr.showLoader();
-    let obj = { situacaoPrestador: 2 };
+    let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.CadastroIgrejaVinculo };
 
     this.prestadorService
       .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
@@ -165,11 +170,15 @@ export class PrestadorCadastroForm2Page implements OnInit {
         this.loadingContr.hideLoader();
         ToastCustom.SucessoToast(this.toastCtrl);
         this.ngZone.run(() => {
-          this.router.navigate(['prestador-Form3']);
+          this.router.navigate(['prestador-cadastro-igreja-vinculo']);
         });
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
       });
+  }
+
+  Voltar(){
+
   }
 }

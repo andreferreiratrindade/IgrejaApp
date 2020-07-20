@@ -60,10 +60,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form4/prestador-cadastro-form4.module').then( m => m.PrestadorCadastroForm4PageModule)
   },
   {
-    path: 'modal-dominio-servicos',
-    loadChildren: () => import('./pages/prestador/prestadorCadastro/modal-dominio-servicos/modal-dominio-servicos.module').then( m => m.ModalDominioServicosPageModule)
-  },
-  {
     path: 'visualizar-prestador',
     loadChildren: () => import('./pages/prestador/visualizar-prestador/visualizar-prestador.module').then( m => m.VisualizarPrestadorPageModule)
   },
@@ -101,7 +97,29 @@ const routes: Routes = [
     path: 'manter-prestador',
     canActivate: [PerfilValidation_AdministradorIgreja],
     loadChildren: () => import('./pages/gerenciarIgreja/manterPrestadores/manter-prestador/manter-prestador.module').then( m => m.ManterPrestadorPageModule)
+  },
+  {
+    path: 'dados-empresa',
+    canActivate: [PrestadorSituacaoValidation],
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/dados-empresa/dados-empresa.module').then( m => m.DadosEmpresaPageModule)
+  },
+  {
+    path: 'prestador-local-atendimento',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/local-atendimento/local-atendimento.module').then( m => m.LocalAtendimentoPageModule)
+  },
+  {
+    path: 'prestador-cadastro-servico',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-servico/prestador-cadastro-servico.module').then( m => m.PrestadorCadastroServicoPageModule)
+  },
+  {
+    path: 'prestador-cadastro-igreja-vinculo',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-igreja-vinculo/prestador-cadastro-igreja-vinculo.module').then( m => m.PrestadorCadastroIgrejaVinculoPageModule)
+  },  {
+    path: 'prestador-cadastro-finalizar',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-finalizar/prestador-cadastro-finalizar.module').then( m => m.PrestadorCadastroFinalizarPageModule)
   }
+
+
 
 
 

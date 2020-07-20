@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Manter Prestador
+      Finalizar
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,13 +17,13 @@
     <ion-item>
       <ion-label class="ion-text-wrap">
         <p>Nome</p>
-        <h3>{{prestador.nome}}</h3>
+        <h3>{{usuario.nome}}</h3>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label class="ion-text-wrap">
         <p>Email</p>
-        <h3>{{prestador.email}}</h3>
+        <h3>{{usuario.email}}</h3>
       </ion-label>
     </ion-item>
     <ion-item>
@@ -78,26 +78,19 @@
       </ion-label>
     </ion-item>
   </ion-list>
-  <ion-list>
-    <ion-item>
-      <ion-label>Situação do Prestador</ion-label>
-      <ion-select [(ngModel)]="prestador.situacaoPrestador">
-        <ion-select-option *ngFor="let item of situacoesPrestador" [value]="item.valor">
-          {{ item.descricao }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+
 </ion-content>
+
+
 <ion-footer>
   <ion-toolbar>
     <ion-grid>
       <ion-row>
         <ion-col size="4">
-          <ion-button class="default" type="button" (click)="voltar()">Voltar</ion-button>
+          <ion-button class="default" type="button"  (click)="voltar()">Voltar</ion-button>
         </ion-col>
         <ion-col size="4">
-          <ion-button class="success" type="button" (click)="atualizarPrestador()">Atualizar</ion-button>
+          <ion-button class="success" type="button" (click)="finalizar()">Finalizar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

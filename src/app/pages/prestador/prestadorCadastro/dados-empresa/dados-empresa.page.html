@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>
+      Dados da empresa 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <form [formGroup]="formulario" (ngSubmit)="SalvarFormulario()">
+    <ion-list  lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item class="input-item">
+        <ion-label position="floating">Razão Social <ion-text color="danger">*</ion-text></ion-label>
+
+        <ion-input type="text"  formControlName="razaoSocial" clearInput autocapitalize="off"></ion-input>
+      </ion-item>
+     
+      <ion-item class="input-item">
+        <ion-label position="floating" >Telefone<ion-text color="danger">*</ion-text></ion-label>
+
+        <ion-input type="number"  [brmasker]="{phone: true}" formControlName="telefone" clearInput autocapitalize="off" ></ion-input>
+      </ion-item>
+
+
+      <ion-item class="input-item">
+        <ion-label position="floating">Cep<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input type="number" maxlength="8" formControlName="cep" clearInput autocapitalize="off"></ion-input>
+      </ion-item>
+
+       
+        <ion-chip color="tertiary" (click)="submitError='';buscarEnderecoPorCEP()" size="6">
+          <ion-label>Buscar Endereço</ion-label>
+          <ion-icon name="search-outline"></ion-icon>
+        </ion-chip>
+        <ion-item class="input-item">
+          <ion-label class="ion-text-wrap" *ngIf="formulario.value.logradouro">
+            <p>{{formulario.value.logradouro}}, {{formulario.value.bairro}} -  {{formulario.value.cidade}}  / {{formulario.value.uf}}</p>
+          </ion-label>
+        </ion-item>      
+    </ion-list>
+
+    <ion-button class="sign-up-btn" type="submit" expand="block" >Prosseguir</ion-button>
+  </form>
+</ion-content>

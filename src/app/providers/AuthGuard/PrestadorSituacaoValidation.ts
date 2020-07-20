@@ -16,7 +16,7 @@ export class PrestadorSituacaoValidation implements CanActivate {
         private usuarioService: UsuarioService,
         private loadingControll: LoadingContr,
         private prestadorService: PrestadorService,
-        private toast : ToastController
+        private toast: ToastController
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -30,29 +30,33 @@ export class PrestadorSituacaoValidation implements CanActivate {
                 this.prestadorService
                     .RecuperaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
                     .then(result => {
-                        
+
                         let redirectStr = "home";
                         let situacaoPrestador = 0;
-                        if(result){
+                        if (result) {
                             situacaoPrestador = result.situacaoPrestador
                         }
-
                         switch (situacaoPrestador) {
-                            case Constants.TipoSituacaoPrestador.Form1:
-                                redirectStr = "prestador-Form1"
+                            case Constants.TipoSituacaoPrestador.CadastroDadosEmpresa:
+                                redirectStr = "dados-empresa"
                                 break;
-                            case Constants.TipoSituacaoPrestador.Form2:
-                                redirectStr = "prestador-Form2"
+                            case Constants.TipoSituacaoPrestador.CadastroServicos:
+                                redirectStr = "prestador-cadastro-servico"
                                 break;
 
-                                case Constants.TipoSituacaoPrestador.Form3:
-                                    redirectStr = "prestador-Form3"
-                                    break;  
-                                case Constants.TipoSituacaoPrestador.PendenteAutorizacao:
-                                    ToastCustom.CustomToast(this.toast,"Anteção. Existe uma solicitação de aprovação deste prestador para o adiministrador da igreja."
-                                    , "danger",5000);
-                                    redirectStr = "visualizar-prestador"
-                                    break;
+                            case Constants.TipoSituacaoPrestador.CadastroLocalAtendimento:
+                                redirectStr = "prestador-local-atendimento"
+                                break;
+                            case Constants.TipoSituacaoPrestador.CadastroIgrejaVinculo:
+                                redirectStr = "prestador-cadastro-igreja-vinculo"
+                                break; case Constants.TipoSituacaoPrestador.FinalizarCadastro:
+                                redirectStr = "prestador-cadastro-finalizar"
+                                break;
+                            case Constants.TipoSituacaoPrestador.PendenteAutorizacao:
+                                ToastCustom.CustomToast(this.toast, "Anteção. Existe uma solicitação de aprovação deste prestador para o adiministrador da igreja."
+                                    , "danger", 5000);
+                                redirectStr = "visualizar-prestador"
+                                break;
                             default:
                                 redirectStr = "visualizar-prestador"
                                 break;

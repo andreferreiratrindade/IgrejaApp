@@ -26,7 +26,7 @@ export class ConsultarPrestadorAdmPage implements OnInit {
 
   prestadores: any[] = [];
   formConsultarPrestadorADM: FormGroup;
-  private igrejasDoAdmin : any[];
+  private igrejasDoAdmin: any[];
   constructor(public prestadorService: PrestadorService,
     public toastCtrl: ToastController,
     public igrejaService: IgrejaService,
@@ -47,14 +47,14 @@ export class ConsultarPrestadorAdmPage implements OnInit {
     this.prestadores = [];
 
     this.igrejaService.RecuperaIgrejaPorAdministrador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
-    .then(result => {
-      this.igrejasDoAdmin= result;
-      loadingContr.hideLoader();
-    }).catch(err => {
+      .then(result => {
+        this.igrejasDoAdmin = result;
+        loadingContr.hideLoader();
+      }).catch(err => {
 
-      loadingContr.hideLoader();
-      console.log(err);
-    });
+        loadingContr.hideLoader();
+        console.log(err);
+      });
   }
 
 
@@ -72,83 +72,116 @@ export class ConsultarPrestadorAdmPage implements OnInit {
     //   })
   }
 
-  ConsultarPrestador(){
-  
-  this.prestadores = [];
-  this.loadingContr.showLoader();
+  ConsultarPrestador() {
 
-  this.prestadorService
+    this.prestadores = [];
+    this.loadingContr.showLoader();
+
+    this.prestadorService
       .RecuperaPestadoresPesquisarPorAdministrador(
-          this.formConsultarPrestadorADM.value.situacaoPrestador
-          , this.formConsultarPrestadorADM.value.igrejaId
-          ,  Config.RecuperaInstancia().recuperaUsuario().usuarioId
-          , this.igrejasDoAdmin.map(x=>{let obj = {igrejaId : x.id}; return obj;})
-         )
+        this.formConsultarPrestadorADM.value.situacaoPrestador
+        , this.formConsultarPrestadorADM.value.igrejaId
+        , Config.RecuperaInstancia().recuperaUsuario().usuarioId
+        , this.igrejasDoAdmin.map(x => { let obj = { igrejaId: x.id }; return obj; })
+      )
       .then(prestadoresResult => {
-          if (!prestadoresResult || prestadoresResult.length == 0) {
-              ToastCustom.CustomToast(this.toastCtrl, "Nenhum prestador encontrado.", "danger", 4000);
-              this.loadingContr.hideLoader();
-              return false;
-          }
-          let lstusuarioId = [];
-          lstusuarioId = prestadoresResult.map(x => { return x.usuarioId });
-          this.prestadores = prestadoresResult;
+        
+        if (!prestadoresResult || prestadoresResult.length == 0) {
+          ToastCustom.CustomToast(this.toastCtrl, "Nenhum prestador encontrado.", "danger", 4000);
+          this.loadingContr.hideLoader();
+          return false;
+        }
+        this.prestadores = prestadoresResult;
 
-          let lstIgrejaId = [];
-          lstIgrejaId = prestadoresResult.map(x => { return x.igrejas[0].igrejaId });
+        this.prestadores.map(y=>{y.nomeSituacaoPrestador = Constants.ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(y.situacaoPrestador)});
+        let lstusuarioId = [];
+        lstusuarioId = prestadoresResult.map(x => { return x.usuarioId });
+        this.recuperaNomePrestadores(lstusuarioId);
 
-          // this.consultaMasterPrestador(lstusuarioId, lstIgrejaId).then(() => {
-          //     this.loadingContr.hideLoader();
-
-          // }).catch(x => {
-          //     HandlerError.handler(x, this.toastCtrl);
-          //     this.loadingContr.hideLoader();
-          // });
+        let lstIgrejaId = [];
+        lstIgrejaId = prestadoresResult.map(x => { return x.igrejaId });
+        this.recuperaNomeIgreja(lstIgrejaId);
 
       }).catch(x => {
 
+        HandlerError.handler(x, this.toastCtrl);
+        this.loadingContr.hideLoader();
+      });
+  }
+  private recuperaNomePrestadores(lstusuarioId): Promise<any> {
+    return new Promise((result, reject) => {
+      this.usuarioService.RecuperaNomeUsuarios(lstusuarioId)
+        .then(usuariosResult => {
+          this.prestadores.map(x => {
+            x.nome = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.nome;
+            x.email = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.email;
+          });
+
+          this.ionContent.scrollToPoint(0, 350, 800);
+          this.loadingContr.hideLoader();
+
+        }).catch(x => {
+
           HandlerError.handler(x, this.toastCtrl);
           this.loadingContr.hideLoader();
-      });
-}
+        });
+    });
+  }
 
-  abrirModalSituacaoPrestador(){
-      const modal = this.modalCtrl.create({
-          component: ModalSituacaoPrestadorPage,
-          componentProps: { situacoes: Constants.ListTipoSituacaoPrestador.RecuperaListagem() },
-          backdropDismiss: false,
-      }).then((modal) => {
-          modal.present();
-          modal.onWillDismiss().then(resultModal => {
+  private recuperaNomeIgreja(lstIgrejaId): Promise<any> {
+    return new Promise((result, reject) => {
 
-              if (resultModal) {
-                this.formConsultarPrestadorADM.controls['nomeSituacaoPrestador'].setValue(resultModal.data.descricao);
-                this.formConsultarPrestadorADM.controls['situacaoPrestador'].setValue(resultModal.data.valor);
-              }
+      this.igrejaService.RecuperaNomeIgreja(lstIgrejaId)
+        .then(resultIgreja => {
+          this.prestadores.map(x => {
+            x.nomeIgreja = resultIgreja.find(y => y.data.id == x.igrejaId).data.nomeIgreja;
           });
+          this.loadingContr.hideLoader();
+
+        }).catch(x => {
+          reject(x)
+          HandlerError.handler(x, this.toastCtrl);
+          this.loadingContr.hideLoader();
+        });
+    });
+  }
+  abrirModalSituacaoPrestador() {
+    const modal = this.modalCtrl.create({
+      component: ModalSituacaoPrestadorPage,
+      componentProps: { situacoes: Constants.ListTipoSituacaoPrestador.RecuperaListagem() },
+      backdropDismiss: false,
+    }).then((modal) => {
+      modal.present();
+      modal.onWillDismiss().then(resultModal => {
+
+        if (resultModal) {
+          this.formConsultarPrestadorADM.controls['nomeSituacaoPrestador'].setValue(resultModal.data.descricao);
+          this.formConsultarPrestadorADM.controls['situacaoPrestador'].setValue(resultModal.data.valor);
+        }
       });
+    });
   }
 
-  configuracoes(item:any){
-    this.router.navigate(['/manter-prestador'], { queryParams: { prestadorUsuarioId: item.usuarioId } });
+  configuracoes(item: any) {
+    this.router.navigate(['/manter-prestador'], { queryParams: { prestadorUsuarioId: item } });
   }
 
-  abrirModalIgreja(){
+  abrirModalIgreja() {
     const modal = this.modalCtrl.create({
       component: ModalIgrejaPage,
       componentProps: {
-          igrejas : this.igrejasDoAdmin
+        igrejas: this.igrejasDoAdmin
       },
       backdropDismiss: false,
-  }).then((modal) => {
+    }).then((modal) => {
       modal.present();
       modal.onWillDismiss().then(resultModal => {
-          if (resultModal) {
-            this.formConsultarPrestadorADM.controls['nomeIgreja'].setValue(resultModal.data.nomeIgreja);
-            this.formConsultarPrestadorADM.controls['igrejaId'].setValue(resultModal.data.id);
-          }
+        if (resultModal) {
+          this.formConsultarPrestadorADM.controls['nomeIgreja'].setValue(resultModal.data.nomeIgreja);
+          this.formConsultarPrestadorADM.controls['igrejaId'].setValue(resultModal.data.id);
+        }
       });
-  });
+    });
 
   }
 }
