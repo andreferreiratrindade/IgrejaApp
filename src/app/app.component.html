@@ -1,8 +1,13 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay" menuId="mainContent" side="start">
-      <ion-content class="background">
-        <ion-list id="inbox-list">
+    <ion-menu contentId="main-content" type="push" menuId="mainContent" side="start" >
+      <ion-header>
+        <ion-toolbar color="default">
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content >
+        <ion-list >
 
           <span *ngIf="usuarioLogado">
             <ion-list-header>
@@ -24,14 +29,20 @@
               <ion-icon name="log-in-outline"></ion-icon>
             </ion-chip>
           </span>
-          <ion-menu-toggle auto-hide="true" *ngFor="let p of paginas; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" 
+          <ion-menu-toggle auto-hide="true" *ngFor="let p of paginas">
+            <ion-item  routerDirection="root" [routerLink]="[p.url]" 
               detail="false">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-icon slot="start" [ios]="p.icon + '-outline'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+      
         </ion-list>
+        <ion-footer class="ion-no-border">
+          <ion-toolbar>
+            <ion-label>{{ version }}</ion-label>
+          </ion-toolbar>
+        </ion-footer>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

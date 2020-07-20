@@ -1,0 +1,66 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Igreja Vinculo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="formulario" >
+
+        <ion-item (click)="abrirModalUF()" detail>
+          <ion-label>UF<ion-text color="danger">*</ion-text>
+
+          </ion-label>
+          <ion-note slot="end" color="primary"> {{formulario.value.ufApresentacao}}</ion-note>
+
+        </ion-item>
+
+        <ion-item (click)="abrirModalCidade()" detail [disabled]="!formulario.value.uf">
+          <ion-label>Cidade<ion-text color="danger">*</ion-text>
+
+          </ion-label>
+          <ion-note slot="end" color="primary"> {{formulario.value.cidade}}</ion-note>
+
+        </ion-item>
+        <ion-item (click)="abrirModalIgreja()" detail [disabled]="!formulario.value.cidade">
+          <ion-label>Igreja<ion-text color="danger">*</ion-text>
+
+          </ion-label>
+          <ion-note slot="end" color="primary"> {{formulario.value.nomeIgreja}}</ion-note>
+
+        </ion-item>
+        <ion-item>
+          <ion-label>Membro da Igreja vinculada</ion-label>
+          <ion-toggle  name="staMembro" formControlName="staMembro" 
+            [disabled]="!formulario.value.igrejaId"></ion-toggle>
+        </ion-item>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-button class="default" type="button"  (click)="voltar()">Voltar</ion-button>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button class="success" type="button" (click)="prosseguir()">Prosseguir</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

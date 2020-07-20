@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ModalDominioServicosPage } from './modal-dominio-servicos.page';
+import { ManterPrestadorPage } from './manter-prestador.page';
 
-describe('ModalDominioServicosPage', () => {
-  let component: ModalDominioServicosPage;
-  let fixture: ComponentFixture<ModalDominioServicosPage>;
+describe('ManterPrestadorPage', () => {
+  let component: ManterPrestadorPage;
+  let fixture: ComponentFixture<ManterPrestadorPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalDominioServicosPage ],
+      declarations: [ ManterPrestadorPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ModalDominioServicosPage);
+    fixture = TestBed.createComponent(ManterPrestadorPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

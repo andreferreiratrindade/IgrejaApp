@@ -22,18 +22,18 @@ export class ModalCidadePage implements OnInit, AfterViewInit {
     public modalController: ModalController,
     public navParams: NavParams) {
 
-      this.loadingContr.showLoader();
-    this.uf = this.navParams.data.uf
-    this.prestadorService.RecuperaCidadePrestadorDisponiveis( this.navParams.data.uf)
-      .then(result => {
-        this.dominioCidade = result;
-        this.itens = result;
-        this.loadingContr.hideLoader();
+    this.dominioCidade = this.navParams.data.cidades;
+    this.recuperaItens(null);
+    // this.prestadorService.RecuperaCidadePrestadorDisponiveis( this.navParams.data.uf)
+    //   .then(result => {
+    //     this.dominioCidade = result;
+    //     this.itens = result;
+    //     this.loadingContr.hideLoader();
 
-      }).catch(x => {
-        this.loadingContr.hideLoader();
-        HandlerError.handler(x, this.toastCtrl);
-      });
+    //   }).catch(x => {
+    //     this.loadingContr.hideLoader();
+    //     HandlerError.handler(x, this.toastCtrl);
+    //   });
   }
 
   ngOnInit() {
@@ -46,12 +46,17 @@ export class ModalCidadePage implements OnInit, AfterViewInit {
   }
 
   recuperaItens(ev: any) {
-    const val = ev.target.value;
+    let val = "";
+    if(ev &&  ev.target){
+      val =  ev.target.value;
+    } 
     if (val && val.trim() !== '') {
-      this.itens = this.dominioCidade.filter(item => { return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1 });
+      this.itens = this.dominioCidade.filter(item => { return item.toLowerCase().indexOf(val.toLowerCase()) > -1 });
     } else {
-      this.itens = this.dominioCidade;
+      this.itens = [...this.dominioCidade];
     }
+
+    this.itens = this.itens.slice(0,10);
   }
 
   closeModal() {

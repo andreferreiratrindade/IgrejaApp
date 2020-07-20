@@ -13,13 +13,13 @@ export class BaseProvider {
 
 
   apiGet(url: string):Promise<any> {
+    console.log(url)
     return this.http.get( url)
     .toPromise()
     .then(data => {
       return data.json();
     })
     .catch(this.handleError);
-
   }
 
   apiPost(url: string, obj: any) {
@@ -35,10 +35,9 @@ export class BaseProvider {
 
   getRequestOptions(): RequestOptions {
     let headers = new Headers();
-
-    headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
-    headers.append('X-Requested-With', 'XMLHttpRequest');
+    headers.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    headers.append('Access-Control-Allow-Methods', 'GET');
     // headers.append('Authentication', Config.token);
     return new RequestOptions({ headers: headers });
   }

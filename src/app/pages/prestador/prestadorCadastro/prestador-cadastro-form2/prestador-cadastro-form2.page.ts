@@ -4,11 +4,8 @@ import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { Config } from 'src/app/config';
 import { ModalController, ToastController, AlertController } from '@ionic/angular';
-import { ModalDominioServicosPage } from '../modal-dominio-servicos/modal-dominio-servicos.page';
-import { ModalDominioServicosPageModule } from '../modal-dominio-servicos/modal-dominio-servicos.module';
 import { HandlerError } from 'src/app/helpers/handlerError';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
-import { Constants } from 'src/app/utils/constants';
 import { Router } from '@angular/router';
 import { ModalServicosPage } from 'src/app/pages/servico/modal-servicos/modal-servicos.page';
 
@@ -160,7 +157,7 @@ export class PrestadorCadastroForm2Page implements OnInit {
     }
 
     this.loadingContr.showLoader();
-    let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.Form3 };
+    let obj = { situacaoPrestador: 2 };
 
     this.prestadorService
       .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {

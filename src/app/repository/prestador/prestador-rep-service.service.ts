@@ -7,10 +7,83 @@ import * as firebase from 'firebase';
     providedIn: 'root'
 })
 export class PrestadorRepServiceService extends BaseRepository {
+
+
+    AdicionaLocalAtendimento(localidade: any, usuarioId: string) {
+        let ref = this.db.collection("usuario").doc(usuarioId)
+            .collection("prestador").doc(usuarioId)
+
+        return new Promise<any>((retorno, reject) => {
+            this.db.runTransaction(transaction => {
+                return transaction.get(ref).then(doc => {
+                    let prestador = doc.data();
+                    if (!prestador.locaisAtendimento) {
+                        prestador.locaisAtendimento = [localidade];
+                        transaction.set(ref, prestador);
+                    } else {
+                        prestador.locaisAtendimento = prestador.locaisAtendimento
+                            .filter(y => { return y.uf != localidade.uf && y.cidade != localidade.cidade });
+                        prestador.locaisAtendimento.push(localidade);
+                        transaction.update(ref, prestador);
+                    }
+                });
+            }).then(function () {
+                retorno()
+            }).catch(function (error) {
+                reject(error)
+            });
+        });
+    }
+
+    ExcluirLocalAtendimento(usuarioId: string, localidade: any): Promise<any> {
+        let ref = this.db.collection("usuario").doc(usuarioId)
+            .collection("prestador").doc(usuarioId)
+
+        return new Promise<any>((retorno, reject) => {
+            this.db.runTransaction(transaction => {
+                return transaction.get(ref).then(doc => {
+                    let locaisAtendimento = []
+                    locaisAtendimento = doc.data().locaisAtendimento;
+                    locaisAtendimento = locaisAtendimento
+                        .filter(y => { return y.uf != localidade.uf && y.cidade != localidade.cidade });
+                    transaction.update(ref, { locaisAtendimento: locaisAtendimento });
+                });
+            }).then(function () {
+                retorno()
+            }).catch(function (error) {
+                reject(error)
+            });
+        });
+    }
+
+    RecuperaPestadoresPesquisarPorAdministrador(situacaoPrestador: string, igrejaId: string, usuarioId: string, igrejasDoAdmin: any[]): Promise<any[]> {
+        return new Promise<any[]>((retorno, reject) => {
+            let query = this.db.collectionGroup("prestador");
+            if (igrejaId) {
+                query = query.where("igrejaId", "==", igrejaId);
+            } else {
+                query = query.where("igrejaId", "in", igrejasDoAdmin);
+            }
+
+            if (situacaoPrestador) {
+                query = query.where("situacaoPrestador", "==", situacaoPrestador);
+            }
+
+            query.get().then(result => {
+                let lst = [];
+                result.forEach(function (doc) {
+                    lst.push(doc.data());
+                });
+                retorno(lst);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
     recuperaPrestadoresPorIgreja(igrejaId: any): Promise<any[]> {
         return new Promise<any[]>((retorno, reject) => {
             this.db.collectionGroup("prestador")
-                .where("igrejas", "array-contains", igrejaId)
+                .where("igreja", "==", igrejaId)
                 .get().then(result => {
                     let lst = [];
                     result.forEach(function (doc) {
@@ -133,20 +206,21 @@ export class PrestadorRepServiceService extends BaseRepository {
         });
     }
 
-    RecuperaPestadoresPesquisar(ufSelecionado: string, cidadeSelecionado: string, bairro: string, servicoId: string, igrejaId: string): Promise<any[]> {
+    RecuperaPestadoresPesquisar(ufSelecionado: string, cidadeSelecionado: string,
+        bairro: string, servicoId: string, igrejaId: string): Promise<any[]> {
         return new Promise((resolve, reject) => {
 
             let query = this.db.collectionGroup("prestador")
-                .where("uf", "==", ufSelecionado)
-                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.PendenteAutorizacao);
+                .where("locaisAtendimento", "array-contains", { uf: ufSelecionado })
+                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Ativo);
 
-            if (cidadeSelecionado) {
-                query = query.where("cidade", "==", cidadeSelecionado);
-            }
+            // if (cidadeSelecionado) {
+            //     query = query.where("cidade", "==", cidadeSelecionado);
+            // }
 
-            if (bairro) {
-                query = query.where("bairro", "==", bairro);
-            }
+            // if (bairro) {
+            //     query = query.where("bairro", "==", bairro);
+            // }
             // if (servicoId) {
             //     query = query.whereArrayContains("servicos", "array-contains", servicoId);
             // }
@@ -158,15 +232,15 @@ export class PrestadorRepServiceService extends BaseRepository {
 
                     if (doc.data().servicos) {
                         let servicosTemp = doc.data().servicos.filter(y => { return y.servicoId == servicoId });
-                        if (servicosTemp.length > 0 ||  !servicoId) {
+                        if (servicosTemp.length > 0 || !servicoId) {
 
                             let prestador = doc.data();
                             if (igrejaId) {
                                 if (prestador.igrejas
                                     .filter(y => { return y.igrejaId == igrejaId }).length > 0) {
                                     lst.push(prestador);
-                                } 
-                            }else {
+                                }
+                            } else {
                                 lst.push(prestador);
                             }
                         }
@@ -181,10 +255,11 @@ export class PrestadorRepServiceService extends BaseRepository {
     }
 
     RecuperaCidadePrestadorDisponiveis(ufSelecionado: string): Promise<any[]> {
+        debugger
         return new Promise((resolve, reject) => {
             this.db.collectionGroup("prestador")
-                .where("uf", "==", ufSelecionado)
-                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.PendenteAutorizacao)
+                .where("locaisAtendimento", "array-contains",  {uf:ufSelecionado})
+                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Ativo)
                 .get().then(result => {
 
                     let lst = [];
@@ -204,14 +279,17 @@ export class PrestadorRepServiceService extends BaseRepository {
 
         return new Promise((resolve, reject) => {
             this.db.collectionGroup("prestador")
-                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.PendenteAutorizacao)
+                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Ativo)
                 .get().then(result => {
 
                     let lst = [];
                     result.forEach(function (doc) {
-                        if (!lst.includes(doc.data().uf)) {
-                            lst.push(doc.data().uf);
-                        }
+                        let ufs = doc.data().locaisAtendimento;
+                        ufs.forEach(localAtendimento => {
+                            if (!lst.includes(localAtendimento.uf)) {
+                                lst.push(localAtendimento.uf);
+                            }
+                        });
                     });
                     resolve(lst)
                 }).catch(err => {
@@ -227,7 +305,7 @@ export class PrestadorRepServiceService extends BaseRepository {
             this.db.collectionGroup("prestador")
                 .where("uf", "==", uf)
                 .where("cidade", "==", cidade)
-                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.PendenteAutorizacao)
+                .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Ativo)
                 .get().then(result => {
 
                     let lst = [];
