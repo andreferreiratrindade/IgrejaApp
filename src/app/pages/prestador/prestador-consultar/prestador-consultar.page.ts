@@ -79,7 +79,6 @@ export class PrestadorConsultarPage implements OnInit {
 
         this.prestadorService.RecuperaUfPrestadorDisponiveis()
             .then(result => {
-                
                 this.UfList = result.map(x=>{return Constants.ListagemUF.RecuperaObjetoPorUF(x)});
                 this.loadingContr.hideLoader();
             }).catch(x => {
@@ -129,7 +128,7 @@ export class PrestadorConsultarPage implements OnInit {
                 this.prestadores = prestadoresResult;
 
                 let lstIgrejaId = [];
-                lstIgrejaId = prestadoresResult.map(x => { return x.igrejas[0].igrejaId });
+                lstIgrejaId = prestadoresResult.map(x => { return x.igrejaId });
 
                 this.consultaMasterPrestador(lstusuarioId, lstIgrejaId).then(() => {
                     this.loadingContr.hideLoader();

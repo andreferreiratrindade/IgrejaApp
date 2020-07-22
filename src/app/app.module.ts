@@ -19,7 +19,7 @@ import { BuscarCEPService } from './providers/buscaCEP/buscar-cep.service';
 import { Http, HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 
 firebase.initializeApp(environment.firebase);

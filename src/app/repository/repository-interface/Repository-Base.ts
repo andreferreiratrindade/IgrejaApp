@@ -3,7 +3,7 @@ import { IWrite } from './IWirte';
 import { IRead } from './IRead';
 import { DocumentReference } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
-import { FirebaseApp } from '@angular/fire';
+
 export abstract class BaseRepository implements IWrite, IRead {
 	public _collectionName: string;
 	protected db: firebase.firestore.Firestore;
@@ -17,7 +17,6 @@ export abstract class BaseRepository implements IWrite, IRead {
 	constructor() {
 		this.db = firebase.firestore();
 	}
-
 
 
 	// success
