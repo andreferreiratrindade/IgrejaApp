@@ -125,7 +125,7 @@ export class CriarIgrejaPage implements OnInit {
     this.loadingControll.showLoader()
 
     this.igrejaEntity = this.formData.value;
-    this.igrejaEntity.administradores = [{ usuarioId: this.formData.value.administradorUsuarioId }];
+    this.igrejaEntity.administradores = [this.formData.value.administradorUsuarioId];
     this.igrejaService.AdicionarNovaIgreja(this.igrejaEntity).then(() => {
 
       this.usuarioService
