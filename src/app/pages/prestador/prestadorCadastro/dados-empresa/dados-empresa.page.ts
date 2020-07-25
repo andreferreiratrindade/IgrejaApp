@@ -70,6 +70,24 @@ export class DadosEmpresaPage implements OnInit {
         Validators.required
       ]))
     });
+
+    this.prestadorService.RecuperaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+      .then((result) => {
+        this.prestador = result;
+        if (result) {
+          
+          this.formulario.controls['telefone'].setValue(result.telefone);
+          this.formulario.controls['cep'].setValue(result.cep);
+          this.formulario.controls['uf'].setValue(result.uf);
+          this.formulario.controls['cidade'].setValue(result.cidade);
+          this.formulario.controls['bairro'].setValue(result.bairro);
+          this.formulario.controls['logradouro'].setValue(result.logradouro);
+          this.formulario.controls['razaoSocial'].setValue(result.razaoSocial);
+        }
+      }).catch(err => {
+        HandlerError.handler(err, this.toastCtrl);
+        this.loadingContr.hideLoader();
+      });
   }
 
   ngOnInit() {
@@ -96,7 +114,7 @@ export class DadosEmpresaPage implements OnInit {
         this.formulario.controls["uf"].setValue(x.uf);
         this.formulario.controls["logradouro"].setValue(x.logradouro);
 
-      }else{
+      } else {
         HandlerError.handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl);
       }
 
@@ -109,7 +127,7 @@ export class DadosEmpresaPage implements OnInit {
     })
   }
 
-  SalvarFormulario() {
+  prosseguir() {
     if (!this.formulario.value.cidade) {
       HandlerError.handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl)
       return false;

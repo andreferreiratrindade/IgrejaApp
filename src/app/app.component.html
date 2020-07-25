@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="push" menuId="mainContent" side="start" >
+    <ion-menu contentId="main-content"  menuId="mainContent" side="start" >
       <ion-header>
         <ion-toolbar color="default">
           <ion-title>Menu</ion-title>
@@ -29,7 +29,7 @@
               <ion-icon name="log-in-outline"></ion-icon>
             </ion-chip>
           </span>
-          <ion-menu-toggle auto-hide="true" *ngFor="let p of paginas">
+          <ion-menu-toggle  *ngFor="let p of paginas">
             <ion-item  routerDirection="root" [routerLink]="[p.url]" 
               detail="false">
               <ion-icon slot="start" [ios]="p.icon + '-outline'"></ion-icon>

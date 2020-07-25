@@ -99,7 +99,8 @@ export class AppComponent implements OnInit {
       {
         title: 'Seja um Prestador',
         url: 'dados-empresa',
-        icon: 'people'
+        icon: 'people',
+        perfilInverso:[Constants.PerfilUsuario.Prestador]
       },
   
       {
@@ -114,6 +115,13 @@ export class AppComponent implements OnInit {
         url: 'consultar-prestador-adm',
         icon: 'business',
         perfil: [Constants.PerfilUsuario.AdministradorIgreja]
+      }
+      ,
+      {
+        title: 'Meu Cadastro Prestador',
+        url: 'dados-empresa',
+        icon: 'business',
+        perfil: [Constants.PerfilUsuario.Prestador]
       }
     ];
   }

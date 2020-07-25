@@ -3,6 +3,8 @@ export module Constants {
    export class PerfilUsuario {
       public static AdministradorSistema: number = 1;
       public static AdministradorIgreja: number = 2;
+      public static Prestador: number = 3;
+      
    }
 
    export class Mensagens {
@@ -27,6 +29,7 @@ export module Constants {
    }
 
    export class TipoSituacaoPrestador {
+      public static PrestadorEmEdicao : number = 1;
       public static CadastroDadosEmpresa: number = 0;
       public static CadastroLocalAtendimento: number = 1;
       public static CadastroServicos: number = 2;

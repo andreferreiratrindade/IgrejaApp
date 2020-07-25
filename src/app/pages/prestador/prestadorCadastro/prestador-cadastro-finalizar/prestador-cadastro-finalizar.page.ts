@@ -81,6 +81,16 @@ export class PrestadorCadastroFinalizarPage implements OnInit {
     this.loadingContr.showLoader();
     let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PendenteAutorizacao };
 
+    this.usuarioService
+      .AdicionaPerfilAoUsuario(Config.RecuperaInstancia().recuperaUsuario().usuarioId, Constants.PerfilUsuario.Prestador)
+      .then(() => {
+
+      }).catch((error) => {
+        HandlerError.handler(error, this.toastCtrl);
+        this.loadingContr.hideLoader();
+
+      });
+
     this.prestadorService
       .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
 

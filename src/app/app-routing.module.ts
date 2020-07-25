@@ -100,23 +100,35 @@ const routes: Routes = [
   },
   {
     path: 'dados-empresa',
-    canActivate: [PrestadorSituacaoValidation],
+    canActivate: [UsuarioLogadoValidation],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/dados-empresa/dados-empresa.module').then( m => m.DadosEmpresaPageModule)
   },
   {
     path: 'prestador-local-atendimento',
+    canActivate: [UsuarioLogadoValidation],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/local-atendimento/local-atendimento.module').then( m => m.LocalAtendimentoPageModule)
   },
   {
     path: 'prestador-cadastro-servico',
+    canActivate: [UsuarioLogadoValidation],
+
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-servico/prestador-cadastro-servico.module').then( m => m.PrestadorCadastroServicoPageModule)
   },
   {
     path: 'prestador-cadastro-igreja-vinculo',
+    canActivate: [UsuarioLogadoValidation],
+
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-igreja-vinculo/prestador-cadastro-igreja-vinculo.module').then( m => m.PrestadorCadastroIgrejaVinculoPageModule)
-  },  {
+  },
+  {
     path: 'prestador-cadastro-finalizar',
+    canActivate: [UsuarioLogadoValidation],
+
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-finalizar/prestador-cadastro-finalizar.module').then( m => m.PrestadorCadastroFinalizarPageModule)
+  },
+  {
+    path: 'prestador-menu-topo',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.module').then( m => m.PrestadorMenuTopoPageModule)
   }
 
 

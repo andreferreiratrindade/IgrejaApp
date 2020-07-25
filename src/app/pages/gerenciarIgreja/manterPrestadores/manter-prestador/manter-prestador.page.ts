@@ -45,7 +45,7 @@ export class ManterPrestadorPage implements OnInit {
     this.prestadorService.RecuperaPrestador(this.prestador.usuarioId)
       .then((result) => {
         this.prestador = result;
-        debugger
+       
         this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
           this.prestador.nomeIgreja = result[0].data.nomeIgreja;
           this.loadingContr.hideLoader();
