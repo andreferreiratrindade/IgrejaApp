@@ -9,10 +9,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Configurando Java"
-          run: "JAVA_HOME=$(dirname $( readlink -f $(which java) ))
-                JAVA_HOME=$(realpath "$JAVA_HOME"/../)
-                export JAVA_HOME"
+          name: Configurando Java
+          command: export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_241/jre
       - run:
           name: Install node modules
           command: npm install
