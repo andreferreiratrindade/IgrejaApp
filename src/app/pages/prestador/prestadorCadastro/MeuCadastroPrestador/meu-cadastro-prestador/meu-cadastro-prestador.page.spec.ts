@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PrestadorCadastroForm3Page } from './prestador-cadastro-form3.page';
+import { MeuCadastroPrestadorPage } from './meu-cadastro-prestador.page';
 
-describe('PrestadorCadastroForm3Page', () => {
-  let component: PrestadorCadastroForm3Page;
-  let fixture: ComponentFixture<PrestadorCadastroForm3Page>;
+describe('MeuCadastroPrestadorPage', () => {
+  let component: MeuCadastroPrestadorPage;
+  let fixture: ComponentFixture<MeuCadastroPrestadorPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrestadorCadastroForm3Page ],
+      declarations: [ MeuCadastroPrestadorPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PrestadorCadastroForm3Page);
+    fixture = TestBed.createComponent(MeuCadastroPrestadorPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -32,11 +32,7 @@ const routes: Routes = [
      canActivate: [PerfilValidation_AdministradorSistema],
     loadChildren: () => import('./pages/gerenciarIgreja/criar-igreja/criar-igreja.module').then( m => m.CriarIgrejaPageModule)
   }, 
-  {
-    path: 'prestador-Form1',
-    canActivate: [PrestadorSituacaoValidation],
-    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form1/prestador-cadastro-form1.module').then( m => m.PrestadorCadastroForm1PageModule)
-  }, 
+
   {
     path: 'prestador-consultar',
     loadChildren: () => import('./pages/prestador/prestador-consultar/prestador-consultar.module').then( m => m.PrestadorConsultarPageModule)
@@ -44,20 +40,6 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/prestador/prestador-consultar/prestador-consultar.module').then( m => m.PrestadorConsultarPageModule)
-  },
-  {
-    path: 'prestador-Form2',
-    canActivate: [PrestadorSituacaoValidation],
-    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form2/prestador-cadastro-form2.module').then( m => m.PrestadorCadastroForm2PageModule)
-  },
-  {
-    path: 'prestador-Form3',
-    canActivate: [PrestadorSituacaoValidation],
-    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form3/prestador-cadastro-form3.module').then( m => m.PrestadorCadastroForm3PageModule)
-  },
-  {
-    path: 'prestador-cadastro-form4',
-    loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-form4/prestador-cadastro-form4.module').then( m => m.PrestadorCadastroForm4PageModule)
   },
   {
     path: 'visualizar-prestador',
@@ -100,24 +82,38 @@ const routes: Routes = [
   },
   {
     path: 'dados-empresa',
-    canActivate: [PrestadorSituacaoValidation],
+    canActivate: [UsuarioLogadoValidation],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/dados-empresa/dados-empresa.module').then( m => m.DadosEmpresaPageModule)
   },
   {
     path: 'prestador-local-atendimento',
+    canActivate: [UsuarioLogadoValidation],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/local-atendimento/local-atendimento.module').then( m => m.LocalAtendimentoPageModule)
   },
   {
     path: 'prestador-cadastro-servico',
+    canActivate: [UsuarioLogadoValidation],
+
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-servico/prestador-cadastro-servico.module').then( m => m.PrestadorCadastroServicoPageModule)
   },
   {
     path: 'prestador-cadastro-igreja-vinculo',
+    canActivate: [UsuarioLogadoValidation],
+
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-igreja-vinculo/prestador-cadastro-igreja-vinculo.module').then( m => m.PrestadorCadastroIgrejaVinculoPageModule)
-  },  {
+  },
+  {
     path: 'prestador-cadastro-finalizar',
+    canActivate: [UsuarioLogadoValidation],
+
     loadChildren: () => import('./pages/prestador/prestadorCadastro/prestador-cadastro-finalizar/prestador-cadastro-finalizar.module').then( m => m.PrestadorCadastroFinalizarPageModule)
+  },
+  {
+    path: 'meu-cadastro-prestador',
+    canActivate: [UsuarioLogadoValidation],
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/MeuCadastroPrestador/meu-cadastro-prestador/meu-cadastro-prestador.module').then( m => m.MeuCadastroPrestadorPageModule)
   }
+
 
 
 

@@ -2,7 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-servico.service';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Config } from 'src/app/config';
 import { HandlerError } from 'src/app/helpers/handlerError';
@@ -18,9 +18,9 @@ import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 export class VisualizarPrestadorPage implements OnInit {
 
   prestador: any = {};
-  prestadorServicos = [];
-  usuario = {};
-  usuarioId : string;
+  prestadorServicos : any[] = [];
+  usuario : any = {};
+  usuarioId: string;
   constructor(public prestadorService: PrestadorService,
     public dominioServicoService: DominioServicoService,
     public loadingContr: LoadingContr,
@@ -29,26 +29,28 @@ export class VisualizarPrestadorPage implements OnInit {
     public toastCtrl: ToastController,
     public igrejaService: IgrejaService,
     private route: ActivatedRoute,
-    private usuarioService : UsuarioService,
-    ) { 
+    private usuarioService: UsuarioService,
+    public modalController: ModalController,
 
-      this.usuarioId = this.route.snapshot.queryParams['usuarioId'] ;
-    }
+  ) {
+
+    this.usuarioId = this.route.snapshot.queryParams['usuarioId'];
+  }
 
   ngOnInit() {
     this.loadingContr.showLoader();
-    
-    this.usuarioService.RecuperaNomeUsuarios([this.usuarioId])
-    .then(resultado=>{
 
-      this.usuario = resultado[0].data;
-    })
+    this.usuarioService.RecuperaNomeUsuarios([this.usuarioId])
+      .then(resultado => {
+
+        this.usuario = resultado[0].data;
+      })
 
     this.prestadorService.RecuperaPrestador(this.usuarioId)
       .then((result) => {
         this.prestador = result;
         this.prestador.nomeSituacaoPrestador = Constants.ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(this.prestador.situacaoPrestador);
-        this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejas[0].igrejaId]).then(result => {
+        this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
           this.prestador.nomeIgreja = result[0].data.nomeIgreja;
           this.prestador.staMembro = result[0].data.staMembro;
           this.loadingContr.hideLoader();
@@ -80,6 +82,10 @@ export class VisualizarPrestadorPage implements OnInit {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
       });
+  }
+
+  closeModal() {
+    this.modalController.dismiss(null, 'cancel');
   }
 
 

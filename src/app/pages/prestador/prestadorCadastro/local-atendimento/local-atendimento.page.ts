@@ -47,8 +47,8 @@ export class LocalAtendimentoPage implements OnInit {
 
   ngOnInit() {
     this.loadingContr.showLoader();
-
-    this.prestadorService.RecuperaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+    let usuarioId = Config.RecuperaInstancia().recuperaUsuario().usuarioId;
+    this.prestadorService.RecuperaPrestador(usuarioId)
       .then((result) => {
         this.locaisAtendimentos = result.locaisAtendimento;
         this.loadingContr.hideLoader();
@@ -198,6 +198,10 @@ export class LocalAtendimentoPage implements OnInit {
         }
       });
     });
+  }
+
+  public voltar(){
+    this.router.navigate(['dados-empresa']);
   }
 
 }

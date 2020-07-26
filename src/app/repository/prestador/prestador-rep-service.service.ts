@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseRepository } from '../repository-interface/Repository-Base';
 import { Constants } from 'src/app/utils/constants';
-import * as firebase from 'firebase';
-
+// import * as firesql from 'firesql';
 @Injectable({
     providedIn: 'root'
 })
@@ -210,8 +209,11 @@ export class PrestadorRepServiceService extends BaseRepository {
         bairro: string, servicoId: string, igrejaId: string): Promise<any[]> {
         return new Promise((resolve, reject) => {
 
+
+
+
             let query = this.db.collectionGroup("prestador")
-                .where("locaisAtendimento", "array-contains", { uf: ufSelecionado })
+                // .where("locaisAtendimento", "array-contains", { uf: ufSelecionado })
                 .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Ativo);
 
             // if (cidadeSelecionado) {
@@ -229,22 +231,30 @@ export class PrestadorRepServiceService extends BaseRepository {
 
                 let lst = [];
                 result.forEach(function (doc) {
+                    if (doc.data().locaisAtendimento) {
 
-                    if (doc.data().servicos) {
-                        let servicosTemp = doc.data().servicos.filter(y => { return y.servicoId == servicoId });
-                        if (servicosTemp.length > 0 || !servicoId) {
+                        doc.data().locaisAtendimento.forEach(x => {
 
-                            let prestador = doc.data();
-                            if (igrejaId) {
-                                if (prestador.igrejas
-                                    .filter(y => { return y.igrejaId == igrejaId }).length > 0) {
-                                    lst.push(prestador);
+                            if (x.cidade == cidadeSelecionado && x.uf == ufSelecionado) {
+                                if (doc.data().servicos) {
+                                    let servicosTemp = doc.data().servicos.filter(y => { return y.servicoId == servicoId });
+                                    if (servicosTemp.length > 0 || !servicoId) {
+
+                                        let prestador = doc.data();
+                                        if (igrejaId) {
+                                            if (prestador.igrejas
+                                                .filter(y => { return y.igrejaId == igrejaId }).length > 0) {
+                                                lst.push(prestador);
+                                            }
+                                        } else {
+                                            lst.push(prestador);
+                                        }
+                                    }
                                 }
-                            } else {
-                                lst.push(prestador);
                             }
-                        }
+                        });
                     }
+
                 });
                 resolve(lst)
             }).catch(err => {
@@ -255,17 +265,23 @@ export class PrestadorRepServiceService extends BaseRepository {
     }
 
     RecuperaCidadePrestadorDisponiveis(ufSelecionado: string): Promise<any[]> {
-        debugger
+
         return new Promise((resolve, reject) => {
             this.db.collectionGroup("prestador")
-                .where("locaisAtendimento", "array-contains",  {uf:ufSelecionado})
                 .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Ativo)
                 .get().then(result => {
-
+                    
                     let lst = [];
                     result.forEach(function (doc) {
-                        if (!lst.includes(doc.data().cidade)) {
-                            lst.push(doc.data().cidade);
+
+                        if (doc.data().locaisAtendimento) {
+
+                            doc.data().locaisAtendimento.forEach(x => {
+
+                                if (!lst.includes(x.cidade) && x.uf == ufSelecionado) {
+                                    lst.push(x.cidade);
+                                }
+                            });
                         }
                     });
                     resolve(lst)

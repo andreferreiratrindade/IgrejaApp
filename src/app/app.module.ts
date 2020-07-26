@@ -5,7 +5,6 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { BrMaskerModule } from 'br-mask';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
@@ -19,7 +18,7 @@ import { BuscarCEPService } from './providers/buscaCEP/buscar-cep.service';
 import { Http, HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 
 firebase.initializeApp(environment.firebase);
@@ -28,7 +27,6 @@ firebase.initializeApp(environment.firebase);
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrMaskerModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

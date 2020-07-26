@@ -40,13 +40,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    this.usuarioService.recuperaUsuarioLogado().then(()=>{
+
+    this.usuarioService.recuperaUsuarioLogado().then(() => {
     });
   }
 
   get paginas() {
-    return  this.RecuperaPaginasMenuLateral().filter(page => {
+    return this.RecuperaPaginasMenuLateral().filter(page => {
       let retorno = true;
       if (page.perfil) {
         retorno = page.perfil.filter(x => {
@@ -59,11 +59,28 @@ export class AppComponent implements OnInit {
                 return perfis == x;
               }).length > 0;
             }
-
           }
           return retorno;
         }).length > 0;
       }
+
+      // if (page.perfilInverso) {
+
+      //   retorno = page.perfilInverso.filter(x => {
+      //     let retorno = false;
+      //     if (this.usuarioLogado) {
+      //       let perfisDoUsuario = this.usuarioLogado.perfis
+
+      //       if (perfisDoUsuario) {
+      //         retorno = perfisDoUsuario.filter(perfis => {
+      //           return perfis != x;
+      //         }).length > 0;
+      //       }
+      //     }
+
+      //     return retorno;
+      //   }).length > 0;
+      // }
       return retorno
     });
     console.log(this.paginas);
@@ -89,7 +106,7 @@ export class AppComponent implements OnInit {
 
   }
 
-  RecuperaPaginasMenuLateral(){
+  RecuperaPaginasMenuLateral() {
     return [
       {
         title: 'Consultar Prestador',
@@ -99,9 +116,10 @@ export class AppComponent implements OnInit {
       {
         title: 'Seja um Prestador',
         url: 'dados-empresa',
-        icon: 'people'
+        icon: 'people',
+        perfilInverso: [Constants.PerfilUsuario.Prestador]
       },
-  
+
       {
         title: 'Adicionar Igreja',
         url: 'criar-igreja',
@@ -114,6 +132,13 @@ export class AppComponent implements OnInit {
         url: 'consultar-prestador-adm',
         icon: 'business',
         perfil: [Constants.PerfilUsuario.AdministradorIgreja]
+      }
+      ,
+      {
+        title: 'Meu Cadastro Prestador',
+        url: 'meu-cadastro-prestador',
+        icon: 'business',
+        perfil: [Constants.PerfilUsuario.Prestador]
       }
     ];
   }

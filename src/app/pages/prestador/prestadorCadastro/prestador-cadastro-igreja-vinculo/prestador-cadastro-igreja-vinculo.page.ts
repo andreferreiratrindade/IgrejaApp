@@ -153,4 +153,8 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
         this.loadingContr.hideLoader();
       });
   }
+
+  public voltar(){
+    this.router.navigate(['prestador-cadastro-servico']);
+  }
 }

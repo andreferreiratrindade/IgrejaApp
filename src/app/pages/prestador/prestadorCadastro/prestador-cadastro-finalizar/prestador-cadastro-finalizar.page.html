@@ -10,10 +10,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>
-      Dados empresa
-    </ion-list-header>
+
+  <ion-card class="ion-no-border">
+    <ion-card-header>
+
+      <ion-card-title>
+        <h3>Dados empresa</h3>
+
+
+      </ion-card-title>
+    </ion-card-header>
+
     <ion-item>
       <ion-label class="ion-text-wrap">
         <p>Nome</p>
@@ -44,53 +51,64 @@
         <h3>{{prestador.logradouro}}, {{prestador.bairro}} - {{prestador.cidade}} / {{prestador.uf}}</h3>
       </ion-label>
     </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-list-header>
-      Local Atendimento
-    </ion-list-header>
-    <ion-item *ngFor="let item of prestador.locaisAtendimento">
+
+  </ion-card>
+
+
+  <ion-card class="ion-no-border">
+    <ion-card-header>
+
+      <ion-card-title>
+        <h3>Local Atendimento</h3>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-item *ngFor="let item of prestador.locaisAtendimento; let i = index">
       <ion-label class="ion-text-wrap">
-        <h1>{{item.cidade}} / {{item.uf}}</h1>
+        <h2>{{i+1}}. {{item.cidade}} / {{item.uf}}</h2>
       </ion-label>
     </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-list-header>
-      Serviços
-    </ion-list-header>
+  </ion-card>
+  <ion-card class="ion-no-border">
+    <ion-card-header>
+
+      <ion-card-title>
+        <h3>Serviços</h3>
+      </ion-card-title>
+    </ion-card-header>
+
     <ion-item *ngFor="let item of prestadorServicos">
       <ion-label class="ion-text-wrap">
-        <h1>{{item.nomeServico}}</h1>
+        <h2>{{item.nomeServico}}</h2>
         <h3>{{item.breveDescricao}}</h3>
       </ion-label>
     </ion-item>
-  </ion-list>
+  </ion-card>
 
-  <ion-list>
-    <ion-list-header>
-      Igreja Vinculo
-    </ion-list-header>
+  <ion-card class="ion-no-border">
+    <ion-card-header>
+
+      <ion-card-title>
+        <h3>Igreja Vinculo</h3>
+      </ion-card-title>
+    </ion-card-header>
     <ion-item>
       <ion-label class="ion-text-wrap">
         <h3>{{prestador.nomeIgreja}}</h3>
         <h3>{{prestador.staMembro}}</h3>
       </ion-label>
     </ion-item>
-  </ion-list>
-
+  </ion-card>
 </ion-content>
-
 
 <ion-footer>
   <ion-toolbar>
     <ion-grid>
       <ion-row>
-        <ion-col size="4">
-          <ion-button class="default" type="button"  (click)="voltar()">Voltar</ion-button>
+        <ion-col class="ion-align-self-start">
+          <ion-button color="medium" type="button" (click)="voltar()">Voltar</ion-button>
         </ion-col>
-        <ion-col size="4">
-          <ion-button class="success" type="button" (click)="finalizar()">Finalizar</ion-button>
+        <ion-col class="ion-align-self-end">
+          <ion-button color="success" type="button" (click)="finalizar()">Prosseguir</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
