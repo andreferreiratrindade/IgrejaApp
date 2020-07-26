@@ -27,7 +27,7 @@
         <ion-input type="text" formControlName="cep" clearInput autocapitalize="off"></ion-input>
       </ion-item>
 
-      <ion-chip color="tertiary" (click)="submitError='';buscarEnderecoPorCEP()" size="6">
+      <ion-chip color="tertiary" (click)="buscarEnderecoPorCEP()" size="6">
         <ion-label>Buscar Endereço</ion-label>
         <ion-icon name="search-outline"></ion-icon>
       </ion-chip>
@@ -36,7 +36,6 @@
           <p>{{formData.value.logradouro}}, {{formData.value.bairro}} - {{formData.value.cidade}} / {{formData.value.uf}}</p>
         </ion-label>
 
-        <!-- <ion-button color="tertiary" type="button" (click)="submitError='';buscarEnderecoPorCEP()" [submitError]="">Buscar endereço</ion-button> -->
         <app-mensagem-validacao [validation_messages_object]="validation_messages.cep" [form]="formData"
           [nomeCampo]="'cep'"></app-mensagem-validacao>
       </ion-item>
@@ -58,7 +57,7 @@
       </ion-item>
 
     </ion-list>
-    <ion-button class="sign-up-btn" type="submit" [submitError]="" expand="block">
+    <ion-button class="sign-up-btn" type="submit"  expand="block">
       Adicionar Igreja</ion-button>
   </form>
 </ion-content>

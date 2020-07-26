@@ -24,7 +24,7 @@
         <ion-label position="floating">Telefone<ion-text color="danger">*</ion-text>
         </ion-label>
 
-        <ion-input type="number" [brmasker]="{phone: true}" formControlName="telefone" clearInput autocapitalize="off">
+        <ion-input type="number"  formControlName="telefone" clearInput autocapitalize="off">
         </ion-input>
       </ion-item>
 
@@ -36,7 +36,7 @@
       </ion-item>
 
 
-      <ion-chip color="tertiary" (click)="submitError='';buscarEnderecoPorCEP()" size="6">
+      <ion-chip color="tertiary" (click)="buscarEnderecoPorCEP()" size="6">
         <ion-label>Buscar Endereço</ion-label>
         <ion-icon name="search-outline"></ion-icon>
       </ion-chip>
