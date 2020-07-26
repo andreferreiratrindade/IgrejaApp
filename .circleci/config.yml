@@ -13,6 +13,6 @@ jobs:
           command: npm install
       - run:
           name: Building android
-          command:  ionic cordova build android --prod --release
+          command:  ionic cordova build android
       - store_artifacts:
           path: platforms/android/build/outputs/apk/android-debug.apk
