@@ -18,6 +18,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { Constants } from 'src/app/utils/constants';
 import { FavoritoService } from 'src/app/providers/favorito/favorito.service';
 import { Config } from 'src/app/config';
+import { VisualizarPrestadorPage } from '../visualizar-prestador/visualizar-prestador.page';
 @Component({
     selector: 'app-prestador-consultar',
     templateUrl: './prestador-consultar.page.html',
@@ -211,7 +212,17 @@ export class PrestadorConsultarPage implements OnInit {
     }
 
     public detalhes(usuarioId) {
-        this.router.navigate(['/visualizar-prestador'], { queryParams: { usuarioId: usuarioId } });
+        const modal = this.modalCtrl.create({
+            component: VisualizarPrestadorPage,
+            componentProps: { usuarioId: usuarioId },
+            backdropDismiss: false,
+        }).then((modal) => {
+            modal.present();
+            modal.onWillDismiss().then(resultModal => {
+               
+            });
+        });
+        // this.router.navigate(['/visualizar-prestador'], { queryParams: { usuarioId: usuarioId } });
     }
 
     public abrirModalServicos() {
@@ -304,6 +315,10 @@ export class PrestadorConsultarPage implements OnInit {
                 }
             });
         });
+    }
+
+    public abrirModalPrestadorDetalhes(usuarioId) {
+        
     }
     public formularioValido(): boolean {
         return this.formulario.value.uf && this.formulario.value.cidade;

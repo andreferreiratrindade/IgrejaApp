@@ -40,17 +40,8 @@ export class PrestadorSituacaoValidation implements CanActivate {
                             case Constants.TipoSituacaoPrestador.CadastroDadosEmpresa:
                                 redirectStr = "dados-empresa"
                                 break;
-                            case Constants.TipoSituacaoPrestador.CadastroServicos:
-                                redirectStr = "prestador-cadastro-servico"
-                                break;
-
-                            case Constants.TipoSituacaoPrestador.CadastroLocalAtendimento:
-                                redirectStr = "prestador-local-atendimento"
-                                break;
-                            case Constants.TipoSituacaoPrestador.CadastroIgrejaVinculo:
-                                redirectStr = "prestador-cadastro-igreja-vinculo"
-                                break; case Constants.TipoSituacaoPrestador.FinalizarCadastro:
-                                redirectStr = "prestador-cadastro-finalizar"
+                            case Constants.TipoSituacaoPrestador.PrestadorEmEdicao:
+                                redirectStr = "dados-empresa"
                                 break;
                             case Constants.TipoSituacaoPrestador.PendenteAutorizacao:
                                 ToastCustom.CustomToast(this.toast, "Anteção. Existe uma solicitação de aprovação deste prestador para o adiministrador da igreja."

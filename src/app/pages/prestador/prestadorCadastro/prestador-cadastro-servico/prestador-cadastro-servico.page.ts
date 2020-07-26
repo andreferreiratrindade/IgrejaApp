@@ -155,14 +155,14 @@ export class PrestadorCadastroServicoPage implements OnInit {
 
   }
 
-  Prosseguir() {
+  prosseguir() {
     if (this.prestadorServicos.length == 0) {
       ToastCustom.CustomToast(this.toastCtrl, "Favor adicionar serviço, antes de continuar", "danger", 4000);
       return false;
     }
 
     this.loadingContr.showLoader();
-    let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.CadastroIgrejaVinculo };
+    let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
 
     this.prestadorService
       .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
@@ -178,7 +178,7 @@ export class PrestadorCadastroServicoPage implements OnInit {
       });
   }
 
-  Voltar(){
-
+  public voltar(){
+    this.router.navigate(['prestador-local-atendimento']);
   }
 }

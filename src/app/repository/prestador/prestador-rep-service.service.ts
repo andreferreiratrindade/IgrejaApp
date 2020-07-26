@@ -266,24 +266,11 @@ export class PrestadorRepServiceService extends BaseRepository {
 
     RecuperaCidadePrestadorDisponiveis(ufSelecionado: string): Promise<any[]> {
 
-
-        this.setFireSql(this.db);
-
-        // let query = "SELECT * FROM GROUP prestador WHERE 'locaisAtendimento.uf' CONTAINS 'MG'";
-        // // let query = "SELECT * FROM usuario WHERE "
-        // let usuarios = this.fireSql.query(query);
-
-
-        // usuarios.then(result => {
-        //     debugger
-        //     console.log(result);
-        // })
-
         return new Promise((resolve, reject) => {
             this.db.collectionGroup("prestador")
                 .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Ativo)
                 .get().then(result => {
-                    debugger
+                    
                     let lst = [];
                     result.forEach(function (doc) {
 
