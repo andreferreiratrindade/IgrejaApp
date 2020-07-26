@@ -1,8 +1,22 @@
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (typeof call === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-prestador-prestadorCadastro-prestador-cadastro-servico-prestador-cadastro-servico-module"], {
   /***/
@@ -21,8 +35,56 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Serviços\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen class=\"ion-padding\">\n\n  <ion-card (click)=\"expandItem(item)\" *ngFor=\"let item of prestadorServicos\">\n    <ion-card-header>\n      <ion-card-title>{{item.nomeServico}} </ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-item>\n        <ion-textarea placeholder=\"Insira uma breve descrição aqui...\" [(ngModel)]=\"item.breveDescricao\"></ion-textarea>\n      </ion-item>\n      <ion-row>\n        <ion-col>\n          <ion-button type=\"button\" color=\"danger\" (click)=\"excluirButtonClick(item)\">Excluir</ion-button>\n        </ion-col>\n        <ion-col>\n          <ion-button type=\"button\" (click)=\"salvarBreveDescricao(item)\">Salvar</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\n    <ion-fab-button color=\"dark\" (click)=\"abreModalSelecionaServico()\">\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button class=\"default\" type=\"button\"  (click)=\"voltar()\">Voltar</ion-button>\n        </ion-col>\n        <ion-col size=\"4\">\n          <ion-button class=\"success\" type=\"button\" (click)=\"Prosseguir()\">Prosseguir</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Serviços\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen class=\"ion-padding\">\n\n  <ion-card (click)=\"expandItem(item)\" *ngFor=\"let item of prestadorServicos\">\n    <ion-card-header>\n      <ion-card-title>{{item.nomeServico}} </ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-item>\n        <ion-textarea placeholder=\"Insira uma breve descrição aqui...\" [(ngModel)]=\"item.breveDescricao\"></ion-textarea>\n      </ion-item>\n      <ion-row>\n        <ion-col>\n          <ion-button type=\"button\" color=\"danger\" (click)=\"excluirButtonClick(item)\">Excluir</ion-button>\n        </ion-col>\n        <ion-col>\n          <ion-button type=\"button\" (click)=\"salvarBreveDescricao(item)\">Salvar</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\n    <ion-fab-button color=\"dark\" (click)=\"abreModalSelecionaServico()\">\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col  class=\"ion-align-self-start\">\n          <ion-button  color=\"medium\" type=\"button\" (click)=\"voltar()\">Voltar</ion-button>\n        </ion-col>\n        <ion-col class=\"ion-align-self-end\">\n          <ion-button  color=\"success\" type=\"button\" (click)=\"prosseguir()\">Prosseguir</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>";
     /***/
+  },
+
+  /***/
+  "./src/app/helpers/handlerError.ts":
+  /*!*****************************************!*\
+    !*** ./src/app/helpers/handlerError.ts ***!
+    \*****************************************/
+
+  /*! exports provided: HandlerError */
+
+  /***/
+  function srcAppHelpersHandlerErrorTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "HandlerError", function () {
+      return HandlerError;
+    });
+    /* harmony import */
+
+
+    var _toastCustom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! ./toastCustom */
+    "./src/app/helpers/toastCustom.ts");
+
+    var HandlerError = /*#__PURE__*/function () {
+      function HandlerError() {
+        _classCallCheck(this, HandlerError);
+      }
+
+      _createClass(HandlerError, null, [{
+        key: "handler",
+        value: function handler(err, toastCtrl) {
+          var data = err;
+          var message = data.error ? data.error.message : data;
+          console.log(message);
+
+          _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
+        }
+      }]);
+
+      return HandlerError;
+    }();
+    /***/
+
   },
 
   /***/
@@ -449,8 +511,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
-        key: "Prosseguir",
-        value: function Prosseguir() {
+        key: "prosseguir",
+        value: function prosseguir() {
           var _this6 = this;
 
           if (this.prestadorServicos.length == 0) {
@@ -460,7 +522,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.loadingContr.showLoader();
           var obj = {
-            situacaoPrestador: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.CadastroIgrejaVinculo
+            situacaoPrestador: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao
           };
           this.prestadorService.AtualizaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(function () {
             _this6.loadingContr.hideLoader();
@@ -477,8 +539,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
         }
       }, {
-        key: "Voltar",
-        value: function Voltar() {}
+        key: "voltar",
+        value: function voltar() {
+          this.router.navigate(['prestador-local-atendimento']);
+        }
       }]);
 
       return PrestadorCadastroServicoPage;
@@ -513,6 +577,195 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./prestador-cadastro-servico.page.scss */
       "./src/app/pages/prestador/prestadorCadastro/prestador-cadastro-servico/prestador-cadastro-servico.page.scss"))["default"]]
     })], PrestadorCadastroServicoPage);
+    /***/
+  },
+
+  /***/
+  "./src/app/providers/dominioServico/dominio-servico.service.ts":
+  /*!*********************************************************************!*\
+    !*** ./src/app/providers/dominioServico/dominio-servico.service.ts ***!
+    \*********************************************************************/
+
+  /*! exports provided: DominioServicoService */
+
+  /***/
+  function srcAppProvidersDominioServicoDominioServicoServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "DominioServicoService", function () {
+      return DominioServicoService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var src_app_repository_dominioServico_dominio_servico_repository_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! src/app/repository/dominioServico/dominio-servico-repository.service */
+    "./src/app/repository/dominioServico/dominio-servico-repository.service.ts");
+
+    var DominioServicoService = /*#__PURE__*/function () {
+      function DominioServicoService(dominioServico) {
+        _classCallCheck(this, DominioServicoService);
+
+        this.dominioServico = dominioServico;
+      }
+
+      _createClass(DominioServicoService, [{
+        key: "recuperaServicoAutoComplete",
+        value: function recuperaServicoAutoComplete(ev) {
+          return this.dominioServico.recuperaServicoAutoComplete(ev);
+        }
+      }, {
+        key: "recuperaDominioServico",
+        value: function recuperaDominioServico() {
+          return this.dominioServico.recuperaDominioServico();
+        }
+      }]);
+
+      return DominioServicoService;
+    }();
+
+    DominioServicoService.ctorParameters = function () {
+      return [{
+        type: src_app_repository_dominioServico_dominio_servico_repository_service__WEBPACK_IMPORTED_MODULE_2__["DominioServicoRepositoryService"]
+      }];
+    };
+
+    DominioServicoService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], DominioServicoService);
+    /***/
+  },
+
+  /***/
+  "./src/app/repository/dominioServico/dominio-servico-repository.service.ts":
+  /*!*********************************************************************************!*\
+    !*** ./src/app/repository/dominioServico/dominio-servico-repository.service.ts ***!
+    \*********************************************************************************/
+
+  /*! exports provided: DominioServicoRepositoryService */
+
+  /***/
+  function srcAppRepositoryDominioServicoDominioServicoRepositoryServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "DominioServicoRepositoryService", function () {
+      return DominioServicoRepositoryService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _repository_interface_Repository_Base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../repository-interface/Repository-Base */
+    "./src/app/repository/repository-interface/Repository-Base.ts");
+
+    var DominioServicoRepositoryService = /*#__PURE__*/function (_repository_interface) {
+      _inherits(DominioServicoRepositoryService, _repository_interface);
+
+      var _super = _createSuper(DominioServicoRepositoryService);
+
+      /**
+       *
+       */
+      function DominioServicoRepositoryService() {
+        var _this7;
+
+        _classCallCheck(this, DominioServicoRepositoryService);
+
+        _this7 = _super.call(this);
+        _this7.servicoConverter = {
+          toFirestore: function toFirestore(servico) {
+            return {
+              servicoId: servico.servicoId,
+              nomeServico: servico.nomeServico
+            };
+          }
+        };
+        _this7._collectionName = "dominioServico";
+        return _this7;
+      }
+
+      _createClass(DominioServicoRepositoryService, [{
+        key: "recuperaServicoAutoComplete",
+        value: function recuperaServicoAutoComplete(query) {
+          var _this8 = this;
+
+          return new Promise(function (response, resp) {
+            var endText = query + "\uF8FF";
+
+            _this8.db.collection("dominioServico").orderBy("nomeServico").limit(10).where("nomeServico", ">=", query).where("nomeServico", "<=", endText) // .startAt(query)
+            // .endAt(endText)
+            .get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push({
+                  nomeServico: doc.data().nomeServico,
+                  servicoId: doc.id
+                });
+              });
+              response(lst);
+            })["catch"](function (err) {
+              resp(err);
+            });
+          });
+        }
+      }, {
+        key: "recuperaDominioServico",
+        value: function recuperaDominioServico() {
+          var _this9 = this;
+
+          return new Promise(function (response, resp) {
+            _this9.db.collection("dominioServico").get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push({
+                  nomeServico: doc.data().nomeServico,
+                  servicoId: doc.id
+                });
+              });
+              response(lst);
+            });
+          });
+        }
+      }]);
+
+      return DominioServicoRepositoryService;
+    }(_repository_interface_Repository_Base__WEBPACK_IMPORTED_MODULE_2__["BaseRepository"]);
+
+    DominioServicoRepositoryService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], DominioServicoRepositoryService);
     /***/
   }
 }]);

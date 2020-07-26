@@ -35,7 +35,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Consultar Prestador\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n\n  <ion-card>\n    <ion-card-content>\n      <form [formGroup]=\"formulario\" (ngSubmit)=\"ConsultarPrestador()\">\n        <ion-item (click)=\"abrirModalServicos()\" detail>\n          <ion-label>Serviço</ion-label>\n          <ion-note color=\"primary\" slot=\"end\">{{formulario.value.nomeServico}}</ion-note>\n          <ion-note color=\"primary\" slot=\"end\" *ngIf=\"!formulario.value.nomeServico\">Todos</ion-note>\n        </ion-item>\n\n        <ion-item (click)=\"abrirModalUF()\" detail>\n          <ion-label>UF<ion-text color=\"danger\">*</ion-text>\n\n          </ion-label>\n          <ion-note slot=\"end\" color=\"primary\"> {{formulario.value.ufApresentacao}}</ion-note>\n\n        </ion-item>\n        <app-mensagem-validacao [validation_messages_object]=\"validation_messages.uf\" [form]=\"formulario\"\n          [nomeCampo]=\"'uf'\"></app-mensagem-validacao>\n\n        <ion-item (click)=\"abrirModalCidade()\" detail [disabled]=\"!formulario.value.uf\">\n          <ion-label>Cidade<ion-text color=\"danger\">*</ion-text>\n\n          </ion-label>\n          <ion-note slot=\"end\" color=\"primary\"> {{formulario.value.cidade}}</ion-note>\n\n        </ion-item>\n        <app-mensagem-validacao [validation_messages_object]=\"validation_messages.cidade\" [form]=\"formulario\"\n          [nomeCampo]=\"'cidade'\"></app-mensagem-validacao>\n\n        <ion-item (click)=\"abrirModalBairro()\" detail [disabled]=\"!formulario.value.cidade\">\n          <ion-label>Bairro\n\n          </ion-label>\n          <ion-note slot=\"end\" color=\"primary\"> {{formulario.value.bairro}}</ion-note>\n\n        </ion-item>\n        <ion-item (click)=\"abrirModalIgreja()\" detail [disabled]=\"!formulario.value.cidade\">\n          <ion-label>Igreja\n\n          </ion-label>\n          <ion-note slot=\"end\" color=\"primary\"> {{formulario.value.nomeIgreja}}</ion-note>\n\n        </ion-item>\n\n        <ion-button class=\"primary\" type=\"submit\" expand=\"block\">Pesquisar</ion-button>\n\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" value=\"{{item}}\" class=\"ion-no-border\">\n  <ion-card-header>\n\n      <ion-card-title><h3>{{item.nome}} </h3>\n        \n     \n        </ion-card-title>\n    </ion-card-header> \n\n      <ion-item (click)=\"ligarTelefone(item.telefone)\"  >\n                <ion-icon name=\"call-outline\" slot=\"start\"></ion-icon>\n        <ion-label color=\"primary\" class=\"ion-no-border\">\n          <h2>{{item.telefone}}</h2>\n        </ion-label>\n      </ion-item>\n      <ion-item  class=\"ion-no-border\">\n        <ion-icon name=\"business-outline\" slot=\"start\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{item.nomeIgreja}} </h2>\n        </ion-label>\n        <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"item.staMembro\">\n         membro \n        </ion-note>\n      </ion-item>\n      <ion-item>\n        <ion-icon name=\"golf-outline\" slot=\"start\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n        </ion-label>\n      </ion-item>\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"4\">\n            <ion-button size=\"small\" (click)=\"detalhes(item.usuarioId)\">Detalhes</ion-button>\n          </ion-col>\n          <!-- <ion-col size=\"4\">\n            <ion-button size=\"small\" (click)=\"compartilhar()\" >\n              <ion-icon name=\"share-social\"></ion-icon></ion-button>\n          </ion-col>\n          <ion-col size=\"4\">\n\n            <ion-button size=\"small\" (click)=\"adicionarFavorito(item.usuarioId)\" fill=\"outline\">\n              <ion-icon name=\"star-outline\"></ion-icon></ion-button>\n          </ion-col> -->\n        </ion-row>\n      </ion-grid>\n    <!-- </ion-card-content> -->\n  </ion-card>\n\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Consultar Prestador\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n\n  <ion-card>\n\n    <form [formGroup]=\"formulario\" (ngSubmit)=\"ConsultarPrestador()\">\n      <ion-item (click)=\"abrirModalServicos()\" detail>\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>Serviço</ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n              <ion-note color=\"primary\">{{formulario.value.nomeServico}}</ion-note>\n              <ion-note color=\"primary\" *ngIf=\"!formulario.value.nomeServico\">Todos</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n      <ion-item (click)=\"abrirModalUF()\" detail>\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>UF<ion-text color=\"danger\">*</ion-text>\n              </ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n              <ion-note color=\"primary\"> {{formulario.value.ufApresentacao}}</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n      <ion-item (click)=\"abrirModalCidade()\" detail [disabled]=\"!formulario.value.uf\">\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>Cidade<ion-text color=\"danger\">*</ion-text>\n              </ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n              <ion-note color=\"primary\"> {{formulario.value.cidade}}</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n      <ion-item (click)=\"abrirModalIgreja()\" detail [disabled]=\"!formulario.value.cidade\">\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>Igreja\n              </ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n              <ion-note color=\"primary\"> {{formulario.value.nomeIgreja}}</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n      <ion-button class=\"primary\" type=\"submit\" expand=\"block\">Pesquisar</ion-button>\n\n    </form>\n\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" value=\"{{item}}\" class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}} </h3>\n\n\n      </ion-card-title>\n    </ion-card-header>\n\n    <ion-item (click)=\"ligarTelefone(item.telefone)\">\n      <ion-icon name=\"call-outline\" slot=\"start\"></ion-icon>\n      <ion-label color=\"primary\" class=\"ion-no-border\">\n        <h2>{{item.telefone}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-item class=\"ion-no-border\">\n      <ion-icon name=\"business-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeIgreja}} </h2>\n      </ion-label>\n      <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"item.staMembro\">\n        membro\n      </ion-note>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"golf-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button size=\"small\" (click)=\"detalhes(item.usuarioId)\">Detalhes</ion-button>\n        </ion-col>\n        <!-- <ion-col size=\"4\">\n            <ion-button size=\"small\" (click)=\"compartilhar()\" >\n              <ion-icon name=\"share-social\"></ion-icon></ion-button>\n          </ion-col>\n          <ion-col size=\"4\">\n\n            <ion-button size=\"small\" (click)=\"adicionarFavorito(item.usuarioId)\" fill=\"outline\">\n              <ion-icon name=\"star-outline\"></ion-icon></ion-button>\n          </ion-col> -->\n      </ion-row>\n    </ion-grid>\n    <!-- </ion-card-content> -->\n  </ion-card>\n\n</ion-content>";
     /***/
   },
 
@@ -343,6 +343,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_config__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
     /*! src/app/config */
     "./src/app/config.ts");
+    /* harmony import */
+
+
+    var _visualizar_prestador_visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
+    /*! ../visualizar-prestador/visualizar-prestador.page */
+    "./src/app/pages/prestador/visualizar-prestador/visualizar-prestador.page.ts");
 
     var PrestadorConsultarPage = /*#__PURE__*/function () {
       function PrestadorConsultarPage(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl, callNumber, favoritoService) {
@@ -453,7 +459,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this3.prestadores = prestadoresResult;
             var lstIgrejaId = [];
             lstIgrejaId = prestadoresResult.map(function (x) {
-              return x.igrejas[0].igrejaId;
+              return x.igrejaId;
             });
 
             _this3.consultaMasterPrestador(lstusuarioId, lstIgrejaId).then(function () {
@@ -564,11 +570,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "detalhes",
         value: function detalhes(usuarioId) {
-          this.router.navigate(['/visualizar-prestador'], {
-            queryParams: {
+          var modal = this.modalCtrl.create({
+            component: _visualizar_prestador_visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_21__["VisualizarPrestadorPage"],
+            componentProps: {
               usuarioId: usuarioId
-            }
-          });
+            },
+            backdropDismiss: false
+          }).then(function (modal) {
+            modal.present();
+            modal.onWillDismiss().then(function (resultModal) {});
+          }); // this.router.navigate(['/visualizar-prestador'], { queryParams: { usuarioId: usuarioId } });
         }
       }, {
         key: "abrirModalServicos",
@@ -692,6 +703,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
           });
         }
+      }, {
+        key: "abrirModalPrestadorDetalhes",
+        value: function abrirModalPrestadorDetalhes(usuarioId) {}
       }, {
         key: "formularioValido",
         value: function formularioValido() {

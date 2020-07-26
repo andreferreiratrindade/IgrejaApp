@@ -1,8 +1,22 @@
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (typeof call === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-prestador-prestadorCadastro-prestador-cadastro-igreja-vinculo-prestador-cadastro-igreja-vinculo-module"], {
   /***/
@@ -21,8 +35,56 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Igreja Vinculo\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n\n  <ion-card>\n    <ion-card-content>\n      <form [formGroup]=\"formulario\" >\n\n        <ion-item (click)=\"abrirModalUF()\" detail>\n          <ion-label>UF<ion-text color=\"danger\">*</ion-text>\n\n          </ion-label>\n          <ion-note slot=\"end\" color=\"primary\"> {{formulario.value.ufApresentacao}}</ion-note>\n\n        </ion-item>\n\n        <ion-item (click)=\"abrirModalCidade()\" detail [disabled]=\"!formulario.value.uf\">\n          <ion-label>Cidade<ion-text color=\"danger\">*</ion-text>\n\n          </ion-label>\n          <ion-note slot=\"end\" color=\"primary\"> {{formulario.value.cidade}}</ion-note>\n\n        </ion-item>\n        <ion-item (click)=\"abrirModalIgreja()\" detail [disabled]=\"!formulario.value.cidade\">\n          <ion-label>Igreja<ion-text color=\"danger\">*</ion-text>\n\n          </ion-label>\n          <ion-note slot=\"end\" color=\"primary\"> {{formulario.value.nomeIgreja}}</ion-note>\n\n        </ion-item>\n        <ion-item>\n          <ion-label>Membro da Igreja vinculada</ion-label>\n          <ion-toggle  name=\"staMembro\" formControlName=\"staMembro\" \n            [disabled]=\"!formulario.value.igrejaId\"></ion-toggle>\n        </ion-item>\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button class=\"default\" type=\"button\"  (click)=\"voltar()\">Voltar</ion-button>\n        </ion-col>\n        <ion-col size=\"4\">\n          <ion-button class=\"success\" type=\"button\" (click)=\"prosseguir()\">Prosseguir</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>";
+    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Igreja Vinculo\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n\n  <ion-card>\n\n    <form [formGroup]=\"formulario\">\n\n      <ion-item (click)=\"abrirModalUF()\" detail>\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>UF<ion-text color=\"danger\">*</ion-text>\n\n              </ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n\n              <ion-note color=\"primary\"> {{formulario.value.ufApresentacao}}</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n\n      </ion-item>\n\n      <ion-item (click)=\"abrirModalCidade()\" detail [disabled]=\"!formulario.value.uf\">\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>Cidade<ion-text color=\"danger\">*</ion-text>\n\n              </ion-label>\n            </ion-col>\n\n            <ion-col size=\"12\">\n\n              <ion-note color=\"primary\"> {{formulario.value.cidade}}</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n\n      </ion-item>\n      <ion-item (click)=\"abrirModalIgreja()\" detail [disabled]=\"!formulario.value.cidade\">\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>Igreja<ion-text color=\"danger\">*</ion-text>\n\n              </ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n\n              <ion-note color=\"primary\"> {{formulario.value.nomeIgreja}}</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n      <ion-item>\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>Membro da Igreja vinculada</ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n              <ion-toggle name=\"staMembro\" formControlName=\"staMembro\" [disabled]=\"!formulario.value.igrejaId\">\n              </ion-toggle>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n    </form>\n\n  </ion-card>\n\n\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col class=\"ion-align-self-start\">\n          <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\">Voltar</ion-button>\n        </ion-col>\n        <ion-col class=\"ion-align-self-end\">\n          <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\">Prosseguir</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>";
     /***/
+  },
+
+  /***/
+  "./src/app/helpers/handlerError.ts":
+  /*!*****************************************!*\
+    !*** ./src/app/helpers/handlerError.ts ***!
+    \*****************************************/
+
+  /*! exports provided: HandlerError */
+
+  /***/
+  function srcAppHelpersHandlerErrorTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "HandlerError", function () {
+      return HandlerError;
+    });
+    /* harmony import */
+
+
+    var _toastCustom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! ./toastCustom */
+    "./src/app/helpers/toastCustom.ts");
+
+    var HandlerError = /*#__PURE__*/function () {
+      function HandlerError() {
+        _classCallCheck(this, HandlerError);
+      }
+
+      _createClass(HandlerError, null, [{
+        key: "handler",
+        value: function handler(err, toastCtrl) {
+          var data = err;
+          var message = data.error ? data.error.message : data;
+          console.log(message);
+
+          _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
+        }
+      }]);
+
+      return HandlerError;
+    }();
+    /***/
+
   },
 
   /***/
@@ -434,6 +496,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this4.loadingContr.hideLoader();
           });
         }
+      }, {
+        key: "voltar",
+        value: function voltar() {
+          this.router.navigate(['prestador-cadastro-servico']);
+        }
       }]);
 
       return PrestadorCadastroIgrejaVinculoPage;
@@ -466,6 +533,222 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./prestador-cadastro-igreja-vinculo.page.scss */
       "./src/app/pages/prestador/prestadorCadastro/prestador-cadastro-igreja-vinculo/prestador-cadastro-igreja-vinculo.page.scss"))["default"]]
     })], PrestadorCadastroIgrejaVinculoPage);
+    /***/
+  },
+
+  /***/
+  "./src/app/providers/igreja/igreja.service.ts":
+  /*!****************************************************!*\
+    !*** ./src/app/providers/igreja/igreja.service.ts ***!
+    \****************************************************/
+
+  /*! exports provided: IgrejaService */
+
+  /***/
+  function srcAppProvidersIgrejaIgrejaServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "IgrejaService", function () {
+      return IgrejaService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var src_app_repository_igreja_igreja_rep_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! src/app/repository/igreja/igreja-rep.service */
+    "./src/app/repository/igreja/igreja-rep.service.ts");
+
+    var IgrejaService = /*#__PURE__*/function () {
+      function IgrejaService(igrejaRepService) {
+        _classCallCheck(this, IgrejaService);
+
+        this.igrejaRepService = igrejaRepService;
+      }
+
+      _createClass(IgrejaService, [{
+        key: "RecuperaIgrejaPorAdministrador",
+        value: function RecuperaIgrejaPorAdministrador(usuarioId) {
+          return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
+        }
+      }, {
+        key: "AdicionarNovaIgreja",
+        value: function AdicionarNovaIgreja(obj) {
+          return this.igrejaRepService.add(obj, null);
+        }
+      }, {
+        key: "RecuperaIgrejasPorCidade",
+        value: function RecuperaIgrejasPorCidade(cidade) {
+          return this.igrejaRepService.RecuperaIgrejasPorCidade(cidade);
+        }
+      }, {
+        key: "RecuperaIgrejasPorEndereco",
+        value: function RecuperaIgrejasPorEndereco(uf, cidade, bairro) {
+          return this.igrejaRepService.RecuperaIgrejasPorEndereco(uf, cidade, bairro);
+        }
+      }, {
+        key: "RecuperaNomeIgreja",
+        value: function RecuperaNomeIgreja(igrejas) {
+          return this.igrejaRepService.RecuperaNomeIgreja(igrejas);
+        }
+      }]);
+
+      return IgrejaService;
+    }();
+
+    IgrejaService.ctorParameters = function () {
+      return [{
+        type: src_app_repository_igreja_igreja_rep_service__WEBPACK_IMPORTED_MODULE_2__["IgrejaRepService"]
+      }];
+    };
+
+    IgrejaService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], IgrejaService);
+    /***/
+  },
+
+  /***/
+  "./src/app/repository/igreja/igreja-rep.service.ts":
+  /*!*********************************************************!*\
+    !*** ./src/app/repository/igreja/igreja-rep.service.ts ***!
+    \*********************************************************/
+
+  /*! exports provided: IgrejaRepService */
+
+  /***/
+  function srcAppRepositoryIgrejaIgrejaRepServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "IgrejaRepService", function () {
+      return IgrejaRepService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _repository_interface_Repository_Base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../repository-interface/Repository-Base */
+    "./src/app/repository/repository-interface/Repository-Base.ts");
+
+    var IgrejaRepService = /*#__PURE__*/function (_repository_interface) {
+      _inherits(IgrejaRepService, _repository_interface);
+
+      var _super = _createSuper(IgrejaRepService);
+
+      function IgrejaRepService() {
+        var _this5;
+
+        _classCallCheck(this, IgrejaRepService);
+
+        _this5 = _super.call(this);
+        _this5._collectionName = "igreja";
+        return _this5;
+      }
+
+      _createClass(IgrejaRepService, [{
+        key: "RecuperaIgrejasPorEndereco",
+        value: function RecuperaIgrejasPorEndereco(uf, cidade, bairro) {
+          var _this6 = this;
+
+          return new Promise(function (resolve, reject) {
+            var query = _this6.db.collection('igreja').where("uf", "==", uf);
+
+            if (cidade) {
+              query = query.where("cidade", "==", cidade);
+            }
+
+            if (bairro) {
+              query = query.where("bairro", "==", bairro);
+            }
+
+            query.get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push(doc.data());
+              });
+              resolve(lst);
+            })["catch"](function (err) {
+              reject(err);
+            });
+          });
+        }
+      }, {
+        key: "RecuperaIgrejaPorAdministrador",
+        value: function RecuperaIgrejaPorAdministrador(usuarioId) {
+          var _this7 = this;
+
+          return new Promise(function (resolve, reject) {
+            _this7.db.collection('igreja').where("administradores", "array-contains", {
+              usuarioId: usuarioId
+            }).get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push(doc.data());
+              });
+              resolve(lst);
+            })["catch"](function (err) {
+              reject(err);
+            });
+          });
+        }
+      }, {
+        key: "RecuperaIgrejasPorCidade",
+        value: function RecuperaIgrejasPorCidade(cidade) {
+          return this.find({
+            elemento: "cidade",
+            tipoComparacao: "==",
+            comparacao: cidade
+          });
+        }
+      }, {
+        key: "RecuperaNomeIgreja",
+        value: function RecuperaNomeIgreja(igrejas) {
+          // return this.db.collection("igreja").where(firebase.firestore.FieldPath.documentId(),"array-contains",igrejas).get()
+          return this.find({
+            elemento: "id",
+            tipoComparacao: "in",
+            comparacao: igrejas
+          });
+        }
+      }]);
+
+      return IgrejaRepService;
+    }(_repository_interface_Repository_Base__WEBPACK_IMPORTED_MODULE_2__["BaseRepository"]);
+
+    IgrejaRepService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], IgrejaRepService);
     /***/
   }
 }]);

@@ -9,7 +9,31 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n    <ion-title>\n      Dados da empresa \n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n\n  <form [formGroup]=\"formulario\" (ngSubmit)=\"SalvarFormulario()\">\n    <ion-list  lines=\"full\" class=\"ion-no-margin ion-no-padding\">\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Razão Social <ion-text color=\"danger\">*</ion-text></ion-label>\n\n        <ion-input type=\"text\"  formControlName=\"razaoSocial\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n     \n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\" >Telefone<ion-text color=\"danger\">*</ion-text></ion-label>\n\n        <ion-input type=\"number\"  [brmasker]=\"{phone: true}\" formControlName=\"telefone\" clearInput autocapitalize=\"off\" ></ion-input>\n      </ion-item>\n\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Cep<ion-text color=\"danger\">*</ion-text></ion-label>\n        <ion-input type=\"number\" maxlength=\"8\" formControlName=\"cep\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n\n       \n        <ion-chip color=\"tertiary\" (click)=\"submitError='';buscarEnderecoPorCEP()\" size=\"6\">\n          <ion-label>Buscar Endereço</ion-label>\n          <ion-icon name=\"search-outline\"></ion-icon>\n        </ion-chip>\n        <ion-item class=\"input-item\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formulario.value.logradouro\">\n            <p>{{formulario.value.logradouro}}, {{formulario.value.bairro}} -  {{formulario.value.cidade}}  / {{formulario.value.uf}}</p>\n          </ion-label>\n        </ion-item>      \n    </ion-list>\n\n    <ion-button class=\"sign-up-btn\" type=\"submit\" expand=\"block\" >Prosseguir</ion-button>\n  </form>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Dados da Empresa\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <ion-card>\n    <form [formGroup]=\"formulario\">\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Razão Social <ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n\n        <ion-input type=\"text\" formControlName=\"razaoSocial\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Telefone<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n\n        <ion-input type=\"number\" [brmasker]=\"{phone: true}\" formControlName=\"telefone\" clearInput autocapitalize=\"off\">\n        </ion-input>\n      </ion-item>\n\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Cep<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"number\" maxlength=\"8\" formControlName=\"cep\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n\n\n      <ion-chip color=\"tertiary\" (click)=\"submitError='';buscarEnderecoPorCEP()\" size=\"6\">\n        <ion-label>Buscar Endereço</ion-label>\n        <ion-icon name=\"search-outline\"></ion-icon>\n      </ion-chip>\n      <ion-item class=\"input-item\">\n        <ion-label class=\"ion-text-wrap\" *ngIf=\"formulario.value.logradouro\">\n          <p>{{formulario.value.logradouro}}, {{formulario.value.bairro}} - {{formulario.value.cidade}} /\n            {{formulario.value.uf}}</p>\n        </ion-label>\n      </ion-item>\n    </form>\n    </ion-card>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col class=\"ion-align-self-end\">\n          <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\">Prosseguir</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>");
+
+/***/ }),
+
+/***/ "./src/app/helpers/handlerError.ts":
+/*!*****************************************!*\
+  !*** ./src/app/helpers/handlerError.ts ***!
+  \*****************************************/
+/*! exports provided: HandlerError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HandlerError", function() { return HandlerError; });
+/* harmony import */ var _toastCustom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./toastCustom */ "./src/app/helpers/toastCustom.ts");
+
+class HandlerError {
+    static handler(err, toastCtrl) {
+        var data = err;
+        let message = data.error ? data.error.message : data;
+        console.log(message);
+        _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
+    }
+}
+
 
 /***/ }),
 
@@ -189,6 +213,22 @@ let DadosEmpresaPage = class DadosEmpresaPage {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required
             ]))
         });
+        this.prestadorService.RecuperaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_10__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
+            .then((result) => {
+            this.prestador = result;
+            if (result) {
+                this.formulario.controls['telefone'].setValue(result.telefone);
+                this.formulario.controls['cep'].setValue(result.cep);
+                this.formulario.controls['uf'].setValue(result.uf);
+                this.formulario.controls['cidade'].setValue(result.cidade);
+                this.formulario.controls['bairro'].setValue(result.bairro);
+                this.formulario.controls['logradouro'].setValue(result.logradouro);
+                this.formulario.controls['razaoSocial'].setValue(result.razaoSocial);
+            }
+        }).catch(err => {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, this.toastCtrl);
+            this.loadingContr.hideLoader();
+        });
     }
     ngOnInit() {
     }
@@ -219,7 +259,7 @@ let DadosEmpresaPage = class DadosEmpresaPage {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(x, this.toastCtrl);
         });
     }
-    SalvarFormulario() {
+    prosseguir() {
         if (!this.formulario.value.cidade) {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl);
             return false;

@@ -180,7 +180,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"push\" menuId=\"mainContent\" side=\"start\" >\n      <ion-header>\n        <ion-toolbar color=\"default\">\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content >\n        <ion-list >\n\n          <span *ngIf=\"usuarioLogado\">\n            <ion-list-header>\n              <h3>\n                {{recuperaDadosUsuario.nome.split(' ')[0]}}</h3>\n            </ion-list-header>\n            <ion-note>{{recuperaDadosUsuario.email}}</ion-note>\n\n            <ion-chip color=\"tertiary\" (click)=\"logoff()\" slot=\"close\" routerDirection=\"root\" \n              [routerLink]=\"prestador-consultar\" size=\"6\">\n              <ion-label>Sair</ion-label>\n              <ion-icon name=\"log-out-outline\"></ion-icon>\n            </ion-chip>\n          </span>\n\n          <span *ngIf=\"!usuarioLogado\" class=\"row justify-content-md-center\">\n            <ion-chip color=\"tertiary\" (click)=\"login()\" size=\"6\">\n              <ion-label>Login</ion-label>\n              <ion-icon name=\"log-in-outline\"></ion-icon>\n            </ion-chip>\n          </span>\n          <ion-menu-toggle auto-hide=\"true\" *ngFor=\"let p of paginas\">\n            <ion-item  routerDirection=\"root\" [routerLink]=\"[p.url]\" \n              detail=\"false\">\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\"></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n      \n        </ion-list>\n        <ion-footer class=\"ion-no-border\">\n          <ion-toolbar>\n            <ion-label>{{ version }}</ion-label>\n          </ion-toolbar>\n        </ion-footer>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>";
+    __webpack_exports__["default"] = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\"  menuId=\"mainContent\" side=\"start\" >\n      <ion-header>\n        <ion-toolbar color=\"default\">\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content >\n        <ion-list >\n\n          <span *ngIf=\"usuarioLogado\">\n            <ion-list-header>\n              <h3>\n                {{recuperaDadosUsuario.nome.split(' ')[0]}}</h3>\n            </ion-list-header>\n            <ion-note>{{recuperaDadosUsuario.email}}</ion-note>\n\n            <ion-chip color=\"tertiary\" (click)=\"logoff()\" slot=\"close\" routerDirection=\"root\" \n              [routerLink]=\"prestador-consultar\" size=\"6\">\n              <ion-label>Sair</ion-label>\n              <ion-icon name=\"log-out-outline\"></ion-icon>\n            </ion-chip>\n          </span>\n\n          <span *ngIf=\"!usuarioLogado\" class=\"row justify-content-md-center\">\n            <ion-chip color=\"tertiary\" (click)=\"login()\" size=\"6\">\n              <ion-label>Login</ion-label>\n              <ion-icon name=\"log-in-outline\"></ion-icon>\n            </ion-chip>\n          </span>\n          <ion-menu-toggle  *ngFor=\"let p of paginas\">\n            <ion-item  routerDirection=\"root\" [routerLink]=\"[p.url]\" \n              detail=\"false\">\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\"></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n      \n        </ion-list>\n        <ion-footer class=\"ion-no-border\">\n          <ion-toolbar>\n            <ion-label>{{ version }}</ion-label>\n          </ion-toolbar>\n        </ion-footer>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>";
     /***/
   },
 
@@ -265,6 +265,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.page.html":
+  /*!*******************************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.page.html ***!
+    \*******************************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppPagesPrestadorPrestadorCadastroPrestadorMenuTopoPrestadorMenuTopoPageHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<!-- <ion-segment scrollable (ionChange)=\"segmentChanged($event)\" value=\"{{valorMenu}}\" >\n  <ion-segment-button value=\"0\">\n    <ion-label>1</ion-label>\n  </ion-segment-button>\n  <ion-segment-button value=\"1\">\n    <ion-label>2</ion-label>\n  </ion-segment-button>\n  <ion-segment-button value=\"2\">\n    <ion-label>3</ion-label>\n  </ion-segment-button> \n   <ion-segment-button value=\"3\">\n    <ion-label>4</ion-label>\n  </ion-segment-button>\n  <ion-segment-button value=\"4\">\n    <ion-label>Resumo</ion-label>\n  </ion-segment-button>\n</ion-segment> -->";
+    /***/
+  },
+
+  /***/
   "./src/app/app-routing.module.ts":
   /*!***************************************!*\
     !*** ./src/app/app-routing.module.ts ***!
@@ -304,19 +324,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _providers_AuthGuard_PrestadorSituacaoValidation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./providers/AuthGuard/UsuarioLogadoValidation */
+    "./src/app/providers/AuthGuard/UsuarioLogadoValidation.ts");
+    /* harmony import */
+
+
+    var _providers_AuthGuard_PrestadorSituacaoValidation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./providers/AuthGuard/PrestadorSituacaoValidation */
     "./src/app/providers/AuthGuard/PrestadorSituacaoValidation.ts");
     /* harmony import */
 
 
-    var _providers_AuthGuard_PerfilValidation_AdministradorSistema__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _providers_AuthGuard_PerfilValidation_AdministradorSistema__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./providers/AuthGuard/PerfilValidation_AdministradorSistema */
     "./src/app/providers/AuthGuard/PerfilValidation_AdministradorSistema.ts");
     /* harmony import */
 
 
-    var _providers_AuthGuard_PerfilValidation_AdministradorIgreja__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _providers_AuthGuard_PerfilValidation_AdministradorIgreja__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./providers/AuthGuard/PerfilValidation_AdministradorIgreja */
     "./src/app/providers/AuthGuard/PerfilValidation_AdministradorIgreja.ts");
 
@@ -338,9 +364,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: 'sign-in',
       loadChildren: function loadChildren() {
-        return Promise.all(
+        return __webpack_require__.e(
         /*! import() | pages-sign-in-sign-in-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-sign-in-sign-in-module")]).then(__webpack_require__.bind(null,
+        "pages-sign-in-sign-in-module").then(__webpack_require__.bind(null,
         /*! ./pages/sign-in/sign-in.module */
         "./src/app/pages/sign-in/sign-in.module.ts")).then(function (m) {
           return m.SignInPageModule;
@@ -349,9 +375,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: 'sign-up',
       loadChildren: function loadChildren() {
-        return Promise.all(
+        return __webpack_require__.e(
         /*! import() | pages-sign-up-sign-up-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-sign-up-sign-up-module")]).then(__webpack_require__.bind(null,
+        "pages-sign-up-sign-up-module").then(__webpack_require__.bind(null,
         /*! ./pages/sign-up/sign-up.module */
         "./src/app/pages/sign-up/sign-up.module.ts")).then(function (m) {
           return m.SignUpPageModule;
@@ -370,11 +396,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'criar-igreja',
-      canActivate: [_providers_AuthGuard_PerfilValidation_AdministradorSistema__WEBPACK_IMPORTED_MODULE_4__["PerfilValidation_AdministradorSistema"]],
+      canActivate: [_providers_AuthGuard_PerfilValidation_AdministradorSistema__WEBPACK_IMPORTED_MODULE_5__["PerfilValidation_AdministradorSistema"]],
       loadChildren: function loadChildren() {
-        return Promise.all(
+        return __webpack_require__.e(
         /*! import() | pages-gerenciarIgreja-criar-igreja-criar-igreja-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-gerenciarIgreja-criar-igreja-criar-igreja-module")]).then(__webpack_require__.bind(null,
+        "pages-gerenciarIgreja-criar-igreja-criar-igreja-module").then(__webpack_require__.bind(null,
         /*! ./pages/gerenciarIgreja/criar-igreja/criar-igreja.module */
         "./src/app/pages/gerenciarIgreja/criar-igreja/criar-igreja.module.ts")).then(function (m) {
           return m.CriarIgrejaPageModule;
@@ -382,7 +408,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'prestador-Form1',
-      canActivate: [_providers_AuthGuard_PrestadorSituacaoValidation__WEBPACK_IMPORTED_MODULE_3__["PrestadorSituacaoValidation"]],
+      canActivate: [_providers_AuthGuard_PrestadorSituacaoValidation__WEBPACK_IMPORTED_MODULE_4__["PrestadorSituacaoValidation"]],
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-prestador-prestadorCadastro-prestador-cadastro-form1-prestador-cadastro-form1-module */
@@ -397,7 +423,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-prestador-prestador-consultar-prestador-consultar-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-prestador-prestador-consultar-prestador-consultar-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~pages-prestador-prestador-consultar-prestador-consultar-module~pages-prestador-visualizar-pr~237fe361"), __webpack_require__.e("common"), __webpack_require__.e("pages-prestador-prestador-consultar-prestador-consultar-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/prestador/prestador-consultar/prestador-consultar.module */
         "./src/app/pages/prestador/prestador-consultar/prestador-consultar.module.ts")).then(function (m) {
           return m.PrestadorConsultarPageModule;
@@ -408,7 +434,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-prestador-prestador-consultar-prestador-consultar-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-prestador-prestador-consultar-prestador-consultar-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~pages-prestador-prestador-consultar-prestador-consultar-module~pages-prestador-visualizar-pr~237fe361"), __webpack_require__.e("common"), __webpack_require__.e("pages-prestador-prestador-consultar-prestador-consultar-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/prestador/prestador-consultar/prestador-consultar.module */
         "./src/app/pages/prestador/prestador-consultar/prestador-consultar.module.ts")).then(function (m) {
           return m.PrestadorConsultarPageModule;
@@ -416,7 +442,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'prestador-Form2',
-      canActivate: [_providers_AuthGuard_PrestadorSituacaoValidation__WEBPACK_IMPORTED_MODULE_3__["PrestadorSituacaoValidation"]],
+      canActivate: [_providers_AuthGuard_PrestadorSituacaoValidation__WEBPACK_IMPORTED_MODULE_4__["PrestadorSituacaoValidation"]],
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-prestador-prestadorCadastro-prestador-cadastro-form2-prestador-cadastro-form2-module */
@@ -428,11 +454,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'prestador-Form3',
-      canActivate: [_providers_AuthGuard_PrestadorSituacaoValidation__WEBPACK_IMPORTED_MODULE_3__["PrestadorSituacaoValidation"]],
+      canActivate: [_providers_AuthGuard_PrestadorSituacaoValidation__WEBPACK_IMPORTED_MODULE_4__["PrestadorSituacaoValidation"]],
       loadChildren: function loadChildren() {
-        return Promise.all(
+        return __webpack_require__.e(
         /*! import() | pages-prestador-prestadorCadastro-prestador-cadastro-form3-prestador-cadastro-form3-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-prestador-prestadorCadastro-prestador-cadastro-form3-prestador-cadastro-form3-module")]).then(__webpack_require__.bind(null,
+        "pages-prestador-prestadorCadastro-prestador-cadastro-form3-prestador-cadastro-form3-module").then(__webpack_require__.bind(null,
         /*! ./pages/prestador/prestadorCadastro/prestador-cadastro-form3/prestador-cadastro-form3.module */
         "./src/app/pages/prestador/prestadorCadastro/prestador-cadastro-form3/prestador-cadastro-form3.module.ts")).then(function (m) {
           return m.PrestadorCadastroForm3PageModule;
@@ -454,7 +480,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-prestador-visualizar-prestador-visualizar-prestador-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-prestador-visualizar-prestador-visualizar-prestador-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~pages-prestador-prestador-consultar-prestador-consultar-module~pages-prestador-visualizar-pr~237fe361"), __webpack_require__.e("pages-prestador-visualizar-prestador-visualizar-prestador-module")]).then(__webpack_require__.bind(null,
         /*! ./pages/prestador/visualizar-prestador/visualizar-prestador.module */
         "./src/app/pages/prestador/visualizar-prestador/visualizar-prestador.module.ts")).then(function (m) {
           return m.VisualizarPrestadorPageModule;
@@ -462,7 +488,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'consultar-prestador-adm',
-      canActivate: [_providers_AuthGuard_PerfilValidation_AdministradorIgreja__WEBPACK_IMPORTED_MODULE_5__["PerfilValidation_AdministradorIgreja"]],
+      canActivate: [_providers_AuthGuard_PerfilValidation_AdministradorIgreja__WEBPACK_IMPORTED_MODULE_6__["PerfilValidation_AdministradorIgreja"]],
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-gerenciarIgreja-manterPrestadores-consultar-prestador-adm-consultar-prestador-adm-module */
@@ -540,11 +566,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'manter-prestador',
-      canActivate: [_providers_AuthGuard_PerfilValidation_AdministradorIgreja__WEBPACK_IMPORTED_MODULE_5__["PerfilValidation_AdministradorIgreja"]],
+      canActivate: [_providers_AuthGuard_PerfilValidation_AdministradorIgreja__WEBPACK_IMPORTED_MODULE_6__["PerfilValidation_AdministradorIgreja"]],
       loadChildren: function loadChildren() {
-        return Promise.all(
+        return __webpack_require__.e(
         /*! import() | pages-gerenciarIgreja-manterPrestadores-manter-prestador-manter-prestador-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-gerenciarIgreja-manterPrestadores-manter-prestador-manter-prestador-module")]).then(__webpack_require__.bind(null,
+        "pages-gerenciarIgreja-manterPrestadores-manter-prestador-manter-prestador-module").then(__webpack_require__.bind(null,
         /*! ./pages/gerenciarIgreja/manterPrestadores/manter-prestador/manter-prestador.module */
         "./src/app/pages/gerenciarIgreja/manterPrestadores/manter-prestador/manter-prestador.module.ts")).then(function (m) {
           return m.ManterPrestadorPageModule;
@@ -552,11 +578,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'dados-empresa',
-      canActivate: [_providers_AuthGuard_PrestadorSituacaoValidation__WEBPACK_IMPORTED_MODULE_3__["PrestadorSituacaoValidation"]],
+      canActivate: [_providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__["UsuarioLogadoValidation"]],
       loadChildren: function loadChildren() {
-        return Promise.all(
+        return __webpack_require__.e(
         /*! import() | pages-prestador-prestadorCadastro-dados-empresa-dados-empresa-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-prestador-prestadorCadastro-dados-empresa-dados-empresa-module")]).then(__webpack_require__.bind(null,
+        "pages-prestador-prestadorCadastro-dados-empresa-dados-empresa-module").then(__webpack_require__.bind(null,
         /*! ./pages/prestador/prestadorCadastro/dados-empresa/dados-empresa.module */
         "./src/app/pages/prestador/prestadorCadastro/dados-empresa/dados-empresa.module.ts")).then(function (m) {
           return m.DadosEmpresaPageModule;
@@ -564,6 +590,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'prestador-local-atendimento',
+      canActivate: [_providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__["UsuarioLogadoValidation"]],
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-prestador-prestadorCadastro-local-atendimento-local-atendimento-module */
@@ -575,6 +602,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'prestador-cadastro-servico',
+      canActivate: [_providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__["UsuarioLogadoValidation"]],
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-prestador-prestadorCadastro-prestador-cadastro-servico-prestador-cadastro-servico-module */
@@ -586,6 +614,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'prestador-cadastro-igreja-vinculo',
+      canActivate: [_providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__["UsuarioLogadoValidation"]],
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | pages-prestador-prestadorCadastro-prestador-cadastro-igreja-vinculo-prestador-cadastro-igreja-vinculo-module */
@@ -597,13 +626,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'prestador-cadastro-finalizar',
+      canActivate: [_providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__["UsuarioLogadoValidation"]],
       loadChildren: function loadChildren() {
-        return Promise.all(
+        return __webpack_require__.e(
         /*! import() | pages-prestador-prestadorCadastro-prestador-cadastro-finalizar-prestador-cadastro-finalizar-module */
-        [__webpack_require__.e("common"), __webpack_require__.e("pages-prestador-prestadorCadastro-prestador-cadastro-finalizar-prestador-cadastro-finalizar-module")]).then(__webpack_require__.bind(null,
+        "pages-prestador-prestadorCadastro-prestador-cadastro-finalizar-prestador-cadastro-finalizar-module").then(__webpack_require__.bind(null,
         /*! ./pages/prestador/prestadorCadastro/prestador-cadastro-finalizar/prestador-cadastro-finalizar.module */
         "./src/app/pages/prestador/prestadorCadastro/prestador-cadastro-finalizar/prestador-cadastro-finalizar.module.ts")).then(function (m) {
           return m.PrestadorCadastroFinalizarPageModule;
+        });
+      }
+    }, {
+      path: 'prestador-menu-topo',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-prestador-prestadorCadastro-prestador-menu-topo-prestador-menu-topo-module */
+        "pages-prestador-prestadorCadastro-prestador-menu-topo-prestador-menu-topo-module").then(__webpack_require__.bind(null,
+        /*! ./pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.module */
+        "./src/app/pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.module.ts")).then(function (m) {
+          return m.PrestadorMenuTopoPageModule;
         });
       }
     }];
@@ -780,7 +821,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }, {
             title: 'Seja um Prestador',
             url: 'dados-empresa',
-            icon: 'people'
+            icon: 'people',
+            perfilInverso: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.Prestador]
           }, {
             title: 'Adicionar Igreja',
             url: 'criar-igreja',
@@ -791,6 +833,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             url: 'consultar-prestador-adm',
             icon: 'business',
             perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorIgreja]
+          }, {
+            title: 'Meu Cadastro Prestador',
+            url: 'dados-empresa',
+            icon: 'business',
+            perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.Prestador]
           }];
         }
       }, {
@@ -1017,13 +1064,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var firebase__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
-    /*! firebase */
-    "./node_modules/firebase/dist/index.cjs.js");
+    var firebase_app__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
+    /*! firebase/app */
+    "./node_modules/firebase/app/dist/index.cjs.js");
     /* harmony import */
 
 
-    var firebase__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_20__);
+    var firebase_app__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_20__);
     /* harmony import */
 
 
@@ -1031,7 +1078,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! @ionic-native/call-number/ngx */
     "./node_modules/@ionic-native/call-number/__ivy_ngcc__/ngx/index.js");
 
-    firebase__WEBPACK_IMPORTED_MODULE_20__["initializeApp"](src_environments_environment__WEBPACK_IMPORTED_MODULE_13__["environment"].firebase);
+    firebase_app__WEBPACK_IMPORTED_MODULE_20__["initializeApp"](src_environments_environment__WEBPACK_IMPORTED_MODULE_13__["environment"].firebase);
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
@@ -1225,8 +1272,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _textoCortado_texto_cortado_textoPropover__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ./textoCortado/texto-cortado/textoPropover */
     "./src/app/components/textoCortado/texto-cortado/textoPropover.ts");
+    /* harmony import */
 
-    var PAGES_COMPONENTS = [_mensagem_validacao_mensagem_validacao_component__WEBPACK_IMPORTED_MODULE_3__["MensagemValidacaoComponent"], _menuLateral_menu_lateral_menu_lateral_component__WEBPACK_IMPORTED_MODULE_6__["MenuLateralComponent"], _accordion_accordion_accordion_component__WEBPACK_IMPORTED_MODULE_7__["AccordionComponent"], _textoCortado_texto_cortado_texto_cortado_component__WEBPACK_IMPORTED_MODULE_8__["TextoCortadoComponent"], _textoCortado_texto_cortado_textoPropover__WEBPACK_IMPORTED_MODULE_9__["PopupMenuComponentPopover"]];
+
+    var _pages_prestador_prestadorCadastro_prestador_menu_topo_prestador_menu_topo_page__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! ../pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.page */
+    "./src/app/pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.page.ts");
+
+    var PAGES_COMPONENTS = [_mensagem_validacao_mensagem_validacao_component__WEBPACK_IMPORTED_MODULE_3__["MensagemValidacaoComponent"], _menuLateral_menu_lateral_menu_lateral_component__WEBPACK_IMPORTED_MODULE_6__["MenuLateralComponent"], _accordion_accordion_accordion_component__WEBPACK_IMPORTED_MODULE_7__["AccordionComponent"], _textoCortado_texto_cortado_texto_cortado_component__WEBPACK_IMPORTED_MODULE_8__["TextoCortadoComponent"], _textoCortado_texto_cortado_textoPropover__WEBPACK_IMPORTED_MODULE_9__["PopupMenuComponentPopover"], _pages_prestador_prestadorCadastro_prestador_menu_topo_prestador_menu_topo_page__WEBPACK_IMPORTED_MODULE_10__["PrestadorMenuTopoPage"]];
 
     var ComponentsModule = function ComponentsModule() {
       _classCallCheck(this, ComponentsModule);
@@ -1903,6 +1956,91 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.page.scss":
+  /*!*****************************************************************************************************!*\
+    !*** ./src/app/pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.page.scss ***!
+    \*****************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppPagesPrestadorPrestadorCadastroPrestadorMenuTopoPrestadorMenuTopoPageScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3JDYWRhc3Ryby9wcmVzdGFkb3ItbWVudS10b3BvL3ByZXN0YWRvci1tZW51LXRvcG8ucGFnZS5zY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.page.ts":
+  /*!***************************************************************************************************!*\
+    !*** ./src/app/pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.page.ts ***!
+    \***************************************************************************************************/
+
+  /*! exports provided: PrestadorMenuTopoPage */
+
+  /***/
+  function srcAppPagesPrestadorPrestadorCadastroPrestadorMenuTopoPrestadorMenuTopoPageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "PrestadorMenuTopoPage", function () {
+      return PrestadorMenuTopoPage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+    var PrestadorMenuTopoPage = /*#__PURE__*/function () {
+      function PrestadorMenuTopoPage() {
+        _classCallCheck(this, PrestadorMenuTopoPage);
+
+        console.log(this.valorMenu);
+      }
+
+      _createClass(PrestadorMenuTopoPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          console.log(this.valorMenu);
+        }
+      }, {
+        key: "segmentChanged",
+        value: function segmentChanged(event) {}
+      }]);
+
+      return PrestadorMenuTopoPage;
+    }();
+
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], PrestadorMenuTopoPage.prototype, "valorMenu", void 0);
+    PrestadorMenuTopoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-prestador-menu-topo',
+      template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! raw-loader!./prestador-menu-topo.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.page.html"))["default"],
+      styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! ./prestador-menu-topo.page.scss */
+      "./src/app/pages/prestador/prestadorCadastro/prestador-menu-topo/prestador-menu-topo.page.scss"))["default"]]
+    })], PrestadorMenuTopoPage);
+    /***/
+  },
+
+  /***/
   "./src/app/pages/profile/profile.model.ts":
   /*!************************************************!*\
     !*** ./src/app/pages/profile/profile.model.ts ***!
@@ -2323,20 +2461,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     redirectStr = "dados-empresa";
                     break;
 
-                  case src_app_utils_constants__WEBPACK_IMPORTED_MODULE_7__["Constants"].TipoSituacaoPrestador.CadastroServicos:
-                    redirectStr = "prestador-cadastro-servico";
-                    break;
-
-                  case src_app_utils_constants__WEBPACK_IMPORTED_MODULE_7__["Constants"].TipoSituacaoPrestador.CadastroLocalAtendimento:
-                    redirectStr = "prestador-local-atendimento";
-                    break;
-
-                  case src_app_utils_constants__WEBPACK_IMPORTED_MODULE_7__["Constants"].TipoSituacaoPrestador.CadastroIgrejaVinculo:
-                    redirectStr = "prestador-cadastro-igreja-vinculo";
-                    break;
-
-                  case src_app_utils_constants__WEBPACK_IMPORTED_MODULE_7__["Constants"].TipoSituacaoPrestador.FinalizarCadastro:
-                    redirectStr = "prestador-cadastro-finalizar";
+                  case src_app_utils_constants__WEBPACK_IMPORTED_MODULE_7__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao:
+                    redirectStr = "dados-empresa";
                     break;
 
                   case src_app_utils_constants__WEBPACK_IMPORTED_MODULE_7__["Constants"].TipoSituacaoPrestador.PendenteAutorizacao:
@@ -2388,6 +2514,116 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     PrestadorSituacaoValidation = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
     })], PrestadorSituacaoValidation);
+    /***/
+  },
+
+  /***/
+  "./src/app/providers/AuthGuard/UsuarioLogadoValidation.ts":
+  /*!****************************************************************!*\
+    !*** ./src/app/providers/AuthGuard/UsuarioLogadoValidation.ts ***!
+    \****************************************************************/
+
+  /*! exports provided: UsuarioLogadoValidation */
+
+  /***/
+  function srcAppProvidersAuthGuardUsuarioLogadoValidationTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "UsuarioLogadoValidation", function () {
+      return UsuarioLogadoValidation;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    /* harmony import */
+
+
+    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/helpers/loadingContr */
+    "./src/app/helpers/loadingContr.ts");
+    /* harmony import */
+
+
+    var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../usuario/usuario.service */
+    "./src/app/providers/usuario/usuario.service.ts");
+    /* harmony import */
+
+
+    var src_app_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! src/app/config */
+    "./src/app/config.ts");
+
+    var UsuarioLogadoValidation = /*#__PURE__*/function () {
+      function UsuarioLogadoValidation(router, usuarioService, loadingControll) {
+        _classCallCheck(this, UsuarioLogadoValidation);
+
+        this.router = router;
+        this.usuarioService = usuarioService;
+        this.loadingControll = loadingControll;
+      }
+
+      _createClass(UsuarioLogadoValidation, [{
+        key: "canActivate",
+        value: function canActivate(route, state) {
+          var _this8 = this;
+
+          this.loadingControll.showLoader();
+          return this.usuarioService.recuperaUsuarioLogado().then(function (x) {
+            _this8.loadingControll.hideLoader();
+
+            if (x == null && !src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario()) {
+              _this8.router.navigate(['/sign-in'], {
+                queryParams: {
+                  returnUrl: state.url
+                }
+              });
+            }
+
+            return true;
+          })["catch"](function () {
+            _this8.loadingControll.showLoader();
+
+            return true;
+          });
+        }
+      }]);
+
+      return UsuarioLogadoValidation;
+    }();
+
+    UsuarioLogadoValidation.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+      }, {
+        type: _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"]
+      }, {
+        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_3__["LoadingContr"]
+      }];
+    };
+
+    UsuarioLogadoValidation = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    })], UsuarioLogadoValidation);
     /***/
   },
 
@@ -2576,10 +2812,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(FirebaseAuthService, [{
         key: "verificaUsuarioLogado",
         value: function verificaUsuarioLogado() {
-          var _this8 = this;
+          var _this9 = this;
 
           return new Promise(function (resolve, reject) {
-            _this8.angularFire.onAuthStateChanged(function (usr) {
+            _this9.angularFire.onAuthStateChanged(function (usr) {
               return resolve(usr);
             });
           });
@@ -2783,10 +3019,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "buscarMunicipiosPorUF",
         value: function buscarMunicipiosPorUF(uf) {
-          var _this9 = this;
+          var _this10 = this;
 
           return new Promise(function (result, reject) {
-            _this9.baseProvider.apiGet("https://servicodados.ibge.gov.br/api/v1/localidades/estados/" + uf + "/municipios").then(function (retornoApi) {
+            _this10.baseProvider.apiGet("https://servicodados.ibge.gov.br/api/v1/localidades/estados/" + uf + "/municipios").then(function (retornoApi) {
               var list = retornoApi.map(function (x) {
                 return x.nome;
               });
@@ -3037,10 +3273,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "RecuperaUsuarioPorUsuarioId",
         value: function RecuperaUsuarioPorUsuarioId(usuarioId) {
-          var _this10 = this;
+          var _this11 = this;
 
           return new Promise(function (resolve, reject) {
-            _this10.usuarioRepository.findOne(usuarioId).then(function (result) {
+            _this11.usuarioRepository.findOne(usuarioId).then(function (result) {
               resolve(result);
             })["catch"](function (err) {
               reject(err);
@@ -3050,13 +3286,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "recuperaUsuarioLogado",
         value: function recuperaUsuarioLogado() {
-          var _this11 = this;
+          var _this12 = this;
 
           console.log("Verifica Usuario Logado;");
           return new Promise(function (resolve, reject) {
-            _this11.firebaseAutentication.verificaUsuarioLogado().then(function (user) {
+            _this12.firebaseAutentication.verificaUsuarioLogado().then(function (user) {
               if (user != null) {
-                _this11.usuarioRepository.findOne(user.uid).then(function (result) {
+                _this12.usuarioRepository.findOne(user.uid).then(function (result) {
                   src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().adicionaUsuario(result);
                   resolve(result);
                 });
@@ -3130,7 +3366,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! src/app/utils/constants */
-    "./src/app/utils/constants.ts");
+    "./src/app/utils/constants.ts"); // import * as firesql from 'firesql';
+
 
     var PrestadorRepServiceService = /*#__PURE__*/function (_repository_interface) {
       _inherits(PrestadorRepServiceService, _repository_interface);
@@ -3146,11 +3383,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(PrestadorRepServiceService, [{
         key: "AdicionaLocalAtendimento",
         value: function AdicionaLocalAtendimento(localidade, usuarioId) {
-          var _this12 = this;
+          var _this13 = this;
 
           var ref = this.db.collection("usuario").doc(usuarioId).collection("prestador").doc(usuarioId);
           return new Promise(function (retorno, reject) {
-            _this12.db.runTransaction(function (transaction) {
+            _this13.db.runTransaction(function (transaction) {
               return transaction.get(ref).then(function (doc) {
                 var prestador = doc.data();
 
@@ -3175,11 +3412,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ExcluirLocalAtendimento",
         value: function ExcluirLocalAtendimento(usuarioId, localidade) {
-          var _this13 = this;
+          var _this14 = this;
 
           var ref = this.db.collection("usuario").doc(usuarioId).collection("prestador").doc(usuarioId);
           return new Promise(function (retorno, reject) {
-            _this13.db.runTransaction(function (transaction) {
+            _this14.db.runTransaction(function (transaction) {
               return transaction.get(ref).then(function (doc) {
                 var locaisAtendimento = [];
                 locaisAtendimento = doc.data().locaisAtendimento;
@@ -3200,10 +3437,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "RecuperaPestadoresPesquisarPorAdministrador",
         value: function RecuperaPestadoresPesquisarPorAdministrador(situacaoPrestador, igrejaId, usuarioId, igrejasDoAdmin) {
-          var _this14 = this;
+          var _this15 = this;
 
           return new Promise(function (retorno, reject) {
-            var query = _this14.db.collectionGroup("prestador");
+            var query = _this15.db.collectionGroup("prestador");
 
             if (igrejaId) {
               query = query.where("igrejaId", "==", igrejaId);
@@ -3229,10 +3466,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "recuperaPrestadoresPorIgreja",
         value: function recuperaPrestadoresPorIgreja(igrejaId) {
-          var _this15 = this;
+          var _this16 = this;
 
           return new Promise(function (retorno, reject) {
-            _this15.db.collectionGroup("prestador").where("igreja", "==", igrejaId).get().then(function (result) {
+            _this16.db.collectionGroup("prestador").where("igreja", "==", igrejaId).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());
@@ -3246,11 +3483,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ExcluirServico",
         value: function ExcluirServico(usuarioId, servicoId) {
-          var _this16 = this;
+          var _this17 = this;
 
           var ref = this.db.collection("usuario").doc(usuarioId).collection("prestador").doc(usuarioId);
           return new Promise(function (retorno, reject) {
-            _this16.db.runTransaction(function (transaction) {
+            _this17.db.runTransaction(function (transaction) {
               // This code may get re-run multiple times if there are conflicts.
               return transaction.get(ref).then(function (doc) {
                 var servicos = [];
@@ -3272,10 +3509,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "AtualizaPrestador",
         value: function AtualizaPrestador(usuarioId, item) {
-          var _this17 = this;
+          var _this18 = this;
 
           return new Promise(function (retorno, reject) {
-            _this17.db.collection("usuario").doc(usuarioId).collection("prestador").doc(usuarioId).update(item).then(function (result) {
+            _this18.db.collection("usuario").doc(usuarioId).collection("prestador").doc(usuarioId).update(item).then(function (result) {
               retorno(result);
             })["catch"](function (err) {
               reject(err);
@@ -3285,11 +3522,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "AdicionaServicoAoPrestador",
         value: function AdicionaServicoAoPrestador(usuarioId, servico) {
-          var _this18 = this;
+          var _this19 = this;
 
           var ref = this.db.collection("usuario").doc(usuarioId).collection("prestador").doc(usuarioId);
           return new Promise(function (retorno, reject) {
-            _this18.db.runTransaction(function (transaction) {
+            _this19.db.runTransaction(function (transaction) {
               // This code may get re-run multiple times if there are conflicts.
               return transaction.get(ref).then(function (doc) {
                 var prestador = doc.data();
@@ -3319,10 +3556,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "RecuperaPrestador",
         value: function RecuperaPrestador(usuarioId) {
-          var _this19 = this;
+          var _this20 = this;
 
           return new Promise(function (retorno, reject) {
-            _this19.db.collection("usuario").doc(usuarioId).collection("prestador").doc(usuarioId).get().then(function (result) {
+            _this20.db.collection("usuario").doc(usuarioId).collection("prestador").doc(usuarioId).get().then(function (result) {
               retorno(result.data());
             })["catch"](function (err) {
               reject(err);
@@ -3332,10 +3569,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "recuperaServicosPorPrestadores",
         value: function recuperaServicosPorPrestadores(usuarios) {
-          var _this20 = this;
+          var _this21 = this;
 
           return new Promise(function (resolve, reject) {
-            _this20.db.collectionGroup("servico").where("usuarioId", "in", usuarios).get().then(function (result) {
+            _this21.db.collectionGroup("servico").where("usuarioId", "in", usuarios).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());
@@ -3349,10 +3586,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "recuperaServicosPorPrestador",
         value: function recuperaServicosPorPrestador(usuarioId) {
-          var _this21 = this;
+          var _this22 = this;
 
           return new Promise(function (resolve, reject) {
-            _this21.db.collection("usuario").doc(usuarioId).collection("prestador").doc(usuarioId).get().then(function (result) {
+            _this22.db.collection("usuario").doc(usuarioId).collection("prestador").doc(usuarioId).get().then(function (result) {
               var lst = [];
 
               if (result.data().servicos && result.data().servicos.length > 0) {
@@ -3370,12 +3607,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "RecuperaPestadoresPesquisar",
         value: function RecuperaPestadoresPesquisar(ufSelecionado, cidadeSelecionado, bairro, servicoId, igrejaId) {
-          var _this22 = this;
+          var _this23 = this;
 
           return new Promise(function (resolve, reject) {
-            var query = _this22.db.collectionGroup("prestador").where("locaisAtendimento", "array-contains", {
-              uf: ufSelecionado
-            }).where("situacaoPrestador", "==", src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.Ativo); // if (cidadeSelecionado) {
+            var query = _this23.db.collectionGroup("prestador") // .where("locaisAtendimento", "array-contains", { uf: ufSelecionado })
+            .where("situacaoPrestador", "==", src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.Ativo); // if (cidadeSelecionado) {
             //     query = query.where("cidade", "==", cidadeSelecionado);
             // }
             // if (bairro) {
@@ -3389,24 +3625,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             query.get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
-                if (doc.data().servicos) {
-                  var servicosTemp = doc.data().servicos.filter(function (y) {
-                    return y.servicoId == servicoId;
-                  });
+                if (doc.data().locaisAtendimento) {
+                  doc.data().locaisAtendimento.forEach(function (x) {
+                    if (x.cidade == cidadeSelecionado && x.uf == ufSelecionado) {
+                      if (doc.data().servicos) {
+                        var servicosTemp = doc.data().servicos.filter(function (y) {
+                          return y.servicoId == servicoId;
+                        });
 
-                  if (servicosTemp.length > 0 || !servicoId) {
-                    var prestador = doc.data();
+                        if (servicosTemp.length > 0 || !servicoId) {
+                          var prestador = doc.data();
 
-                    if (igrejaId) {
-                      if (prestador.igrejas.filter(function (y) {
-                        return y.igrejaId == igrejaId;
-                      }).length > 0) {
-                        lst.push(prestador);
+                          if (igrejaId) {
+                            if (prestador.igrejas.filter(function (y) {
+                              return y.igrejaId == igrejaId;
+                            }).length > 0) {
+                              lst.push(prestador);
+                            }
+                          } else {
+                            lst.push(prestador);
+                          }
+                        }
                       }
-                    } else {
-                      lst.push(prestador);
                     }
-                  }
+                  });
                 }
               });
               resolve(lst);
@@ -3419,17 +3661,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "RecuperaCidadePrestadorDisponiveis",
         value: function RecuperaCidadePrestadorDisponiveis(ufSelecionado) {
-          var _this23 = this;
+          var _this24 = this;
 
-          debugger;
           return new Promise(function (resolve, reject) {
-            _this23.db.collectionGroup("prestador").where("locaisAtendimento", "array-contains", {
-              uf: ufSelecionado
-            }).where("situacaoPrestador", "==", src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.Ativo).get().then(function (result) {
+            _this24.db.collectionGroup("prestador").where("situacaoPrestador", "==", src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.Ativo).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
-                if (!lst.includes(doc.data().cidade)) {
-                  lst.push(doc.data().cidade);
+                if (doc.data().locaisAtendimento) {
+                  doc.data().locaisAtendimento.forEach(function (x) {
+                    if (!lst.includes(x.cidade) && x.uf == ufSelecionado) {
+                      lst.push(x.cidade);
+                    }
+                  });
                 }
               });
               resolve(lst);
@@ -3441,10 +3684,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "recuperaUfPrestadorDisponiveis",
         value: function recuperaUfPrestadorDisponiveis() {
-          var _this24 = this;
+          var _this25 = this;
 
           return new Promise(function (resolve, reject) {
-            _this24.db.collectionGroup("prestador").where("situacaoPrestador", "==", src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.Ativo).get().then(function (result) {
+            _this25.db.collectionGroup("prestador").where("situacaoPrestador", "==", src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.Ativo).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 var ufs = doc.data().locaisAtendimento;
@@ -3463,10 +3706,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "RecuperaBairroPrestadorDisponiveis",
         value: function RecuperaBairroPrestadorDisponiveis(uf, cidade) {
-          var _this25 = this;
+          var _this26 = this;
 
           return new Promise(function (resolve, reject) {
-            _this25.db.collectionGroup("prestador").where("uf", "==", uf).where("cidade", "==", cidade).where("situacaoPrestador", "==", src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.Ativo).get().then(function (result) {
+            _this26.db.collectionGroup("prestador").where("uf", "==", uf).where("cidade", "==", cidade).where("situacaoPrestador", "==", src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.Ativo).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 if (!lst.includes(doc.data().bairro)) {
@@ -3482,11 +3725,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "AdicionaPrestador",
         value: function AdicionaPrestador(prestador) {
-          var _this26 = this;
+          var _this27 = this;
 
           console.log(prestador);
           return new Promise(function (resolve, reject) {
-            _this26.db.collection("usuario").doc(prestador.usuarioId).collection("prestador").doc(prestador.usuarioId).set(Object.assign({}, prestador)).then(function (obj) {
+            _this27.db.collection("usuario").doc(prestador.usuarioId).collection("prestador").doc(prestador.usuarioId).set(Object.assign({}, prestador)).then(function (obj) {
               resolve(obj);
             })["catch"](function (err) {
               reject(err);
@@ -3545,13 +3788,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
        *
        */
       function BaseRepository() {
-        var _this27 = this;
+        var _this28 = this;
 
         _classCallCheck(this, BaseRepository);
 
         // success
         this.addCollection = function (item) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this27, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this28, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
             return regeneratorRuntime.wrap(function _callee5$(_context5) {
               while (1) {
                 switch (_context5.prev = _context5.next) {
@@ -3568,7 +3811,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         };
 
         this.update = function (documentName, item) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this27, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this28, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
             return regeneratorRuntime.wrap(function _callee6$(_context6) {
               while (1) {
                 switch (_context6.prev = _context6.next) {
@@ -3590,12 +3833,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(BaseRepository, [{
         key: "add",
         value: function add(item, id) {
-          var _this28 = this;
+          var _this29 = this;
 
           var idTemp = id ? id : this.db.collection(this._collectionName).doc().id;
           item.id = idTemp;
           return new Promise(function (resolve, reject) {
-            _this28.db.collection(_this28._collectionName).doc(idTemp).set(Object.assign({}, item)).then(function (obj) {
+            _this29.db.collection(_this29._collectionName).doc(idTemp).set(Object.assign({}, item)).then(function (obj) {
               resolve(obj);
             })["catch"](function (error) {
               reject(error);
@@ -3606,10 +3849,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "find",
         value: function find(filter) {
-          var _this29 = this;
+          var _this30 = this;
 
           return new Promise(function (resolve, reject) {
-            var ref = _this29.db.collection(_this29._collectionName).where(filter.elemento, filter.tipoComparacao, filter.comparacao).get().then(function (result) {
+            var ref = _this30.db.collection(_this30._collectionName).where(filter.elemento, filter.tipoComparacao, filter.comparacao).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({
@@ -3626,10 +3869,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "findOne",
         value: function findOne(id) {
-          var _this30 = this;
+          var _this31 = this;
 
           return new Promise(function (resolve, reject) {
-            _this30.db.collection(_this30._collectionName).doc(id).get().then(function (result) {
+            _this31.db.collection(_this31._collectionName).doc(id).get().then(function (result) {
               resolve(result.data());
             });
           });
@@ -3719,12 +3962,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(UsuarioRepService, [{
         key: "AdicionaPerfilAoUsuario",
         value: function AdicionaPerfilAoUsuario(usuarioId, perfil) {
-          var _this32 = this;
+          var _this33 = this;
 
           var ref = this.db.collection("usuario").doc(usuarioId);
           var ob = [perfil];
           return new Promise(function (retorno, reject) {
-            _this32.db.runTransaction(function (transaction) {
+            _this33.db.runTransaction(function (transaction) {
               // This code may get re-run multiple times if there are conflicts.
               return transaction.get(ref).then(function (doc) {
                 var usuario = doc.data();
@@ -3750,13 +3993,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }]);
 
       function UsuarioRepService() {
-        var _this31;
+        var _this32;
 
         _classCallCheck(this, UsuarioRepService);
 
-        _this31 = _super2.call(this);
-        _this31._collectionName = "usuario";
-        return _this31;
+        _this32 = _super2.call(this);
+        _this32._collectionName = "usuario";
+        return _this32;
       }
 
       return UsuarioRepService;
@@ -3797,6 +4040,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       PerfilUsuario.AdministradorSistema = 1;
       PerfilUsuario.AdministradorIgreja = 2;
+      PerfilUsuario.Prestador = 3;
       Constants.PerfilUsuario = PerfilUsuario;
 
       var Mensagens = function Mensagens() {
@@ -3852,6 +4096,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, TipoSituacaoPrestador);
       };
 
+      TipoSituacaoPrestador.PrestadorEmEdicao = 1;
       TipoSituacaoPrestador.CadastroDadosEmpresa = 0;
       TipoSituacaoPrestador.CadastroLocalAtendimento = 1;
       TipoSituacaoPrestador.CadastroServicos = 2;
@@ -4069,7 +4314,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     });
 
     var appVersion = {
-      version: "1.0.0.1"
+      version: "1.0.1.2"
     };
     /***/
   },

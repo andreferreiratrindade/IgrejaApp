@@ -13,6 +13,30 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/app/helpers/handlerError.ts":
+/*!*****************************************!*\
+  !*** ./src/app/helpers/handlerError.ts ***!
+  \*****************************************/
+/*! exports provided: HandlerError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HandlerError", function() { return HandlerError; });
+/* harmony import */ var _toastCustom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./toastCustom */ "./src/app/helpers/toastCustom.ts");
+
+class HandlerError {
+    static handler(err, toastCtrl) {
+        var data = err;
+        let message = data.error ? data.error.message : data;
+        console.log(message);
+        _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/app/pages/gerenciarIgreja/manterPrestadores/consultar-prestador-adm/consultar-prestador-adm-routing.module.ts":
 /*!***************************************************************************************************************************!*\
   !*** ./src/app/pages/gerenciarIgreja/manterPrestadores/consultar-prestador-adm/consultar-prestador-adm-routing.module.ts ***!
@@ -303,6 +327,250 @@ ConsultarPrestadorAdmPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorat
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./consultar-prestador-adm.page.scss */ "./src/app/pages/gerenciarIgreja/manterPrestadores/consultar-prestador-adm/consultar-prestador-adm.page.scss")).default]
     })
 ], ConsultarPrestadorAdmPage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/providers/dominioServico/dominio-servico.service.ts":
+/*!*********************************************************************!*\
+  !*** ./src/app/providers/dominioServico/dominio-servico.service.ts ***!
+  \*********************************************************************/
+/*! exports provided: DominioServicoService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DominioServicoService", function() { return DominioServicoService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var src_app_repository_dominioServico_dominio_servico_repository_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/repository/dominioServico/dominio-servico-repository.service */ "./src/app/repository/dominioServico/dominio-servico-repository.service.ts");
+
+
+
+let DominioServicoService = class DominioServicoService {
+    constructor(dominioServico) {
+        this.dominioServico = dominioServico;
+    }
+    recuperaServicoAutoComplete(ev) {
+        return this.dominioServico.recuperaServicoAutoComplete(ev);
+    }
+    recuperaDominioServico() {
+        return this.dominioServico.recuperaDominioServico();
+    }
+};
+DominioServicoService.ctorParameters = () => [
+    { type: src_app_repository_dominioServico_dominio_servico_repository_service__WEBPACK_IMPORTED_MODULE_2__["DominioServicoRepositoryService"] }
+];
+DominioServicoService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], DominioServicoService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/providers/igreja/igreja.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/providers/igreja/igreja.service.ts ***!
+  \****************************************************/
+/*! exports provided: IgrejaService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IgrejaService", function() { return IgrejaService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var src_app_repository_igreja_igreja_rep_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/repository/igreja/igreja-rep.service */ "./src/app/repository/igreja/igreja-rep.service.ts");
+
+
+
+let IgrejaService = class IgrejaService {
+    constructor(igrejaRepService) {
+        this.igrejaRepService = igrejaRepService;
+    }
+    RecuperaIgrejaPorAdministrador(usuarioId) {
+        return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
+    }
+    AdicionarNovaIgreja(obj) {
+        return this.igrejaRepService.add(obj, null);
+    }
+    RecuperaIgrejasPorCidade(cidade) {
+        return this.igrejaRepService.RecuperaIgrejasPorCidade(cidade);
+    }
+    RecuperaIgrejasPorEndereco(uf, cidade, bairro) {
+        return this.igrejaRepService.RecuperaIgrejasPorEndereco(uf, cidade, bairro);
+    }
+    RecuperaNomeIgreja(igrejas) {
+        return this.igrejaRepService.RecuperaNomeIgreja(igrejas);
+    }
+};
+IgrejaService.ctorParameters = () => [
+    { type: src_app_repository_igreja_igreja_rep_service__WEBPACK_IMPORTED_MODULE_2__["IgrejaRepService"] }
+];
+IgrejaService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], IgrejaService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/repository/dominioServico/dominio-servico-repository.service.ts":
+/*!*********************************************************************************!*\
+  !*** ./src/app/repository/dominioServico/dominio-servico-repository.service.ts ***!
+  \*********************************************************************************/
+/*! exports provided: DominioServicoRepositoryService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DominioServicoRepositoryService", function() { return DominioServicoRepositoryService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _repository_interface_Repository_Base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../repository-interface/Repository-Base */ "./src/app/repository/repository-interface/Repository-Base.ts");
+
+
+
+let DominioServicoRepositoryService = class DominioServicoRepositoryService extends _repository_interface_Repository_Base__WEBPACK_IMPORTED_MODULE_2__["BaseRepository"] {
+    /**
+     *
+     */
+    constructor() {
+        super();
+        this.servicoConverter = {
+            toFirestore: function (servico) {
+                return { servicoId: servico.servicoId,
+                    nomeServico: servico.nomeServico };
+            }
+        };
+        this._collectionName = "dominioServico";
+    }
+    recuperaServicoAutoComplete(query) {
+        return new Promise((response, resp) => {
+            const endText = query + '\uf8ff';
+            this.db.collection("dominioServico")
+                .orderBy("nomeServico")
+                .limit(10)
+                .where("nomeServico", ">=", query)
+                .where("nomeServico", "<=", endText)
+                // .startAt(query)
+                // .endAt(endText)
+                .get()
+                .then((result) => {
+                let lst = [];
+                result.forEach(function (doc) {
+                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id });
+                });
+                response(lst);
+            })
+                .catch((err) => {
+                resp(err);
+            });
+        });
+    }
+    recuperaDominioServico() {
+        return new Promise((response, resp) => {
+            this.db.collection("dominioServico").get()
+                .then((result) => {
+                let lst = [];
+                result.forEach(function (doc) {
+                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id });
+                });
+                response(lst);
+            });
+        });
+    }
+};
+DominioServicoRepositoryService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], DominioServicoRepositoryService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/repository/igreja/igreja-rep.service.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/repository/igreja/igreja-rep.service.ts ***!
+  \*********************************************************/
+/*! exports provided: IgrejaRepService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IgrejaRepService", function() { return IgrejaRepService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _repository_interface_Repository_Base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../repository-interface/Repository-Base */ "./src/app/repository/repository-interface/Repository-Base.ts");
+
+
+
+let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repository_Base__WEBPACK_IMPORTED_MODULE_2__["BaseRepository"] {
+    constructor() {
+        super();
+        this._collectionName = "igreja";
+    }
+    RecuperaIgrejasPorEndereco(uf, cidade, bairro) {
+        return new Promise((resolve, reject) => {
+            let query = this.db.collection('igreja')
+                .where("uf", "==", uf);
+            if (cidade) {
+                query = query.where("cidade", "==", cidade);
+            }
+            if (bairro) {
+                query = query.where("bairro", "==", bairro);
+            }
+            query.get()
+                .then((result) => {
+                let lst = [];
+                result.forEach(function (doc) {
+                    lst.push(doc.data());
+                });
+                resolve(lst);
+            })
+                .catch((err) => {
+                reject(err);
+            });
+        });
+    }
+    RecuperaIgrejaPorAdministrador(usuarioId) {
+        return new Promise((resolve, reject) => {
+            this.db.collection('igreja')
+                .where("administradores", "array-contains", { usuarioId: usuarioId })
+                .get()
+                .then((result) => {
+                let lst = [];
+                result.forEach(function (doc) {
+                    lst.push(doc.data());
+                });
+                resolve(lst);
+            })
+                .catch((err) => {
+                reject(err);
+            });
+        });
+    }
+    RecuperaIgrejasPorCidade(cidade) {
+        return this.find({ elemento: "cidade", tipoComparacao: "==", comparacao: cidade });
+    }
+    RecuperaNomeIgreja(igrejas) {
+        // return this.db.collection("igreja").where(firebase.firestore.FieldPath.documentId(),"array-contains",igrejas).get()
+        return this.find({ elemento: "id", tipoComparacao: "in", comparacao: igrejas });
+    }
+};
+IgrejaRepService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], IgrejaRepService);
 
 
 
