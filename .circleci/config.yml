@@ -8,9 +8,20 @@ jobs:
       - image: beevelop/ionic
     steps:
       - checkout
-      - run:
-          name: Configurando Java
-          command: export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_241/jre
+          - run:
+          name: Setting up environment and Build Graal Compiler	          
+          command: |
+            echo 'export JAVA_VERSION=jdk8u144-b01'                               >> ${BASH_ENV}
+            echo 'export JAVA_HOME=/opt/java/openjdk/${JAVA_VERSION}'             >> ${BASH_ENV}
+            echo 'export PATH=${JAVA_HOME}/bin:${PATH}'                           >> ${BASH_ENV}
+            echo 'export BASEDIR=${PWD}'                                          >> ${BASH_ENV}
+            echo 'export SCRIPTS_LIB_DIR=${BASEDIR}/build/x86_64/linux_macos/lib' >> ${BASH_ENV}
+            echo 'export MX=${BASEDIR}/mx/mx'                                     >> ${BASH_ENV}
+            echo 'export JDK_GRAAL_FOLDER_NAME=jdk8-with-graal'                   >> ${BASH_ENV}
+            echo 'export BUILD_ARTIFACTS_DIR=${BASEDIR}/${JDK_GRAAL_FOLDER_NAME}' >> ${BASH_ENV}
+            echo 'export RUN_TESTS="true"'                                        >> ${BASH_ENV}
+            echo 'export HOTSPOT_BUILD_JOBS=2'                                    >> ${BASH_ENV}
+            source ${BASH_ENV}
       - run:
           name: Install node modules
           command: npm install
