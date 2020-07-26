@@ -1,5 +1,3 @@
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -10,390 +8,465 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[42], {
   /***/
-  "./node_modules/@ionic/core/dist/esm/ion-popover-md.entry.js":
-  /*!*******************************************************************!*\
-    !*** ./node_modules/@ionic/core/dist/esm/ion-popover-md.entry.js ***!
-    \*******************************************************************/
+  "./node_modules/@ionic/core/dist/esm/ion-virtual-scroll.entry.js":
+  /*!***********************************************************************!*\
+    !*** ./node_modules/@ionic/core/dist/esm/ion-virtual-scroll.entry.js ***!
+    \***********************************************************************/
 
-  /*! exports provided: ion_popover */
+  /*! exports provided: ion_virtual_scroll */
 
   /***/
-  function node_modulesIonicCoreDistEsmIonPopoverMdEntryJs(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesIonicCoreDistEsmIonVirtualScrollEntryJs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_popover", function () {
-      return Popover;
+    __webpack_require__.d(__webpack_exports__, "ion_virtual_scroll", function () {
+      return VirtualScroll;
     });
     /* harmony import */
 
 
-    var _index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! ./index-29df6f59.js */
-    "./node_modules/@ionic/core/dist/esm/index-29df6f59.js");
-    /* harmony import */
+    var _index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! ./index-821f9ab1.js */
+    "./node_modules/@ionic/core/dist/esm/index-821f9ab1.js");
 
+    var CELL_TYPE_ITEM = 'item';
+    var CELL_TYPE_HEADER = 'header';
+    var CELL_TYPE_FOOTER = 'footer';
+    var NODE_CHANGE_NONE = 0;
+    var NODE_CHANGE_POSITION = 1;
+    var NODE_CHANGE_CELL = 2;
+    var MIN_READS = 2;
 
-    var _ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ./ionic-global-08f4fb8a.js */
-    "./node_modules/@ionic/core/dist/esm/ionic-global-08f4fb8a.js");
-    /* harmony import */
+    var updateVDom = function updateVDom(dom, heightIndex, cells, range) {
+      // reset dom
+      var _iterator = _createForOfIteratorHelper(dom),
+          _step;
 
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var node = _step.value;
+          node.change = NODE_CHANGE_NONE;
+          node.d = true;
+        } // try to match into exisiting dom
 
-    var _helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./helpers-5c745fbd.js */
-    "./node_modules/@ionic/core/dist/esm/helpers-5c745fbd.js");
-    /* harmony import */
-
-
-    var _animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./animation-a635a2fc.js */
-    "./node_modules/@ionic/core/dist/esm/animation-a635a2fc.js");
-    /* harmony import */
-
-
-    var _index_66edb21f_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./index-66edb21f.js */
-    "./node_modules/@ionic/core/dist/esm/index-66edb21f.js");
-    /* harmony import */
-
-
-    var _hardware_back_button_7b6ede21_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./hardware-back-button-7b6ede21.js */
-    "./node_modules/@ionic/core/dist/esm/hardware-back-button-7b6ede21.js");
-    /* harmony import */
-
-
-    var _overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-    /*! ./overlays-7369bfcc.js */
-    "./node_modules/@ionic/core/dist/esm/overlays-7369bfcc.js");
-    /* harmony import */
-
-
-    var _theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-    /*! ./theme-3f0b0c04.js */
-    "./node_modules/@ionic/core/dist/esm/theme-3f0b0c04.js");
-    /* harmony import */
-
-
-    var _framework_delegate_d1eb6504_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-    /*! ./framework-delegate-d1eb6504.js */
-    "./node_modules/@ionic/core/dist/esm/framework-delegate-d1eb6504.js");
-    /**
-     * iOS Popover Enter Animation
-     */
-
-
-    var iosEnterAnimation = function iosEnterAnimation(baseEl, ev) {
-      var originY = 'top';
-      var originX = 'left';
-      var contentEl = baseEl.querySelector('.popover-content');
-      var contentDimentions = contentEl.getBoundingClientRect();
-      var contentWidth = contentDimentions.width;
-      var contentHeight = contentDimentions.height;
-      var bodyWidth = baseEl.ownerDocument.defaultView.innerWidth;
-      var bodyHeight = baseEl.ownerDocument.defaultView.innerHeight; // If ev was passed, use that for target element
-
-      var targetDim = ev && ev.target && ev.target.getBoundingClientRect();
-      var targetTop = targetDim != null && 'top' in targetDim ? targetDim.top : bodyHeight / 2 - contentHeight / 2;
-      var targetLeft = targetDim != null && 'left' in targetDim ? targetDim.left : bodyWidth / 2;
-      var targetWidth = targetDim && targetDim.width || 0;
-      var targetHeight = targetDim && targetDim.height || 0;
-      var arrowEl = baseEl.querySelector('.popover-arrow');
-      var arrowDim = arrowEl.getBoundingClientRect();
-      var arrowWidth = arrowDim.width;
-      var arrowHeight = arrowDim.height;
-
-      if (targetDim == null) {
-        arrowEl.style.display = 'none';
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
       }
 
-      var arrowCSS = {
-        top: targetTop + targetHeight,
-        left: targetLeft + targetWidth / 2 - arrowWidth / 2
+      var toMutate = [];
+      var end = range.offset + range.length;
+
+      var _loop = function _loop(i) {
+        var cell = cells[i];
+        var node = dom.find(function (n) {
+          return n.d && n.cell === cell;
+        });
+
+        if (node) {
+          var top = heightIndex[i];
+
+          if (top !== node.top) {
+            node.top = top;
+            node.change = NODE_CHANGE_POSITION;
+          }
+
+          node.d = false;
+        } else {
+          toMutate.push(cell);
+        }
       };
-      var popoverCSS = {
-        top: targetTop + targetHeight + (arrowHeight - 1),
-        left: targetLeft + targetWidth / 2 - contentWidth / 2
-      }; // If the popover left is less than the padding it is off screen
-      // to the left so adjust it, else if the width of the popover
-      // exceeds the body width it is off screen to the right so adjust
-      //
 
-      var checkSafeAreaLeft = false;
-      var checkSafeAreaRight = false; // If the popover left is less than the padding it is off screen
-      // to the left so adjust it, else if the width of the popover
-      // exceeds the body width it is off screen to the right so adjust
-      // 25 is a random/arbitrary number. It seems to work fine for ios11
-      // and iPhoneX. Is it perfect? No. Does it work? Yes.
-
-      if (popoverCSS.left < POPOVER_IOS_BODY_PADDING + 25) {
-        checkSafeAreaLeft = true;
-        popoverCSS.left = POPOVER_IOS_BODY_PADDING;
-      } else if (contentWidth + POPOVER_IOS_BODY_PADDING + popoverCSS.left + 25 > bodyWidth) {
-        // Ok, so we're on the right side of the screen,
-        // but now we need to make sure we're still a bit further right
-        // cus....notchurally... Again, 25 is random. It works tho
-        checkSafeAreaRight = true;
-        popoverCSS.left = bodyWidth - contentWidth - POPOVER_IOS_BODY_PADDING;
-        originX = 'right';
-      } // make it pop up if there's room above
+      for (var i = range.offset; i < end; i++) {
+        _loop(i);
+      } // needs to append
 
 
-      if (targetTop + targetHeight + contentHeight > bodyHeight && targetTop - contentHeight > 0) {
-        arrowCSS.top = targetTop - (arrowHeight + 1);
-        popoverCSS.top = targetTop - contentHeight - (arrowHeight - 1);
-        baseEl.className = baseEl.className + ' popover-bottom';
-        originY = 'bottom'; // If there isn't room for it to pop up above the target cut it off
-      } else if (targetTop + targetHeight + contentHeight > bodyHeight) {
-        contentEl.style.bottom = POPOVER_IOS_BODY_PADDING + '%';
+      var pool = dom.filter(function (n) {
+        return n.d;
+      });
+
+      var _loop2 = function _loop2() {
+        var cell = _toMutate[_i];
+        var node = pool.find(function (n) {
+          return n.d && n.cell.type === cell.type;
+        });
+        var index = cell.i;
+
+        if (node) {
+          node.d = false;
+          node.change = NODE_CHANGE_CELL;
+          node.cell = cell;
+          node.top = heightIndex[index];
+        } else {
+          dom.push({
+            d: false,
+            cell: cell,
+            visible: true,
+            change: NODE_CHANGE_CELL,
+            top: heightIndex[index]
+          });
+        }
+      };
+
+      for (var _i = 0, _toMutate = toMutate; _i < _toMutate.length; _i++) {
+        _loop2();
       }
 
-      arrowEl.style.top = arrowCSS.top + 'px';
-      arrowEl.style.left = arrowCSS.left + 'px';
-      contentEl.style.top = popoverCSS.top + 'px';
-      contentEl.style.left = popoverCSS.left + 'px';
+      dom.filter(function (n) {
+        return n.d && n.top !== -9999;
+      }).forEach(function (n) {
+        n.change = NODE_CHANGE_POSITION;
+        n.top = -9999;
+      });
+    };
 
-      if (checkSafeAreaLeft) {
-        contentEl.style.left = "calc(".concat(popoverCSS.left, "px + var(--ion-safe-area-left, 0px))");
+    var doRender = function doRender(el, nodeRender, dom, updateCellHeight) {
+      var children = Array.from(el.children).filter(function (n) {
+        return n.tagName !== 'TEMPLATE';
+      });
+      var childrenNu = children.length;
+      var child;
+
+      for (var i = 0; i < dom.length; i++) {
+        var node = dom[i];
+        var cell = node.cell; // the cell change, the content must be updated
+
+        if (node.change === NODE_CHANGE_CELL) {
+          if (i < childrenNu) {
+            child = children[i];
+            nodeRender(child, cell, i);
+          } else {
+            var newChild = createNode(el, cell.type);
+            child = nodeRender(newChild, cell, i) || newChild;
+            child.classList.add('virtual-item');
+            el.appendChild(child);
+          }
+
+          child['$ionCell'] = cell;
+        } else {
+          child = children[i];
+        } // only update position when it changes
+
+
+        if (node.change !== NODE_CHANGE_NONE) {
+          child.style.transform = "translate3d(0,".concat(node.top, "px,0)");
+        } // update visibility
+
+
+        var visible = cell.visible;
+
+        if (node.visible !== visible) {
+          if (visible) {
+            child.classList.remove('virtual-loading');
+          } else {
+            child.classList.add('virtual-loading');
+          }
+
+          node.visible = visible;
+        } // dynamic height
+
+
+        if (cell.reads > 0) {
+          updateCellHeight(cell, child);
+          cell.reads--;
+        }
+      }
+    };
+
+    var createNode = function createNode(el, type) {
+      var template = getTemplate(el, type);
+
+      if (template && el.ownerDocument) {
+        return el.ownerDocument.importNode(template.content, true).children[0];
       }
 
-      if (checkSafeAreaRight) {
-        contentEl.style.left = "calc(".concat(popoverCSS.left, "px - var(--ion-safe-area-right, 0px))");
+      return null;
+    };
+
+    var getTemplate = function getTemplate(el, type) {
+      switch (type) {
+        case CELL_TYPE_ITEM:
+          return el.querySelector('template:not([name])');
+
+        case CELL_TYPE_HEADER:
+          return el.querySelector('template[name=header]');
+
+        case CELL_TYPE_FOOTER:
+          return el.querySelector('template[name=footer]');
+      }
+    };
+
+    var getViewport = function getViewport(scrollTop, vierportHeight, margin) {
+      return {
+        top: Math.max(scrollTop - margin, 0),
+        bottom: scrollTop + vierportHeight + margin
+      };
+    };
+
+    var getRange = function getRange(heightIndex, viewport, buffer) {
+      var topPos = viewport.top;
+      var bottomPos = viewport.bottom; // find top index
+
+      var i = 0;
+
+      for (; i < heightIndex.length; i++) {
+        if (heightIndex[i] > topPos) {
+          break;
+        }
       }
 
-      contentEl.style.transformOrigin = originY + ' ' + originX;
-      var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 'var(--backdrop-opacity)').beforeStyles({
-        'pointer-events': 'none'
-      }).afterClearStyles(['pointer-events']);
-      wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper')).fromTo('opacity', 0.01, 1);
-      return baseAnimation.addElement(baseEl).easing('ease').duration(100).addAnimation([backdropAnimation, wrapperAnimation]);
-    };
+      var offset = Math.max(i - buffer - 1, 0); // find bottom index
 
-    var POPOVER_IOS_BODY_PADDING = 5;
-    /**
-     * iOS Popover Leave Animation
-     */
-
-    var iosLeaveAnimation = function iosLeaveAnimation(baseEl) {
-      var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
-      wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper')).fromTo('opacity', 0.99, 0);
-      return baseAnimation.addElement(baseEl).easing('ease').duration(500).addAnimation([backdropAnimation, wrapperAnimation]);
-    };
-    /**
-     * Md Popover Enter Animation
-     */
-
-
-    var mdEnterAnimation = function mdEnterAnimation(baseEl, ev) {
-      var POPOVER_MD_BODY_PADDING = 12;
-      var doc = baseEl.ownerDocument;
-      var isRTL = doc.dir === 'rtl';
-      var originY = 'top';
-      var originX = isRTL ? 'right' : 'left';
-      var contentEl = baseEl.querySelector('.popover-content');
-      var contentDimentions = contentEl.getBoundingClientRect();
-      var contentWidth = contentDimentions.width;
-      var contentHeight = contentDimentions.height;
-      var bodyWidth = doc.defaultView.innerWidth;
-      var bodyHeight = doc.defaultView.innerHeight; // If ev was passed, use that for target element
-
-      var targetDim = ev && ev.target && ev.target.getBoundingClientRect(); // As per MD spec, by default position the popover below the target (trigger) element
-
-      var targetTop = targetDim != null && 'bottom' in targetDim ? targetDim.bottom : bodyHeight / 2 - contentHeight / 2;
-      var targetLeft = targetDim != null && 'left' in targetDim ? isRTL ? targetDim.left - contentWidth + targetDim.width : targetDim.left : bodyWidth / 2 - contentWidth / 2;
-      var targetHeight = targetDim && targetDim.height || 0;
-      var popoverCSS = {
-        top: targetTop,
-        left: targetLeft
-      }; // If the popover left is less than the padding it is off screen
-      // to the left so adjust it, else if the width of the popover
-      // exceeds the body width it is off screen to the right so adjust
-
-      if (popoverCSS.left < POPOVER_MD_BODY_PADDING) {
-        popoverCSS.left = POPOVER_MD_BODY_PADDING; // Same origin in this case for both LTR & RTL
-        // Note: in LTR, originX is already 'left'
-
-        originX = 'left';
-      } else if (contentWidth + POPOVER_MD_BODY_PADDING + popoverCSS.left > bodyWidth) {
-        popoverCSS.left = bodyWidth - contentWidth - POPOVER_MD_BODY_PADDING; // Same origin in this case for both LTR & RTL
-        // Note: in RTL, originX is already 'right'
-
-        originX = 'right';
-      } // If the popover when popped down stretches past bottom of screen,
-      // make it pop up if there's room above
-
-
-      if (targetTop + targetHeight + contentHeight > bodyHeight && targetTop - contentHeight > 0) {
-        popoverCSS.top = targetTop - contentHeight - targetHeight;
-        baseEl.className = baseEl.className + ' popover-bottom';
-        originY = 'bottom'; // If there isn't room for it to pop up above the target cut it off
-      } else if (targetTop + targetHeight + contentHeight > bodyHeight) {
-        contentEl.style.bottom = POPOVER_MD_BODY_PADDING + 'px';
+      for (; i < heightIndex.length; i++) {
+        if (heightIndex[i] >= bottomPos) {
+          break;
+        }
       }
 
-      var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var contentAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var viewportAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 'var(--backdrop-opacity)').beforeStyles({
-        'pointer-events': 'none'
-      }).afterClearStyles(['pointer-events']);
-      wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper')).fromTo('opacity', 0.01, 1);
-      contentAnimation.addElement(contentEl).beforeStyles({
-        'top': "".concat(popoverCSS.top, "px"),
-        'left': "".concat(popoverCSS.left, "px"),
-        'transform-origin': "".concat(originY, " ").concat(originX)
-      }).fromTo('transform', 'scale(0.001)', 'scale(1)');
-      viewportAnimation.addElement(baseEl.querySelector('.popover-viewport')).fromTo('opacity', 0.01, 1);
-      return baseAnimation.addElement(baseEl).easing('cubic-bezier(0.36,0.66,0.04,1)').duration(300).addAnimation([backdropAnimation, wrapperAnimation, contentAnimation, viewportAnimation]);
-    };
-    /**
-     * Md Popover Leave Animation
-     */
-
-
-    var mdLeaveAnimation = function mdLeaveAnimation(baseEl) {
-      var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
-      wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper')).fromTo('opacity', 0.99, 0);
-      return baseAnimation.addElement(baseEl).easing('ease').duration(500).addAnimation([backdropAnimation, wrapperAnimation]);
+      var end = Math.min(i + buffer, heightIndex.length);
+      var length = end - offset;
+      return {
+        offset: offset,
+        length: length
+      };
     };
 
-    var popoverIosCss = ".sc-ion-popover-ios-h{--background:var(--ion-background-color, #fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:fixed;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;outline:none;color:var(--ion-text-color, #000);z-index:1001}.overlay-hidden.sc-ion-popover-ios-h{display:none}.popover-wrapper.sc-ion-popover-ios{opacity:0;z-index:10}.popover-content.sc-ion-popover-ios{display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport.sc-ion-popover-ios{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px}.sc-ion-popover-ios-h{--width:200px;--max-height:90%;--box-shadow:none;--backdrop-opacity:var(--ion-backdrop-opacity, 0.08)}.popover-content.sc-ion-popover-ios{border-radius:10px}.popover-arrow.sc-ion-popover-ios{display:block;position:absolute;width:20px;height:10px;overflow:hidden}.popover-arrow.sc-ion-popover-ios::after{left:3px;top:3px;border-radius:3px;position:absolute;width:14px;height:14px;-webkit-transform:rotate(45deg);transform:rotate(45deg);background:var(--background);content:\"\";z-index:10}[dir=rtl].sc-ion-popover-ios .popover-arrow.sc-ion-popover-ios::after,[dir=rtl].sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios::after,[dir=rtl] .sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios::after{left:unset;right:unset;right:3px}.popover-bottom.sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios{top:auto;bottom:-10px}.popover-bottom.sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios::after{top:-6px}@supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))){.popover-translucent.sc-ion-popover-ios-h .popover-content.sc-ion-popover-ios,.popover-translucent.sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios::after{background:rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px)}}";
-    var popoverMdCss = ".sc-ion-popover-md-h{--background:var(--ion-background-color, #fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:fixed;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;outline:none;color:var(--ion-text-color, #000);z-index:1001}.overlay-hidden.sc-ion-popover-md-h{display:none}.popover-wrapper.sc-ion-popover-md{opacity:0;z-index:10}.popover-content.sc-ion-popover-md{display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport.sc-ion-popover-md{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px}.sc-ion-popover-md-h{--width:250px;--max-height:90%;--box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);--backdrop-opacity:var(--ion-backdrop-opacity, 0.32)}.popover-content.sc-ion-popover-md{border-radius:4px;-webkit-transform-origin:left top;transform-origin:left top}[dir=rtl].sc-ion-popover-md .popover-content.sc-ion-popover-md,[dir=rtl].sc-ion-popover-md-h .popover-content.sc-ion-popover-md,[dir=rtl] .sc-ion-popover-md-h .popover-content.sc-ion-popover-md{-webkit-transform-origin:right top;transform-origin:right top}.popover-viewport.sc-ion-popover-md{-webkit-transition-delay:100ms;transition-delay:100ms}";
-    /**
-     * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
-     */
+    var getShouldUpdate = function getShouldUpdate(dirtyIndex, currentRange, range) {
+      var end = range.offset + range.length;
+      return dirtyIndex <= end || currentRange.offset !== range.offset || currentRange.length !== range.length;
+    };
 
-    var Popover = /*#__PURE__*/function () {
-      function Popover(hostRef) {
+    var findCellIndex = function findCellIndex(cells, index) {
+      var max = cells.length > 0 ? cells[cells.length - 1].index : 0;
+
+      if (index === 0) {
+        return 0;
+      } else if (index === max + 1) {
+        return cells.length;
+      } else {
+        return cells.findIndex(function (c) {
+          return c.index === index;
+        });
+      }
+    };
+
+    var inplaceUpdate = function inplaceUpdate(dst, src, offset) {
+      if (offset === 0 && src.length >= dst.length) {
+        return src;
+      }
+
+      for (var i = 0; i < src.length; i++) {
+        dst[i + offset] = src[i];
+      }
+
+      return dst;
+    };
+
+    var _calcCells = function calcCells(items, itemHeight, headerHeight, footerHeight, headerFn, footerFn, approxHeaderHeight, approxFooterHeight, approxItemHeight, j, offset, len) {
+      var cells = [];
+      var end = len + offset;
+
+      for (var i = offset; i < end; i++) {
+        var item = items[i];
+
+        if (headerFn) {
+          var value = headerFn(item, i, items);
+
+          if (value != null) {
+            cells.push({
+              i: j++,
+              type: CELL_TYPE_HEADER,
+              value: value,
+              index: i,
+              height: headerHeight ? headerHeight(value, i) : approxHeaderHeight,
+              reads: headerHeight ? 0 : MIN_READS,
+              visible: !!headerHeight
+            });
+          }
+        }
+
+        cells.push({
+          i: j++,
+          type: CELL_TYPE_ITEM,
+          value: item,
+          index: i,
+          height: itemHeight ? itemHeight(item, i) : approxItemHeight,
+          reads: itemHeight ? 0 : MIN_READS,
+          visible: !!itemHeight
+        });
+
+        if (footerFn) {
+          var _value = footerFn(item, i, items);
+
+          if (_value != null) {
+            cells.push({
+              i: j++,
+              type: CELL_TYPE_FOOTER,
+              value: _value,
+              index: i,
+              height: footerHeight ? footerHeight(_value, i) : approxFooterHeight,
+              reads: footerHeight ? 0 : MIN_READS,
+              visible: !!footerHeight
+            });
+          }
+        }
+      }
+
+      return cells;
+    };
+
+    var _calcHeightIndex = function calcHeightIndex(buf, cells, index) {
+      var acum = buf[index];
+
+      for (var i = index; i < buf.length; i++) {
+        buf[i] = acum;
+        acum += cells[i].height;
+      }
+
+      return acum;
+    };
+
+    var resizeBuffer = function resizeBuffer(buf, len) {
+      if (!buf) {
+        return new Uint32Array(len);
+      }
+
+      if (buf.length === len) {
+        return buf;
+      } else if (len > buf.length) {
+        var newBuf = new Uint32Array(len);
+        newBuf.set(buf);
+        return newBuf;
+      } else {
+        return buf.subarray(0, len);
+      }
+    };
+
+    var positionForIndex = function positionForIndex(index, cells, heightIndex) {
+      var cell = cells.find(function (c) {
+        return c.type === CELL_TYPE_ITEM && c.index === index;
+      });
+
+      if (cell) {
+        return heightIndex[cell.i];
+      }
+
+      return -1;
+    };
+
+    var virtualScrollCss = "ion-virtual-scroll{display:block;position:relative;width:100%;contain:strict;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}ion-virtual-scroll>.virtual-loading{opacity:0}ion-virtual-scroll>.virtual-item{position:absolute !important;top:0 !important;right:0 !important;left:0 !important;-webkit-transition-duration:0ms;transition-duration:0ms;will-change:transform}";
+
+    var VirtualScroll = /*#__PURE__*/function () {
+      function VirtualScroll(hostRef) {
         var _this = this;
 
-        _classCallCheck(this, Popover);
+        _classCallCheck(this, VirtualScroll);
 
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.presented = false;
-        /**
-         * If `true`, the keyboard will be automatically dismissed when the overlay is presented.
-         */
-
-        this.keyboardClose = true;
-        /**
-         * If `true`, the popover will be dismissed when the backdrop is clicked.
-         */
-
-        this.backdropDismiss = true;
-        /**
-         * If `true`, a backdrop will be displayed behind the popover.
-         */
-
-        this.showBackdrop = true;
-        /**
-         * If `true`, the popover will be translucent.
-         * Only applies when the mode is `"ios"` and the device supports
-         * [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility).
-         */
-
-        this.translucent = false;
-        /**
-         * If `true`, the popover will animate.
-         */
-
-        this.animated = true;
-
-        this.onDismiss = function (ev) {
-          ev.stopPropagation();
-          ev.preventDefault();
-
-          _this.dismiss();
+        Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.range = {
+          offset: 0,
+          length: 0
         };
+        this.viewportHeight = 0;
+        this.cells = [];
+        this.virtualDom = [];
+        this.isEnabled = false;
+        this.viewportOffset = 0;
+        this.currentScrollTop = 0;
+        this.indexDirty = 0;
+        this.lastItemLen = 0;
+        this.totalHeight = 0;
+        /**
+         * It is important to provide this
+         * if virtual item height will be significantly larger than the default
+         * The approximate height of each virtual item template's cell.
+         * This dimension is used to help determine how many cells should
+         * be created when initialized, and to help calculate the height of
+         * the scrollable area. This height value can only use `px` units.
+         * Note that the actual rendered size of each cell comes from the
+         * app's CSS, whereas this approximation is used to help calculate
+         * initial dimensions before the item has been rendered.
+         */
 
-        this.onBackdropTap = function () {
-          _this.dismiss(undefined, _overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["B"]);
+        this.approxItemHeight = 45;
+        /**
+         * The approximate height of each header template's cell.
+         * This dimension is used to help determine how many cells should
+         * be created when initialized, and to help calculate the height of
+         * the scrollable area. This height value can only use `px` units.
+         * Note that the actual rendered size of each cell comes from the
+         * app's CSS, whereas this approximation is used to help calculate
+         * initial dimensions before the item has been rendered.
+         */
+
+        this.approxHeaderHeight = 30;
+        /**
+         * The approximate width of each footer template's cell.
+         * This dimension is used to help determine how many cells should
+         * be created when initialized, and to help calculate the height of
+         * the scrollable area. This height value can only use `px` units.
+         * Note that the actual rendered size of each cell comes from the
+         * app's CSS, whereas this approximation is used to help calculate
+         * initial dimensions before the item has been rendered.
+         */
+
+        this.approxFooterHeight = 30;
+
+        this.onScroll = function () {
+          _this.updateVirtualScroll();
         };
-
-        this.onLifecycle = function (modalEvent) {
-          var el = _this.usersElement;
-          var name = LIFECYCLE_MAP[modalEvent.type];
-
-          if (el && name) {
-            var event = new CustomEvent(name, {
-              bubbles: false,
-              cancelable: false,
-              detail: modalEvent.detail
-            });
-            el.dispatchEvent(event);
-          }
-        };
-
-        Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["d"])(this.el);
-        this.didPresent = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverDidPresent", 7);
-        this.willPresent = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverWillPresent", 7);
-        this.willDismiss = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverWillDismiss", 7);
-        this.didDismiss = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverDidDismiss", 7);
       }
-      /**
-       * Present the popover overlay after it has been created.
-       */
 
-
-      _createClass(Popover, [{
-        key: "present",
+      _createClass(VirtualScroll, [{
+        key: "itemsChanged",
+        value: function itemsChanged() {
+          this.calcCells();
+          this.updateVirtualScroll();
+        }
+      }, {
+        key: "connectedCallback",
         value: function () {
-          var _present = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var container, data;
+          var _connectedCallback = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var contentEl;
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    if (!this.presented) {
-                      _context.next = 2;
+                    contentEl = this.el.closest('ion-content');
+
+                    if (contentEl) {
+                      _context.next = 4;
                       break;
                     }
 
+                    console.error('<ion-virtual-scroll> must be used inside an <ion-content>');
                     return _context.abrupt("return");
 
-                  case 2:
-                    container = this.el.querySelector('.popover-content');
+                  case 4:
+                    _context.next = 6;
+                    return contentEl.getScrollElement();
 
-                    if (container) {
-                      _context.next = 5;
-                      break;
-                    }
+                  case 6:
+                    this.scrollEl = _context.sent;
+                    this.contentEl = contentEl;
+                    this.calcCells();
+                    this.updateState();
 
-                    throw new Error('container is undefined');
-
-                  case 5:
-                    data = Object.assign(Object.assign({}, this.componentProps), {
-                      popover: this.el
-                    });
-                    _context.next = 8;
-                    return Object(_framework_delegate_d1eb6504_js__WEBPACK_IMPORTED_MODULE_8__["a"])(this.delegate, container, this.component, ['popover-viewport', this.el['s-sc']], data);
-
-                  case 8:
-                    this.usersElement = _context.sent;
-                    _context.next = 11;
-                    return Object(_index_66edb21f_js__WEBPACK_IMPORTED_MODULE_4__["e"])(this.usersElement);
-
-                  case 11:
-                    return _context.abrupt("return", Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["e"])(this, 'popoverEnter', iosEnterAnimation, mdEnterAnimation, this.event));
-
-                  case 12:
+                  case 10:
                   case "end":
                     return _context.stop();
                 }
@@ -401,46 +474,76 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }, _callee, this);
           }));
 
-          function present() {
-            return _present.apply(this, arguments);
+          function connectedCallback() {
+            return _connectedCallback.apply(this, arguments);
           }
 
-          return present;
+          return connectedCallback;
         }()
+      }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+          this.updateState();
+        }
+      }, {
+        key: "disconnectedCallback",
+        value: function disconnectedCallback() {
+          this.scrollEl = undefined;
+        }
+      }, {
+        key: "onResize",
+        value: function onResize() {
+          this.calcCells();
+          this.updateVirtualScroll();
+        }
         /**
-         * Dismiss the popover overlay after it has been presented.
-         *
-         * @param data Any data to emit in the dismiss events.
-         * @param role The role of the element that is dismissing the popover. For example, 'cancel' or 'backdrop'.
+         * Returns the position of the virtual item at the given index.
          */
 
       }, {
-        key: "dismiss",
+        key: "positionForItem",
+        value: function positionForItem(index) {
+          return Promise.resolve(positionForIndex(index, this.cells, this.getHeightIndex()));
+        }
+        /**
+         * This method marks a subset of items as dirty, so they can be re-rendered. Items should be marked as
+         * dirty any time the content or their style changes.
+         *
+         * The subset of items to be updated can are specifing by an offset and a length.
+         */
+
+      }, {
+        key: "checkRange",
         value: function () {
-          var _dismiss = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(data, role) {
-            var shouldDismiss;
+          var _checkRange = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(offset) {
+            var len,
+                length,
+                cellIndex,
+                cells,
+                _args2 = arguments;
             return regeneratorRuntime.wrap(function _callee2$(_context2) {
               while (1) {
                 switch (_context2.prev = _context2.next) {
                   case 0:
-                    _context2.next = 2;
-                    return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["f"])(this, data, role, 'popoverLeave', iosLeaveAnimation, mdLeaveAnimation, this.event);
+                    len = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : -1;
 
-                  case 2:
-                    shouldDismiss = _context2.sent;
-
-                    if (!shouldDismiss) {
-                      _context2.next = 6;
+                    if (this.items) {
+                      _context2.next = 3;
                       break;
                     }
 
-                    _context2.next = 6;
-                    return Object(_framework_delegate_d1eb6504_js__WEBPACK_IMPORTED_MODULE_8__["d"])(this.delegate, this.usersElement);
+                    return _context2.abrupt("return");
 
-                  case 6:
-                    return _context2.abrupt("return", shouldDismiss);
+                  case 3:
+                    length = len === -1 ? this.items.length - offset : len;
+                    cellIndex = findCellIndex(this.cells, offset);
+                    cells = _calcCells(this.items, this.itemHeight, this.headerHeight, this.footerHeight, this.headerFn, this.footerFn, this.approxHeaderHeight, this.approxFooterHeight, this.approxItemHeight, cellIndex, offset, length);
+                    this.cells = inplaceUpdate(this.cells, cells, cellIndex);
+                    this.lastItemLen = this.items.length;
+                    this.indexDirty = Math.max(offset - 1, 0);
+                    this.scheduleUpdate();
 
-                  case 7:
+                  case 10:
                   case "end":
                     return _context2.stop();
                 }
@@ -448,85 +551,305 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }, _callee2, this);
           }));
 
-          function dismiss(_x, _x2) {
-            return _dismiss.apply(this, arguments);
+          function checkRange(_x) {
+            return _checkRange.apply(this, arguments);
           }
 
-          return dismiss;
+          return checkRange;
         }()
         /**
-         * Returns a promise that resolves when the popover did dismiss.
+         * This method marks the tail the items array as dirty, so they can be re-rendered.
+         *
+         * It's equivalent to calling:
+         *
+         * ```js
+         * virtualScroll.checkRange(lastItemLen);
+         * ```
          */
 
       }, {
-        key: "onDidDismiss",
-        value: function onDidDismiss() {
-          return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.el, 'ionPopoverDidDismiss');
+        key: "checkEnd",
+        value: function () {
+          var _checkEnd = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    if (this.items) {
+                      this.checkRange(this.lastItemLen);
+                    }
+
+                  case 1:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+
+          function checkEnd() {
+            return _checkEnd.apply(this, arguments);
+          }
+
+          return checkEnd;
+        }()
+      }, {
+        key: "updateVirtualScroll",
+        value: function updateVirtualScroll() {
+          // do nothing if virtual-scroll is disabled
+          if (!this.isEnabled || !this.scrollEl) {
+            return;
+          } // unschedule future updates
+
+
+          if (this.timerUpdate) {
+            clearTimeout(this.timerUpdate);
+            this.timerUpdate = undefined;
+          } // schedule DOM operations into the stencil queue
+
+
+          Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["f"])(this.readVS.bind(this));
+          Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this.writeVS.bind(this));
         }
-        /**
-         * Returns a promise that resolves when the popover will dismiss.
-         */
-
       }, {
-        key: "onWillDismiss",
-        value: function onWillDismiss() {
-          return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.el, 'ionPopoverWillDismiss');
+        key: "readVS",
+        value: function readVS() {
+          var contentEl = this.contentEl,
+              scrollEl = this.scrollEl,
+              el = this.el;
+          var topOffset = 0;
+          var node = el;
+
+          while (node && node !== contentEl) {
+            topOffset += node.offsetTop;
+            node = node.offsetParent;
+          }
+
+          this.viewportOffset = topOffset;
+
+          if (scrollEl) {
+            this.viewportHeight = scrollEl.offsetHeight;
+            this.currentScrollTop = scrollEl.scrollTop;
+          }
+        }
+      }, {
+        key: "writeVS",
+        value: function writeVS() {
+          var dirtyIndex = this.indexDirty; // get visible viewport
+
+          var scrollTop = this.currentScrollTop - this.viewportOffset;
+          var viewport = getViewport(scrollTop, this.viewportHeight, 100); // compute lazily the height index
+
+          var heightIndex = this.getHeightIndex(); // get array bounds of visible cells base in the viewport
+
+          var range = getRange(heightIndex, viewport, 2); // fast path, do nothing
+
+          var shouldUpdate = getShouldUpdate(dirtyIndex, this.range, range);
+
+          if (!shouldUpdate) {
+            return;
+          }
+
+          this.range = range; // in place mutation of the virtual DOM
+
+          updateVDom(this.virtualDom, heightIndex, this.cells, range); // Write DOM
+          // Different code paths taken depending of the render API used
+
+          if (this.nodeRender) {
+            doRender(this.el, this.nodeRender, this.virtualDom, this.updateCellHeight.bind(this));
+          } else if (this.domRender) {
+            this.domRender(this.virtualDom);
+          } else if (this.renderItem) {
+            Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["j"])(this);
+          }
+        }
+      }, {
+        key: "updateCellHeight",
+        value: function updateCellHeight(cell, node) {
+          var _this2 = this;
+
+          var update = function update() {
+            if (node['$ionCell'] === cell) {
+              var style = window.getComputedStyle(node);
+              var height = node.offsetHeight + parseFloat(style.getPropertyValue('margin-bottom'));
+
+              _this2.setCellHeight(cell, height);
+            }
+          };
+
+          if (node && node.componentOnReady) {
+            node.componentOnReady().then(update);
+          } else {
+            update();
+          }
+        }
+      }, {
+        key: "setCellHeight",
+        value: function setCellHeight(cell, height) {
+          var index = cell.i; // the cell might changed since the height update was scheduled
+
+          if (cell !== this.cells[index]) {
+            return;
+          }
+
+          if (cell.height !== height || cell.visible !== true) {
+            cell.visible = true;
+            cell.height = height;
+            this.indexDirty = Math.min(this.indexDirty, index);
+            this.scheduleUpdate();
+          }
+        }
+      }, {
+        key: "scheduleUpdate",
+        value: function scheduleUpdate() {
+          var _this3 = this;
+
+          clearTimeout(this.timerUpdate);
+          this.timerUpdate = setTimeout(function () {
+            return _this3.updateVirtualScroll();
+          }, 100);
+        }
+      }, {
+        key: "updateState",
+        value: function updateState() {
+          var shouldEnable = !!(this.scrollEl && this.cells);
+
+          if (shouldEnable !== this.isEnabled) {
+            this.enableScrollEvents(shouldEnable);
+
+            if (shouldEnable) {
+              this.updateVirtualScroll();
+            }
+          }
+        }
+      }, {
+        key: "calcCells",
+        value: function calcCells() {
+          if (!this.items) {
+            return;
+          }
+
+          this.lastItemLen = this.items.length;
+          this.cells = _calcCells(this.items, this.itemHeight, this.headerHeight, this.footerHeight, this.headerFn, this.footerFn, this.approxHeaderHeight, this.approxFooterHeight, this.approxItemHeight, 0, 0, this.lastItemLen);
+          this.indexDirty = 0;
+        }
+      }, {
+        key: "getHeightIndex",
+        value: function getHeightIndex() {
+          if (this.indexDirty !== Infinity) {
+            this.calcHeightIndex(this.indexDirty);
+          }
+
+          return this.heightIndex;
+        }
+      }, {
+        key: "calcHeightIndex",
+        value: function calcHeightIndex() {
+          var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+          // TODO: optimize, we don't need to calculate all the cells
+          this.heightIndex = resizeBuffer(this.heightIndex, this.cells.length);
+          this.totalHeight = _calcHeightIndex(this.heightIndex, this.cells, index);
+          this.indexDirty = Infinity;
+        }
+      }, {
+        key: "enableScrollEvents",
+        value: function enableScrollEvents(shouldListen) {
+          var _this4 = this;
+
+          if (this.rmEvent) {
+            this.rmEvent();
+            this.rmEvent = undefined;
+          }
+
+          var scrollEl = this.scrollEl;
+
+          if (scrollEl) {
+            this.isEnabled = shouldListen;
+            scrollEl.addEventListener('scroll', this.onScroll);
+
+            this.rmEvent = function () {
+              scrollEl.removeEventListener('scroll', _this4.onScroll);
+            };
+          }
+        }
+      }, {
+        key: "renderVirtualNode",
+        value: function renderVirtualNode(node) {
+          var _node$cell = node.cell,
+              type = _node$cell.type,
+              value = _node$cell.value,
+              index = _node$cell.index;
+
+          switch (type) {
+            case CELL_TYPE_ITEM:
+              return this.renderItem(value, index);
+
+            case CELL_TYPE_HEADER:
+              return this.renderHeader(value, index);
+
+            case CELL_TYPE_FOOTER:
+              return this.renderFooter(value, index);
+          }
         }
       }, {
         key: "render",
         value: function render() {
-          var _Object$assign;
+          var _this5 = this;
 
-          var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-          var onLifecycle = this.onLifecycle;
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-            "aria-modal": "true",
-            "no-router": true,
-            tabindex: "-1",
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
             style: {
-              zIndex: "".concat(20000 + this.overlayIndex)
-            },
-            "class": Object.assign(Object.assign({}, Object(_theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_7__["g"])(this.cssClass)), (_Object$assign = {}, _defineProperty(_Object$assign, mode, true), _defineProperty(_Object$assign, 'popover-translucent', this.translucent), _Object$assign)),
-            onIonPopoverDidPresent: onLifecycle,
-            onIonPopoverWillPresent: onLifecycle,
-            onIonPopoverWillDismiss: onLifecycle,
-            onIonPopoverDidDismiss: onLifecycle,
-            onIonDismiss: this.onDismiss,
-            onIonBackdropTap: this.onBackdropTap
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", {
-            tappable: this.backdropDismiss,
-            visible: this.showBackdrop
-          }), Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-            "class": "popover-wrapper"
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-            "class": "popover-arrow"
-          }), Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-            "class": "popover-content"
+              height: "".concat(this.totalHeight, "px")
+            }
+          }, this.renderItem && Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])(VirtualProxy, {
+            dom: this.virtualDom
+          }, this.virtualDom.map(function (node) {
+            return _this5.renderVirtualNode(node);
           })));
         }
       }, {
         key: "el",
         get: function get() {
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this);
+        }
+      }], [{
+        key: "watchers",
+        get: function get() {
+          return {
+            "itemHeight": ["itemsChanged"],
+            "headerHeight": ["itemsChanged"],
+            "footerHeight": ["itemsChanged"],
+            "items": ["itemsChanged"]
+          };
         }
       }]);
 
-      return Popover;
+      return VirtualScroll;
     }();
 
-    var LIFECYCLE_MAP = {
-      'ionPopoverDidPresent': 'ionViewDidEnter',
-      'ionPopoverWillPresent': 'ionViewWillEnter',
-      'ionPopoverWillDismiss': 'ionViewWillLeave',
-      'ionPopoverDidDismiss': 'ionViewDidLeave'
-    };
-    Popover.style = {
-      /*STENCIL:MODE:ios*/
-      ios: popoverIosCss,
+    var VirtualProxy = function VirtualProxy(_ref, children, utils) {
+      var dom = _ref.dom;
+      return utils.map(children, function (child, i) {
+        var node = dom[i];
+        var vattrs = child.vattrs || {};
+        var classes = vattrs["class"] || '';
+        classes += 'virtual-item ';
 
-      /*STENCIL:MODE:md*/
-      md: popoverMdCss
+        if (!node.visible) {
+          classes += 'virtual-loading';
+        }
+
+        return Object.assign(Object.assign({}, child), {
+          vattrs: Object.assign(Object.assign({}, vattrs), {
+            "class": classes,
+            style: Object.assign(Object.assign({}, vattrs.style), {
+              transform: "translate3d(0,".concat(node.top, "px,0)")
+            })
+          })
+        });
+      });
     };
+
+    VirtualScroll.style = virtualScrollCss;
     /***/
   }
 }]);

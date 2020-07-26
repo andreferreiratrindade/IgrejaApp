@@ -37,6 +37,37 @@ class HandlerError {
 
 /***/ }),
 
+/***/ "./src/app/helpers/toastCustom.ts":
+/*!****************************************!*\
+  !*** ./src/app/helpers/toastCustom.ts ***!
+  \****************************************/
+/*! exports provided: ToastCustom */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToastCustom", function() { return ToastCustom; });
+class ToastCustom {
+    static errorToast(msg, toastCtrl) {
+        this.CustomToast(toastCtrl, msg, "danger", 4000);
+    }
+    static SucessoToast(toastCtrl) {
+        this.CustomToast(toastCtrl, "Operação realizada com sucesso.", "success", 4000);
+    }
+    static CustomToast(toastCtrl, message, color, duration) {
+        toastCtrl.create({
+            message: message,
+            duration: duration,
+            color: color
+        }).then(x => {
+            x.present();
+        });
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/app/pages/prestador/prestadorCadastro/local-atendimento/local-atendimento-routing.module.ts":
 /*!*********************************************************************************************************!*\
   !*** ./src/app/pages/prestador/prestadorCadastro/local-atendimento/local-atendimento-routing.module.ts ***!

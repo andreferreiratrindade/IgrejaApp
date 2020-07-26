@@ -12,15 +12,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0], {
   /***/
-  "./node_modules/@ionic/core/dist/esm/ion-action-sheet-ios.entry.js":
-  /*!*************************************************************************!*\
-    !*** ./node_modules/@ionic/core/dist/esm/ion-action-sheet-ios.entry.js ***!
-    \*************************************************************************/
+  "./node_modules/@ionic/core/dist/esm/ion-action-sheet.entry.js":
+  /*!*********************************************************************!*\
+    !*** ./node_modules/@ionic/core/dist/esm/ion-action-sheet.entry.js ***!
+    \*********************************************************************/
 
   /*! exports provided: ion_action_sheet */
 
   /***/
-  function node_modulesIonicCoreDistEsmIonActionSheetIosEntryJs(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesIonicCoreDistEsmIonActionSheetEntryJs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
@@ -33,15 +33,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! ./index-29df6f59.js */
-    "./node_modules/@ionic/core/dist/esm/index-29df6f59.js");
+    var _index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! ./index-821f9ab1.js */
+    "./node_modules/@ionic/core/dist/esm/index-821f9ab1.js");
     /* harmony import */
 
 
-    var _ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ./ionic-global-08f4fb8a.js */
-    "./node_modules/@ionic/core/dist/esm/ionic-global-08f4fb8a.js");
+    var _ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./ionic-global-f538b4cf.js */
+    "./node_modules/@ionic/core/dist/esm/ionic-global-f538b4cf.js");
     /* harmony import */
 
 
@@ -75,9 +75,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-    /*! ./overlays-7369bfcc.js */
-    "./node_modules/@ionic/core/dist/esm/overlays-7369bfcc.js");
+    var _overlays_63b08852_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./overlays-63b08852.js */
+    "./node_modules/@ionic/core/dist/esm/overlays-63b08852.js");
     /* harmony import */
 
 
@@ -87,9 +87,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _button_active_4b76b5c3_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
-    /*! ./button-active-4b76b5c3.js */
-    "./node_modules/@ionic/core/dist/esm/button-active-4b76b5c3.js");
+    var _button_active_f9f11302_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! ./button-active-f9f11302.js */
+    "./node_modules/@ionic/core/dist/esm/button-active-f9f11302.js");
     /* harmony import */
 
 
@@ -155,9 +155,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     var actionSheetIosCss = ".sc-ion-action-sheet-ios-h{--color:initial;--button-color-activated:var(--button-color);--button-color-focused:var(--button-color);--button-color-hover:var(--button-color);--button-color-selected:var(--button-color);--min-width:auto;--width:100%;--max-width:500px;--min-height:auto;--height:100%;--max-height:calc(100% - (var(--ion-safe-area-top) + var(--ion-safe-area-bottom)));-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;left:0;right:0;top:0;bottom:0;display:block;position:fixed;outline:none;font-family:var(--ion-font-family, inherit);-ms-touch-action:none;touch-action:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:1001}.overlay-hidden.sc-ion-action-sheet-ios-h{display:none}.action-sheet-wrapper.sc-ion-action-sheet-ios{left:0;right:0;bottom:0;margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;-webkit-transform:translate3d(0,  100%,  0);transform:translate3d(0,  100%,  0);display:block;position:absolute;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);z-index:10;pointer-events:none}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.action-sheet-wrapper.sc-ion-action-sheet-ios{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}.action-sheet-button.sc-ion-action-sheet-ios{display:block;position:relative;width:100%;border:0;outline:none;background:var(--button-background);color:var(--button-color);font-family:inherit;overflow:hidden}.action-sheet-button-inner.sc-ion-action-sheet-ios{display:-ms-flexbox;display:flex;position:relative;-ms-flex-flow:row nowrap;flex-flow:row nowrap;-ms-flex-negative:0;flex-shrink:0;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;pointer-events:none;width:100%;height:100%;z-index:1}.action-sheet-container.sc-ion-action-sheet-ios{display:-ms-flexbox;display:flex;-ms-flex-flow:column;flex-flow:column;-ms-flex-pack:end;justify-content:flex-end;height:100%;max-height:100%}.action-sheet-group.sc-ion-action-sheet-ios{-ms-flex-negative:2;flex-shrink:2;overscroll-behavior-y:contain;overflow-y:auto;-webkit-overflow-scrolling:touch;pointer-events:all;background:var(--background)}.action-sheet-group.sc-ion-action-sheet-ios::-webkit-scrollbar{display:none}.action-sheet-group-cancel.sc-ion-action-sheet-ios{-ms-flex-negative:0;flex-shrink:0;overflow:hidden}.action-sheet-button.sc-ion-action-sheet-ios::after{left:0;right:0;top:0;bottom:0;position:absolute;content:\"\";opacity:0}.action-sheet-selected.sc-ion-action-sheet-ios{color:var(--button-color-selected)}.action-sheet-selected.sc-ion-action-sheet-ios::after{background:var(--button-background-selected);opacity:var(--button-background-selected-opacity)}.action-sheet-button.ion-activated.sc-ion-action-sheet-ios{color:var(--button-color-activated)}.action-sheet-button.ion-activated.sc-ion-action-sheet-ios::after{background:var(--button-background-activated);opacity:var(--button-background-activated-opacity)}.action-sheet-button.ion-focused.sc-ion-action-sheet-ios{color:var(--button-color-focused)}.action-sheet-button.ion-focused.sc-ion-action-sheet-ios::after{background:var(--button-background-focused);opacity:var(--button-background-focused-opacity)}@media (any-hover: hover){.action-sheet-button.sc-ion-action-sheet-ios:hover{color:var(--button-color-hover)}.action-sheet-button.sc-ion-action-sheet-ios:hover::after{background:var(--button-background-hover);opacity:var(--button-background-hover-opacity)}}.sc-ion-action-sheet-ios-h{--background:var(--ion-overlay-background-color, var(--ion-color-step-100, #f9f9f9));--backdrop-opacity:var(--ion-backdrop-opacity, 0.4);--button-background:linear-gradient(0deg, rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08), rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08) 50%, transparent 50%) bottom/100% 1px no-repeat transparent;--button-background-activated:var(--ion-text-color, #000);--button-background-activated-opacity:.08;--button-background-hover:currentColor;--button-background-hover-opacity:.04;--button-background-focused:currentColor;--button-background-focused-opacity:.12;--button-background-selected:var(--ion-color-step-150, var(--ion-background-color, #fff));--button-background-selected-opacity:1;--button-color:var(--ion-color-primary, #3880ff);--color:var(--ion-color-step-400, #999999);text-align:center}.action-sheet-wrapper.sc-ion-action-sheet-ios{margin-left:auto;margin-right:auto;margin-top:var(--ion-safe-area-top, 0);margin-bottom:var(--ion-safe-area-bottom, 0)}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.action-sheet-wrapper.sc-ion-action-sheet-ios{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}.action-sheet-container.sc-ion-action-sheet-ios{padding-left:8px;padding-right:8px;padding-top:0;padding-bottom:0}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.action-sheet-container.sc-ion-action-sheet-ios{padding-left:unset;padding-right:unset;-webkit-padding-start:8px;padding-inline-start:8px;-webkit-padding-end:8px;padding-inline-end:8px}}.action-sheet-group.sc-ion-action-sheet-ios{border-radius:13px;margin-bottom:8px}.action-sheet-group.sc-ion-action-sheet-ios:first-child{margin-top:10px}.action-sheet-group.sc-ion-action-sheet-ios:last-child{margin-bottom:10px}@supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))){.action-sheet-translucent.sc-ion-action-sheet-ios-h .action-sheet-group.sc-ion-action-sheet-ios{background-color:transparent;-webkit-backdrop-filter:saturate(280%) blur(20px);backdrop-filter:saturate(280%) blur(20px)}.action-sheet-translucent.sc-ion-action-sheet-ios-h .action-sheet-title.sc-ion-action-sheet-ios,.action-sheet-translucent.sc-ion-action-sheet-ios-h .action-sheet-button.sc-ion-action-sheet-ios{background-color:transparent;background-image:-webkit-gradient(linear, left bottom, left top, from(rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8)), to(rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8))), -webkit-gradient(linear, left bottom, left top, from(rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.4)), color-stop(50%, rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.4)), color-stop(50%, rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8)));background-image:linear-gradient(0deg, rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8), rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8) 100%), linear-gradient(0deg, rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.4), rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.4) 50%, rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8) 50%);background-repeat:no-repeat;background-position:top, bottom;background-size:100% calc(100% - 1px), 100% 1px;-webkit-backdrop-filter:saturate(120%);backdrop-filter:saturate(120%)}.action-sheet-translucent.sc-ion-action-sheet-ios-h .action-sheet-button.ion-activated.sc-ion-action-sheet-ios{background-color:rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.7);background-image:none}.action-sheet-translucent.sc-ion-action-sheet-ios-h .action-sheet-cancel.sc-ion-action-sheet-ios{background:var(--button-background-selected)}}.action-sheet-title.sc-ion-action-sheet-ios{background:-webkit-gradient(linear, left bottom, left top, from(rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08)), color-stop(50%, rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08)), color-stop(50%, transparent)) bottom/100% 1px no-repeat transparent;background:linear-gradient(0deg, rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08), rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08) 50%, transparent 50%) bottom/100% 1px no-repeat transparent}.action-sheet-title.sc-ion-action-sheet-ios{padding-left:10px;padding-right:10px;padding-top:14px;padding-bottom:13px;color:var(--color, var(--ion-color-step-400, #999999));font-size:13px;font-weight:400;text-align:center}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.action-sheet-title.sc-ion-action-sheet-ios{padding-left:unset;padding-right:unset;-webkit-padding-start:10px;padding-inline-start:10px;-webkit-padding-end:10px;padding-inline-end:10px}}.action-sheet-sub-title.sc-ion-action-sheet-ios{padding-left:0;padding-right:0;padding-top:15px;padding-bottom:0;font-size:12px}.action-sheet-button.sc-ion-action-sheet-ios{padding-left:18px;padding-right:18px;padding-top:18px;padding-bottom:18px;height:56px;font-size:20px;contain:strict}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.action-sheet-button.sc-ion-action-sheet-ios{padding-left:unset;padding-right:unset;-webkit-padding-start:18px;padding-inline-start:18px;-webkit-padding-end:18px;padding-inline-end:18px}}.action-sheet-button.sc-ion-action-sheet-ios .action-sheet-icon.sc-ion-action-sheet-ios{margin-right:0.1em;font-size:28px;pointer-events:none}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.action-sheet-button.sc-ion-action-sheet-ios .action-sheet-icon.sc-ion-action-sheet-ios{margin-right:unset;-webkit-margin-end:0.1em;margin-inline-end:0.1em}}.action-sheet-button.sc-ion-action-sheet-ios:last-child{background-image:none}.action-sheet-selected.sc-ion-action-sheet-ios{font-weight:bold}.action-sheet-cancel.sc-ion-action-sheet-ios{font-weight:600}.action-sheet-cancel.sc-ion-action-sheet-ios::after{background:var(--button-background-selected);opacity:var(--button-background-selected-opacity)}.action-sheet-destructive.sc-ion-action-sheet-ios,.action-sheet-destructive.ion-activated.sc-ion-action-sheet-ios,.action-sheet-destructive.ion-focused.sc-ion-action-sheet-ios{color:var(--ion-color-danger, #eb445a)}@media (any-hover: hover){.action-sheet-destructive.sc-ion-action-sheet-ios:hover{color:var(--ion-color-danger, #eb445a)}}";
     var actionSheetMdCss = ".sc-ion-action-sheet-md-h{--color:initial;--button-color-activated:var(--button-color);--button-color-focused:var(--button-color);--button-color-hover:var(--button-color);--button-color-selected:var(--button-color);--min-width:auto;--width:100%;--max-width:500px;--min-height:auto;--height:100%;--max-height:calc(100% - (var(--ion-safe-area-top) + var(--ion-safe-area-bottom)));-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;left:0;right:0;top:0;bottom:0;display:block;position:fixed;outline:none;font-family:var(--ion-font-family, inherit);-ms-touch-action:none;touch-action:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:1001}.overlay-hidden.sc-ion-action-sheet-md-h{display:none}.action-sheet-wrapper.sc-ion-action-sheet-md{left:0;right:0;bottom:0;margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;-webkit-transform:translate3d(0,  100%,  0);transform:translate3d(0,  100%,  0);display:block;position:absolute;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);z-index:10;pointer-events:none}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.action-sheet-wrapper.sc-ion-action-sheet-md{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}.action-sheet-button.sc-ion-action-sheet-md{display:block;position:relative;width:100%;border:0;outline:none;background:var(--button-background);color:var(--button-color);font-family:inherit;overflow:hidden}.action-sheet-button-inner.sc-ion-action-sheet-md{display:-ms-flexbox;display:flex;position:relative;-ms-flex-flow:row nowrap;flex-flow:row nowrap;-ms-flex-negative:0;flex-shrink:0;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;pointer-events:none;width:100%;height:100%;z-index:1}.action-sheet-container.sc-ion-action-sheet-md{display:-ms-flexbox;display:flex;-ms-flex-flow:column;flex-flow:column;-ms-flex-pack:end;justify-content:flex-end;height:100%;max-height:100%}.action-sheet-group.sc-ion-action-sheet-md{-ms-flex-negative:2;flex-shrink:2;overscroll-behavior-y:contain;overflow-y:auto;-webkit-overflow-scrolling:touch;pointer-events:all;background:var(--background)}.action-sheet-group.sc-ion-action-sheet-md::-webkit-scrollbar{display:none}.action-sheet-group-cancel.sc-ion-action-sheet-md{-ms-flex-negative:0;flex-shrink:0;overflow:hidden}.action-sheet-button.sc-ion-action-sheet-md::after{left:0;right:0;top:0;bottom:0;position:absolute;content:\"\";opacity:0}.action-sheet-selected.sc-ion-action-sheet-md{color:var(--button-color-selected)}.action-sheet-selected.sc-ion-action-sheet-md::after{background:var(--button-background-selected);opacity:var(--button-background-selected-opacity)}.action-sheet-button.ion-activated.sc-ion-action-sheet-md{color:var(--button-color-activated)}.action-sheet-button.ion-activated.sc-ion-action-sheet-md::after{background:var(--button-background-activated);opacity:var(--button-background-activated-opacity)}.action-sheet-button.ion-focused.sc-ion-action-sheet-md{color:var(--button-color-focused)}.action-sheet-button.ion-focused.sc-ion-action-sheet-md::after{background:var(--button-background-focused);opacity:var(--button-background-focused-opacity)}@media (any-hover: hover){.action-sheet-button.sc-ion-action-sheet-md:hover{color:var(--button-color-hover)}.action-sheet-button.sc-ion-action-sheet-md:hover::after{background:var(--button-background-hover);opacity:var(--button-background-hover-opacity)}}.sc-ion-action-sheet-md-h{--background:var(--ion-overlay-background-color, var(--ion-background-color, #fff));--backdrop-opacity:var(--ion-backdrop-opacity, 0.32);--button-background:transparent;--button-background-selected:currentColor;--button-background-selected-opacity:0;--button-background-activated:transparent;--button-background-activated-opacity:0;--button-background-hover:currentColor;--button-background-hover-opacity:.04;--button-background-focused:currentColor;--button-background-focused-opacity:.12;--button-color:var(--ion-color-step-850, #262626);--color:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54)}.action-sheet-title.sc-ion-action-sheet-md{padding-left:16px;padding-right:16px;padding-top:20px;padding-bottom:17px;height:60px;color:var(--color, rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54));font-size:16px;text-align:start}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.action-sheet-title.sc-ion-action-sheet-md{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}.action-sheet-sub-title.sc-ion-action-sheet-md{padding-left:0;padding-right:0;padding-top:16px;padding-bottom:0;font-size:14px}.action-sheet-group.sc-ion-action-sheet-md:first-child{padding-top:0}.action-sheet-group.sc-ion-action-sheet-md:last-child{padding-bottom:0}.action-sheet-button.sc-ion-action-sheet-md{padding-left:16px;padding-right:16px;padding-top:0;padding-bottom:0;position:relative;height:52px;font-size:16px;text-align:start;contain:strict;overflow:hidden}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.action-sheet-button.sc-ion-action-sheet-md{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}.action-sheet-icon.sc-ion-action-sheet-md{padding-bottom:4px;margin-left:0;margin-right:32px;margin-top:0;margin-bottom:0;color:var(--color);font-size:24px}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.action-sheet-icon.sc-ion-action-sheet-md{margin-left:unset;margin-right:unset;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:32px;margin-inline-end:32px}}.action-sheet-button-inner.sc-ion-action-sheet-md{-ms-flex-pack:start;justify-content:flex-start}.action-sheet-selected.sc-ion-action-sheet-md{font-weight:bold}";
-    /**
-     * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
-     */
 
     var ActionSheet = /*#__PURE__*/function () {
       function ActionSheet(hostRef) {
@@ -165,7 +162,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _classCallCheck(this, ActionSheet);
 
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.didPresent = Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionActionSheetDidPresent", 7);
+        this.willPresent = Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionActionSheetWillPresent", 7);
+        this.willDismiss = Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionActionSheetWillDismiss", 7);
+        this.didDismiss = Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionActionSheetDidDismiss", 7);
         this.presented = false;
         /**
          * If `true`, the keyboard will be automatically dismissed when the overlay is presented.
@@ -196,13 +197,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.animated = true;
 
         this.onBackdropTap = function () {
-          _this.dismiss(undefined, _overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_7__["B"]);
+          _this.dismiss(undefined, _overlays_63b08852_js__WEBPACK_IMPORTED_MODULE_7__["B"]);
         };
 
         this.dispatchCancelHandler = function (ev) {
           var role = ev.detail.role;
 
-          if (Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_7__["i"])(role)) {
+          if (Object(_overlays_63b08852_js__WEBPACK_IMPORTED_MODULE_7__["i"])(role)) {
             var cancelButton = _this.getButtons().find(function (b) {
               return b.role === 'cancel';
             });
@@ -210,12 +211,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             _this.callButtonHandler(cancelButton);
           }
         };
-
-        Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_7__["d"])(this.el);
-        this.didPresent = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionActionSheetDidPresent", 7);
-        this.willPresent = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionActionSheetWillPresent", 7);
-        this.willDismiss = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionActionSheetWillDismiss", 7);
-        this.didDismiss = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionActionSheetDidDismiss", 7);
       }
       /**
        * Present the action sheet overlay after it has been created.
@@ -225,7 +220,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(ActionSheet, [{
         key: "present",
         value: function present() {
-          return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_7__["e"])(this, 'actionSheetEnter', iosEnterAnimation, mdEnterAnimation);
+          return Object(_overlays_63b08852_js__WEBPACK_IMPORTED_MODULE_7__["d"])(this, 'actionSheetEnter', iosEnterAnimation, mdEnterAnimation);
+        }
+      }, {
+        key: "connectedCallback",
+        value: function connectedCallback() {
+          Object(_overlays_63b08852_js__WEBPACK_IMPORTED_MODULE_7__["e"])(this.el);
         }
         /**
          * Dismiss the action sheet overlay after it has been presented.
@@ -240,7 +240,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "dismiss",
         value: function dismiss(data, role) {
-          return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_7__["f"])(this, data, role, 'actionSheetLeave', iosLeaveAnimation, mdLeaveAnimation);
+          return Object(_overlays_63b08852_js__WEBPACK_IMPORTED_MODULE_7__["f"])(this, data, role, 'actionSheetLeave', iosLeaveAnimation, mdLeaveAnimation);
         }
         /**
          * Returns a promise that resolves when the action sheet did dismiss.
@@ -249,7 +249,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onDidDismiss",
         value: function onDidDismiss() {
-          return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_7__["g"])(this.el, 'ionActionSheetDidDismiss');
+          return Object(_overlays_63b08852_js__WEBPACK_IMPORTED_MODULE_7__["g"])(this.el, 'ionActionSheetDidDismiss');
         }
         /**
          * Returns a promise that resolves when the action sheet will dismiss.
@@ -259,7 +259,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onWillDismiss",
         value: function onWillDismiss() {
-          return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_7__["g"])(this.el, 'ionActionSheetWillDismiss');
+          return Object(_overlays_63b08852_js__WEBPACK_IMPORTED_MODULE_7__["g"])(this.el, 'ionActionSheetWillDismiss');
         }
       }, {
         key: "buttonClick",
@@ -272,7 +272,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   case 0:
                     role = button.role;
 
-                    if (!Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_7__["i"])(role)) {
+                    if (!Object(_overlays_63b08852_js__WEBPACK_IMPORTED_MODULE_7__["i"])(role)) {
                       _context.next = 3;
                       break;
                     }
@@ -325,7 +325,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     }
 
                     _context2.next = 3;
-                    return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_7__["s"])(button.handler);
+                    return Object(_overlays_63b08852_js__WEBPACK_IMPORTED_MODULE_7__["s"])(button.handler);
 
                   case 3:
                     rtn = _context2.sent;
@@ -385,15 +385,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var groupEl = this.groupEl,
               wrapperEl = this.wrapperEl;
 
-          if (this.gesture || Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this) === 'md' || !wrapperEl || !groupEl) {
+          if (this.gesture || Object(_ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this) === 'md' || !wrapperEl || !groupEl) {
             return;
           }
 
-          Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["d"])(function () {
+          Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["f"])(function () {
             var isScrollable = groupEl.scrollHeight > groupEl.clientHeight;
 
             if (!isScrollable) {
-              _this2.gesture = Object(_button_active_4b76b5c3_js__WEBPACK_IMPORTED_MODULE_9__["c"])(wrapperEl, function (refEl) {
+              _this2.gesture = Object(_button_active_f9f11302_js__WEBPACK_IMPORTED_MODULE_9__["c"])(wrapperEl, function (refEl) {
                 return refEl.classList.contains('action-sheet-button');
               });
 
@@ -406,7 +406,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function render() {
           var _this3 = this;
 
-          var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
+          var mode = Object(_ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
           var allButtons = this.getButtons();
           var cancelButton = allButtons.find(function (b) {
             return b.role === 'cancel';
@@ -414,7 +414,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var buttons = allButtons.filter(function (b) {
             return b.role !== 'cancel';
           });
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
             role: "dialog",
             "aria-modal": "true",
             tabindex: "-1",
@@ -426,59 +426,63 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }),
             onIonActionSheetWillDismiss: this.dispatchCancelHandler,
             onIonBackdropTap: this.onBackdropTap
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", {
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", {
             tappable: this.backdropDismiss
-          }), Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-            "class": "action-sheet-wrapper",
+          }), Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            tabindex: "0"
+          }), Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "action-sheet-wrapper ion-overlay-wrapper",
             role: "dialog",
             ref: function ref(el) {
               return _this3.wrapperEl = el;
             }
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
             "class": "action-sheet-container"
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
             "class": "action-sheet-group",
             ref: function ref(el) {
               return _this3.groupEl = el;
             }
-          }, this.header !== undefined && Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          }, this.header !== undefined && Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
             "class": "action-sheet-title"
-          }, this.header, this.subHeader && Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+          }, this.header, this.subHeader && Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
             "class": "action-sheet-sub-title"
           }, this.subHeader)), buttons.map(function (b) {
-            return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
+            return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
               type: "button",
               "class": buttonClass(b),
               onClick: function onClick() {
                 return _this3.buttonClick(b);
               }
-            }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", {
+            }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", {
               "class": "action-sheet-button-inner"
-            }, b.icon && Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", {
+            }, b.icon && Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", {
               icon: b.icon,
               lazy: false,
               "class": "action-sheet-icon"
-            }), b.text), mode === 'md' && Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", null));
-          })), cancelButton && Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            }), b.text), mode === 'md' && Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", null));
+          })), cancelButton && Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
             "class": "action-sheet-group action-sheet-group-cancel"
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
             type: "button",
             "class": buttonClass(cancelButton),
             onClick: function onClick() {
               return _this3.buttonClick(cancelButton);
             }
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", {
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", {
             "class": "action-sheet-button-inner"
-          }, cancelButton.icon && Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", {
+          }, cancelButton.icon && Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", {
             icon: cancelButton.icon,
             lazy: false,
             "class": "action-sheet-icon"
-          }), cancelButton.text), mode === 'md' && Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", null))))));
+          }), cancelButton.text), mode === 'md' && Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", null))))), Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            tabindex: "0"
+          }));
         }
       }, {
         key: "el",
         get: function get() {
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this);
         }
       }]);
 
@@ -494,10 +498,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     };
 
     ActionSheet.style = {
-      /*STENCIL:MODE:ios*/
       ios: actionSheetIosCss,
-
-      /*STENCIL:MODE:md*/
       md: actionSheetMdCss
     };
     /***/

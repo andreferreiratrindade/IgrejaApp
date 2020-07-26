@@ -1,5 +1,9 @@
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -8,312 +12,394 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14], {
   /***/
-  "./node_modules/@ionic/core/dist/esm/ion-card_5-ios.entry.js":
-  /*!*******************************************************************!*\
-    !*** ./node_modules/@ionic/core/dist/esm/ion-card_5-ios.entry.js ***!
-    \*******************************************************************/
+  "./node_modules/@ionic/core/dist/esm/ion-infinite-scroll_2.entry.js":
+  /*!**************************************************************************!*\
+    !*** ./node_modules/@ionic/core/dist/esm/ion-infinite-scroll_2.entry.js ***!
+    \**************************************************************************/
 
-  /*! exports provided: ion_card, ion_card_content, ion_card_header, ion_card_subtitle, ion_card_title */
+  /*! exports provided: ion_infinite_scroll, ion_infinite_scroll_content */
 
   /***/
-  function node_modulesIonicCoreDistEsmIonCard_5IosEntryJs(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesIonicCoreDistEsmIonInfiniteScroll_2EntryJs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_card", function () {
-      return Card;
+    __webpack_require__.d(__webpack_exports__, "ion_infinite_scroll", function () {
+      return InfiniteScroll;
     });
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_card_content", function () {
-      return CardContent;
-    });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ion_card_header", function () {
-      return CardHeader;
-    });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ion_card_subtitle", function () {
-      return CardSubtitle;
-    });
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ion_card_title", function () {
-      return CardTitle;
+    __webpack_require__.d(__webpack_exports__, "ion_infinite_scroll_content", function () {
+      return InfiniteScrollContent;
     });
     /* harmony import */
 
 
-    var _index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! ./index-29df6f59.js */
-    "./node_modules/@ionic/core/dist/esm/index-29df6f59.js");
+    var _index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! ./index-821f9ab1.js */
+    "./node_modules/@ionic/core/dist/esm/index-821f9ab1.js");
     /* harmony import */
 
 
-    var _ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ./ionic-global-08f4fb8a.js */
-    "./node_modules/@ionic/core/dist/esm/ionic-global-08f4fb8a.js");
+    var _ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./ionic-global-f538b4cf.js */
+    "./node_modules/@ionic/core/dist/esm/ionic-global-f538b4cf.js");
     /* harmony import */
 
 
-    var _theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./theme-3f0b0c04.js */
-    "./node_modules/@ionic/core/dist/esm/theme-3f0b0c04.js");
+    var _index_79d74e0b_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./index-79d74e0b.js */
+    "./node_modules/@ionic/core/dist/esm/index-79d74e0b.js");
 
-    var cardIosCss = ":host{--ion-safe-area-left:0px;--ion-safe-area-right:0px;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:block;position:relative;background:var(--background);color:var(--color);font-family:var(--ion-font-family, inherit);overflow:hidden}:host(.ion-color){background:var(--ion-color-base);color:var(--ion-color-contrast)}:host(.card-disabled){cursor:default;opacity:0.3;pointer-events:none}.card-native{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-indent:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;display:block;width:100%;min-height:var(--min-height);-webkit-transition:var(--transition);transition:var(--transition);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);outline:none;background:inherit}.card-native::-moz-focus-inner{border:0}button,a{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-drag:none}ion-ripple-effect{color:var(--ripple-color)}:host{--background:var(--ion-item-background, var(--ion-background-color, #fff));--color:var(--ion-color-step-600, #666666);margin-left:16px;margin-right:16px;margin-top:24px;margin-bottom:24px;border-radius:8px;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transition:-webkit-transform 500ms cubic-bezier(0.12, 0.72, 0.29, 1);transition:-webkit-transform 500ms cubic-bezier(0.12, 0.72, 0.29, 1);transition:transform 500ms cubic-bezier(0.12, 0.72, 0.29, 1);transition:transform 500ms cubic-bezier(0.12, 0.72, 0.29, 1), -webkit-transform 500ms cubic-bezier(0.12, 0.72, 0.29, 1);font-size:14px;-webkit-box-shadow:0 4px 16px rgba(0, 0, 0, 0.12);box-shadow:0 4px 16px rgba(0, 0, 0, 0.12)}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host{margin-left:unset;margin-right:unset;-webkit-margin-start:16px;margin-inline-start:16px;-webkit-margin-end:16px;margin-inline-end:16px}}:host(.ion-activated){-webkit-transform:scale3d(0.97, 0.97, 1);transform:scale3d(0.97, 0.97, 1)}";
-    var cardMdCss = ":host{--ion-safe-area-left:0px;--ion-safe-area-right:0px;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:block;position:relative;background:var(--background);color:var(--color);font-family:var(--ion-font-family, inherit);overflow:hidden}:host(.ion-color){background:var(--ion-color-base);color:var(--ion-color-contrast)}:host(.card-disabled){cursor:default;opacity:0.3;pointer-events:none}.card-native{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-indent:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;display:block;width:100%;min-height:var(--min-height);-webkit-transition:var(--transition);transition:var(--transition);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);outline:none;background:inherit}.card-native::-moz-focus-inner{border:0}button,a{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-drag:none}ion-ripple-effect{color:var(--ripple-color)}:host{--background:var(--ion-item-background, var(--ion-background-color, #fff));--color:var(--ion-color-step-550, #737373);margin-left:10px;margin-right:10px;margin-top:10px;margin-bottom:10px;border-radius:4px;font-size:14px;-webkit-box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host{margin-left:unset;margin-right:unset;-webkit-margin-start:10px;margin-inline-start:10px;-webkit-margin-end:10px;margin-inline-end:10px}}";
-    /**
-     * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
-     *
-     * @part native - The native HTML button, anchor, or div element that wraps all child elements.
-     */
+    var infiniteScrollCss = "ion-infinite-scroll{display:none;width:100%}.infinite-scroll-enabled{display:block}";
 
-    var Card = /*#__PURE__*/function () {
-      function Card(hostRef) {
-        _classCallCheck(this, Card);
+    var InfiniteScroll = /*#__PURE__*/function () {
+      function InfiniteScroll(hostRef) {
+        var _this = this;
 
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        _classCallCheck(this, InfiniteScroll);
+
+        Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.ionInfinite = Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionInfinite", 7);
+        this.thrPx = 0;
+        this.thrPc = 0;
+        this.didFire = false;
+        this.isBusy = false;
+        this.isLoading = false;
         /**
-         * If `true`, a button tag will be rendered and the card will be tappable.
+         * The threshold distance from the bottom
+         * of the content to call the `infinite` output event when scrolled.
+         * The threshold value can be either a percent, or
+         * in pixels. For example, use the value of `10%` for the `infinite`
+         * output event to get called when the user has scrolled 10%
+         * from the bottom of the page. Use the value `100px` when the
+         * scroll is within 100 pixels from the bottom of the page.
          */
 
-        this.button = false;
+        this.threshold = '15%';
         /**
-         * The type of the button. Only used when an `onclick` or `button` property is present.
-         */
-
-        this.type = 'button';
-        /**
-         * If `true`, the user cannot interact with the card.
+         * If `true`, the infinite scroll will be hidden and scroll event listeners
+         * will be removed.
+         *
+         * Set this to true to disable the infinite scroll from actively
+         * trying to receive new data while scrolling. This is useful
+         * when it is known that there is no more data that can be added, and
+         * the infinite scroll is no longer needed.
          */
 
         this.disabled = false;
         /**
-         * When using a router, it specifies the transition direction when navigating to
-         * another page using `href`.
+         * The position of the infinite scroll element.
+         * The value can be either `top` or `bottom`.
          */
 
-        this.routerDirection = 'forward';
-      }
+        this.position = 'bottom';
 
-      _createClass(Card, [{
-        key: "isClickable",
-        value: function isClickable() {
-          return this.href !== undefined || this.button;
-        }
-      }, {
-        key: "renderCard",
-        value: function renderCard(mode) {
-          var clickable = this.isClickable();
+        this.onScroll = function () {
+          var scrollEl = _this.scrollEl;
 
-          if (!clickable) {
-            return [Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null)];
+          if (!scrollEl || !_this.canStart()) {
+            return 1;
           }
 
-          var href = this.href,
-              routerAnimation = this.routerAnimation,
-              routerDirection = this.routerDirection;
-          var TagType = clickable ? href === undefined ? 'button' : 'a' : 'div';
-          var attrs = TagType === 'button' ? {
-            type: this.type
-          } : {
-            download: this.download,
-            href: this.href,
-            rel: this.rel,
-            target: this.target
-          };
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(TagType, Object.assign({}, attrs, {
-            "class": "card-native",
-            part: "native",
-            disabled: this.disabled,
-            onClick: function onClick(ev) {
-              return Object(_theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_2__["o"])(href, ev, routerDirection, routerAnimation);
+          var infiniteHeight = _this.el.offsetHeight;
+
+          if (infiniteHeight === 0) {
+            // if there is no height of this element then do nothing
+            return 2;
+          }
+
+          var scrollTop = scrollEl.scrollTop;
+          var scrollHeight = scrollEl.scrollHeight;
+          var height = scrollEl.offsetHeight;
+          var threshold = _this.thrPc !== 0 ? height * _this.thrPc : _this.thrPx;
+          var distanceFromInfinite = _this.position === 'bottom' ? scrollHeight - infiniteHeight - scrollTop - threshold - height : scrollTop - infiniteHeight - threshold;
+
+          if (distanceFromInfinite < 0) {
+            if (!_this.didFire) {
+              _this.isLoading = true;
+              _this.didFire = true;
+
+              _this.ionInfinite.emit();
+
+              return 3;
             }
-          }), Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null), clickable && mode === 'md' && Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", null));
-        }
-      }, {
-        key: "render",
-        value: function render() {
-          var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-            "class": Object.assign(Object.assign(_defineProperty({}, mode, true), Object(_theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.color)), {
-              'card-disabled': this.disabled,
-              'ion-activatable': this.isClickable()
-            })
-          }, this.renderCard(mode));
-        }
-      }]);
+          } else {
+            _this.didFire = false;
+          }
 
-      return Card;
-    }();
-
-    Card.style = {
-      /*STENCIL:MODE:ios*/
-      ios: cardIosCss,
-
-      /*STENCIL:MODE:md*/
-      md: cardMdCss
-    };
-    var cardContentIosCss = "ion-card-content{display:block;position:relative}.card-content-ios{padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;font-size:16px;line-height:1.4}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.card-content-ios{padding-left:unset;padding-right:unset;-webkit-padding-start:20px;padding-inline-start:20px;-webkit-padding-end:20px;padding-inline-end:20px}}.card-content-ios h1{margin-left:0;margin-right:0;margin-top:0;margin-bottom:2px;font-size:24px;font-weight:normal}.card-content-ios h2{margin-left:0;margin-right:0;margin-top:2px;margin-bottom:2px;font-size:16px;font-weight:normal}.card-content-ios h3,.card-content-ios h4,.card-content-ios h5,.card-content-ios h6{margin-left:0;margin-right:0;margin-top:2px;margin-bottom:2px;font-size:14px;font-weight:normal}.card-content-ios p{margin-left:0;margin-right:0;margin-top:0;margin-bottom:2px;font-size:14px}ion-card-header+.card-content-ios{padding-top:0}";
-    var cardContentMdCss = "ion-card-content{display:block;position:relative}.card-content-md{padding-left:16px;padding-right:16px;padding-top:13px;padding-bottom:13px;font-size:14px;line-height:1.5}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.card-content-md{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}.card-content-md h1{margin-left:0;margin-right:0;margin-top:0;margin-bottom:2px;font-size:24px;font-weight:normal}.card-content-md h2{margin-left:0;margin-right:0;margin-top:2px;margin-bottom:2px;font-size:16px;font-weight:normal}.card-content-md h3,.card-content-md h4,.card-content-md h5,.card-content-md h6{margin-left:0;margin-right:0;margin-top:2px;margin-bottom:2px;font-size:14px;font-weight:normal}.card-content-md p{margin-left:0;margin-right:0;margin-top:0;margin-bottom:2px;font-size:14px;font-weight:normal;line-height:1.5}ion-card-header+.card-content-md{padding-top:0}";
-    /**
-     * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
-     */
-
-    var CardContent = /*#__PURE__*/function () {
-      function CardContent(hostRef) {
-        _classCallCheck(this, CardContent);
-
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+          return 4;
+        };
       }
 
-      _createClass(CardContent, [{
+      _createClass(InfiniteScroll, [{
+        key: "thresholdChanged",
+        value: function thresholdChanged() {
+          var val = this.threshold;
+
+          if (val.lastIndexOf('%') > -1) {
+            this.thrPx = 0;
+            this.thrPc = parseFloat(val) / 100;
+          } else {
+            this.thrPx = parseFloat(val);
+            this.thrPc = 0;
+          }
+        }
+      }, {
+        key: "disabledChanged",
+        value: function disabledChanged() {
+          var disabled = this.disabled;
+
+          if (disabled) {
+            this.isLoading = false;
+            this.isBusy = false;
+          }
+
+          this.enableScrollEvents(!disabled);
+        }
+      }, {
+        key: "connectedCallback",
+        value: function () {
+          var _connectedCallback = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this2 = this;
+
+            var contentEl;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    contentEl = this.el.closest('ion-content');
+
+                    if (contentEl) {
+                      _context.next = 4;
+                      break;
+                    }
+
+                    console.error('<ion-infinite-scroll> must be used inside an <ion-content>');
+                    return _context.abrupt("return");
+
+                  case 4:
+                    _context.next = 6;
+                    return contentEl.getScrollElement();
+
+                  case 6:
+                    this.scrollEl = _context.sent;
+                    this.thresholdChanged();
+                    this.disabledChanged();
+
+                    if (this.position === 'top') {
+                      Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["c"])(function () {
+                        if (_this2.scrollEl) {
+                          _this2.scrollEl.scrollTop = _this2.scrollEl.scrollHeight - _this2.scrollEl.clientHeight;
+                        }
+                      });
+                    }
+
+                  case 10:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          function connectedCallback() {
+            return _connectedCallback.apply(this, arguments);
+          }
+
+          return connectedCallback;
+        }()
+      }, {
+        key: "disconnectedCallback",
+        value: function disconnectedCallback() {
+          this.enableScrollEvents(false);
+          this.scrollEl = undefined;
+        }
+        /**
+         * Call `complete()` within the `ionInfinite` output event handler when
+         * your async operation has completed. For example, the `loading`
+         * state is while the app is performing an asynchronous operation,
+         * such as receiving more data from an AJAX request to add more items
+         * to a data list. Once the data has been received and UI updated, you
+         * then call this method to signify that the loading has completed.
+         * This method will change the infinite scroll's state from `loading`
+         * to `enabled`.
+         */
+
+      }, {
+        key: "complete",
+        value: function () {
+          var _complete = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var _this3 = this;
+
+            var scrollEl, prev;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    scrollEl = this.scrollEl;
+
+                    if (!(!this.isLoading || !scrollEl)) {
+                      _context2.next = 3;
+                      break;
+                    }
+
+                    return _context2.abrupt("return");
+
+                  case 3:
+                    this.isLoading = false;
+
+                    if (this.position === 'top') {
+                      /**
+                       * New content is being added at the top, but the scrollTop position stays the same,
+                       * which causes a scroll jump visually. This algorithm makes sure to prevent this.
+                       * (Frame 1)
+                       *    - complete() is called, but the UI hasn't had time to update yet.
+                       *    - Save the current content dimensions.
+                       *    - Wait for the next frame using _dom.read, so the UI will be updated.
+                       * (Frame 2)
+                       *    - Read the new content dimensions.
+                       *    - Calculate the height difference and the new scroll position.
+                       *    - Delay the scroll position change until other possible dom reads are done using _dom.write to be performant.
+                       * (Still frame 2, if I'm correct)
+                       *    - Change the scroll position (= visually maintain the scroll position).
+                       *    - Change the state to re-enable the InfiniteScroll.
+                       *    - This should be after changing the scroll position, or it could
+                       *    cause the InfiniteScroll to be triggered again immediately.
+                       * (Frame 3)
+                       *    Done.
+                       */
+                      this.isBusy = true; // ******** DOM READ ****************
+                      // Save the current content dimensions before the UI updates
+
+                      prev = scrollEl.scrollHeight - scrollEl.scrollTop; // ******** DOM READ ****************
+
+                      requestAnimationFrame(function () {
+                        Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["f"])(function () {
+                          // UI has updated, save the new content dimensions
+                          var scrollHeight = scrollEl.scrollHeight; // New content was added on top, so the scroll position should be changed immediately to prevent it from jumping around
+
+                          var newScrollTop = scrollHeight - prev; // ******** DOM WRITE ****************
+
+                          requestAnimationFrame(function () {
+                            Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["c"])(function () {
+                              scrollEl.scrollTop = newScrollTop;
+                              _this3.isBusy = false;
+                            });
+                          });
+                        });
+                      });
+                    }
+
+                  case 5:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+
+          function complete() {
+            return _complete.apply(this, arguments);
+          }
+
+          return complete;
+        }()
+      }, {
+        key: "canStart",
+        value: function canStart() {
+          return !this.disabled && !this.isBusy && !!this.scrollEl && !this.isLoading;
+        }
+      }, {
+        key: "enableScrollEvents",
+        value: function enableScrollEvents(shouldListen) {
+          if (this.scrollEl) {
+            if (shouldListen) {
+              this.scrollEl.addEventListener('scroll', this.onScroll);
+            } else {
+              this.scrollEl.removeEventListener('scroll', this.onScroll);
+            }
+          }
+        }
+      }, {
         key: "render",
         value: function render() {
           var _class;
 
-          var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-            "class": (_class = {}, _defineProperty(_class, mode, true), _defineProperty(_class, "card-content-".concat(mode), true), _class)
+          var mode = Object(_ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
+          var disabled = this.disabled;
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+            "class": (_class = {}, _defineProperty(_class, mode, true), _defineProperty(_class, 'infinite-scroll-loading', this.isLoading), _defineProperty(_class, 'infinite-scroll-enabled', !disabled), _class)
           });
         }
-      }]);
-
-      return CardContent;
-    }();
-
-    CardContent.style = {
-      /*STENCIL:MODE:ios*/
-      ios: cardContentIosCss,
-
-      /*STENCIL:MODE:md*/
-      md: cardContentMdCss
-    };
-    var cardHeaderIosCss = ":host{--background:transparent;--color:inherit;display:block;position:relative;background:var(--background);color:var(--color)}:host(.ion-color){background:var(--ion-color-base);color:var(--ion-color-contrast)}:host{padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:16px}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:20px;padding-inline-start:20px;-webkit-padding-end:20px;padding-inline-end:20px}}@supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))){:host(.card-header-translucent){background-color:rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.9);-webkit-backdrop-filter:saturate(180%) blur(30px);backdrop-filter:saturate(180%) blur(30px)}}";
-    var cardHeaderMdCss = ":host{--background:transparent;--color:inherit;display:block;position:relative;background:var(--background);color:var(--color)}:host(.ion-color){background:var(--ion-color-base);color:var(--ion-color-contrast)}:host{padding-left:16px;padding-right:16px;padding-top:16px;padding-bottom:16px}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}::slotted(ion-card-title:not(:first-child)),::slotted(ion-card-subtitle:not(:first-child)){margin-top:8px}";
-    /**
-     * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
-     */
-
-    var CardHeader = /*#__PURE__*/function () {
-      function CardHeader(hostRef) {
-        _classCallCheck(this, CardHeader);
-
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        /**
-         * If `true`, the card header will be translucent.
-         * Only applies when the mode is `"ios"` and the device supports
-         * [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility).
-         */
-
-        this.translucent = false;
-      }
-
-      _createClass(CardHeader, [{
-        key: "render",
-        value: function render() {
-          var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-            "class": Object.assign(Object.assign({}, Object(_theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.color)), _defineProperty({
-              'card-header-translucent': this.translucent,
-              'ion-inherit-color': true
-            }, mode, true))
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null));
+      }, {
+        key: "el",
+        get: function get() {
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this);
+        }
+      }], [{
+        key: "watchers",
+        get: function get() {
+          return {
+            "threshold": ["thresholdChanged"],
+            "disabled": ["disabledChanged"]
+          };
         }
       }]);
 
-      return CardHeader;
+      return InfiniteScroll;
     }();
 
-    CardHeader.style = {
-      /*STENCIL:MODE:ios*/
-      ios: cardHeaderIosCss,
+    InfiniteScroll.style = infiniteScrollCss;
+    var infiniteScrollContentIosCss = "ion-infinite-scroll-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center;min-height:84px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.infinite-loading{margin-left:0;margin-right:0;margin-top:0;margin-bottom:32px;display:none;width:100%}.infinite-loading-text{margin-left:32px;margin-right:32px;margin-top:4px;margin-bottom:0}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.infinite-loading-text{margin-left:unset;margin-right:unset;-webkit-margin-start:32px;margin-inline-start:32px;-webkit-margin-end:32px;margin-inline-end:32px}}.infinite-scroll-loading ion-infinite-scroll-content>.infinite-loading{display:block}.infinite-scroll-content-ios .infinite-loading-text{color:var(--ion-color-step-600, #666666)}.infinite-scroll-content-ios .infinite-loading-spinner .spinner-lines-ios line,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-lines-small-ios line,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-crescent circle{stroke:var(--ion-color-step-600, #666666)}.infinite-scroll-content-ios .infinite-loading-spinner .spinner-bubbles circle,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-circles circle,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-dots circle{fill:var(--ion-color-step-600, #666666)}";
+    var infiniteScrollContentMdCss = "ion-infinite-scroll-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center;min-height:84px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.infinite-loading{margin-left:0;margin-right:0;margin-top:0;margin-bottom:32px;display:none;width:100%}.infinite-loading-text{margin-left:32px;margin-right:32px;margin-top:4px;margin-bottom:0}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.infinite-loading-text{margin-left:unset;margin-right:unset;-webkit-margin-start:32px;margin-inline-start:32px;-webkit-margin-end:32px;margin-inline-end:32px}}.infinite-scroll-loading ion-infinite-scroll-content>.infinite-loading{display:block}.infinite-scroll-content-md .infinite-loading-text{color:var(--ion-color-step-600, #666666)}.infinite-scroll-content-md .infinite-loading-spinner .spinner-lines-md line,.infinite-scroll-content-md .infinite-loading-spinner .spinner-lines-small-md line,.infinite-scroll-content-md .infinite-loading-spinner .spinner-crescent circle{stroke:var(--ion-color-step-600, #666666)}.infinite-scroll-content-md .infinite-loading-spinner .spinner-bubbles circle,.infinite-scroll-content-md .infinite-loading-spinner .spinner-circles circle,.infinite-scroll-content-md .infinite-loading-spinner .spinner-dots circle{fill:var(--ion-color-step-600, #666666)}";
 
-      /*STENCIL:MODE:md*/
-      md: cardHeaderMdCss
-    };
-    var cardSubtitleIosCss = ":host{display:block;position:relative;color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}:host{--color:var(--ion-color-step-600, #666666);margin-left:0;margin-right:0;margin-top:0;margin-bottom:4px;padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;font-size:12px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase}";
-    var cardSubtitleMdCss = ":host{display:block;position:relative;color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}:host{--color:var(--ion-color-step-550, #737373);margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;font-size:14px;font-weight:500}";
-    /**
-     * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
-     */
+    var InfiniteScrollContent = /*#__PURE__*/function () {
+      function InfiniteScrollContent(hostRef) {
+        _classCallCheck(this, InfiniteScrollContent);
 
-    var CardSubtitle = /*#__PURE__*/function () {
-      function CardSubtitle(hostRef) {
-        _classCallCheck(this, CardSubtitle);
-
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
       }
 
-      _createClass(CardSubtitle, [{
+      _createClass(InfiniteScrollContent, [{
+        key: "componentDidLoad",
+        value: function componentDidLoad() {
+          if (this.loadingSpinner === undefined) {
+            var mode = Object(_ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
+            this.loadingSpinner = _ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__["c"].get('infiniteLoadingSpinner', _ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__["c"].get('spinner', mode === 'ios' ? 'lines' : 'crescent'));
+          }
+        }
+      }, {
         key: "render",
         value: function render() {
-          var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-            role: "heading",
-            "aria-level": "3",
-            "class": Object.assign(Object.assign({}, Object(_theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.color)), _defineProperty({
-              'ion-inherit-color': true
-            }, mode, true))
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null));
+          var _class2;
+
+          var mode = Object(_ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+            "class": (_class2 = {}, _defineProperty(_class2, mode, true), _defineProperty(_class2, "infinite-scroll-content-".concat(mode), true), _class2)
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "infinite-loading"
+          }, this.loadingSpinner && Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "infinite-loading-spinner"
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-spinner", {
+            name: this.loadingSpinner
+          })), this.loadingText && Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "infinite-loading-text",
+            innerHTML: Object(_index_79d74e0b_js__WEBPACK_IMPORTED_MODULE_2__["s"])(this.loadingText)
+          })));
         }
       }]);
 
-      return CardSubtitle;
+      return InfiniteScrollContent;
     }();
 
-    CardSubtitle.style = {
-      /*STENCIL:MODE:ios*/
-      ios: cardSubtitleIosCss,
-
-      /*STENCIL:MODE:md*/
-      md: cardSubtitleMdCss
-    };
-    var cardTitleIosCss = ":host{display:block;position:relative;color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}:host{--color:var(--ion-text-color, #000);margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;font-size:28px;font-weight:700;line-height:1.2}";
-    var cardTitleMdCss = ":host{display:block;position:relative;color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}:host{--color:var(--ion-color-step-850, #262626);margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;font-size:20px;font-weight:500;line-height:1.2}";
-    /**
-     * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
-     */
-
-    var CardTitle = /*#__PURE__*/function () {
-      function CardTitle(hostRef) {
-        _classCallCheck(this, CardTitle);
-
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-      }
-
-      _createClass(CardTitle, [{
-        key: "render",
-        value: function render() {
-          var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-            role: "heading",
-            "aria-level": "2",
-            "class": Object.assign(Object.assign({}, Object(_theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.color)), _defineProperty({
-              'ion-inherit-color': true
-            }, mode, true))
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null));
-        }
-      }]);
-
-      return CardTitle;
-    }();
-
-    CardTitle.style = {
-      /*STENCIL:MODE:ios*/
-      ios: cardTitleIosCss,
-
-      /*STENCIL:MODE:md*/
-      md: cardTitleMdCss
+    InfiniteScrollContent.style = {
+      ios: infiniteScrollContentIosCss,
+      md: infiniteScrollContentMdCss
     };
     /***/
   }

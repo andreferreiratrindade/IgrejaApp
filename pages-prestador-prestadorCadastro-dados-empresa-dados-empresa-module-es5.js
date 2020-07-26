@@ -21,7 +21,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Dados da Empresa\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <ion-card>\n    <form [formGroup]=\"formulario\">\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Razão Social <ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n\n        <ion-input type=\"text\" formControlName=\"razaoSocial\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Telefone<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n\n        <ion-input type=\"number\" [brmasker]=\"{phone: true}\" formControlName=\"telefone\" clearInput autocapitalize=\"off\">\n        </ion-input>\n      </ion-item>\n\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Cep<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"number\" maxlength=\"8\" formControlName=\"cep\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n\n\n      <ion-chip color=\"tertiary\" (click)=\"submitError='';buscarEnderecoPorCEP()\" size=\"6\">\n        <ion-label>Buscar Endereço</ion-label>\n        <ion-icon name=\"search-outline\"></ion-icon>\n      </ion-chip>\n      <ion-item class=\"input-item\">\n        <ion-label class=\"ion-text-wrap\" *ngIf=\"formulario.value.logradouro\">\n          <p>{{formulario.value.logradouro}}, {{formulario.value.bairro}} - {{formulario.value.cidade}} /\n            {{formulario.value.uf}}</p>\n        </ion-label>\n      </ion-item>\n    </form>\n    </ion-card>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col class=\"ion-align-self-end\">\n          <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\">Prosseguir</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Dados da Empresa\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <ion-card>\n    <form [formGroup]=\"formulario\">\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Razão Social <ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n\n        <ion-input type=\"text\" formControlName=\"razaoSocial\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Telefone<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n\n        <ion-input type=\"number\"  formControlName=\"telefone\" clearInput autocapitalize=\"off\">\n        </ion-input>\n      </ion-item>\n\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Cep<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"number\" maxlength=\"8\" formControlName=\"cep\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n\n\n      <ion-chip color=\"tertiary\" (click)=\"buscarEnderecoPorCEP()\" size=\"6\">\n        <ion-label>Buscar Endereço</ion-label>\n        <ion-icon name=\"search-outline\"></ion-icon>\n      </ion-chip>\n      <ion-item class=\"input-item\">\n        <ion-label class=\"ion-text-wrap\" *ngIf=\"formulario.value.logradouro\">\n          <p>{{formulario.value.logradouro}}, {{formulario.value.bairro}} - {{formulario.value.cidade}} /\n            {{formulario.value.uf}}</p>\n        </ion-label>\n      </ion-item>\n    </form>\n    </ion-card>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col class=\"ion-align-self-end\">\n          <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\">Prosseguir</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>";
     /***/
   },
 
@@ -68,6 +68,60 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }]);
 
       return HandlerError;
+    }();
+    /***/
+
+  },
+
+  /***/
+  "./src/app/helpers/toastCustom.ts":
+  /*!****************************************!*\
+    !*** ./src/app/helpers/toastCustom.ts ***!
+    \****************************************/
+
+  /*! exports provided: ToastCustom */
+
+  /***/
+  function srcAppHelpersToastCustomTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ToastCustom", function () {
+      return ToastCustom;
+    });
+
+    var ToastCustom = /*#__PURE__*/function () {
+      function ToastCustom() {
+        _classCallCheck(this, ToastCustom);
+      }
+
+      _createClass(ToastCustom, null, [{
+        key: "errorToast",
+        value: function errorToast(msg, toastCtrl) {
+          this.CustomToast(toastCtrl, msg, "danger", 4000);
+        }
+      }, {
+        key: "SucessoToast",
+        value: function SucessoToast(toastCtrl) {
+          this.CustomToast(toastCtrl, "Operação realizada com sucesso.", "success", 4000);
+        }
+      }, {
+        key: "CustomToast",
+        value: function CustomToast(toastCtrl, message, color, duration) {
+          toastCtrl.create({
+            message: message,
+            duration: duration,
+            color: color
+          }).then(function (x) {
+            x.present();
+          });
+        }
+      }]);
+
+      return ToastCustom;
     }();
     /***/
 

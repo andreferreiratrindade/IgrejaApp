@@ -12,161 +12,125 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[27], {
   /***/
-  "./node_modules/@ionic/core/dist/esm/ion-infinite-scroll_2-md.entry.js":
-  /*!*****************************************************************************!*\
-    !*** ./node_modules/@ionic/core/dist/esm/ion-infinite-scroll_2-md.entry.js ***!
-    \*****************************************************************************/
+  "./node_modules/@ionic/core/dist/esm/ion-reorder_2.entry.js":
+  /*!******************************************************************!*\
+    !*** ./node_modules/@ionic/core/dist/esm/ion-reorder_2.entry.js ***!
+    \******************************************************************/
 
-  /*! exports provided: ion_infinite_scroll, ion_infinite_scroll_content */
+  /*! exports provided: ion_reorder, ion_reorder_group */
 
   /***/
-  function node_modulesIonicCoreDistEsmIonInfiniteScroll_2MdEntryJs(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesIonicCoreDistEsmIonReorder_2EntryJs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_infinite_scroll", function () {
-      return InfiniteScroll;
+    __webpack_require__.d(__webpack_exports__, "ion_reorder", function () {
+      return Reorder;
     });
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_infinite_scroll_content", function () {
-      return InfiniteScrollContent;
+    __webpack_require__.d(__webpack_exports__, "ion_reorder_group", function () {
+      return ReorderGroup;
     });
     /* harmony import */
 
 
-    var _index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! ./index-29df6f59.js */
-    "./node_modules/@ionic/core/dist/esm/index-29df6f59.js");
+    var _index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! ./index-821f9ab1.js */
+    "./node_modules/@ionic/core/dist/esm/index-821f9ab1.js");
     /* harmony import */
 
 
-    var _ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ./ionic-global-08f4fb8a.js */
-    "./node_modules/@ionic/core/dist/esm/ionic-global-08f4fb8a.js");
+    var _ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./ionic-global-f538b4cf.js */
+    "./node_modules/@ionic/core/dist/esm/ionic-global-f538b4cf.js");
     /* harmony import */
 
 
-    var _index_79d74e0b_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./index-79d74e0b.js */
-    "./node_modules/@ionic/core/dist/esm/index-79d74e0b.js");
+    var _haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./haptic-7b8ba70a.js */
+    "./node_modules/@ionic/core/dist/esm/haptic-7b8ba70a.js");
 
-    var infiniteScrollCss = "ion-infinite-scroll{display:none;width:100%}.infinite-scroll-enabled{display:block}";
+    var reorderIosCss = ":host([slot]){display:none;line-height:0;z-index:100}.reorder-icon{display:block;font-size:22px}.reorder-icon{font-size:34px;opacity:0.4}";
+    var reorderMdCss = ":host([slot]){display:none;line-height:0;z-index:100}.reorder-icon{display:block;font-size:22px}.reorder-icon{font-size:31px;opacity:0.3}";
 
-    var InfiniteScroll = /*#__PURE__*/function () {
-      function InfiniteScroll(hostRef) {
-        var _this = this;
+    var Reorder = /*#__PURE__*/function () {
+      function Reorder(hostRef) {
+        _classCallCheck(this, Reorder);
 
-        _classCallCheck(this, InfiniteScroll);
-
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.thrPx = 0;
-        this.thrPc = 0;
-        this.didFire = false;
-        this.isBusy = false;
-        this.isLoading = false;
-        /**
-         * The threshold distance from the bottom
-         * of the content to call the `infinite` output event when scrolled.
-         * The threshold value can be either a percent, or
-         * in pixels. For example, use the value of `10%` for the `infinite`
-         * output event to get called when the user has scrolled 10%
-         * from the bottom of the page. Use the value `100px` when the
-         * scroll is within 100 pixels from the bottom of the page.
-         */
-
-        this.threshold = '15%';
-        /**
-         * If `true`, the infinite scroll will be hidden and scroll event listeners
-         * will be removed.
-         *
-         * Set this to true to disable the infinite scroll from actively
-         * trying to receive new data while scrolling. This is useful
-         * when it is known that there is no more data that can be added, and
-         * the infinite scroll is no longer needed.
-         */
-
-        this.disabled = false;
-        /**
-         * The position of the infinite scroll element.
-         * The value can be either `top` or `bottom`.
-         */
-
-        this.position = 'bottom';
-
-        this.onScroll = function () {
-          var scrollEl = _this.scrollEl;
-
-          if (!scrollEl || !_this.canStart()) {
-            return 1;
-          }
-
-          var infiniteHeight = _this.el.offsetHeight;
-
-          if (infiniteHeight === 0) {
-            // if there is no height of this element then do nothing
-            return 2;
-          }
-
-          var scrollTop = scrollEl.scrollTop;
-          var scrollHeight = scrollEl.scrollHeight;
-          var height = scrollEl.offsetHeight;
-          var threshold = _this.thrPc !== 0 ? height * _this.thrPc : _this.thrPx;
-          var distanceFromInfinite = _this.position === 'bottom' ? scrollHeight - infiniteHeight - scrollTop - threshold - height : scrollTop - infiniteHeight - threshold;
-
-          if (distanceFromInfinite < 0) {
-            if (!_this.didFire) {
-              _this.isLoading = true;
-              _this.didFire = true;
-
-              _this.ionInfinite.emit();
-
-              return 3;
-            }
-          } else {
-            _this.didFire = false;
-          }
-
-          return 4;
-        };
-
-        this.ionInfinite = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionInfinite", 7);
+        Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
       }
 
-      _createClass(InfiniteScroll, [{
-        key: "thresholdChanged",
-        value: function thresholdChanged() {
-          var val = this.threshold;
-
-          if (val.lastIndexOf('%') > -1) {
-            this.thrPx = 0;
-            this.thrPc = parseFloat(val) / 100;
-          } else {
-            this.thrPx = parseFloat(val);
-            this.thrPc = 0;
-          }
+      _createClass(Reorder, [{
+        key: "onClick",
+        value: function onClick(ev) {
+          ev.preventDefault();
+          ev.stopImmediatePropagation();
         }
       }, {
+        key: "render",
+        value: function render() {
+          var mode = Object(_ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
+          var reorderIcon = mode === 'ios' ? 'reorder-three-outline' : 'reorder-two-sharp';
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+            "class": mode
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", {
+            name: reorderIcon,
+            lazy: false,
+            "class": "reorder-icon",
+            part: "icon"
+          })));
+        }
+      }]);
+
+      return Reorder;
+    }();
+
+    Reorder.style = {
+      ios: reorderIosCss,
+      md: reorderMdCss
+    };
+    var reorderGroupCss = ".reorder-list-active>*{-webkit-transition:-webkit-transform 300ms;transition:-webkit-transform 300ms;transition:transform 300ms;transition:transform 300ms, -webkit-transform 300ms;will-change:transform}.reorder-enabled{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.reorder-enabled ion-reorder{display:block;cursor:-webkit-grab;cursor:grab;pointer-events:all;-ms-touch-action:none;touch-action:none}.reorder-selected,.reorder-selected ion-reorder{cursor:-webkit-grabbing;cursor:grabbing}.reorder-selected{position:relative;-webkit-transition:none !important;transition:none !important;-webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.4);box-shadow:0 0 10px rgba(0, 0, 0, 0.4);opacity:0.8;z-index:100}.reorder-visible ion-reorder .reorder-icon{-webkit-transform:translate3d(0,  0,  0);transform:translate3d(0,  0,  0)}";
+
+    var ReorderGroup = /*#__PURE__*/function () {
+      function ReorderGroup(hostRef) {
+        _classCallCheck(this, ReorderGroup);
+
+        Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.ionItemReorder = Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionItemReorder", 7);
+        this.lastToIndex = -1;
+        this.cachedHeights = [];
+        this.scrollElTop = 0;
+        this.scrollElBottom = 0;
+        this.scrollElInitial = 0;
+        this.containerTop = 0;
+        this.containerBottom = 0;
+        this.state = 0
+        /* Idle */
+        ;
+        /**
+         * If `true`, the reorder will be hidden.
+         */
+
+        this.disabled = true;
+      }
+
+      _createClass(ReorderGroup, [{
         key: "disabledChanged",
         value: function disabledChanged() {
-          var disabled = this.disabled;
-
-          if (disabled) {
-            this.isLoading = false;
-            this.isBusy = false;
+          if (this.gesture) {
+            this.gesture.enable(!this.disabled);
           }
-
-          this.enableScrollEvents(!disabled);
         }
       }, {
         key: "connectedCallback",
         value: function () {
           var _connectedCallback = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var _this2 = this;
+            var _this = this;
 
             var contentEl;
             return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -175,32 +139,47 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   case 0:
                     contentEl = this.el.closest('ion-content');
 
-                    if (contentEl) {
-                      _context.next = 4;
+                    if (!contentEl) {
+                      _context.next = 5;
                       break;
                     }
 
-                    console.error('<ion-infinite-scroll> must be used inside an <ion-content>');
-                    return _context.abrupt("return");
-
-                  case 4:
-                    _context.next = 6;
+                    _context.next = 4;
                     return contentEl.getScrollElement();
 
-                  case 6:
+                  case 4:
                     this.scrollEl = _context.sent;
-                    this.thresholdChanged();
+
+                  case 5:
+                    _context.next = 7;
+                    return Promise.resolve().then(__webpack_require__.bind(null,
+                    /*! ./index-eea61379.js */
+                    "./node_modules/@ionic/core/dist/esm/index-eea61379.js"));
+
+                  case 7:
+                    this.gesture = _context.sent.createGesture({
+                      el: this.el,
+                      gestureName: 'reorder',
+                      gesturePriority: 110,
+                      threshold: 0,
+                      direction: 'y',
+                      passive: false,
+                      canStart: function canStart(detail) {
+                        return _this.canStart(detail);
+                      },
+                      onStart: function onStart(ev) {
+                        return _this.onStart(ev);
+                      },
+                      onMove: function onMove(ev) {
+                        return _this.onMove(ev);
+                      },
+                      onEnd: function onEnd() {
+                        return _this.onEnd();
+                      }
+                    });
                     this.disabledChanged();
 
-                    if (this.position === 'top') {
-                      Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["w"])(function () {
-                        if (_this2.scrollEl) {
-                          _this2.scrollEl.scrollTop = _this2.scrollEl.scrollHeight - _this2.scrollEl.clientHeight;
-                        }
-                      });
-                    }
-
-                  case 10:
+                  case 9:
                   case "end":
                     return _context.stop();
                 }
@@ -217,194 +196,315 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "disconnectedCallback",
         value: function disconnectedCallback() {
-          this.enableScrollEvents(false);
-          this.scrollEl = undefined;
+          this.onEnd();
+
+          if (this.gesture) {
+            this.gesture.destroy();
+            this.gesture = undefined;
+          }
         }
         /**
-         * Call `complete()` within the `ionInfinite` output event handler when
-         * your async operation has completed. For example, the `loading`
-         * state is while the app is performing an asynchronous operation,
-         * such as receiving more data from an AJAX request to add more items
-         * to a data list. Once the data has been received and UI updated, you
-         * then call this method to signify that the loading has completed.
-         * This method will change the infinite scroll's state from `loading`
-         * to `enabled`.
+         * Completes the reorder operation. Must be called by the `ionItemReorder` event.
+         *
+         * If a list of items is passed, the list will be reordered and returned in the
+         * proper order.
+         *
+         * If no parameters are passed or if `true` is passed in, the reorder will complete
+         * and the item will remain in the position it was dragged to. If `false` is passed,
+         * the reorder will complete and the item will bounce back to its original position.
+         *
+         * @param listOrReorder A list of items to be sorted and returned in the new order or a
+         * boolean of whether or not the reorder should reposition the item.
          */
 
       }, {
         key: "complete",
-        value: function () {
-          var _complete = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-            var _this3 = this;
-
-            var scrollEl, prev;
-            return regeneratorRuntime.wrap(function _callee2$(_context2) {
-              while (1) {
-                switch (_context2.prev = _context2.next) {
-                  case 0:
-                    scrollEl = this.scrollEl;
-
-                    if (!(!this.isLoading || !scrollEl)) {
-                      _context2.next = 3;
-                      break;
-                    }
-
-                    return _context2.abrupt("return");
-
-                  case 3:
-                    this.isLoading = false;
-
-                    if (this.position === 'top') {
-                      /**
-                       * New content is being added at the top, but the scrollTop position stays the same,
-                       * which causes a scroll jump visually. This algorithm makes sure to prevent this.
-                       * (Frame 1)
-                       *    - complete() is called, but the UI hasn't had time to update yet.
-                       *    - Save the current content dimensions.
-                       *    - Wait for the next frame using _dom.read, so the UI will be updated.
-                       * (Frame 2)
-                       *    - Read the new content dimensions.
-                       *    - Calculate the height difference and the new scroll position.
-                       *    - Delay the scroll position change until other possible dom reads are done using _dom.write to be performant.
-                       * (Still frame 2, if I'm correct)
-                       *    - Change the scroll position (= visually maintain the scroll position).
-                       *    - Change the state to re-enable the InfiniteScroll.
-                       *    - This should be after changing the scroll position, or it could
-                       *    cause the InfiniteScroll to be triggered again immediately.
-                       * (Frame 3)
-                       *    Done.
-                       */
-                      this.isBusy = true; // ******** DOM READ ****************
-                      // Save the current content dimensions before the UI updates
-
-                      prev = scrollEl.scrollHeight - scrollEl.scrollTop; // ******** DOM READ ****************
-
-                      requestAnimationFrame(function () {
-                        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["d"])(function () {
-                          // UI has updated, save the new content dimensions
-                          var scrollHeight = scrollEl.scrollHeight; // New content was added on top, so the scroll position should be changed immediately to prevent it from jumping around
-
-                          var newScrollTop = scrollHeight - prev; // ******** DOM WRITE ****************
-
-                          requestAnimationFrame(function () {
-                            Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["w"])(function () {
-                              scrollEl.scrollTop = newScrollTop;
-                              _this3.isBusy = false;
-                            });
-                          });
-                        });
-                      });
-                    }
-
-                  case 5:
-                  case "end":
-                    return _context2.stop();
-                }
-              }
-            }, _callee2, this);
-          }));
-
-          function complete() {
-            return _complete.apply(this, arguments);
-          }
-
-          return complete;
-        }()
-      }, {
-        key: "canStart",
-        value: function canStart() {
-          return !this.disabled && !this.isBusy && !!this.scrollEl && !this.isLoading;
+        value: function complete(listOrReorder) {
+          return Promise.resolve(this.completeSync(listOrReorder));
         }
       }, {
-        key: "enableScrollEvents",
-        value: function enableScrollEvents(shouldListen) {
+        key: "canStart",
+        value: function canStart(ev) {
+          if (this.selectedItemEl || this.state !== 0
+          /* Idle */
+          ) {
+              return false;
+            }
+
+          var target = ev.event.target;
+          var reorderEl = target.closest('ion-reorder');
+
+          if (!reorderEl) {
+            return false;
+          }
+
+          var item = findReorderItem(reorderEl, this.el);
+
+          if (!item) {
+            return false;
+          }
+
+          ev.data = item;
+          return true;
+        }
+      }, {
+        key: "onStart",
+        value: function onStart(ev) {
+          ev.event.preventDefault();
+          var item = this.selectedItemEl = ev.data;
+          var heights = this.cachedHeights;
+          heights.length = 0;
+          var el = this.el;
+          var children = el.children;
+
+          if (!children || children.length === 0) {
+            return;
+          }
+
+          var sum = 0;
+
+          for (var i = 0; i < children.length; i++) {
+            var child = children[i];
+            sum += child.offsetHeight;
+            heights.push(sum);
+            child.$ionIndex = i;
+          }
+
+          var box = el.getBoundingClientRect();
+          this.containerTop = box.top;
+          this.containerBottom = box.bottom;
+
           if (this.scrollEl) {
-            if (shouldListen) {
-              this.scrollEl.addEventListener('scroll', this.onScroll);
-            } else {
-              this.scrollEl.removeEventListener('scroll', this.onScroll);
+            var scrollBox = this.scrollEl.getBoundingClientRect();
+            this.scrollElInitial = this.scrollEl.scrollTop;
+            this.scrollElTop = scrollBox.top + AUTO_SCROLL_MARGIN;
+            this.scrollElBottom = scrollBox.bottom - AUTO_SCROLL_MARGIN;
+          } else {
+            this.scrollElInitial = 0;
+            this.scrollElTop = 0;
+            this.scrollElBottom = 0;
+          }
+
+          this.lastToIndex = indexForItem(item);
+          this.selectedItemHeight = item.offsetHeight;
+          this.state = 1
+          /* Active */
+          ;
+          item.classList.add(ITEM_REORDER_SELECTED);
+          Object(_haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_2__["a"])();
+        }
+      }, {
+        key: "onMove",
+        value: function onMove(ev) {
+          var selectedItem = this.selectedItemEl;
+
+          if (!selectedItem) {
+            return;
+          } // Scroll if we reach the scroll margins
+
+
+          var scroll = this.autoscroll(ev.currentY); // // Get coordinate
+
+          var top = this.containerTop - scroll;
+          var bottom = this.containerBottom - scroll;
+          var currentY = Math.max(top, Math.min(ev.currentY, bottom));
+          var deltaY = scroll + currentY - ev.startY;
+          var normalizedY = currentY - top;
+          var toIndex = this.itemIndexForTop(normalizedY);
+
+          if (toIndex !== this.lastToIndex) {
+            var fromIndex = indexForItem(selectedItem);
+            this.lastToIndex = toIndex;
+            Object(_haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_2__["b"])();
+            this.reorderMove(fromIndex, toIndex);
+          } // Update selected item position
+
+
+          selectedItem.style.transform = "translateY(".concat(deltaY, "px)");
+        }
+      }, {
+        key: "onEnd",
+        value: function onEnd() {
+          var selectedItemEl = this.selectedItemEl;
+          this.state = 2
+          /* Complete */
+          ;
+
+          if (!selectedItemEl) {
+            this.state = 0
+            /* Idle */
+            ;
+            return;
+          }
+
+          var toIndex = this.lastToIndex;
+          var fromIndex = indexForItem(selectedItemEl);
+
+          if (toIndex === fromIndex) {
+            this.completeSync();
+          } else {
+            this.ionItemReorder.emit({
+              from: fromIndex,
+              to: toIndex,
+              complete: this.completeSync.bind(this)
+            });
+          }
+
+          Object(_haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_2__["h"])();
+        }
+      }, {
+        key: "completeSync",
+        value: function completeSync(listOrReorder) {
+          var selectedItemEl = this.selectedItemEl;
+
+          if (selectedItemEl && this.state === 2
+          /* Complete */
+          ) {
+              var children = this.el.children;
+              var len = children.length;
+              var toIndex = this.lastToIndex;
+              var fromIndex = indexForItem(selectedItemEl);
+
+              if (toIndex !== fromIndex && (listOrReorder === undefined || listOrReorder === true)) {
+                var ref = fromIndex < toIndex ? children[toIndex + 1] : children[toIndex];
+                this.el.insertBefore(selectedItemEl, ref);
+              }
+
+              if (Array.isArray(listOrReorder)) {
+                listOrReorder = reorderArray(listOrReorder, fromIndex, toIndex);
+              }
+
+              for (var i = 0; i < len; i++) {
+                children[i].style['transform'] = '';
+              }
+
+              selectedItemEl.style.transition = '';
+              selectedItemEl.classList.remove(ITEM_REORDER_SELECTED);
+              this.selectedItemEl = undefined;
+              this.state = 0
+              /* Idle */
+              ;
+            }
+
+          return listOrReorder;
+        }
+      }, {
+        key: "itemIndexForTop",
+        value: function itemIndexForTop(deltaY) {
+          var heights = this.cachedHeights;
+          var i = 0; // TODO: since heights is a sorted array of integers, we can do
+          // speed up the search using binary search. Remember that linear-search is still
+          // faster than binary-search for small arrays (<64) due CPU branch misprediction.
+
+          for (i = 0; i < heights.length; i++) {
+            if (heights[i] > deltaY) {
+              break;
             }
           }
+
+          return i;
+        }
+        /********* DOM WRITE ********* */
+
+      }, {
+        key: "reorderMove",
+        value: function reorderMove(fromIndex, toIndex) {
+          var itemHeight = this.selectedItemHeight;
+          var children = this.el.children;
+
+          for (var i = 0; i < children.length; i++) {
+            var style = children[i].style;
+            var value = '';
+
+            if (i > fromIndex && i <= toIndex) {
+              value = "translateY(".concat(-itemHeight, "px)");
+            } else if (i < fromIndex && i >= toIndex) {
+              value = "translateY(".concat(itemHeight, "px)");
+            }
+
+            style['transform'] = value;
+          }
+        }
+      }, {
+        key: "autoscroll",
+        value: function autoscroll(posY) {
+          if (!this.scrollEl) {
+            return 0;
+          }
+
+          var amount = 0;
+
+          if (posY < this.scrollElTop) {
+            amount = -SCROLL_JUMP;
+          } else if (posY > this.scrollElBottom) {
+            amount = SCROLL_JUMP;
+          }
+
+          if (amount !== 0) {
+            this.scrollEl.scrollBy(0, amount);
+          }
+
+          return this.scrollEl.scrollTop - this.scrollElInitial;
         }
       }, {
         key: "render",
         value: function render() {
           var _class;
 
-          var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-          var disabled = this.disabled;
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-            "class": (_class = {}, _defineProperty(_class, mode, true), _defineProperty(_class, 'infinite-scroll-loading', this.isLoading), _defineProperty(_class, 'infinite-scroll-enabled', !disabled), _class)
+          var mode = Object(_ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+            "class": (_class = {}, _defineProperty(_class, mode, true), _defineProperty(_class, 'reorder-enabled', !this.disabled), _defineProperty(_class, 'reorder-list-active', this.state !== 0), _class)
           });
         }
       }, {
         key: "el",
         get: function get() {
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this);
         }
       }], [{
         key: "watchers",
         get: function get() {
           return {
-            "threshold": ["thresholdChanged"],
             "disabled": ["disabledChanged"]
           };
         }
       }]);
 
-      return InfiniteScroll;
+      return ReorderGroup;
     }();
 
-    InfiniteScroll.style = infiniteScrollCss;
-    var infiniteScrollContentIosCss = "ion-infinite-scroll-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center;min-height:84px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.infinite-loading{margin-left:0;margin-right:0;margin-top:0;margin-bottom:32px;display:none;width:100%}.infinite-loading-text{margin-left:32px;margin-right:32px;margin-top:4px;margin-bottom:0}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.infinite-loading-text{margin-left:unset;margin-right:unset;-webkit-margin-start:32px;margin-inline-start:32px;-webkit-margin-end:32px;margin-inline-end:32px}}.infinite-scroll-loading ion-infinite-scroll-content>.infinite-loading{display:block}.infinite-scroll-content-ios .infinite-loading-text{color:var(--ion-color-step-600, #666666)}.infinite-scroll-content-ios .infinite-loading-spinner .spinner-lines-ios line,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-lines-small-ios line,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-crescent circle{stroke:var(--ion-color-step-600, #666666)}.infinite-scroll-content-ios .infinite-loading-spinner .spinner-bubbles circle,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-circles circle,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-dots circle{fill:var(--ion-color-step-600, #666666)}";
-    var infiniteScrollContentMdCss = "ion-infinite-scroll-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center;min-height:84px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.infinite-loading{margin-left:0;margin-right:0;margin-top:0;margin-bottom:32px;display:none;width:100%}.infinite-loading-text{margin-left:32px;margin-right:32px;margin-top:4px;margin-bottom:0}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){.infinite-loading-text{margin-left:unset;margin-right:unset;-webkit-margin-start:32px;margin-inline-start:32px;-webkit-margin-end:32px;margin-inline-end:32px}}.infinite-scroll-loading ion-infinite-scroll-content>.infinite-loading{display:block}.infinite-scroll-content-md .infinite-loading-text{color:var(--ion-color-step-600, #666666)}.infinite-scroll-content-md .infinite-loading-spinner .spinner-lines-md line,.infinite-scroll-content-md .infinite-loading-spinner .spinner-lines-small-md line,.infinite-scroll-content-md .infinite-loading-spinner .spinner-crescent circle{stroke:var(--ion-color-step-600, #666666)}.infinite-scroll-content-md .infinite-loading-spinner .spinner-bubbles circle,.infinite-scroll-content-md .infinite-loading-spinner .spinner-circles circle,.infinite-scroll-content-md .infinite-loading-spinner .spinner-dots circle{fill:var(--ion-color-step-600, #666666)}";
+    var indexForItem = function indexForItem(element) {
+      return element['$ionIndex'];
+    };
 
-    var InfiniteScrollContent = /*#__PURE__*/function () {
-      function InfiniteScrollContent(hostRef) {
-        _classCallCheck(this, InfiniteScrollContent);
+    var findReorderItem = function findReorderItem(node, container) {
+      var parent;
 
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+      while (node) {
+        parent = node.parentElement;
+
+        if (parent === container) {
+          return node;
+        }
+
+        node = parent;
       }
 
-      _createClass(InfiniteScrollContent, [{
-        key: "componentDidLoad",
-        value: function componentDidLoad() {
-          if (this.loadingSpinner === undefined) {
-            var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-            this.loadingSpinner = _ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["c"].get('infiniteLoadingSpinner', _ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["c"].get('spinner', mode === 'ios' ? 'lines' : 'crescent'));
-          }
-        }
-      }, {
-        key: "render",
-        value: function render() {
-          var _class2;
-
-          var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-            "class": (_class2 = {}, _defineProperty(_class2, mode, true), _defineProperty(_class2, "infinite-scroll-content-".concat(mode), true), _class2)
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-            "class": "infinite-loading"
-          }, this.loadingSpinner && Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-            "class": "infinite-loading-spinner"
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-spinner", {
-            name: this.loadingSpinner
-          })), this.loadingText && Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-            "class": "infinite-loading-text",
-            innerHTML: Object(_index_79d74e0b_js__WEBPACK_IMPORTED_MODULE_2__["s"])(this.loadingText)
-          })));
-        }
-      }]);
-
-      return InfiniteScrollContent;
-    }();
-
-    InfiniteScrollContent.style = {
-      /*STENCIL:MODE:ios*/
-      ios: infiniteScrollContentIosCss,
-
-      /*STENCIL:MODE:md*/
-      md: infiniteScrollContentMdCss
+      return undefined;
     };
+
+    var AUTO_SCROLL_MARGIN = 60;
+    var SCROLL_JUMP = 10;
+    var ITEM_REORDER_SELECTED = 'reorder-selected';
+
+    var reorderArray = function reorderArray(array, from, to) {
+      var element = array[from];
+      array.splice(from, 1);
+      array.splice(to, 0, element);
+      return array.slice();
+    };
+
+    ReorderGroup.style = reorderGroupCss;
     /***/
   }
 }]);

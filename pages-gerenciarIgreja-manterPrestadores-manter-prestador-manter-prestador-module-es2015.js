@@ -37,6 +37,37 @@ class HandlerError {
 
 /***/ }),
 
+/***/ "./src/app/helpers/toastCustom.ts":
+/*!****************************************!*\
+  !*** ./src/app/helpers/toastCustom.ts ***!
+  \****************************************/
+/*! exports provided: ToastCustom */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToastCustom", function() { return ToastCustom; });
+class ToastCustom {
+    static errorToast(msg, toastCtrl) {
+        this.CustomToast(toastCtrl, msg, "danger", 4000);
+    }
+    static SucessoToast(toastCtrl) {
+        this.CustomToast(toastCtrl, "Operação realizada com sucesso.", "success", 4000);
+    }
+    static CustomToast(toastCtrl, message, color, duration) {
+        toastCtrl.create({
+            message: message,
+            duration: duration,
+            color: color
+        }).then(x => {
+            x.present();
+        });
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/app/pages/gerenciarIgreja/manterPrestadores/manter-prestador/manter-prestador-routing.module.ts":
 /*!*************************************************************************************************************!*\
   !*** ./src/app/pages/gerenciarIgreja/manterPrestadores/manter-prestador/manter-prestador-routing.module.ts ***!
@@ -239,6 +270,8 @@ let ManterPrestadorPage = class ManterPrestadorPage {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_11__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();
         });
+    }
+    voltar() {
     }
 };
 ManterPrestadorPage.ctorParameters = () => [

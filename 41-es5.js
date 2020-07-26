@@ -12,36 +12,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[41], {
   /***/
-  "./node_modules/@ionic/core/dist/esm/ion-popover-ios.entry.js":
-  /*!********************************************************************!*\
-    !*** ./node_modules/@ionic/core/dist/esm/ion-popover-ios.entry.js ***!
-    \********************************************************************/
+  "./node_modules/@ionic/core/dist/esm/ion-toggle.entry.js":
+  /*!***************************************************************!*\
+    !*** ./node_modules/@ionic/core/dist/esm/ion-toggle.entry.js ***!
+    \***************************************************************/
 
-  /*! exports provided: ion_popover */
+  /*! exports provided: ion_toggle */
 
   /***/
-  function node_modulesIonicCoreDistEsmIonPopoverIosEntryJs(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesIonicCoreDistEsmIonToggleEntryJs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ion_popover", function () {
-      return Popover;
+    __webpack_require__.d(__webpack_exports__, "ion_toggle", function () {
+      return Toggle;
     });
     /* harmony import */
 
 
-    var _index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! ./index-29df6f59.js */
-    "./node_modules/@ionic/core/dist/esm/index-29df6f59.js");
+    var _index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! ./index-821f9ab1.js */
+    "./node_modules/@ionic/core/dist/esm/index-821f9ab1.js");
     /* harmony import */
 
 
-    var _ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ./ionic-global-08f4fb8a.js */
-    "./node_modules/@ionic/core/dist/esm/ionic-global-08f4fb8a.js");
+    var _ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./ionic-global-f538b4cf.js */
+    "./node_modules/@ionic/core/dist/esm/ionic-global-f538b4cf.js");
     /* harmony import */
 
 
@@ -51,349 +51,125 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./animation-a635a2fc.js */
-    "./node_modules/@ionic/core/dist/esm/animation-a635a2fc.js");
+    var _haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./haptic-7b8ba70a.js */
+    "./node_modules/@ionic/core/dist/esm/haptic-7b8ba70a.js");
     /* harmony import */
 
 
-    var _index_66edb21f_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./index-66edb21f.js */
-    "./node_modules/@ionic/core/dist/esm/index-66edb21f.js");
-    /* harmony import */
-
-
-    var _hardware_back_button_7b6ede21_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./hardware-back-button-7b6ede21.js */
-    "./node_modules/@ionic/core/dist/esm/hardware-back-button-7b6ede21.js");
-    /* harmony import */
-
-
-    var _overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-    /*! ./overlays-7369bfcc.js */
-    "./node_modules/@ionic/core/dist/esm/overlays-7369bfcc.js");
-    /* harmony import */
-
-
-    var _theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./theme-3f0b0c04.js */
     "./node_modules/@ionic/core/dist/esm/theme-3f0b0c04.js");
-    /* harmony import */
 
+    var toggleIosCss = ":host{-webkit-box-sizing:content-box !important;box-sizing:content-box !important;display:inline-block;position:relative;outline:none;contain:content;cursor:pointer;-ms-touch-action:none;touch-action:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.ion-focused) input{border:2px solid #5e9ed6}:host(.toggle-disabled){pointer-events:none}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}[dir=rtl] button,:host-context([dir=rtl]) button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.toggle-icon-wrapper{display:-ms-flexbox;display:flex;position:relative;-ms-flex-align:center;align-items:center;width:100%;height:100%;-webkit-transition:var(--handle-transition);transition:var(--handle-transition);will-change:transform}.toggle-icon{border-radius:var(--border-radius);display:block;position:relative;width:100%;height:100%;background:var(--background);pointer-events:none;overflow:inherit}:host(.toggle-checked) .toggle-icon{background:var(--background-checked)}.toggle-inner{left:var(--handle-spacing);border-radius:var(--handle-border-radius);position:absolute;width:var(--handle-width);height:var(--handle-height);max-height:var(--handle-max-height);-webkit-transition:var(--handle-transition);transition:var(--handle-transition);background:var(--handle-background);-webkit-box-shadow:var(--handle-box-shadow);box-shadow:var(--handle-box-shadow);contain:strict}[dir=rtl] .toggle-inner,:host-context([dir=rtl]) .toggle-inner{left:unset;right:unset;right:var(--handle-spacing)}:host(.toggle-checked) .toggle-icon-wrapper{-webkit-transform:translate3d(calc(100% - var(--handle-width)), 0, 0);transform:translate3d(calc(100% - var(--handle-width)), 0, 0)}:host-context([dir=rtl]):host(.toggle-checked) .toggle-icon-wrapper,:host-context([dir=rtl]).toggle-checked .toggle-icon-wrapper{-webkit-transform:translate3d(calc(-100% + var(--handle-width)), 0, 0);transform:translate3d(calc(-100% + var(--handle-width)), 0, 0)}:host(.toggle-checked) .toggle-inner{-webkit-transform:translate3d(calc(var(--handle-spacing) * -2), 0, 0);transform:translate3d(calc(var(--handle-spacing) * -2), 0, 0);background:var(--handle-background-checked)}:host-context([dir=rtl]):host(.toggle-checked) .toggle-inner,:host-context([dir=rtl]).toggle-checked .toggle-inner{-webkit-transform:translate3d(calc(var(--handle-spacing) * 2), 0, 0);transform:translate3d(calc(var(--handle-spacing) * 2), 0, 0)}:host{--background:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.088);--background-checked:var(--ion-color-primary, #3880ff);--border-radius:16px;--handle-background:#ffffff;--handle-background-checked:#ffffff;--handle-border-radius:25.5px;--handle-box-shadow:0 3px 12px rgba(0, 0, 0, 0.16), 0 3px 1px rgba(0, 0, 0, 0.1);--handle-height:calc(32px - (2px * 2));--handle-max-height:calc(100% - (var(--handle-spacing) * 2));--handle-width:calc(32px - (2px * 2));--handle-spacing:2px;--handle-transition:transform 300ms, width 120ms ease-in-out 80ms, left 110ms ease-in-out 80ms, right 110ms ease-in-out 80ms;width:51px;height:32px;contain:strict;overflow:hidden}:host(.ion-color.toggle-checked) .toggle-icon{background:var(--ion-color-base)}.toggle-icon{-webkit-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);-webkit-transition:background-color 300ms;transition:background-color 300ms}.toggle-inner{will-change:transform}:host(.toggle-activated) .toggle-icon::before,:host(.toggle-checked) .toggle-icon::before{-webkit-transform:scale3d(0, 0, 0);transform:scale3d(0, 0, 0)}:host(.toggle-activated.toggle-checked) .toggle-inner::before{-webkit-transform:scale3d(0, 0, 0);transform:scale3d(0, 0, 0)}:host(.toggle-activated) .toggle-inner{width:calc(var(--handle-width) + 6px)}:host(.toggle-activated.toggle-checked) .toggle-icon-wrapper{-webkit-transform:translate3d(calc(100% - var(--handle-width) - 6px), 0, 0);transform:translate3d(calc(100% - var(--handle-width) - 6px), 0, 0)}:host-context([dir=rtl]):host(.toggle-activated.toggle-checked) .toggle-icon-wrapper,:host-context([dir=rtl]).toggle-activated.toggle-checked .toggle-icon-wrapper{-webkit-transform:translate3d(calc(-100% + var(--handle-width) + 6px), 0, 0);transform:translate3d(calc(-100% + var(--handle-width) + 6px), 0, 0)}:host(.toggle-disabled){opacity:0.3}:host(.in-item[slot]){margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:20px;padding-right:10px;padding-top:6px;padding-bottom:5px}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host(.in-item[slot]){padding-left:unset;padding-right:unset;-webkit-padding-start:20px;padding-inline-start:20px;-webkit-padding-end:10px;padding-inline-end:10px}}:host(.in-item[slot=start]){padding-left:0;padding-right:16px;padding-top:6px;padding-bottom:5px}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host(.in-item[slot=start]){padding-left:unset;padding-right:unset;-webkit-padding-start:0;padding-inline-start:0;-webkit-padding-end:16px;padding-inline-end:16px}}";
+    var toggleMdCss = ":host{-webkit-box-sizing:content-box !important;box-sizing:content-box !important;display:inline-block;position:relative;outline:none;contain:content;cursor:pointer;-ms-touch-action:none;touch-action:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.ion-focused) input{border:2px solid #5e9ed6}:host(.toggle-disabled){pointer-events:none}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}[dir=rtl] button,:host-context([dir=rtl]) button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.toggle-icon-wrapper{display:-ms-flexbox;display:flex;position:relative;-ms-flex-align:center;align-items:center;width:100%;height:100%;-webkit-transition:var(--handle-transition);transition:var(--handle-transition);will-change:transform}.toggle-icon{border-radius:var(--border-radius);display:block;position:relative;width:100%;height:100%;background:var(--background);pointer-events:none;overflow:inherit}:host(.toggle-checked) .toggle-icon{background:var(--background-checked)}.toggle-inner{left:var(--handle-spacing);border-radius:var(--handle-border-radius);position:absolute;width:var(--handle-width);height:var(--handle-height);max-height:var(--handle-max-height);-webkit-transition:var(--handle-transition);transition:var(--handle-transition);background:var(--handle-background);-webkit-box-shadow:var(--handle-box-shadow);box-shadow:var(--handle-box-shadow);contain:strict}[dir=rtl] .toggle-inner,:host-context([dir=rtl]) .toggle-inner{left:unset;right:unset;right:var(--handle-spacing)}:host(.toggle-checked) .toggle-icon-wrapper{-webkit-transform:translate3d(calc(100% - var(--handle-width)), 0, 0);transform:translate3d(calc(100% - var(--handle-width)), 0, 0)}:host-context([dir=rtl]):host(.toggle-checked) .toggle-icon-wrapper,:host-context([dir=rtl]).toggle-checked .toggle-icon-wrapper{-webkit-transform:translate3d(calc(-100% + var(--handle-width)), 0, 0);transform:translate3d(calc(-100% + var(--handle-width)), 0, 0)}:host(.toggle-checked) .toggle-inner{-webkit-transform:translate3d(calc(var(--handle-spacing) * -2), 0, 0);transform:translate3d(calc(var(--handle-spacing) * -2), 0, 0);background:var(--handle-background-checked)}:host-context([dir=rtl]):host(.toggle-checked) .toggle-inner,:host-context([dir=rtl]).toggle-checked .toggle-inner{-webkit-transform:translate3d(calc(var(--handle-spacing) * 2), 0, 0);transform:translate3d(calc(var(--handle-spacing) * 2), 0, 0)}:host{--background:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.39);--background-checked:rgba(var(--ion-color-primary-rgb, 56, 128, 255), 0.5);--border-radius:14px;--handle-background:#ffffff;--handle-background-checked:var(--ion-color-primary, #3880ff);--handle-border-radius:50%;--handle-box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);--handle-width:20px;--handle-height:20px;--handle-max-height:calc(100% + 6px);--handle-spacing:0;--handle-transition:transform 160ms cubic-bezier(0.4, 0, 0.2, 1), background-color 160ms cubic-bezier(0.4, 0, 0.2, 1);padding-left:12px;padding-right:12px;padding-top:12px;padding-bottom:12px;width:36px;height:14px;contain:strict}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:12px;padding-inline-start:12px;-webkit-padding-end:12px;padding-inline-end:12px}}:host(.ion-color.toggle-checked) .toggle-icon{background:rgba(var(--ion-color-base-rgb), 0.5)}:host(.ion-color.toggle-checked) .toggle-inner{background:var(--ion-color-base)}.toggle-icon{-webkit-transition:background-color 160ms;transition:background-color 160ms}.toggle-inner{will-change:background-color, transform}:host(.toggle-disabled){opacity:0.3}:host(.in-item[slot]){margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:16px;padding-right:0;padding-top:12px;padding-bottom:12px;cursor:pointer}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host(.in-item[slot]){padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:0;padding-inline-end:0}}:host(.in-item[slot=start]){padding-left:2px;padding-right:18px;padding-top:12px;padding-bottom:12px}@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0){:host(.in-item[slot=start]){padding-left:unset;padding-right:unset;-webkit-padding-start:2px;padding-inline-start:2px;-webkit-padding-end:18px;padding-inline-end:18px}}";
 
-    var _framework_delegate_d1eb6504_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-    /*! ./framework-delegate-d1eb6504.js */
-    "./node_modules/@ionic/core/dist/esm/framework-delegate-d1eb6504.js");
-    /**
-     * iOS Popover Enter Animation
-     */
-
-
-    var iosEnterAnimation = function iosEnterAnimation(baseEl, ev) {
-      var originY = 'top';
-      var originX = 'left';
-      var contentEl = baseEl.querySelector('.popover-content');
-      var contentDimentions = contentEl.getBoundingClientRect();
-      var contentWidth = contentDimentions.width;
-      var contentHeight = contentDimentions.height;
-      var bodyWidth = baseEl.ownerDocument.defaultView.innerWidth;
-      var bodyHeight = baseEl.ownerDocument.defaultView.innerHeight; // If ev was passed, use that for target element
-
-      var targetDim = ev && ev.target && ev.target.getBoundingClientRect();
-      var targetTop = targetDim != null && 'top' in targetDim ? targetDim.top : bodyHeight / 2 - contentHeight / 2;
-      var targetLeft = targetDim != null && 'left' in targetDim ? targetDim.left : bodyWidth / 2;
-      var targetWidth = targetDim && targetDim.width || 0;
-      var targetHeight = targetDim && targetDim.height || 0;
-      var arrowEl = baseEl.querySelector('.popover-arrow');
-      var arrowDim = arrowEl.getBoundingClientRect();
-      var arrowWidth = arrowDim.width;
-      var arrowHeight = arrowDim.height;
-
-      if (targetDim == null) {
-        arrowEl.style.display = 'none';
-      }
-
-      var arrowCSS = {
-        top: targetTop + targetHeight,
-        left: targetLeft + targetWidth / 2 - arrowWidth / 2
-      };
-      var popoverCSS = {
-        top: targetTop + targetHeight + (arrowHeight - 1),
-        left: targetLeft + targetWidth / 2 - contentWidth / 2
-      }; // If the popover left is less than the padding it is off screen
-      // to the left so adjust it, else if the width of the popover
-      // exceeds the body width it is off screen to the right so adjust
-      //
-
-      var checkSafeAreaLeft = false;
-      var checkSafeAreaRight = false; // If the popover left is less than the padding it is off screen
-      // to the left so adjust it, else if the width of the popover
-      // exceeds the body width it is off screen to the right so adjust
-      // 25 is a random/arbitrary number. It seems to work fine for ios11
-      // and iPhoneX. Is it perfect? No. Does it work? Yes.
-
-      if (popoverCSS.left < POPOVER_IOS_BODY_PADDING + 25) {
-        checkSafeAreaLeft = true;
-        popoverCSS.left = POPOVER_IOS_BODY_PADDING;
-      } else if (contentWidth + POPOVER_IOS_BODY_PADDING + popoverCSS.left + 25 > bodyWidth) {
-        // Ok, so we're on the right side of the screen,
-        // but now we need to make sure we're still a bit further right
-        // cus....notchurally... Again, 25 is random. It works tho
-        checkSafeAreaRight = true;
-        popoverCSS.left = bodyWidth - contentWidth - POPOVER_IOS_BODY_PADDING;
-        originX = 'right';
-      } // make it pop up if there's room above
-
-
-      if (targetTop + targetHeight + contentHeight > bodyHeight && targetTop - contentHeight > 0) {
-        arrowCSS.top = targetTop - (arrowHeight + 1);
-        popoverCSS.top = targetTop - contentHeight - (arrowHeight - 1);
-        baseEl.className = baseEl.className + ' popover-bottom';
-        originY = 'bottom'; // If there isn't room for it to pop up above the target cut it off
-      } else if (targetTop + targetHeight + contentHeight > bodyHeight) {
-        contentEl.style.bottom = POPOVER_IOS_BODY_PADDING + '%';
-      }
-
-      arrowEl.style.top = arrowCSS.top + 'px';
-      arrowEl.style.left = arrowCSS.left + 'px';
-      contentEl.style.top = popoverCSS.top + 'px';
-      contentEl.style.left = popoverCSS.left + 'px';
-
-      if (checkSafeAreaLeft) {
-        contentEl.style.left = "calc(".concat(popoverCSS.left, "px + var(--ion-safe-area-left, 0px))");
-      }
-
-      if (checkSafeAreaRight) {
-        contentEl.style.left = "calc(".concat(popoverCSS.left, "px - var(--ion-safe-area-right, 0px))");
-      }
-
-      contentEl.style.transformOrigin = originY + ' ' + originX;
-      var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 'var(--backdrop-opacity)').beforeStyles({
-        'pointer-events': 'none'
-      }).afterClearStyles(['pointer-events']);
-      wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper')).fromTo('opacity', 0.01, 1);
-      return baseAnimation.addElement(baseEl).easing('ease').duration(100).addAnimation([backdropAnimation, wrapperAnimation]);
-    };
-
-    var POPOVER_IOS_BODY_PADDING = 5;
-    /**
-     * iOS Popover Leave Animation
-     */
-
-    var iosLeaveAnimation = function iosLeaveAnimation(baseEl) {
-      var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
-      wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper')).fromTo('opacity', 0.99, 0);
-      return baseAnimation.addElement(baseEl).easing('ease').duration(500).addAnimation([backdropAnimation, wrapperAnimation]);
-    };
-    /**
-     * Md Popover Enter Animation
-     */
-
-
-    var mdEnterAnimation = function mdEnterAnimation(baseEl, ev) {
-      var POPOVER_MD_BODY_PADDING = 12;
-      var doc = baseEl.ownerDocument;
-      var isRTL = doc.dir === 'rtl';
-      var originY = 'top';
-      var originX = isRTL ? 'right' : 'left';
-      var contentEl = baseEl.querySelector('.popover-content');
-      var contentDimentions = contentEl.getBoundingClientRect();
-      var contentWidth = contentDimentions.width;
-      var contentHeight = contentDimentions.height;
-      var bodyWidth = doc.defaultView.innerWidth;
-      var bodyHeight = doc.defaultView.innerHeight; // If ev was passed, use that for target element
-
-      var targetDim = ev && ev.target && ev.target.getBoundingClientRect(); // As per MD spec, by default position the popover below the target (trigger) element
-
-      var targetTop = targetDim != null && 'bottom' in targetDim ? targetDim.bottom : bodyHeight / 2 - contentHeight / 2;
-      var targetLeft = targetDim != null && 'left' in targetDim ? isRTL ? targetDim.left - contentWidth + targetDim.width : targetDim.left : bodyWidth / 2 - contentWidth / 2;
-      var targetHeight = targetDim && targetDim.height || 0;
-      var popoverCSS = {
-        top: targetTop,
-        left: targetLeft
-      }; // If the popover left is less than the padding it is off screen
-      // to the left so adjust it, else if the width of the popover
-      // exceeds the body width it is off screen to the right so adjust
-
-      if (popoverCSS.left < POPOVER_MD_BODY_PADDING) {
-        popoverCSS.left = POPOVER_MD_BODY_PADDING; // Same origin in this case for both LTR & RTL
-        // Note: in LTR, originX is already 'left'
-
-        originX = 'left';
-      } else if (contentWidth + POPOVER_MD_BODY_PADDING + popoverCSS.left > bodyWidth) {
-        popoverCSS.left = bodyWidth - contentWidth - POPOVER_MD_BODY_PADDING; // Same origin in this case for both LTR & RTL
-        // Note: in RTL, originX is already 'right'
-
-        originX = 'right';
-      } // If the popover when popped down stretches past bottom of screen,
-      // make it pop up if there's room above
-
-
-      if (targetTop + targetHeight + contentHeight > bodyHeight && targetTop - contentHeight > 0) {
-        popoverCSS.top = targetTop - contentHeight - targetHeight;
-        baseEl.className = baseEl.className + ' popover-bottom';
-        originY = 'bottom'; // If there isn't room for it to pop up above the target cut it off
-      } else if (targetTop + targetHeight + contentHeight > bodyHeight) {
-        contentEl.style.bottom = POPOVER_MD_BODY_PADDING + 'px';
-      }
-
-      var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var contentAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var viewportAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 0.01, 'var(--backdrop-opacity)').beforeStyles({
-        'pointer-events': 'none'
-      }).afterClearStyles(['pointer-events']);
-      wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper')).fromTo('opacity', 0.01, 1);
-      contentAnimation.addElement(contentEl).beforeStyles({
-        'top': "".concat(popoverCSS.top, "px"),
-        'left': "".concat(popoverCSS.left, "px"),
-        'transform-origin': "".concat(originY, " ").concat(originX)
-      }).fromTo('transform', 'scale(0.001)', 'scale(1)');
-      viewportAnimation.addElement(baseEl.querySelector('.popover-viewport')).fromTo('opacity', 0.01, 1);
-      return baseAnimation.addElement(baseEl).easing('cubic-bezier(0.36,0.66,0.04,1)').duration(300).addAnimation([backdropAnimation, wrapperAnimation, contentAnimation, viewportAnimation]);
-    };
-    /**
-     * Md Popover Leave Animation
-     */
-
-
-    var mdLeaveAnimation = function mdLeaveAnimation(baseEl) {
-      var baseAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var backdropAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      var wrapperAnimation = Object(_animation_a635a2fc_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-      backdropAnimation.addElement(baseEl.querySelector('ion-backdrop')).fromTo('opacity', 'var(--backdrop-opacity)', 0);
-      wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper')).fromTo('opacity', 0.99, 0);
-      return baseAnimation.addElement(baseEl).easing('ease').duration(500).addAnimation([backdropAnimation, wrapperAnimation]);
-    };
-
-    var popoverIosCss = ".sc-ion-popover-ios-h{--background:var(--ion-background-color, #fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:fixed;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;outline:none;color:var(--ion-text-color, #000);z-index:1001}.overlay-hidden.sc-ion-popover-ios-h{display:none}.popover-wrapper.sc-ion-popover-ios{opacity:0;z-index:10}.popover-content.sc-ion-popover-ios{display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport.sc-ion-popover-ios{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px}.sc-ion-popover-ios-h{--width:200px;--max-height:90%;--box-shadow:none;--backdrop-opacity:var(--ion-backdrop-opacity, 0.08)}.popover-content.sc-ion-popover-ios{border-radius:10px}.popover-arrow.sc-ion-popover-ios{display:block;position:absolute;width:20px;height:10px;overflow:hidden}.popover-arrow.sc-ion-popover-ios::after{left:3px;top:3px;border-radius:3px;position:absolute;width:14px;height:14px;-webkit-transform:rotate(45deg);transform:rotate(45deg);background:var(--background);content:\"\";z-index:10}[dir=rtl].sc-ion-popover-ios .popover-arrow.sc-ion-popover-ios::after,[dir=rtl].sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios::after,[dir=rtl] .sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios::after{left:unset;right:unset;right:3px}.popover-bottom.sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios{top:auto;bottom:-10px}.popover-bottom.sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios::after{top:-6px}@supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))){.popover-translucent.sc-ion-popover-ios-h .popover-content.sc-ion-popover-ios,.popover-translucent.sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios::after{background:rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px)}}";
-    var popoverMdCss = ".sc-ion-popover-md-h{--background:var(--ion-background-color, #fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:fixed;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;outline:none;color:var(--ion-text-color, #000);z-index:1001}.overlay-hidden.sc-ion-popover-md-h{display:none}.popover-wrapper.sc-ion-popover-md{opacity:0;z-index:10}.popover-content.sc-ion-popover-md{display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport.sc-ion-popover-md{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px}.sc-ion-popover-md-h{--width:250px;--max-height:90%;--box-shadow:0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);--backdrop-opacity:var(--ion-backdrop-opacity, 0.32)}.popover-content.sc-ion-popover-md{border-radius:4px;-webkit-transform-origin:left top;transform-origin:left top}[dir=rtl].sc-ion-popover-md .popover-content.sc-ion-popover-md,[dir=rtl].sc-ion-popover-md-h .popover-content.sc-ion-popover-md,[dir=rtl] .sc-ion-popover-md-h .popover-content.sc-ion-popover-md{-webkit-transform-origin:right top;transform-origin:right top}.popover-viewport.sc-ion-popover-md{-webkit-transition-delay:100ms;transition-delay:100ms}";
-    /**
-     * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
-     */
-
-    var Popover = /*#__PURE__*/function () {
-      function Popover(hostRef) {
+    var Toggle = /*#__PURE__*/function () {
+      function Toggle(hostRef) {
         var _this = this;
 
-        _classCallCheck(this, Popover);
+        _classCallCheck(this, Toggle);
 
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.presented = false;
+        Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.ionChange = Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionChange", 7);
+        this.ionFocus = Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionFocus", 7);
+        this.ionBlur = Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionBlur", 7);
+        this.ionStyle = Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this, "ionStyle", 7);
+        this.inputId = "ion-tg-".concat(toggleIds++);
+        this.lastDrag = 0;
+        this.activated = false;
         /**
-         * If `true`, the keyboard will be automatically dismissed when the overlay is presented.
+         * The name of the control, which is submitted with the form data.
          */
 
-        this.keyboardClose = true;
+        this.name = this.inputId;
         /**
-         * If `true`, the popover will be dismissed when the backdrop is clicked.
+         * If `true`, the toggle is selected.
          */
 
-        this.backdropDismiss = true;
+        this.checked = false;
         /**
-         * If `true`, a backdrop will be displayed behind the popover.
+         * If `true`, the user cannot interact with the toggle.
          */
 
-        this.showBackdrop = true;
+        this.disabled = false;
         /**
-         * If `true`, the popover will be translucent.
-         * Only applies when the mode is `"ios"` and the device supports
-         * [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility).
+         * The value of the toggle does not mean if it's checked or not, use the `checked`
+         * property for that.
+         *
+         * The value of a toggle is analogous to the value of a `<input type="checkbox">`,
+         * it's only used when the toggle participates in a native `<form>`.
          */
 
-        this.translucent = false;
-        /**
-         * If `true`, the popover will animate.
-         */
+        this.value = 'on';
 
-        this.animated = true;
-
-        this.onDismiss = function (ev) {
-          ev.stopPropagation();
-          ev.preventDefault();
-
-          _this.dismiss();
-        };
-
-        this.onBackdropTap = function () {
-          _this.dismiss(undefined, _overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["B"]);
-        };
-
-        this.onLifecycle = function (modalEvent) {
-          var el = _this.usersElement;
-          var name = LIFECYCLE_MAP[modalEvent.type];
-
-          if (el && name) {
-            var event = new CustomEvent(name, {
-              bubbles: false,
-              cancelable: false,
-              detail: modalEvent.detail
-            });
-            el.dispatchEvent(event);
+        this.onClick = function () {
+          if (_this.lastDrag + 300 < Date.now()) {
+            _this.checked = !_this.checked;
           }
         };
 
-        Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["d"])(this.el);
-        this.didPresent = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverDidPresent", 7);
-        this.willPresent = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverWillPresent", 7);
-        this.willDismiss = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverWillDismiss", 7);
-        this.didDismiss = Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverDidDismiss", 7);
+        this.onFocus = function () {
+          _this.ionFocus.emit();
+        };
+
+        this.onBlur = function () {
+          _this.ionBlur.emit();
+        };
       }
-      /**
-       * Present the popover overlay after it has been created.
-       */
 
+      _createClass(Toggle, [{
+        key: "checkedChanged",
+        value: function checkedChanged(isChecked) {
+          this.ionChange.emit({
+            checked: isChecked,
+            value: this.value
+          });
+        }
+      }, {
+        key: "disabledChanged",
+        value: function disabledChanged() {
+          this.emitStyle();
 
-      _createClass(Popover, [{
-        key: "present",
+          if (this.gesture) {
+            this.gesture.enable(!this.disabled);
+          }
+        }
+      }, {
+        key: "connectedCallback",
         value: function () {
-          var _present = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var container, data;
+          var _connectedCallback = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this2 = this;
+
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    if (!this.presented) {
-                      _context.next = 2;
-                      break;
-                    }
-
-                    return _context.abrupt("return");
+                    _context.next = 2;
+                    return Promise.resolve().then(__webpack_require__.bind(null,
+                    /*! ./index-eea61379.js */
+                    "./node_modules/@ionic/core/dist/esm/index-eea61379.js"));
 
                   case 2:
-                    container = this.el.querySelector('.popover-content');
-
-                    if (container) {
-                      _context.next = 5;
-                      break;
-                    }
-
-                    throw new Error('container is undefined');
-
-                  case 5:
-                    data = Object.assign(Object.assign({}, this.componentProps), {
-                      popover: this.el
+                    this.gesture = _context.sent.createGesture({
+                      el: this.el,
+                      gestureName: 'toggle',
+                      gesturePriority: 100,
+                      threshold: 5,
+                      passive: false,
+                      onStart: function onStart() {
+                        return _this2.onStart();
+                      },
+                      onMove: function onMove(ev) {
+                        return _this2.onMove(ev);
+                      },
+                      onEnd: function onEnd(ev) {
+                        return _this2.onEnd(ev);
+                      }
                     });
-                    _context.next = 8;
-                    return Object(_framework_delegate_d1eb6504_js__WEBPACK_IMPORTED_MODULE_8__["a"])(this.delegate, container, this.component, ['popover-viewport', this.el['s-sc']], data);
+                    this.disabledChanged();
 
-                  case 8:
-                    this.usersElement = _context.sent;
-                    _context.next = 11;
-                    return Object(_index_66edb21f_js__WEBPACK_IMPORTED_MODULE_4__["e"])(this.usersElement);
-
-                  case 11:
-                    return _context.abrupt("return", Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["e"])(this, 'popoverEnter', iosEnterAnimation, mdEnterAnimation, this.event));
-
-                  case 12:
+                  case 4:
                   case "end":
                     return _context.stop();
                 }
@@ -401,131 +177,147 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }, _callee, this);
           }));
 
-          function present() {
-            return _present.apply(this, arguments);
+          function connectedCallback() {
+            return _connectedCallback.apply(this, arguments);
           }
 
-          return present;
+          return connectedCallback;
         }()
-        /**
-         * Dismiss the popover overlay after it has been presented.
-         *
-         * @param data Any data to emit in the dismiss events.
-         * @param role The role of the element that is dismissing the popover. For example, 'cancel' or 'backdrop'.
-         */
-
       }, {
-        key: "dismiss",
-        value: function () {
-          var _dismiss = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(data, role) {
-            var shouldDismiss;
-            return regeneratorRuntime.wrap(function _callee2$(_context2) {
-              while (1) {
-                switch (_context2.prev = _context2.next) {
-                  case 0:
-                    _context2.next = 2;
-                    return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["f"])(this, data, role, 'popoverLeave', iosLeaveAnimation, mdLeaveAnimation, this.event);
-
-                  case 2:
-                    shouldDismiss = _context2.sent;
-
-                    if (!shouldDismiss) {
-                      _context2.next = 6;
-                      break;
-                    }
-
-                    _context2.next = 6;
-                    return Object(_framework_delegate_d1eb6504_js__WEBPACK_IMPORTED_MODULE_8__["d"])(this.delegate, this.usersElement);
-
-                  case 6:
-                    return _context2.abrupt("return", shouldDismiss);
-
-                  case 7:
-                  case "end":
-                    return _context2.stop();
-                }
-              }
-            }, _callee2, this);
-          }));
-
-          function dismiss(_x, _x2) {
-            return _dismiss.apply(this, arguments);
+        key: "disconnectedCallback",
+        value: function disconnectedCallback() {
+          if (this.gesture) {
+            this.gesture.destroy();
+            this.gesture = undefined;
           }
-
-          return dismiss;
-        }()
-        /**
-         * Returns a promise that resolves when the popover did dismiss.
-         */
-
-      }, {
-        key: "onDidDismiss",
-        value: function onDidDismiss() {
-          return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.el, 'ionPopoverDidDismiss');
         }
-        /**
-         * Returns a promise that resolves when the popover will dismiss.
-         */
-
       }, {
-        key: "onWillDismiss",
-        value: function onWillDismiss() {
-          return Object(_overlays_7369bfcc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.el, 'ionPopoverWillDismiss');
+        key: "componentWillLoad",
+        value: function componentWillLoad() {
+          this.emitStyle();
+        }
+      }, {
+        key: "emitStyle",
+        value: function emitStyle() {
+          this.ionStyle.emit({
+            'interactive-disabled': this.disabled
+          });
+        }
+      }, {
+        key: "onStart",
+        value: function onStart() {
+          this.activated = true; // touch-action does not work in iOS
+
+          this.setFocus();
+        }
+      }, {
+        key: "onMove",
+        value: function onMove(detail) {
+          if (shouldToggle(document, this.checked, detail.deltaX, -10)) {
+            this.checked = !this.checked;
+            Object(_haptic_7b8ba70a_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+          }
+        }
+      }, {
+        key: "onEnd",
+        value: function onEnd(ev) {
+          this.activated = false;
+          this.lastDrag = Date.now();
+          ev.event.preventDefault();
+          ev.event.stopImmediatePropagation();
+        }
+      }, {
+        key: "getValue",
+        value: function getValue() {
+          return this.value || '';
+        }
+      }, {
+        key: "setFocus",
+        value: function setFocus() {
+          if (this.buttonEl) {
+            this.buttonEl.focus();
+          }
         }
       }, {
         key: "render",
         value: function render() {
-          var _Object$assign;
+          var _Object$assign,
+              _this3 = this;
 
-          var mode = Object(_ionic_global_08f4fb8a_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
-          var onLifecycle = this.onLifecycle;
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
-            "aria-modal": "true",
-            "no-router": true,
-            tabindex: "-1",
-            style: {
-              zIndex: "".concat(20000 + this.overlayIndex)
+          var inputId = this.inputId,
+              disabled = this.disabled,
+              checked = this.checked,
+              activated = this.activated,
+              color = this.color,
+              el = this.el;
+          var mode = Object(_ionic_global_f538b4cf_js__WEBPACK_IMPORTED_MODULE_1__["b"])(this);
+          var labelId = inputId + '-lbl';
+          var label = Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
+          var value = this.getValue();
+
+          if (label) {
+            label.id = labelId;
+          }
+
+          Object(_helpers_5c745fbd_js__WEBPACK_IMPORTED_MODULE_2__["a"])(true, el, this.name, checked ? value : '', disabled);
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["H"], {
+            onClick: this.onClick,
+            role: "checkbox",
+            "aria-disabled": disabled ? 'true' : null,
+            "aria-checked": "".concat(checked),
+            "aria-labelledby": labelId,
+            "class": Object.assign(Object.assign({}, Object(_theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_4__["c"])(color)), (_Object$assign = {}, _defineProperty(_Object$assign, mode, true), _defineProperty(_Object$assign, 'in-item', Object(_theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_4__["h"])('ion-item', el)), _defineProperty(_Object$assign, 'toggle-activated', activated), _defineProperty(_Object$assign, 'toggle-checked', checked), _defineProperty(_Object$assign, 'toggle-disabled', disabled), _defineProperty(_Object$assign, 'interactive', true), _Object$assign))
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "toggle-icon",
+            part: "track"
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "toggle-icon-wrapper"
+          }, Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
+            "class": "toggle-inner",
+            part: "handle"
+          }))), Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", {
+            type: "button",
+            onFocus: this.onFocus,
+            onBlur: this.onBlur,
+            disabled: disabled,
+            ref: function ref(btnEl) {
+              return _this3.buttonEl = btnEl;
             },
-            "class": Object.assign(Object.assign({}, Object(_theme_3f0b0c04_js__WEBPACK_IMPORTED_MODULE_7__["g"])(this.cssClass)), (_Object$assign = {}, _defineProperty(_Object$assign, mode, true), _defineProperty(_Object$assign, 'popover-translucent', this.translucent), _Object$assign)),
-            onIonPopoverDidPresent: onLifecycle,
-            onIonPopoverWillPresent: onLifecycle,
-            onIonPopoverWillDismiss: onLifecycle,
-            onIonPopoverDidDismiss: onLifecycle,
-            onIonDismiss: this.onDismiss,
-            onIonBackdropTap: this.onBackdropTap
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", {
-            tappable: this.backdropDismiss,
-            visible: this.showBackdrop
-          }), Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-            "class": "popover-wrapper"
-          }, Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-            "class": "popover-arrow"
-          }), Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", {
-            "class": "popover-content"
-          })));
+            "aria-hidden": "true"
+          }));
         }
       }, {
         key: "el",
         get: function get() {
-          return Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this);
+          return Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["i"])(this);
+        }
+      }], [{
+        key: "watchers",
+        get: function get() {
+          return {
+            "checked": ["checkedChanged"],
+            "disabled": ["disabledChanged"]
+          };
         }
       }]);
 
-      return Popover;
+      return Toggle;
     }();
 
-    var LIFECYCLE_MAP = {
-      'ionPopoverDidPresent': 'ionViewDidEnter',
-      'ionPopoverWillPresent': 'ionViewWillEnter',
-      'ionPopoverWillDismiss': 'ionViewWillLeave',
-      'ionPopoverDidDismiss': 'ionViewDidLeave'
-    };
-    Popover.style = {
-      /*STENCIL:MODE:ios*/
-      ios: popoverIosCss,
+    var shouldToggle = function shouldToggle(doc, checked, deltaX, margin) {
+      var isRTL = doc.dir === 'rtl';
 
-      /*STENCIL:MODE:md*/
-      md: popoverMdCss
+      if (checked) {
+        return !isRTL && margin > deltaX || isRTL && -margin < deltaX;
+      } else {
+        return !isRTL && -margin < deltaX || isRTL && margin > deltaX;
+      }
+    };
+
+    var toggleIds = 0;
+    Toggle.style = {
+      ios: toggleIosCss,
+      md: toggleMdCss
     };
     /***/
   }

@@ -24,15 +24,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["common"], {
   /***/
-  "./node_modules/@ionic/core/dist/esm/button-active-4b76b5c3.js":
+  "./node_modules/@ionic/core/dist/esm/button-active-f9f11302.js":
   /*!*********************************************************************!*\
-    !*** ./node_modules/@ionic/core/dist/esm/button-active-4b76b5c3.js ***!
+    !*** ./node_modules/@ionic/core/dist/esm/button-active-f9f11302.js ***!
     \*********************************************************************/
 
   /*! exports provided: c */
 
   /***/
-  function node_modulesIonicCoreDistEsmButtonActive4b76b5c3Js(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesIonicCoreDistEsmButtonActiveF9f11302Js(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
@@ -45,9 +45,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /* harmony import */
 
 
-    var _index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! ./index-29df6f59.js */
-    "./node_modules/@ionic/core/dist/esm/index-29df6f59.js");
+    var _index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! ./index-821f9ab1.js */
+    "./node_modules/@ionic/core/dist/esm/index-821f9ab1.js");
     /* harmony import */
 
 
@@ -91,7 +91,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
 
         var buttonToModify = currentTouchedButton;
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["w"])(function () {
+        Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["c"])(function () {
           return buttonToModify.classList.add('ion-activated');
         });
         hapticFeedbackFn();
@@ -105,7 +105,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
 
         var buttonToModify = currentTouchedButton;
-        Object(_index_29df6f59_js__WEBPACK_IMPORTED_MODULE_0__["w"])(function () {
+        Object(_index_821f9ab1_js__WEBPACK_IMPORTED_MODULE_0__["c"])(function () {
           return buttonToModify.classList.remove('ion-activated');
         });
         /**
