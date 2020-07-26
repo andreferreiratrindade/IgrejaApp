@@ -1,10 +1,18 @@
 version: 2
+
 jobs:
   build:
+    environment:
+      JVM_OPTS: -Xmx3200m
     docker:
       - image: beevelop/ionic
     steps:
       - checkout
+      - run:
+          name: "Configurando Java"
+          run: "JAVA_HOME=$(dirname $( readlink -f $(which java) ))
+                JAVA_HOME=$(realpath "$JAVA_HOME"/../)
+                export JAVA_HOME"
       - run:
           name: Install node modules
           command: npm install
