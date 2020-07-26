@@ -19,9 +19,9 @@ import { PrestadorService } from 'src/app/providers/prestador/prestador.service'
 export class PrestadorCadastroFinalizarPage implements OnInit {
 
   prestador: any = {};
-  prestadorUsuario = {};
-  prestadorServicos = [];
-  usuario = {};
+  prestadorUsuario :any= {};
+  prestadorServicos :any[]= [];
+  usuario : any = {};
   constructor(public prestadorService: PrestadorService,
     public dominioServicoService: DominioServicoService,
     public loadingContr: LoadingContr,
@@ -104,5 +104,9 @@ export class PrestadorCadastroFinalizarPage implements OnInit {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
       });
+  }
+
+  public voltar(){
+    this.router.navigate(['prestador-cadastro-igreja-vinculo']);
   }
 }

@@ -17,7 +17,7 @@
             <ion-note>{{recuperaDadosUsuario.email}}</ion-note>
 
             <ion-chip color="tertiary" (click)="logoff()" slot="close" routerDirection="root" 
-              [routerLink]="prestador-consultar" size="6">
+              routerLink="prestador-consultar" size="6">
               <ion-label>Sair</ion-label>
               <ion-icon name="log-out-outline"></ion-icon>
             </ion-chip>
@@ -30,7 +30,7 @@
             </ion-chip>
           </span>
           <ion-menu-toggle  *ngFor="let p of paginas">
-            <ion-item  routerDirection="root" [routerLink]="[p.url]" 
+            <ion-item  routerDirection="root" [routerLink]="p.url" 
               detail="false">
               <ion-icon slot="start" [ios]="p.icon + '-outline'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>

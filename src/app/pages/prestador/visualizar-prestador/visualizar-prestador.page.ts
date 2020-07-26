@@ -18,8 +18,8 @@ import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 export class VisualizarPrestadorPage implements OnInit {
 
   prestador: any = {};
-  prestadorServicos = [];
-  usuario = {};
+  prestadorServicos : any[] = [];
+  usuario : any = {};
   usuarioId: string;
   constructor(public prestadorService: PrestadorService,
     public dominioServicoService: DominioServicoService,

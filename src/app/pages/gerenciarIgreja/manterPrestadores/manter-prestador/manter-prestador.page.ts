@@ -21,8 +21,8 @@ export class ManterPrestadorPage implements OnInit {
   situacoesPrestador: any[];
 
   prestador: any = {};
-  prestadorUsuario = {};
-  prestadorServicos = [];
+  prestadorUsuario : any = {};
+  prestadorServicos : any[]= [];
 
   constructor(public prestadorService: PrestadorService,
     public dominioServicoService: DominioServicoService,
@@ -105,5 +105,9 @@ export class ManterPrestadorPage implements OnInit {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
       });
+  }
+
+  public voltar(){
+    
   }
 }
