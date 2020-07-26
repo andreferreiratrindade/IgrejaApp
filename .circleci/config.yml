@@ -5,14 +5,11 @@ jobs:
       - image: beevelop/ionic
     steps:
       - checkout
-       - run:
-          name: Install ionic
-          command: npm install -g @ionic/cli
       - run:
           name: Install node modules
           command: npm install
       - run:
           name: Building android
-          command:  ionic cordova build android
+          command: ionic cordova build android
       - store_artifacts:
           path: platforms/android/build/outputs/apk/android-debug.apk
