@@ -307,13 +307,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var src_app_config__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
-    /*! src/app/config */
-    "./src/app/config.ts");
-    /* harmony import */
-
-
-    var src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! src/app/providers/usuario/usuario.service */
     "./src/app/providers/usuario/usuario.service.ts");
 
@@ -364,17 +358,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.loadControl.showLoader();
           this.authService.signInWithEmail(this.signInForm.value['email'], this.signInForm.value['password']).then(function (user) {
-            _this.usuarioService.RecuperaUsuarioPorUsuarioId(user.user.uid).then(function (usuario) {
-              src_app_config__WEBPACK_IMPORTED_MODULE_9__["Config"].RecuperaInstancia().adicionaUsuario(usuario);
+            _this.usuarioService.recuperaUsuarioLogado();
 
-              _this.loadControl.hideLoader();
+            _this.loadControl.hideLoader();
 
-              _this.router.navigate([_this.returnUrl]);
-            })["catch"](function (error) {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Email ou senha incorreto(s)", _this.toast);
-
-              _this.loadControl.hideLoader();
-            });
+            _this.router.navigate([_this.returnUrl]);
           })["catch"](function (error) {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Email ou senha incorreto(s)", _this.toast);
 
@@ -398,7 +386,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__["LoadingContr"]
       }, {
-        type: src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_10__["UsuarioService"]
+        type: src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_9__["UsuarioService"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["ToastController"]
       }];

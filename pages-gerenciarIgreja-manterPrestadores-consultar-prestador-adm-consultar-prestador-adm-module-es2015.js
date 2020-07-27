@@ -389,6 +389,9 @@ let DominioServicoService = class DominioServicoService {
     recuperaDominioServico() {
         return this.dominioServico.recuperaDominioServico();
     }
+    adicionaServico(servico) {
+        return this.dominioServico.add(servico, null);
+    }
 };
 DominioServicoService.ctorParameters = () => [
     { type: src_app_repository_dominioServico_dominio_servico_repository_service__WEBPACK_IMPORTED_MODULE_2__["DominioServicoRepositoryService"] }

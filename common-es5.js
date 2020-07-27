@@ -1,15 +1,3 @@
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -675,26 +663,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
 
   /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/UF/modal-uf/modal-uf.page.html":
-  /*!********************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/UF/modal-uf/modal-uf.page.html ***!
-    \********************************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppPagesUFModalUfModalUfPageHtml(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>UF</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-searchbar type=\"text\"  debounce = 1\n  placeholder=\"Pesquisar\"  \n  animated (ionChange)=\"recuperaItens($event)\" #searchbar></ion-searchbar>\n<ion-list>\n    <ion-item *ngFor=\"let item of itens\" (click)=\"selecionar(item)\" detail>\n      <ion-label>{{item.nome}} / {{item.sigla}}</ion-label>\n    </ion-item>\n</ion-list>\n</ion-content>\n\n";
-    /***/
-  },
-
-  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/bairro/modal-bairro/modal-bairro.page.html":
   /*!********************************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/bairro/modal-bairro/modal-bairro.page.html ***!
@@ -715,26 +683,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
 
   /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/cidade/modal-cidade/modal-cidade.page.html":
-  /*!********************************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/cidade/modal-cidade/modal-cidade.page.html ***!
-    \********************************************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppPagesCidadeModalCidadeModalCidadePageHtml(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Cidades</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-searchbar type=\"text\"  debounce = 1\n  placeholder=\"Pesquisar\" #searchbar\n  animated (ionChange)=\"recuperaItens($event)\"></ion-searchbar>\n<ion-list>\n    <ion-item *ngFor=\"let item of itens\" (click)=\"selecionar(item)\" detail>\n      <ion-label>{{item}}</ion-label>\n    </ion-item>\n</ion-list>\n</ion-content>\n";
-    /***/
-  },
-
-  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/gerenciarIgreja/manterPrestadores/modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.page.html":
   /*!**********************************************************************************************************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/gerenciarIgreja/manterPrestadores/modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.page.html ***!
@@ -751,6 +699,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
     __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Situação Prestador</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-searchbar type=\"text\"  debounce = 1\n  placeholder=\"Pesquisar\" #searchbar\n  animated (ionChange)=\"recuperaItens($event)\"></ion-searchbar>\n<ion-list>\n    <ion-item *ngFor=\"let item of itens\" (click)=\"selecionar(item)\" detail>\n      <ion-label>{{item.descricao}}</ion-label>\n    </ion-item>\n</ion-list>\n</ion-content>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.html":
+  /*!****************************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.html ***!
+    \****************************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppPagesGerenciarIgrejaManterServicosAdicionaServicoAdicionaServicoPageHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Adicionar Serviço</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <form [formGroup]=\"formulario\" (ngSubmit)=\"salvar()\">\n    <ion-card>\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Serviço<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"text\" formControlName=\"nomeServico\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n    </ion-card>\n    <ion-button class=\"sign-up-btn\" type=\"submit\" expand=\"block\">\n      Adicionar</ion-button>\n  </form>\n</ion-content>";
     /***/
   },
 
@@ -791,164 +759,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
     __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n    animated #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n";
-    /***/
-  },
-
-  /***/
-  "./src/app/pages/UF/modal-uf/modal-uf.page.scss":
-  /*!******************************************************!*\
-    !*** ./src/app/pages/UF/modal-uf/modal-uf.page.scss ***!
-    \******************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function srcAppPagesUFModalUfModalUfPageScss(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL1VGL21vZGFsLXVmL21vZGFsLXVmLnBhZ2Uuc2NzcyJ9 */";
-    /***/
-  },
-
-  /***/
-  "./src/app/pages/UF/modal-uf/modal-uf.page.ts":
-  /*!****************************************************!*\
-    !*** ./src/app/pages/UF/modal-uf/modal-uf.page.ts ***!
-    \****************************************************/
-
-  /*! exports provided: ModalUFPage */
-
-  /***/
-  function srcAppPagesUFModalUfModalUfPageTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ModalUFPage", function () {
-      return ModalUFPage;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! src/app/helpers/loadingContr */
-    "./src/app/helpers/loadingContr.ts");
-    /* harmony import */
-
-
-    var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! @ionic/angular */
-    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-    /* harmony import */
-
-
-    var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! src/app/providers/prestador/prestador.service */
-    "./src/app/providers/prestador/prestador.service.ts");
-
-    var ModalUFPage = /*#__PURE__*/function () {
-      function ModalUFPage(loadingContr, toastCtrl, prestadorService, modalController, navParams) {
-        _classCallCheck(this, ModalUFPage);
-
-        this.loadingContr = loadingContr;
-        this.toastCtrl = toastCtrl;
-        this.prestadorService = prestadorService;
-        this.modalController = modalController;
-        this.navParams = navParams;
-        this.dominioUF = [];
-        this.itens = [];
-        this.dominioUF = this.navParams.data.UFs;
-        this.recuperaItens(null);
-      }
-
-      _createClass(ModalUFPage, [{
-        key: "ngAfterViewInit",
-        value: function ngAfterViewInit() {
-          var _this = this;
-
-          setTimeout(function () {
-            _this.inputElement.setFocus();
-          }, 800);
-        }
-      }, {
-        key: "ngOnInit",
-        value: function ngOnInit() {}
-      }, {
-        key: "recuperaItens",
-        value: function recuperaItens(ev) {
-          var val = "";
-
-          if (ev && ev.target) {
-            val = ev.target.value;
-          }
-
-          if (val && val.trim() !== '') {
-            this.itens = this.dominioUF.filter(function (item) {
-              return item.nome.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.sigla.toLowerCase().indexOf(val.toLowerCase()) > -1;
-            });
-          } else {
-            this.itens = _toConsumableArray(this.dominioUF);
-          }
-
-          if (this.itens.length > 10) this.itens.length = 10;
-        }
-      }, {
-        key: "closeModal",
-        value: function closeModal() {
-          this.modalController.dismiss(null, 'cancel');
-        }
-      }, {
-        key: "selecionar",
-        value: function selecionar(item) {
-          this.modalController.dismiss(item, 'success');
-        }
-      }]);
-
-      return ModalUFPage;
-    }();
-
-    ModalUFPage.ctorParameters = function () {
-      return [{
-        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_2__["LoadingContr"]
-      }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]
-      }, {
-        type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__["PrestadorService"]
-      }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
-      }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
-      }];
-    };
-
-    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('searchbar')], ModalUFPage.prototype, "inputElement", void 0);
-    ModalUFPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-modal-uf',
-      template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-      /*! raw-loader!./modal-uf.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/UF/modal-uf/modal-uf.page.html"))["default"],
-      styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-      /*! ./modal-uf.page.scss */
-      "./src/app/pages/UF/modal-uf/modal-uf.page.scss"))["default"]]
-    })], ModalUFPage);
     /***/
   },
 
@@ -1030,7 +840,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     var ModalBairroPage = /*#__PURE__*/function () {
       function ModalBairroPage(loadingContr, toastCtrl, prestadorService, modalController, navParams) {
-        var _this2 = this;
+        var _this = this;
 
         _classCallCheck(this, ModalBairroPage);
 
@@ -1045,14 +855,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.cidade = this.navParams.data.cidade;
         this.loadingContr.showLoader();
         this.prestadorService.RecuperaBairroPrestadorDisponiveis(this.navParams.data.uf, this.navParams.data.cidade).then(function (result) {
-          _this2.dominioBairro = result;
-          _this2.itens = result;
+          _this.dominioBairro = result;
+          _this.itens = result;
 
-          _this2.loadingContr.hideLoader();
+          _this.loadingContr.hideLoader();
         })["catch"](function (x) {
-          _this2.loadingContr.hideLoader();
+          _this.loadingContr.hideLoader();
 
-          src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(x, _this2.toastCtrl);
+          src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(x, _this.toastCtrl);
         });
       }
 
@@ -1062,10 +872,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this3 = this;
+          var _this2 = this;
 
           setTimeout(function () {
-            _this3.inputElement.setFocus();
+            _this2.inputElement.setFocus();
           }, 800);
         }
       }, {
@@ -1120,172 +930,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       /*! ./modal-bairro.page.scss */
       "./src/app/pages/bairro/modal-bairro/modal-bairro.page.scss"))["default"]]
     })], ModalBairroPage);
-    /***/
-  },
-
-  /***/
-  "./src/app/pages/cidade/modal-cidade/modal-cidade.page.scss":
-  /*!******************************************************************!*\
-    !*** ./src/app/pages/cidade/modal-cidade/modal-cidade.page.scss ***!
-    \******************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function srcAppPagesCidadeModalCidadeModalCidadePageScss(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2NpZGFkZS9tb2RhbC1jaWRhZGUvbW9kYWwtY2lkYWRlLnBhZ2Uuc2NzcyJ9 */";
-    /***/
-  },
-
-  /***/
-  "./src/app/pages/cidade/modal-cidade/modal-cidade.page.ts":
-  /*!****************************************************************!*\
-    !*** ./src/app/pages/cidade/modal-cidade/modal-cidade.page.ts ***!
-    \****************************************************************/
-
-  /*! exports provided: ModalCidadePage */
-
-  /***/
-  function srcAppPagesCidadeModalCidadeModalCidadePageTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ModalCidadePage", function () {
-      return ModalCidadePage;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! src/app/helpers/loadingContr */
-    "./src/app/helpers/loadingContr.ts");
-    /* harmony import */
-
-
-    var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! @ionic/angular */
-    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-    /* harmony import */
-
-
-    var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! src/app/providers/prestador/prestador.service */
-    "./src/app/providers/prestador/prestador.service.ts");
-
-    var ModalCidadePage = /*#__PURE__*/function () {
-      function ModalCidadePage(loadingContr, toastCtrl, prestadorService, modalController, navParams) {
-        _classCallCheck(this, ModalCidadePage);
-
-        this.loadingContr = loadingContr;
-        this.toastCtrl = toastCtrl;
-        this.prestadorService = prestadorService;
-        this.modalController = modalController;
-        this.navParams = navParams;
-        this.dominioCidade = [];
-        this.itens = [];
-        this.dominioCidade = this.navParams.data.cidades;
-        this.recuperaItens(null); // this.prestadorService.RecuperaCidadePrestadorDisponiveis( this.navParams.data.uf)
-        //   .then(result => {
-        //     this.dominioCidade = result;
-        //     this.itens = result;
-        //     this.loadingContr.hideLoader();
-        //   }).catch(x => {
-        //     this.loadingContr.hideLoader();
-        //     HandlerError.handler(x, this.toastCtrl);
-        //   });
-      }
-
-      _createClass(ModalCidadePage, [{
-        key: "ngOnInit",
-        value: function ngOnInit() {}
-      }, {
-        key: "ngAfterViewInit",
-        value: function ngAfterViewInit() {
-          var _this4 = this;
-
-          setTimeout(function () {
-            _this4.inputElement.setFocus();
-          }, 800);
-        }
-      }, {
-        key: "recuperaItens",
-        value: function recuperaItens(ev) {
-          var val = "";
-
-          if (ev && ev.target) {
-            val = ev.target.value;
-          }
-
-          if (val && val.trim() !== '') {
-            this.itens = this.dominioCidade.filter(function (item) {
-              return item.toLowerCase().indexOf(val.toLowerCase()) > -1;
-            });
-          } else {
-            this.itens = _toConsumableArray(this.dominioCidade);
-          }
-
-          this.itens = this.itens.slice(0, 10);
-        }
-      }, {
-        key: "closeModal",
-        value: function closeModal() {
-          this.modalController.dismiss(null, 'cancel');
-        }
-      }, {
-        key: "selecionar",
-        value: function selecionar(item) {
-          this.modalController.dismiss(item, 'success');
-        }
-      }]);
-
-      return ModalCidadePage;
-    }();
-
-    ModalCidadePage.ctorParameters = function () {
-      return [{
-        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_2__["LoadingContr"]
-      }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]
-      }, {
-        type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__["PrestadorService"]
-      }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
-      }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
-      }];
-    };
-
-    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('searchbar')], ModalCidadePage.prototype, "inputElement", void 0);
-    ModalCidadePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-modal-cidade',
-      template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-      /*! raw-loader!./modal-cidade.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/cidade/modal-cidade/modal-cidade.page.html"))["default"],
-      styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-      /*! ./modal-cidade.page.scss */
-      "./src/app/pages/cidade/modal-cidade/modal-cidade.page.scss"))["default"]]
-    })], ModalCidadePage);
     /***/
   },
 
@@ -1365,10 +1009,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this5 = this;
+          var _this3 = this;
 
           setTimeout(function () {
-            _this5.inputElement.setFocus();
+            _this3.inputElement.setFocus();
           }, 800);
         }
       }, {
@@ -1417,6 +1061,184 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       /*! ./modal-situacao-prestador.page.scss */
       "./src/app/pages/gerenciarIgreja/manterPrestadores/modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.page.scss"))["default"]]
     })], ModalSituacaoPrestadorPage);
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.scss":
+  /*!**************************************************************************************************!*\
+    !*** ./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.scss ***!
+    \**************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppPagesGerenciarIgrejaManterServicosAdicionaServicoAdicionaServicoPageScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2dlcmVuY2lhcklncmVqYS9tYW50ZXJTZXJ2aWNvcy9hZGljaW9uYS1zZXJ2aWNvL2FkaWNpb25hLXNlcnZpY28ucGFnZS5zY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.ts":
+  /*!************************************************************************************************!*\
+    !*** ./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.ts ***!
+    \************************************************************************************************/
+
+  /*! exports provided: AdicionaServicoPage */
+
+  /***/
+  function srcAppPagesGerenciarIgrejaManterServicosAdicionaServicoAdicionaServicoPageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "AdicionaServicoPage", function () {
+      return AdicionaServicoPage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/providers/dominioServico/dominio-servico.service */
+    "./src/app/providers/dominioServico/dominio-servico.service.ts");
+    /* harmony import */
+
+
+    var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/app/helpers/toastCustom */
+    "./src/app/helpers/toastCustom.ts");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! src/app/helpers/loadingContr */
+    "./src/app/helpers/loadingContr.ts");
+    /* harmony import */
+
+
+    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! src/app/helpers/handlerError */
+    "./src/app/helpers/handlerError.ts");
+    /* harmony import */
+
+
+    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! src/app/utils/constants */
+    "./src/app/utils/constants.ts");
+
+    var AdicionaServicoPage = /*#__PURE__*/function () {
+      function AdicionaServicoPage(servicoService, toastCtrl, loadingContr, modalController) {
+        _classCallCheck(this, AdicionaServicoPage);
+
+        this.servicoService = servicoService;
+        this.toastCtrl = toastCtrl;
+        this.loadingContr = loadingContr;
+        this.modalController = modalController;
+        this.formulario = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+          'nomeServico': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]))
+        });
+      }
+
+      _createClass(AdicionaServicoPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "salvar",
+        value: function salvar() {
+          var _this4 = this;
+
+          if (!this.formulario.valid) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_8__["Constants"].Mensagens.CamposObrigatorios, this.toastCtrl);
+            return false;
+          }
+
+          this.loadingContr.showLoader();
+          this.servicoService.recuperaDominioServico().then(function (result) {
+            if (result.filter(function (x) {
+              return x.nomeServico == _this4.formulario.value.nomeServico;
+            }).length > 0) {
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Serviço já cadastrado.", _this4.toastCtrl);
+              return false;
+            } else {
+              _this4.servicoService.adicionaServico(_this4.formulario.value.nomeServico).then(function (result) {
+                src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_4__["ToastCustom"].SucessoToast(_this4.toastCtrl);
+              })["catch"](function (error) {
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this4.toastCtrl);
+
+                _this4.loadingContr.hideLoader();
+              });
+            }
+
+            _this4.loadingContr.hideLoader();
+          })["catch"](function (error) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this4.toastCtrl);
+
+            _this4.loadingContr.hideLoader();
+          });
+        }
+      }, {
+        key: "closeModal",
+        value: function closeModal() {
+          this.modalController.dismiss(null, 'cancel');
+        }
+      }]);
+
+      return AdicionaServicoPage;
+    }();
+
+    AdicionaServicoPage.ctorParameters = function () {
+      return [{
+        type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_3__["DominioServicoService"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"]
+      }, {
+        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__["LoadingContr"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"]
+      }];
+    };
+
+    AdicionaServicoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-adiciona-servico',
+      template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! raw-loader!./adiciona-servico.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.html"))["default"],
+      styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! ./adiciona-servico.page.scss */
+      "./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.scss"))["default"]]
+    })], AdicionaServicoPage);
     /***/
   },
 
@@ -1492,7 +1314,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     var ModalIgrejaPage = /*#__PURE__*/function () {
       function ModalIgrejaPage(loadingContr, toastCtrl, igrejaService, modalController, navParams) {
-        var _this6 = this;
+        var _this5 = this;
 
         _classCallCheck(this, ModalIgrejaPage);
 
@@ -1510,8 +1332,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         } else {
           loadingContr.showLoader();
           this.igrejaService.RecuperaIgrejasPorEndereco(this.navParams.data.uf, this.navParams.data.cidade, this.navParams.data.bairro).then(function (result) {
-            _this6.itens = result;
-            _this6.dominioIgrejas = result;
+            _this5.itens = result;
+            _this5.dominioIgrejas = result;
             loadingContr.hideLoader();
           })["catch"](function (err) {
             loadingContr.hideLoader();
@@ -1526,10 +1348,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this7 = this;
+          var _this6 = this;
 
           setTimeout(function () {
-            _this7.inputElement.setFocus();
+            _this6.inputElement.setFocus();
           }, 800);
         }
       }, {
@@ -1671,10 +1493,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this8 = this;
+          var _this7 = this;
 
           setTimeout(function () {
-            _this8.inputElement.setFocus();
+            _this7.inputElement.setFocus();
           }, 800);
         }
       }, {

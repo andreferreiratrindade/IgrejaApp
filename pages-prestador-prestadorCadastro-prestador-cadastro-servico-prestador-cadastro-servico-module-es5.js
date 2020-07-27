@@ -35,7 +35,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Serviços\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen class=\"ion-padding\">\n\n  <ion-card  *ngFor=\"let item of prestadorServicos\">\n    <ion-card-header>\n      <ion-card-title>{{item.nomeServico}} </ion-card-title>\n    </ion-card-header>\n\n    <ion-card-content>\n      <ion-item>\n        <ion-textarea placeholder=\"Insira uma breve descrição aqui...\" [(ngModel)]=\"item.breveDescricao\"></ion-textarea>\n      </ion-item>\n      <ion-row>\n        <ion-col>\n          <ion-button type=\"button\" color=\"danger\" (click)=\"excluirButtonClick(item)\">Excluir</ion-button>\n        </ion-col>\n        <ion-col>\n          <ion-button type=\"button\" (click)=\"salvarBreveDescricao(item)\">Salvar</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\n    <ion-fab-button color=\"dark\" (click)=\"abreModalSelecionaServico()\">\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col  class=\"ion-align-self-start\">\n          <ion-button  color=\"medium\" type=\"button\" (click)=\"voltar()\">Voltar</ion-button>\n        </ion-col>\n        <ion-col class=\"ion-align-self-end\">\n          <ion-button  color=\"success\" type=\"button\" (click)=\"prosseguir()\">Prosseguir</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>";
+    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar color=\"secondary\" value=\"0.60\" buffer=\"0.80\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Serviços</ion-card-title>\n      <ion-button color=\"primary\" (click)=\"abreModalSelecionaServico()\"><ion-icon name=\"add-outline\"></ion-icon> Novo</ion-button>\n\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-list style=\"margin-top: 20px;\">\n        <ion-item  *ngFor=\"let item of prestadorServicos\"  class=\"ion-no-border\" button detail=\"false\"  (click)=\"editarServico(item)\">\n          <ion-icon slot=\"end\" color=\"primary\" name=\"create-outline\"></ion-icon>\n          <ion-label>{{item.nomeServico}}</ion-label>\n          <ion-label>{{item.breveDescricao}}</ion-label>\n        </ion-item>\n      </ion-list>\n  \n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>Prosseguir <ion-icon name=\"checkmark\">\n          </ion-icon>\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n";
     /***/
   },
 
@@ -597,6 +597,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function voltar() {
           this.router.navigate(['prestador-local-atendimento']);
         }
+      }, {
+        key: "editarServico",
+        value: function editarServico(item) {}
       }]);
 
       return PrestadorCadastroServicoPage;
@@ -688,6 +691,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "recuperaDominioServico",
         value: function recuperaDominioServico() {
           return this.dominioServico.recuperaDominioServico();
+        }
+      }, {
+        key: "adicionaServico",
+        value: function adicionaServico(servico) {
+          return this.dominioServico.add(servico, null);
         }
       }]);
 

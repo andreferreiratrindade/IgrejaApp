@@ -152,9 +152,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
 /* harmony import */ var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/helpers/handlerError */ "./src/app/helpers/handlerError.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var src_app_config__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/config */ "./src/app/config.ts");
-/* harmony import */ var src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/providers/usuario/usuario.service */ "./src/app/providers/usuario/usuario.service.ts");
-
+/* harmony import */ var src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/providers/usuario/usuario.service */ "./src/app/providers/usuario/usuario.service.ts");
 
 
 
@@ -205,15 +203,9 @@ let SignInPage = class SignInPage {
         this.loadControl.showLoader();
         this.authService.signInWithEmail(this.signInForm.value['email'], this.signInForm.value['password'])
             .then(user => {
-            this.usuarioService.RecuperaUsuarioPorUsuarioId(user.user.uid).then((usuario) => {
-                src_app_config__WEBPACK_IMPORTED_MODULE_9__["Config"].RecuperaInstancia().adicionaUsuario(usuario);
-                this.loadControl.hideLoader();
-                this.router.navigate([this.returnUrl]);
-            })
-                .catch(error => {
-                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Email ou senha incorreto(s)", this.toast);
-                this.loadControl.hideLoader();
-            });
+            this.usuarioService.recuperaUsuarioLogado();
+            this.loadControl.hideLoader();
+            this.router.navigate([this.returnUrl]);
         })
             .catch(error => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Email ou senha incorreto(s)", this.toast);
@@ -227,7 +219,7 @@ SignInPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"] },
     { type: src_app_providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_5__["FirebaseAuthService"] },
     { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__["LoadingContr"] },
-    { type: src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_10__["UsuarioService"] },
+    { type: src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_9__["UsuarioService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["ToastController"] }
 ];
 SignInPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

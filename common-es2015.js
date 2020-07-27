@@ -437,19 +437,6 @@ const openURL = async (url, ev, direction, animation) => {
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/UF/modal-uf/modal-uf.page.html":
-/*!********************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/UF/modal-uf/modal-uf.page.html ***!
-  \********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>UF</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-searchbar type=\"text\"  debounce = 1\n  placeholder=\"Pesquisar\"  \n  animated (ionChange)=\"recuperaItens($event)\" #searchbar></ion-searchbar>\n<ion-list>\n    <ion-item *ngFor=\"let item of itens\" (click)=\"selecionar(item)\" detail>\n      <ion-label>{{item.nome}} / {{item.sigla}}</ion-label>\n    </ion-item>\n</ion-list>\n</ion-content>\n\n");
-
-/***/ }),
-
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/bairro/modal-bairro/modal-bairro.page.html":
 /*!********************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/bairro/modal-bairro/modal-bairro.page.html ***!
@@ -463,19 +450,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/cidade/modal-cidade/modal-cidade.page.html":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/cidade/modal-cidade/modal-cidade.page.html ***!
-  \********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Cidades</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-searchbar type=\"text\"  debounce = 1\n  placeholder=\"Pesquisar\" #searchbar\n  animated (ionChange)=\"recuperaItens($event)\"></ion-searchbar>\n<ion-list>\n    <ion-item *ngFor=\"let item of itens\" (click)=\"selecionar(item)\" detail>\n      <ion-label>{{item}}</ion-label>\n    </ion-item>\n</ion-list>\n</ion-content>\n");
-
-/***/ }),
-
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/gerenciarIgreja/manterPrestadores/modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.page.html":
 /*!**********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/gerenciarIgreja/manterPrestadores/modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.page.html ***!
@@ -486,6 +460,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Situação Prestador</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-searchbar type=\"text\"  debounce = 1\n  placeholder=\"Pesquisar\" #searchbar\n  animated (ionChange)=\"recuperaItens($event)\"></ion-searchbar>\n<ion-list>\n    <ion-item *ngFor=\"let item of itens\" (click)=\"selecionar(item)\" detail>\n      <ion-label>{{item.descricao}}</ion-label>\n    </ion-item>\n</ion-list>\n</ion-content>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.html":
+/*!****************************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.html ***!
+  \****************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Adicionar Serviço</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <form [formGroup]=\"formulario\" (ngSubmit)=\"salvar()\">\n    <ion-card>\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Serviço<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"text\" formControlName=\"nomeServico\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n    </ion-card>\n    <ion-button class=\"sign-up-btn\" type=\"submit\" expand=\"block\">\n      Adicionar</ion-button>\n  </form>\n</ion-content>");
 
 /***/ }),
 
@@ -512,103 +499,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n    animated #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n");
-
-/***/ }),
-
-/***/ "./src/app/pages/UF/modal-uf/modal-uf.page.scss":
-/*!******************************************************!*\
-  !*** ./src/app/pages/UF/modal-uf/modal-uf.page.scss ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL1VGL21vZGFsLXVmL21vZGFsLXVmLnBhZ2Uuc2NzcyJ9 */");
-
-/***/ }),
-
-/***/ "./src/app/pages/UF/modal-uf/modal-uf.page.ts":
-/*!****************************************************!*\
-  !*** ./src/app/pages/UF/modal-uf/modal-uf.page.ts ***!
-  \****************************************************/
-/*! exports provided: ModalUFPage */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalUFPage", function() { return ModalUFPage; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/providers/prestador/prestador.service */ "./src/app/providers/prestador/prestador.service.ts");
-
-
-
-
-
-let ModalUFPage = class ModalUFPage {
-    constructor(loadingContr, toastCtrl, prestadorService, modalController, navParams) {
-        this.loadingContr = loadingContr;
-        this.toastCtrl = toastCtrl;
-        this.prestadorService = prestadorService;
-        this.modalController = modalController;
-        this.navParams = navParams;
-        this.dominioUF = [];
-        this.itens = [];
-        this.dominioUF = this.navParams.data.UFs;
-        this.recuperaItens(null);
-    }
-    ngAfterViewInit() {
-        setTimeout(() => {
-            this.inputElement.setFocus();
-        }, 800);
-    }
-    ngOnInit() {
-    }
-    recuperaItens(ev) {
-        let val = "";
-        if (ev && ev.target) {
-            val = ev.target.value;
-        }
-        if (val && val.trim() !== '') {
-            this.itens = this.dominioUF.filter(item => {
-                return item.nome.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.sigla.toLowerCase().indexOf(val.toLowerCase()) > -1;
-            });
-        }
-        else {
-            this.itens = [...this.dominioUF];
-        }
-        if (this.itens.length > 10)
-            this.itens.length = 10;
-    }
-    closeModal() {
-        this.modalController.dismiss(null, 'cancel');
-    }
-    selecionar(item) {
-        this.modalController.dismiss(item, 'success');
-    }
-};
-ModalUFPage.ctorParameters = () => [
-    { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_2__["LoadingContr"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
-    { type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__["PrestadorService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"] }
-];
-Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('searchbar')
-], ModalUFPage.prototype, "inputElement", void 0);
-ModalUFPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-modal-uf',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./modal-uf.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/UF/modal-uf/modal-uf.page.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./modal-uf.page.scss */ "./src/app/pages/UF/modal-uf/modal-uf.page.scss")).default]
-    })
-], ModalUFPage);
-
-
 
 /***/ }),
 
@@ -714,109 +604,6 @@ ModalBairroPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
-/***/ "./src/app/pages/cidade/modal-cidade/modal-cidade.page.scss":
-/*!******************************************************************!*\
-  !*** ./src/app/pages/cidade/modal-cidade/modal-cidade.page.scss ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2NpZGFkZS9tb2RhbC1jaWRhZGUvbW9kYWwtY2lkYWRlLnBhZ2Uuc2NzcyJ9 */");
-
-/***/ }),
-
-/***/ "./src/app/pages/cidade/modal-cidade/modal-cidade.page.ts":
-/*!****************************************************************!*\
-  !*** ./src/app/pages/cidade/modal-cidade/modal-cidade.page.ts ***!
-  \****************************************************************/
-/*! exports provided: ModalCidadePage */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalCidadePage", function() { return ModalCidadePage; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/providers/prestador/prestador.service */ "./src/app/providers/prestador/prestador.service.ts");
-
-
-
-
-
-let ModalCidadePage = class ModalCidadePage {
-    constructor(loadingContr, toastCtrl, prestadorService, modalController, navParams) {
-        this.loadingContr = loadingContr;
-        this.toastCtrl = toastCtrl;
-        this.prestadorService = prestadorService;
-        this.modalController = modalController;
-        this.navParams = navParams;
-        this.dominioCidade = [];
-        this.itens = [];
-        this.dominioCidade = this.navParams.data.cidades;
-        this.recuperaItens(null);
-        // this.prestadorService.RecuperaCidadePrestadorDisponiveis( this.navParams.data.uf)
-        //   .then(result => {
-        //     this.dominioCidade = result;
-        //     this.itens = result;
-        //     this.loadingContr.hideLoader();
-        //   }).catch(x => {
-        //     this.loadingContr.hideLoader();
-        //     HandlerError.handler(x, this.toastCtrl);
-        //   });
-    }
-    ngOnInit() {
-    }
-    ngAfterViewInit() {
-        setTimeout(() => {
-            this.inputElement.setFocus();
-        }, 800);
-    }
-    recuperaItens(ev) {
-        let val = "";
-        if (ev && ev.target) {
-            val = ev.target.value;
-        }
-        if (val && val.trim() !== '') {
-            this.itens = this.dominioCidade.filter(item => { return item.toLowerCase().indexOf(val.toLowerCase()) > -1; });
-        }
-        else {
-            this.itens = [...this.dominioCidade];
-        }
-        this.itens = this.itens.slice(0, 10);
-    }
-    closeModal() {
-        this.modalController.dismiss(null, 'cancel');
-    }
-    selecionar(item) {
-        this.modalController.dismiss(item, 'success');
-    }
-};
-ModalCidadePage.ctorParameters = () => [
-    { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_2__["LoadingContr"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
-    { type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__["PrestadorService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"] }
-];
-Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('searchbar')
-], ModalCidadePage.prototype, "inputElement", void 0);
-ModalCidadePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-modal-cidade',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./modal-cidade.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/cidade/modal-cidade/modal-cidade.page.html")).default,
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./modal-cidade.page.scss */ "./src/app/pages/cidade/modal-cidade/modal-cidade.page.scss")).default]
-    })
-], ModalCidadePage);
-
-
-
-/***/ }),
-
 /***/ "./src/app/pages/gerenciarIgreja/manterPrestadores/modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.page.scss":
 /*!********************************************************************************************************************************************!*\
   !*** ./src/app/pages/gerenciarIgreja/manterPrestadores/modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.page.scss ***!
@@ -892,6 +679,110 @@ ModalSituacaoPrestadorPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decora
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./modal-situacao-prestador.page.scss */ "./src/app/pages/gerenciarIgreja/manterPrestadores/modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.page.scss")).default]
     })
 ], ModalSituacaoPrestadorPage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.scss":
+/*!**************************************************************************************************!*\
+  !*** ./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.scss ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2dlcmVuY2lhcklncmVqYS9tYW50ZXJTZXJ2aWNvcy9hZGljaW9uYS1zZXJ2aWNvL2FkaWNpb25hLXNlcnZpY28ucGFnZS5zY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.ts":
+/*!************************************************************************************************!*\
+  !*** ./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.ts ***!
+  \************************************************************************************************/
+/*! exports provided: AdicionaServicoPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdicionaServicoPage", function() { return AdicionaServicoPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+/* harmony import */ var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/providers/dominioServico/dominio-servico.service */ "./src/app/providers/dominioServico/dominio-servico.service.ts");
+/* harmony import */ var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/helpers/toastCustom */ "./src/app/helpers/toastCustom.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
+/* harmony import */ var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/helpers/handlerError */ "./src/app/helpers/handlerError.ts");
+/* harmony import */ var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/utils/constants */ "./src/app/utils/constants.ts");
+
+
+
+
+
+
+
+
+
+let AdicionaServicoPage = class AdicionaServicoPage {
+    constructor(servicoService, toastCtrl, loadingContr, modalController) {
+        this.servicoService = servicoService;
+        this.toastCtrl = toastCtrl;
+        this.loadingContr = loadingContr;
+        this.modalController = modalController;
+        this.formulario = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            'nomeServico': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
+            ]))
+        });
+    }
+    ngOnInit() {
+    }
+    salvar() {
+        if (!this.formulario.valid) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_8__["Constants"].Mensagens.CamposObrigatorios, this.toastCtrl);
+            return false;
+        }
+        this.loadingContr.showLoader();
+        this.servicoService.recuperaDominioServico().then(result => {
+            if (result.filter(x => x.nomeServico == this.formulario.value.nomeServico).length > 0) {
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Serviço já cadastrado.", this.toastCtrl);
+                return false;
+            }
+            else {
+                this.servicoService.adicionaServico(this.formulario.value.nomeServico)
+                    .then(result => {
+                    src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_4__["ToastCustom"].SucessoToast(this.toastCtrl);
+                }).catch((error) => {
+                    src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, this.toastCtrl);
+                    this.loadingContr.hideLoader();
+                });
+            }
+            this.loadingContr.hideLoader();
+        })
+            .catch((error) => {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, this.toastCtrl);
+            this.loadingContr.hideLoader();
+        });
+    }
+    closeModal() {
+        this.modalController.dismiss(null, 'cancel');
+    }
+};
+AdicionaServicoPage.ctorParameters = () => [
+    { type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_3__["DominioServicoService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"] },
+    { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__["LoadingContr"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"] }
+];
+AdicionaServicoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-adiciona-servico',
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./adiciona-servico.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./adiciona-servico.page.scss */ "./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.scss")).default]
+    })
+], AdicionaServicoPage);
 
 
 

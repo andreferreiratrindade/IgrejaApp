@@ -707,6 +707,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function recuperaDominioServico() {
           return this.dominioServico.recuperaDominioServico();
         }
+      }, {
+        key: "adicionaServico",
+        value: function adicionaServico(servico) {
+          return this.dominioServico.add(servico, null);
+        }
       }]);
 
       return DominioServicoService;
