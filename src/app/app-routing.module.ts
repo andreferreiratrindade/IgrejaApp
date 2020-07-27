@@ -4,7 +4,23 @@ import {  UsuarioLogadoValidation } from './providers/AuthGuard/UsuarioLogadoVal
 import { PrestadorSituacaoValidation } from './providers/AuthGuard/PrestadorSituacaoValidation';
 import { PerfilValidation_AdministradorSistema } from './providers/AuthGuard/PerfilValidation_AdministradorSistema';
 import { PerfilValidation_AdministradorIgreja } from './providers/AuthGuard/PerfilValidation_AdministradorIgreja';
+import { TablinksPage } from './pages/tablinks/tablinks.page';
 const routes: Routes = [
+  {
+    path: 'tablinks',
+    component: TablinksPage,
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./pages/prestador/prestador-consultar/prestador-consultar.module').then( m => m.PrestadorConsultarPageModule)
+
+      },
+      {
+        path: 'Perfil',
+        loadChildren: () => import('./pages/prestador/prestador-consultar/prestador-consultar.module').then( m => m.PrestadorConsultarPageModule)
+      }
+    ]
+   },
   {
     path: '',
     redirectTo: 'home',
@@ -112,14 +128,34 @@ const routes: Routes = [
     path: 'meu-cadastro-prestador',
     canActivate: [UsuarioLogadoValidation],
     loadChildren: () => import('./pages/prestador/prestadorCadastro/MeuCadastroPrestador/meu-cadastro-prestador/meu-cadastro-prestador.module').then( m => m.MeuCadastroPrestadorPageModule)
+  },
+
+  {
+    path: 'mantem-servico',
+    canActivate: [PerfilValidation_AdministradorSistema],
+    loadChildren: () => import('./pages/gerenciarIgreja/manterServicos/mantem-servico/mantem-servico.module').then( m => m.MantemServicoPageModule)
+  },
+  {
+    path: 'adiciona-servico',
+    canActivate: [PerfilValidation_AdministradorSistema],
+    loadChildren: () => import('./pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.module').then( m => m.AdicionaServicoPageModule)
+  },
+  {
+    path: 'modulo-prestador-home',
+    loadChildren: () => import('./pages/gerenciarIgreja/moduloPrestador/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'tablinks',
+    loadChildren: () => import('./pages/tablinks/tablinks.module').then( m => m.TablinksPageModule)
+  },
+
+  {
+    path: 'adicionar-local-atendimento',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/adicionar-local-atendimento/adicionar-local-atendimento.module').then( m => m.AdicionarLocalAtendimentoPageModule)
+  },  {
+    path: 'editar-servico',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/editar-servico/editar-servico.module').then( m => m.EditarServicoPageModule)
   }
-
-
-
-
-
-
-
 
 
 ];

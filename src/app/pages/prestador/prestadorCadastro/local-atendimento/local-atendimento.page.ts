@@ -12,6 +12,7 @@ import { HandlerError } from 'src/app/helpers/handlerError';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { Constants } from 'src/app/utils/constants';
 import { constants } from 'buffer';
+import { AdicionarLocalAtendimentoPage } from '../adicionar-local-atendimento/adicionar-local-atendimento.page';
 
 @Component({
   selector: 'app-local-atendimento',
@@ -51,6 +52,9 @@ export class LocalAtendimentoPage implements OnInit {
     this.prestadorService.RecuperaPrestador(usuarioId)
       .then((result) => {
         this.locaisAtendimentos = result.locaisAtendimento;
+        if(this.locaisAtendimentos.length == 0){ 
+            this.abreModalSelecionarLocalAtendimento();
+        }
         this.loadingContr.hideLoader();
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
@@ -59,19 +63,19 @@ export class LocalAtendimentoPage implements OnInit {
 
   }
 
-  public validaAdicionarLocalAtendimento() {
+  public validaAdicionarLocalAtendimento(localAtendimento:any) {
     let valido = true;
     let mensagem = "";
 
     let obj = { valido: true, mensagem: "" };
-    if (!this.formulario.value.cidade || !this.formulario.value.uf) {
+    if (!localAtendimento.cidade || !localAtendimento.uf) {
       obj.valido = false;
       obj.mensagem = Constants.Mensagens.CamposObrigatorios;
       return obj;
     }
 
     if (this.locaisAtendimentos && this.locaisAtendimentos
-      .filter(y => { return y.uf == this.formulario.value.uf && y.cidade == this.formulario.value.cidade; }).length > 0) {
+      .filter(y => { return y.uf == localAtendimento.uf && y.cidade == localAtendimento.cidade; }).length > 0) {
       obj.valido = false;
       obj.mensagem = "Local de atendimento já foi adicionado.";
       return obj;
@@ -80,32 +84,9 @@ export class LocalAtendimentoPage implements OnInit {
     return obj;
   }
 
-  public adicionarLocalAtendimento() {
-    let validacao = this.validaAdicionarLocalAtendimento()
-    if (!validacao.valido) {
-      HandlerError.handler(validacao.mensagem, this.toastCtrl);
-      return false;
-    }
-    let localAtendimento = { uf: this.formulario.value.uf, cidade: this.formulario.value.cidade };
-    this.loadingContr.showLoader();
 
-    this.prestadorService.AdicionaLocalAtendimento(localAtendimento, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
-      .then(() => {
-        if (!this.locaisAtendimentos) {
-          this.locaisAtendimentos = [];
-        }
-        this.locaisAtendimentos.push(localAtendimento);
-        this.formulario.reset();
-        this.loadingContr.hideLoader();
-        ToastCustom.SucessoToast(this.toastCtrl);
-      }).catch(err => {
-        HandlerError.handler(err, this.toastCtrl);
-        this.loadingContr.hideLoader();
-      });
-  }
-
-  async excluirButtonClick(item) {
-    const alert = await this.alertController.create({
+   excluirButtonClick(item) {
+  this.alertController.create({
       header: 'Atenção',
       message: 'Deseja excluir registro?',
       buttons: [
@@ -118,8 +99,7 @@ export class LocalAtendimentoPage implements OnInit {
           }
         }
       ]
-    });
-    await alert.present();
+    }).then(result=>{  result.present() });
 
   }
 
@@ -131,7 +111,9 @@ export class LocalAtendimentoPage implements OnInit {
       .ExcluirLocalAtendimento(Config.RecuperaInstancia()
         .recuperaUsuario().usuarioId, item)
       .then((result) => {
-        this.locaisAtendimentos = this.locaisAtendimentos.filter(y => { return y.cidade != item.cidade && y.uf != item.uf });
+        let locais = this.locaisAtendimentos.filter(y => { return y.cidade != item.cidade || y.uf != item.uf });
+        this.locaisAtendimentos = null;
+        this.locaisAtendimentos = locais;
         this.loadingContr.hideLoader();
         ToastCustom.SucessoToast(this.toastCtrl);
       }).catch(err => {
@@ -141,6 +123,11 @@ export class LocalAtendimentoPage implements OnInit {
   }
 
   public prosseguir() {
+
+    if(this.locaisAtendimentos.length == 0){
+      HandlerError.handler("Favor informar local de atendimento.", this.toastCtrl);
+      return false;
+    }
 
     this.loadingContr.showLoader();
     let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.CadastroServicos };
@@ -159,49 +146,44 @@ export class LocalAtendimentoPage implements OnInit {
       });
   }
 
-  public abrirModalUF() {
-    const modal = this.modalCtrl.create({
-      component: ModalUFPage,
-      backdropDismiss: false,
-      componentProps: { UFs: Constants.ListagemUF.RecuperaListagem() },
 
-    }).then((modal) => {
-      modal.present();
-      modal.onWillDismiss().then(resultModal => {
-        if (resultModal.data) {
-
-          this.formulario.controls["ufApresentacao"].setValue(resultModal.data.nome + " / " + resultModal.data.sigla);
-          this.formulario.controls["uf"].setValue(resultModal.data.sigla);
-          this.loadingContr.showLoader();
-          this.buscarCEPService.buscarMunicipiosPorUF(resultModal.data.sigla)
-            .then(result => {
-
-              this.cidades = result;
-              this.loadingContr.hideLoader();
-            }
-            ).catch(err => { this.loadingContr.hideLoader(); });
-        }
-      });
-    });
-  }
-
-  public abrirModalCidade() {
-    const modal = this.modalCtrl.create({
-      component: ModalCidadePage,
-      componentProps: { cidades: this.cidades },
-      backdropDismiss: false,
-    }).then((modal) => {
-      modal.present();
-      modal.onWillDismiss().then(resultModal => {
-        if (resultModal.data) {
-          this.formulario.controls["cidade"].setValue(resultModal.data);
-        }
-      });
-    });
-  }
-
-  public voltar(){
+  public voltar() {
     this.router.navigate(['dados-empresa']);
+  }
+
+  public abreModalSelecionarLocalAtendimento() {
+    
+    const modal = this.modalCtrl.create({
+      component: AdicionarLocalAtendimentoPage,
+      backdropDismiss: false,
+    }).then((modal) => {
+      modal.present();
+      modal.onWillDismiss().then(resultModal => {
+        if (resultModal.data) {
+          let localAtendimento = { uf: resultModal.data.uf, cidade: resultModal.data.cidade };
+          let msg = this.validaAdicionarLocalAtendimento(localAtendimento)
+          if(!msg.valido){
+            HandlerError.handler(msg.mensagem, this.toastCtrl);
+            return false;
+          }
+          this.loadingContr.showLoader();
+
+          this.prestadorService.AdicionaLocalAtendimento(localAtendimento, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+            .then(() => {
+              if (!this.locaisAtendimentos) {
+                this.locaisAtendimentos = [];
+              }
+              this.locaisAtendimentos.push(localAtendimento);
+              this.formulario.reset();
+              this.loadingContr.hideLoader();
+              ToastCustom.SucessoToast(this.toastCtrl);
+            }).catch(err => {
+              HandlerError.handler(err, this.toastCtrl);
+              this.loadingContr.hideLoader();
+            });
+        }
+      });
+    });
   }
 
 }

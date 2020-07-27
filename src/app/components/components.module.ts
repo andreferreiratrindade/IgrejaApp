@@ -6,12 +6,14 @@ import { IonicModule } from '@ionic/angular';
 import { AccordionComponent } from './accordion/accordion/accordion.component';
 import { TextoCortadoComponent } from './textoCortado/texto-cortado/texto-cortado.component';
 import { PopupMenuComponentPopover } from './textoCortado/texto-cortado/textoPropover';
+import { TablinksPage } from '../pages/tablinks/tablinks.page';
 
 const PAGES_COMPONENTS = [
   MensagemValidacaoComponent,
   AccordionComponent,
   TextoCortadoComponent,
-  PopupMenuComponentPopover
+  PopupMenuComponentPopover,
+  TablinksPage
 ];
 
 @NgModule({

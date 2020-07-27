@@ -13,7 +13,6 @@ import { Config } from 'src/app/config';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { HandlerError } from 'src/app/helpers/handlerError';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
-import { debug } from 'console';
 
 @Component({
   selector: 'app-prestador-cadastro-igreja-vinculo',

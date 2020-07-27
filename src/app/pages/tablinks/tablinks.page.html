@@ -1,0 +1,9 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom" >
+    <ion-tab-button [tab]="item.tab" *ngFor="let item of itens">
+      <ion-icon [name]="item.icon"></ion-icon>
+      <ion-label>{{item.descricao}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

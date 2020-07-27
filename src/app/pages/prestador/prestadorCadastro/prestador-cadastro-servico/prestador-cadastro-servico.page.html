@@ -1,54 +1,42 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Serviços
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscreen>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Cadastro Prestador
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content fullscreen class="ion-padding">
+  <ion-progress-bar color="secondary" value="0.60" buffer="0.80"></ion-progress-bar>
 
-  <ion-card  *ngFor="let item of prestadorServicos">
+  <ion-card>
     <ion-card-header>
-      <ion-card-title>{{item.nomeServico}} </ion-card-title>
-    </ion-card-header>
+      <ion-card-title>Serviços</ion-card-title>
+      <ion-button color="primary" (click)="abreModalSelecionaServico()"><ion-icon name="add-outline"></ion-icon> Novo</ion-button>
 
+    </ion-card-header>
     <ion-card-content>
-      <ion-item>
-        <ion-textarea placeholder="Insira uma breve descrição aqui..." [(ngModel)]="item.breveDescricao"></ion-textarea>
-      </ion-item>
-      <ion-row>
-        <ion-col>
-          <ion-button type="button" color="danger" (click)="excluirButtonClick(item)">Excluir</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button type="button" (click)="salvarBreveDescricao(item)">Salvar</ion-button>
-        </ion-col>
-      </ion-row>
+
+      <ion-list style="margin-top: 20px;">
+        <ion-item  *ngFor="let item of prestadorServicos"  class="ion-no-border" button detail="false"  (click)="editarServico(item)">
+          <ion-icon slot="end" color="primary" name="create-outline"></ion-icon>
+          <ion-label>{{item.nomeServico}}</ion-label>
+          <ion-label>{{item.breveDescricao}}</ion-label>
+        </ion-item>
+      </ion-list>
+  
+      <div class="ion-text-end" style="margin-top: 20px;">
+        <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4"
+          clear>
+          <ion-icon name="chevron-back-outline"></ion-icon>Voltar
+        </ion-button>
+        <ion-button color="success" type="button" (click)="prosseguir()" clear>Prosseguir <ion-icon name="checkmark">
+          </ion-icon>
+        </ion-button>
+      </div>
     </ion-card-content>
   </ion-card>
-
-  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button color="dark" (click)="abreModalSelecionaServico()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col  class="ion-align-self-start">
-          <ion-button  color="medium" type="button" (click)="voltar()">Voltar</ion-button>
-        </ion-col>
-        <ion-col class="ion-align-self-end">
-          <ion-button  color="success" type="button" (click)="prosseguir()">Prosseguir</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>

@@ -1,13 +1,13 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content"  menuId="mainContent" side="start" >
+    <ion-menu contentId="main-content" menuId="mainContent" side="start">
       <ion-header>
         <ion-toolbar color="default">
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content >
-        <ion-list >
+      <ion-content>
+        <ion-list>
 
           <span *ngIf="usuarioLogado">
             <ion-list-header>
@@ -16,27 +16,20 @@
             </ion-list-header>
             <ion-note>{{recuperaDadosUsuario.email}}</ion-note>
 
-            <ion-chip color="tertiary" (click)="logoff()" slot="close" routerDirection="root" 
+            <ion-chip color="tertiary" (click)="logoff()" slot="close" routerDirection="root"
               routerLink="prestador-consultar" size="6">
               <ion-label>Sair</ion-label>
               <ion-icon name="log-out-outline"></ion-icon>
             </ion-chip>
           </span>
 
-          <span *ngIf="!usuarioLogado" class="row justify-content-md-center">
-            <ion-chip color="tertiary" (click)="login()" size="6">
-              <ion-label>Login</ion-label>
-              <ion-icon name="log-in-outline"></ion-icon>
-            </ion-chip>
-          </span>
-          <ion-menu-toggle  *ngFor="let p of paginas">
-            <ion-item  routerDirection="root" [routerLink]="p.url" 
-              detail="false">
+          <ion-menu-toggle *ngFor="let p of paginas">
+            <ion-item routerDirection="root" [routerLink]="p.url" detail="false">
               <ion-icon slot="start" [ios]="p.icon + '-outline'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-      
+
         </ion-list>
         <ion-footer class="ion-no-border">
           <ion-toolbar>
@@ -45,6 +38,10 @@
         </ion-footer>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+    <ion-router-outlet id="main-content">
+
+      <app-tablinks></app-tablinks>
+
+    </ion-router-outlet>
   </ion-split-pane>
 </ion-app>

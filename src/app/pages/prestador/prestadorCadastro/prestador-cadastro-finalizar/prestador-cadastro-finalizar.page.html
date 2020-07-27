@@ -1,21 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Finalizar
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscreen>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Cadastro Prestador
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content>
+  <ion-progress-bar color="success" value="1" ></ion-progress-bar>
+
 
   <ion-card class="ion-no-border">
     <ion-card-header>
 
       <ion-card-title>
-        <h3>Dados empresa</h3>
+        <h3>Dados Empresa</h3>
 
 
       </ion-card-title>
@@ -70,7 +72,7 @@
     </ion-card-header>
     <ion-item *ngFor="let item of prestador.locaisAtendimento; let i = index">
       <ion-label class="ion-text-wrap">
-        <h2>{{i+1}}. {{item.cidade}} / {{item.uf}}</h2>
+        <h2>{{item.cidade}} / {{item.uf}}</h2>
       </ion-label>
     </ion-item>
     <ion-grid>
@@ -114,7 +116,7 @@
     <ion-item>
       <ion-label class="ion-text-wrap">
         <h3>{{prestador.nomeIgreja}}</h3>
-        <h3>{{prestador.staMembro}}</h3>
+        <h3>Membro: {{prestador.staMembro?"Sim":"Não"}}</h3>
       </ion-label>
     </ion-item>
     <ion-grid>
@@ -125,18 +127,15 @@
       </ion-row>
     </ion-grid>
   </ion-card>
+
+  <div class="ion-text-end" style="margin-top: 20px;">
+    <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4"
+      clear>
+      <ion-icon name="chevron-back-outline"></ion-icon>Voltar
+    </ion-button>
+
+    <ion-button color="success" type="button" (click)="finalizar()" clear>Finalizar <ion-icon name="checkmark">
+      </ion-icon>
+    </ion-button>
+  </div>
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="ion-align-self-start">
-          <ion-button color="medium" type="button" (click)="voltar()">Voltar</ion-button>
-        </ion-col>
-        <ion-col class="ion-align-self-end">
-          <ion-button color="success" type="button" (click)="finalizar()">Finalizar</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>

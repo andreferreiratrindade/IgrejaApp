@@ -17,6 +17,8 @@ import { appVersion } from 'src/environments/appVersion';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public version = appVersion.version;
+  public usuarioLogado: any ={}
+  public paginas: any[] = [];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
@@ -40,13 +42,40 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.usuarioService.RecuperaUsuarioObservable().subscribe((data)=>{
+      this.usuarioLogado = data;
+
+      this.paginas = this.RecuperaPaginasMenuLateral().filter(page => {
+        let retorno = true;
+        if (page.perfil) {
+          retorno = page.perfil.filter(x => {
+            let retorno = false;
+            if (this.usuarioLogado) {
+              let perfisDoUsuario = this.usuarioLogado.perfis
+
+              if (perfisDoUsuario) {
+                retorno = perfisDoUsuario.filter(perfis => {
+                  return perfis == x;
+                }).length > 0;
+              }
+            }
+            return retorno;
+          }).length > 0;
+        }
+        return retorno;
+      });
+    });
 
     this.usuarioService.recuperaUsuarioLogado().then(() => {
+      
+      console.log(this.paginas)
     });
   }
 
+  /*
   get paginas() {
-    return this.RecuperaPaginasMenuLateral().filter(page => {
+    
+    let paginas =  this.RecuperaPaginasMenuLateral().filter(page => {
       let retorno = true;
       if (page.perfil) {
         retorno = page.perfil.filter(x => {
@@ -83,22 +112,19 @@ export class AppComponent implements OnInit {
       // }
       return retorno
     });
-    console.log(this.paginas);
-  }
+    console.log(paginas);
+    return paginas;
+  }*/
 
   get recuperaDadosUsuario() {
 
     return Config.RecuperaInstancia().recuperaUsuario() ?? { nome: "", email: "" };
   }
 
-  get usuarioLogado() {
-    return Config.RecuperaInstancia().recuperaUsuario();
-  }
-
-
 
   logoff() {
     this.firebaseAuthService.signOut();
+    this.usuarioService.recuperaUsuarioLogado();
     this.router.navigate(['/home']);
   }
   login() {
@@ -139,6 +165,20 @@ export class AppComponent implements OnInit {
         url: 'meu-cadastro-prestador',
         icon: 'business',
         perfil: [Constants.PerfilUsuario.Prestador]
+      }
+      ,
+      {
+        title: 'Manter Serviços',
+        url: 'mantem-servico',
+        icon: 'business',
+        perfil: [Constants.PerfilUsuario.AdministradorSistema]
+      }
+      ,
+      {
+        title: 'Modulo Prestador',
+        url: 'modulo-prestador-home-adm-sistema',
+        icon: 'business',
+        perfil: [Constants.PerfilUsuario.AdministradorSistema]
       }
     ];
   }

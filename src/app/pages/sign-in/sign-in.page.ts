@@ -67,19 +67,10 @@ export class SignInPage {
     this.loadControl.showLoader();
     this.authService.signInWithEmail(this.signInForm.value['email'], this.signInForm.value['password'])
       .then(user => {
-        this.usuarioService.RecuperaUsuarioPorUsuarioId(user.user.uid).then((usuario)=>{
 
-          Config.RecuperaInstancia().adicionaUsuario(usuario);
-          this.loadControl.hideLoader();
-          this.router.navigate([this.returnUrl]);
-
-        })
-          .catch(error => {
-            HandlerError.handler("Email ou senha incorreto(s)", this.toast);
-            this.loadControl.hideLoader();
-          });
-
-
+        this.usuarioService.recuperaUsuarioLogado();
+        this.loadControl.hideLoader();
+        this.router.navigate([this.returnUrl]);
       })
       .catch(error => {
         HandlerError.handler("Email ou senha incorreto(s)", this.toast);

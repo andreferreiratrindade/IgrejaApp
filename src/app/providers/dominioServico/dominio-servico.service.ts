@@ -11,8 +11,12 @@ export class DominioServicoService {
 
   constructor(public dominioServico: DominioServicoRepositoryService) { }
 
-  recuperaDominioServico() : Promise<any>{
+  public recuperaDominioServico() : Promise<any>{
     
     return this.dominioServico.recuperaDominioServico();
+  }
+
+  public adicionaServico(servico:any){
+    return this.dominioServico.add(servico,null);
   }
 }

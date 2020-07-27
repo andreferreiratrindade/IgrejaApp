@@ -181,4 +181,8 @@ export class PrestadorCadastroServicoPage implements OnInit {
   public voltar(){
     this.router.navigate(['prestador-local-atendimento']);
   }
+
+  public editarServico(item:any){
+
+  }
 }

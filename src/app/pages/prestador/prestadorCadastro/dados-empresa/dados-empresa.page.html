@@ -1,62 +1,65 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Dados da Empresa
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content fullscreen>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Cadastro Prestador
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-progress-bar color="secondary" value="0.20" buffer="0.40"></ion-progress-bar>
+
   <ion-card>
-    <form [formGroup]="formulario">
+    <ion-card-header>
+      <ion-card-title>Dados da Empresa</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formulario">
 
-      <ion-item class="input-item">
-        <ion-label position="floating">Razão Social <ion-text color="danger">*</ion-text>
-        </ion-label>
+        <ion-item class="input-item">
+          <ion-label position="floating">Razão Social <ion-text color="danger">*</ion-text>
+          </ion-label>
 
-        <ion-input type="text" formControlName="razaoSocial" clearInput autocapitalize="off"></ion-input>
-      </ion-item>
+          <ion-input type="text" formControlName="razaoSocial" clearInput autocapitalize="off"></ion-input>
+        </ion-item>
 
-      <ion-item class="input-item">
-        <ion-label position="floating">Telefone<ion-text color="danger">*</ion-text>
-        </ion-label>
+        <ion-item class="input-item">
+          <ion-label position="floating">Telefone<ion-text color="danger">*</ion-text>
+          </ion-label>
 
-        <ion-input type="number"  formControlName="telefone" clearInput autocapitalize="off">
-        </ion-input>
-      </ion-item>
-
-
-      <ion-item class="input-item">
-        <ion-label position="floating">CEP Comercial ou residencial<ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input type="number" maxlength="8" formControlName="cep" clearInput autocapitalize="off"></ion-input>
-      </ion-item>
+          <ion-input type="number" formControlName="telefone" clearInput autocapitalize="off">
+          </ion-input>
+        </ion-item>
 
 
-      <ion-chip color="tertiary" (click)="buscarEnderecoPorCEP()" size="6">
-        <ion-label>Buscar Endereço</ion-label>
-        <ion-icon name="search-outline"></ion-icon>
-      </ion-chip>
-      <ion-item class="input-item">
-        <ion-label class="ion-text-wrap" *ngIf="formulario.value.logradouro">
-          <p>{{formulario.value.logradouro}}, {{formulario.value.bairro}} - {{formulario.value.cidade}} /
-            {{formulario.value.uf}}</p>
-        </ion-label>
-      </ion-item>
-    </form>
-    </ion-card>
+        <ion-item class="input-item">
+          <ion-label position="floating">CEP Comercial ou residencial<ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input type="number" maxlength="8" formControlName="cep" clearInput autocapitalize="off"></ion-input>
+        </ion-item>
+
+        <ion-button color="primary"  size="small" (click)="buscarEnderecoPorCEP()" >
+          <ion-label>Buscar Endereço</ion-label>
+          <ion-icon name="search-outline"></ion-icon>
+        </ion-button>
+
+
+        <ion-item class="ion-no-border">
+          <ion-label class="ion-text-wrap" *ngIf="formulario.value.logradouro">
+            <h3>{{formulario.value.logradouro}}, {{formulario.value.bairro}} - {{formulario.value.cidade}} /
+              {{formulario.value.uf}}</h3>
+          </ion-label>
+        </ion-item>
+        <div class="ion-text-end" style="margin-top: 20px;">
+          <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4" clear>
+            <ion-icon name="chevron-back-outline"></ion-icon>Voltar</ion-button>
+          <ion-button color="success" type="button" (click)="prosseguir()" clear>Prosseguir <ion-icon name="checkmark"></ion-icon>
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="ion-align-self-end">
-          <ion-button color="success" type="button" (click)="prosseguir()">Prosseguir</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>
