@@ -338,12 +338,11 @@ export class PrestadorRepServiceService extends BaseRepository {
     }
 
     AdicionaPrestador(prestador: any): Promise<any> {
-        console.log(prestador);
         return new Promise((resolve, reject) => {
 
             this.db.collection("usuario").doc(prestador.usuarioId)
                 .collection("prestador").doc(prestador.usuarioId)
-                .set({ ...prestador }).then((obj) => {
+                .set({ ...prestador },{merge:true}).then((obj) => {
                     resolve(obj);
                 }).catch(err => {
                     reject(err);

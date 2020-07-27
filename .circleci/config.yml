@@ -1,5 +1,13 @@
 version: 2
+aliases:
+  - &restore-cache
+      keys:
+        - dependency-cache-{{ checksum "package.json" }}-1
 
+  - &save-cache
+      key: dependency-cache-{{ checksum "package.json" }}-1
+      paths:
+        - node_modules
 machine:
     environment:
           ANDROID_HOME: /usr/local/android-sdk-linux

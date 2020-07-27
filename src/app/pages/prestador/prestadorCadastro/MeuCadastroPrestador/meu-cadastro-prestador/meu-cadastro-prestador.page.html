@@ -51,7 +51,13 @@
         <h3>{{prestador.logradouro}}, {{prestador.bairro}} - {{prestador.cidade}} / {{prestador.uf}}</h3>
       </ion-label>
     </ion-item>
-
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-button size="small" (click)="redirect('dados-empresa')">Editar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 
 
@@ -67,6 +73,13 @@
         <h2>{{i+1}}. {{item.cidade}} / {{item.uf}}</h2>
       </ion-label>
     </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-button size="small" (click)="redirect('prestador-local-atendimento')">Editar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
   <ion-card class="ion-no-border">
     <ion-card-header>
@@ -82,6 +95,13 @@
         <h3>{{item.breveDescricao}}</h3>
       </ion-label>
     </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-button size="small" (click)="redirect('prestador-cadastro-servico')">Editar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 
   <ion-card class="ion-no-border">
@@ -97,5 +117,12 @@
         <h3>{{prestador.staMembro}}</h3>
       </ion-label>
     </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-button size="small" (click)="redirect('prestador-cadastro-igreja-vinculo')">Editar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 </ion-content>

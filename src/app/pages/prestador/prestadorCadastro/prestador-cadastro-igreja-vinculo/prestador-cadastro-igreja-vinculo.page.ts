@@ -12,6 +12,8 @@ import { Constants } from 'src/app/utils/constants';
 import { Config } from 'src/app/config';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { HandlerError } from 'src/app/helpers/handlerError';
+import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
+import { debug } from 'console';
 
 @Component({
   selector: 'app-prestador-cadastro-igreja-vinculo',
@@ -29,6 +31,7 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
     public loadingContr: LoadingContr,
     public router: Router,
     public modalCtrl: ModalController,
+    public igrejaService: IgrejaService,
     public alertController: AlertController,
     public buscarCEPService: BuscarCEPService
   ) {
@@ -59,6 +62,22 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
   }
 
   ngOnInit() {
+    this.prestadorService.RecuperaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+      .then(resultPrestador => {
+        this.igrejaService.RecuperaNomeIgreja([resultPrestador.igrejaId])
+          .then(resultIgreja => {
+            let igreja = resultIgreja[0];
+            if (igreja) {
+              this.formulario.controls['uf'].setValue(igreja.data.uf);
+              this.formulario.controls['cidade'].setValue(igreja.data.cidade);
+              this.formulario.controls['nomeIgreja'].setValue(igreja.data.nomeIgreja);
+              this.formulario.controls['staMembro'].setValue(resultPrestador.staMembro);
+              this.formulario.controls['igrejaId'].setValue(igreja.id);
+              this.formulario.controls['ufApresentacao'].setValue(Constants.ListagemUF.RecuperaDescricaoPorUF(igreja.data.uf));
+            }
+          });
+      });
+
   }
 
   public abrirModalIgreja() {
@@ -154,7 +173,7 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
       });
   }
 
-  public voltar(){
+  public voltar() {
     this.router.navigate(['prestador-cadastro-servico']);
   }
 }

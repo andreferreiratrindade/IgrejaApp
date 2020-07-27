@@ -71,4 +71,8 @@ export class MeuCadastroPrestadorPage implements OnInit {
         this.loadingContr.hideLoader();
       });
   }
+
+  public redirect(url){
+    this.router.navigate([url]);
+  }
 }

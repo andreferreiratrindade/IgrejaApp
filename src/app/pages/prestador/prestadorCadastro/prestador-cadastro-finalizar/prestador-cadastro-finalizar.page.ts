@@ -109,4 +109,7 @@ export class PrestadorCadastroFinalizarPage implements OnInit {
   public voltar(){
     this.router.navigate(['prestador-cadastro-igreja-vinculo']);
   }
+  public redirect(url){
+    this.router.navigate([url]);
+  }
 }
