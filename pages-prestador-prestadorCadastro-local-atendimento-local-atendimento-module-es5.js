@@ -453,8 +453,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "excluirButtonClick",
         value: function excluirButtonClick(item) {
-          var _this2 = this;
-
+          this.excluirLocalizacao(item);
           this.alertController.create({
             header: 'Atenção',
             message: 'Deseja excluir registro?',
@@ -462,41 +461,41 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               text: 'Não'
             }, {
               text: 'Sim',
-              handler: function handler() {
-                _this2.excluirLocalizacao(item);
+              handler: function handler() {//this.excluirLocalizacao(item)
               }
             }]
           }).then(function (result) {
-            result.present();
+            result.present().then(function (tt) {
+              console.log('Teste');
+            });
           });
         }
       }, {
         key: "excluirLocalizacao",
         value: function excluirLocalizacao(item) {
-          var _this3 = this;
+          var _this2 = this;
+
+          var index = this.locaisAtendimentos.findIndex(function (y) {
+            return y.cidade == item.cidade && y.uf == item.uf;
+          }); //find index in your array
+
+          this.locaisAtendimentos.splice(index, 1); //remove element from array
 
           this.loadingContr.showLoader();
           this.prestadorService.ExcluirLocalAtendimento(src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, item).then(function (result) {
-            var locais = _this3.locaisAtendimentos.filter(function (y) {
-              return y.cidade != item.cidade || y.uf != item.uf;
-            });
+            _this2.loadingContr.hideLoader();
 
-            _this3.locaisAtendimentos = null;
-            _this3.locaisAtendimentos = locais;
-
-            _this3.loadingContr.hideLoader();
-
-            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this3.toastCtrl);
+            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this2.toastCtrl);
           })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this3.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this2.toastCtrl);
 
-            _this3.loadingContr.hideLoader();
+            _this2.loadingContr.hideLoader();
           });
         }
       }, {
         key: "prosseguir",
         value: function prosseguir() {
-          var _this4 = this;
+          var _this3 = this;
 
           if (this.locaisAtendimentos.length == 0) {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler("Favor informar local de atendimento.", this.toastCtrl);
@@ -508,15 +507,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             situacaoPrestador: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.CadastroServicos
           };
           this.prestadorService.AtualizaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(function () {
-            _this4.loadingContr.hideLoader();
+            _this3.loadingContr.hideLoader();
 
-            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this4.toastCtrl);
+            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this3.toastCtrl);
 
-            _this4.router.navigate(['prestador-cadastro-servico']);
+            _this3.router.navigate(['prestador-cadastro-servico']);
           })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this4.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this3.toastCtrl);
 
-            _this4.loadingContr.hideLoader();
+            _this3.loadingContr.hideLoader();
           });
         }
       }, {
@@ -527,7 +526,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abreModalSelecionarLocalAtendimento",
         value: function abreModalSelecionarLocalAtendimento() {
-          var _this5 = this;
+          var _this4 = this;
 
           var modal = this.modalCtrl.create({
             component: _adicionar_local_atendimento_adicionar_local_atendimento_page__WEBPACK_IMPORTED_MODULE_12__["AdicionarLocalAtendimentoPage"],
@@ -541,31 +540,31 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   cidade: resultModal.data.cidade
                 };
 
-                var msg = _this5.validaAdicionarLocalAtendimento(localAtendimento);
+                var msg = _this4.validaAdicionarLocalAtendimento(localAtendimento);
 
                 if (!msg.valido) {
-                  src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(msg.mensagem, _this5.toastCtrl);
+                  src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(msg.mensagem, _this4.toastCtrl);
                   return false;
                 }
 
-                _this5.loadingContr.showLoader();
+                _this4.loadingContr.showLoader();
 
-                _this5.prestadorService.AdicionaLocalAtendimento(localAtendimento, src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function () {
-                  if (!_this5.locaisAtendimentos) {
-                    _this5.locaisAtendimentos = [];
+                _this4.prestadorService.AdicionaLocalAtendimento(localAtendimento, src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function () {
+                  if (!_this4.locaisAtendimentos) {
+                    _this4.locaisAtendimentos = [];
                   }
 
-                  _this5.locaisAtendimentos.push(localAtendimento);
+                  _this4.locaisAtendimentos.push(localAtendimento);
 
-                  _this5.formulario.reset();
+                  _this4.formulario.reset();
 
-                  _this5.loadingContr.hideLoader();
+                  _this4.loadingContr.hideLoader();
 
-                  src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this5.toastCtrl);
+                  src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this4.toastCtrl);
                 })["catch"](function (err) {
-                  src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this5.toastCtrl);
+                  src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this4.toastCtrl);
 
-                  _this5.loadingContr.hideLoader();
+                  _this4.loadingContr.hideLoader();
                 });
               }
             });

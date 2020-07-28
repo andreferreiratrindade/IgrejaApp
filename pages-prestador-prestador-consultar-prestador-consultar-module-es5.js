@@ -87,7 +87,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<ion-content>\n<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Consultar Prestador\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n  <ion-card>\n\n    <form [formGroup]=\"formulario\" (ngSubmit)=\"ConsultarPrestador()\">\n      <ion-item (click)=\"abrirModalServicos()\" detail>\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>Serviço</ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n              <ion-note color=\"primary\">{{formulario.value.nomeServico}}</ion-note>\n              <ion-note color=\"primary\" *ngIf=\"!formulario.value.nomeServico\">Todos</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n      <ion-item (click)=\"abrirModalUF()\" detail>\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>UF<ion-text color=\"danger\">*</ion-text>\n              </ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n              <ion-note color=\"primary\"> {{formulario.value.ufApresentacao}}</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n      <ion-item (click)=\"abrirModalCidade()\" detail [disabled]=\"!formulario.value.uf\">\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>Cidade<ion-text color=\"danger\">*</ion-text>\n              </ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n              <ion-note color=\"primary\"> {{formulario.value.cidade}}</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n      <ion-item (click)=\"abrirModalIgreja()\" detail [disabled]=\"!formulario.value.cidade\">\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"12\">\n              <ion-label>Igreja\n              </ion-label>\n            </ion-col>\n            <ion-col size=\"12\">\n              <ion-note color=\"primary\"> {{formulario.value.nomeIgreja}}</ion-note>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n\n      <ion-button class=\"primary\" type=\"submit\" expand=\"block\">Pesquisar</ion-button>\n\n    </form>\n\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\"  class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}} </h3>\n\n\n      </ion-card-title>\n    </ion-card-header>\n\n    <ion-item (click)=\"ligarTelefone(item.telefone)\">\n      <ion-icon name=\"call-outline\" slot=\"start\"></ion-icon>\n      <ion-label color=\"primary\" class=\"ion-no-border\">\n        <h2>{{item.telefone}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-item class=\"ion-no-border\">\n      <ion-icon name=\"business-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeIgreja}} </h2>\n      </ion-label>\n      <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"item.staMembro\">\n        membro\n      </ion-note>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"golf-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button size=\"small\" (click)=\"detalhes(item.usuarioId)\">Detalhes</ion-button>\n        </ion-col>\n        <!-- <ion-col size=\"4\">\n            <ion-button size=\"small\" (click)=\"compartilhar()\" >\n              <ion-icon name=\"share-social\"></ion-icon></ion-button>\n          </ion-col>\n          <ion-col size=\"4\">\n\n            <ion-button size=\"small\" (click)=\"adicionarFavorito(item.usuarioId)\" fill=\"outline\">\n              <ion-icon name=\"star-outline\"></ion-icon></ion-button>\n          </ion-col> -->\n      </ion-row>\n    </ion-grid>\n    <!-- </ion-card-content> -->\n  </ion-card>\n\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Consultar Prestador</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <form [formGroup]=\"formulario\" (ngSubmit)=\"ConsultarPrestador()\">\n        <ion-item (click)=\"abrirModalServicos()\" detail>\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Serviço</ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\">{{formulario.value.nomeServico}}</ion-note>\n                <ion-note color=\"primary\" *ngIf=\"!formulario.value.nomeServico\">Todos</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n\n        <ion-item (click)=\"abrirModalUF()\" detail>\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>UF<ion-text color=\"danger\">*</ion-text>\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formulario.value.ufApresentacao}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n\n        <ion-item (click)=\"abrirModalCidade()\" detail [disabled]=\"!formulario.value.uf\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Cidade<ion-text color=\"danger\">*</ion-text>\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formulario.value.cidade}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n        <ion-item (click)=\"abrirModalIgreja()\" detail [disabled]=\"!formulario.value.cidade\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Igreja\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formulario.value.nomeIgreja}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n        <ion-grid>\n          <ion-row>\n            <ion-col size=\"4\">\n              <ion-button class=\"primary\" type=\"submit\">Pesquisar</ion-button>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}} </h3>\n\n\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item (click)=\"ligarTelefone(item.telefone)\">\n        <ion-icon name=\"call-outline\" slot=\"start\"></ion-icon>\n        <ion-label color=\"primary\" class=\"ion-no-border\">\n          <h2>{{item.telefone}}</h2>\n        </ion-label>\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon name=\"business-outline\" slot=\"start\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{item.nomeIgreja}} </h2>\n        </ion-label>\n        <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"item.staMembro\">\n          membro\n        </ion-note>\n      </ion-item>\n      <ion-item>\n        <ion-icon name=\"golf-outline\" slot=\"start\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n        </ion-label>\n      </ion-item>\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"4\">\n            <ion-button size=\"small\" (click)=\"detalhes(item.usuarioId)\">Detalhes</ion-button>\n          </ion-col>\n          <ion-col size=\"4\">\n            <ion-button size=\"small\" (click)=\"ShareGeneric(item)\">\n              <ion-icon name=\"share-social\"></ion-icon>\n            </ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>";
     /***/
   },
 
@@ -570,7 +570,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3ItY29uc3VsdGFyL3ByZXN0YWRvci1jb25zdWx0YXIucGFnZS5zY3NzIn0= */";
+    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvcHJlc3RhZG9yL3ByZXN0YWRvci1jb25zdWx0YXIvcHJlc3RhZG9yLWNvbnN1bHRhci5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3ItY29uc3VsdGFyL3ByZXN0YWRvci1jb25zdWx0YXIucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksNEJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3ItY29uc3VsdGFyL3ByZXN0YWRvci1jb25zdWx0YXIucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
     /***/
   },
 
@@ -725,9 +725,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _visualizar_prestador_visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
     /*! ../visualizar-prestador/visualizar-prestador.page */
     "./src/app/pages/prestador/visualizar-prestador/visualizar-prestador.page.ts");
+    /* harmony import */
+
+
+    var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(
+    /*! @ionic-native/social-sharing/ngx */
+    "./node_modules/@ionic-native/social-sharing/__ivy_ngcc__/ngx/index.js");
 
     var PrestadorConsultarPage = /*#__PURE__*/function () {
-      function PrestadorConsultarPage(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl, callNumber, favoritoService) {
+      function PrestadorConsultarPage(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl, callNumber, favoritoService, socialSharing) {
         _classCallCheck(this, PrestadorConsultarPage);
 
         this.prestadorService = prestadorService;
@@ -740,6 +746,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.modalCtrl = modalCtrl;
         this.callNumber = callNumber;
         this.favoritoService = favoritoService;
+        this.socialSharing = socialSharing;
         this.validation_messages = {
           'uf': [{
             type: 'required',
@@ -1105,6 +1112,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "removePrestadorFavorito",
         value: function removePrestadorFavorito(usuarioId) {
           this.favoritoService.RemovePrestadorFavorito(usuarioId, src_app_config__WEBPACK_IMPORTED_MODULE_20__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function () {});
+        } // ShareGeneric(parameter){
+        //     const url = this.link
+        //     const text = parameter+'\n'
+        //     this.socialSharing.share(text, 'MEDIUM', null, url)
+        //   }
+
+      }, {
+        key: "ShareGeneric",
+        value: function ShareGeneric(prestador) {
+          var texto = prestador.nome + " / " + prestador.telefone;
+          this.socialSharing.share(texto, null, null);
         }
       }]);
 
@@ -1132,6 +1150,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_17__["CallNumber"]
       }, {
         type: src_app_providers_favorito_favorito_service__WEBPACK_IMPORTED_MODULE_19__["FavoritoService"]
+      }, {
+        type: _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_22__["SocialSharing"]
       }];
     };
 

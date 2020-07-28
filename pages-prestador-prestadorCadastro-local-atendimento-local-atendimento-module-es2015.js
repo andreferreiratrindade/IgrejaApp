@@ -254,6 +254,7 @@ let LocalAtendimentoPage = class LocalAtendimentoPage {
         return obj;
     }
     excluirButtonClick(item) {
+        this.excluirLocalizacao(item);
         this.alertController.create({
             header: 'Atenção',
             message: 'Deseja excluir registro?',
@@ -263,21 +264,20 @@ let LocalAtendimentoPage = class LocalAtendimentoPage {
                 }, {
                     text: 'Sim',
                     handler: () => {
-                        this.excluirLocalizacao(item);
+                        //this.excluirLocalizacao(item)
                     }
                 }
             ]
-        }).then(result => { result.present(); });
+        }).then(result => { result.present().then(tt => { console.log('Teste'); }); });
     }
     excluirLocalizacao(item) {
+        let index = this.locaisAtendimentos.findIndex(y => y.cidade == item.cidade && y.uf == item.uf); //find index in your array
+        this.locaisAtendimentos.splice(index, 1); //remove element from array
         this.loadingContr.showLoader();
         this.prestadorService
             .ExcluirLocalAtendimento(src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia()
             .recuperaUsuario().usuarioId, item)
             .then((result) => {
-            let locais = this.locaisAtendimentos.filter(y => { return y.cidade != item.cidade || y.uf != item.uf; });
-            this.locaisAtendimentos = null;
-            this.locaisAtendimentos = locais;
             this.loadingContr.hideLoader();
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(this.toastCtrl);
         }).catch(err => {
