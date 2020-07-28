@@ -19,6 +19,7 @@ import { Constants } from 'src/app/utils/constants';
 import { FavoritoService } from 'src/app/providers/favorito/favorito.service';
 import { Config } from 'src/app/config';
 import { VisualizarPrestadorPage } from '../visualizar-prestador/visualizar-prestador.page';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @Component({
     selector: 'app-prestador-consultar',
     templateUrl: './prestador-consultar.page.html',
@@ -49,7 +50,8 @@ export class PrestadorConsultarPage implements OnInit {
         public router: Router,
         public modalCtrl: ModalController,
         private callNumber: CallNumber,
-        private favoritoService: FavoritoService
+        private favoritoService: FavoritoService,
+        private socialSharing: SocialSharing
     ) {
 
         this.formulario = new FormGroup({
@@ -341,4 +343,17 @@ export class PrestadorConsultarPage implements OnInit {
         this.favoritoService.RemovePrestadorFavorito(usuarioId, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
             .then(() => { });
     }
+
+    // ShareGeneric(parameter){
+    //     const url = this.link
+    //     const text = parameter+'\n'
+    //     this.socialSharing.share(text, 'MEDIUM', null, url)
+    //   }
+      
+    ShareGeneric(prestador:any){
+
+        let texto = prestador.nome + " / "+ prestador.telefone;
+
+        this.socialSharing.share(texto, null, null);
+      }
 }

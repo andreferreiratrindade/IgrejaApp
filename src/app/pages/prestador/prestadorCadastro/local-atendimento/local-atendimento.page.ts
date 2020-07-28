@@ -86,6 +86,8 @@ export class LocalAtendimentoPage implements OnInit {
 
 
    excluirButtonClick(item) {
+
+    this.excluirLocalizacao(item);
   this.alertController.create({
       header: 'Atenção',
       message: 'Deseja excluir registro?',
@@ -95,15 +97,18 @@ export class LocalAtendimentoPage implements OnInit {
         }, {
           text: 'Sim',
           handler: () => {
-            this.excluirLocalizacao(item)
+            //this.excluirLocalizacao(item)
           }
         }
       ]
-    }).then(result=>{  result.present() });
+    }).then(result=>{  result.present().then(tt=>{console.log('Teste')}) });
 
   }
 
   private excluirLocalizacao(item: any) {
+
+    let index = this.locaisAtendimentos.findIndex(y =>  y.cidade == item.cidade && y.uf == item.uf ); //find index in your array
+    this.locaisAtendimentos.splice(index, 1);//remove element from array
 
     this.loadingContr.showLoader();
 
@@ -111,9 +116,7 @@ export class LocalAtendimentoPage implements OnInit {
       .ExcluirLocalAtendimento(Config.RecuperaInstancia()
         .recuperaUsuario().usuarioId, item)
       .then((result) => {
-        let locais = this.locaisAtendimentos.filter(y => { return y.cidade != item.cidade || y.uf != item.uf });
-        this.locaisAtendimentos = null;
-        this.locaisAtendimentos = locais;
+
         this.loadingContr.hideLoader();
         ToastCustom.SucessoToast(this.toastCtrl);
       }).catch(err => {

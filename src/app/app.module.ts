@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 firebase.initializeApp(environment.firebase);
 
@@ -44,6 +45,7 @@ firebase.initializeApp(environment.firebase);
     BuscarCEPService,
     CallNumber,
     BaseProvider,
+    SocialSharing,
     FirebaseAuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
