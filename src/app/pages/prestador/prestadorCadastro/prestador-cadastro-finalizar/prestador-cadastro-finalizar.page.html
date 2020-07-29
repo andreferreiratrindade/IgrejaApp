@@ -10,7 +10,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-progress-bar color="success" value="1" ></ion-progress-bar>
+  <ion-progress-bar color="success" value="1"></ion-progress-bar>
 
 
   <ion-card class="ion-no-border">
@@ -22,7 +22,7 @@
 
       </ion-card-title>
     </ion-card-header>
-
+<ion-card-content>
     <ion-item>
       <ion-label class="ion-text-wrap">
         <p>Nome</p>
@@ -56,10 +56,12 @@
     <ion-grid>
       <ion-row>
         <ion-col size="4">
-          <ion-button size="small" (click)="redirect('dados-empresa')">Editar</ion-button>
+          <ion-button size="small" (click)="redirect('dados-empresa')">
+            <ion-icon name="create-outline" style="margin-right:10px;"></ion-icon>Editar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
+  </ion-card-content>
   </ion-card>
 
 
@@ -70,6 +72,7 @@
         <h3>Local Atendimento</h3>
       </ion-card-title>
     </ion-card-header>
+    <ion-card-content>
     <ion-item *ngFor="let item of prestador.locaisAtendimento; let i = index">
       <ion-label class="ion-text-wrap">
         <h2>{{item.cidade}} / {{item.uf}}</h2>
@@ -78,10 +81,12 @@
     <ion-grid>
       <ion-row>
         <ion-col size="4">
-          <ion-button size="small" (click)="redirect('prestador-local-atendimento')">Editar</ion-button>
+          <ion-button size="small" (click)="redirect('prestador-local-atendimento')">
+            <ion-icon name="create-outline" style="margin-right:10px;"></ion-icon>Editar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
+  </ion-card-content>
   </ion-card>
   <ion-card class="ion-no-border">
     <ion-card-header>
@@ -90,7 +95,7 @@
         <h3>Serviços</h3>
       </ion-card-title>
     </ion-card-header>
-
+<ion-card-content>
     <ion-item *ngFor="let item of prestadorServicos">
       <ion-label class="ion-text-wrap">
         <h2>{{item.nomeServico}}</h2>
@@ -100,10 +105,12 @@
     <ion-grid>
       <ion-row>
         <ion-col size="4">
-          <ion-button size="small" (click)="redirect('prestador-cadastro-servico')">Editar</ion-button>
+          <ion-button size="small" (click)="redirect('prestador-cadastro-servico')">
+            <ion-icon name="create-outline" style="margin-right:10px;"></ion-icon>Editar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
+    </ion-card-content> 
   </ion-card>
 
   <ion-card class="ion-no-border">
@@ -113,6 +120,7 @@
         <h3>Igreja Vinculo</h3>
       </ion-card-title>
     </ion-card-header>
+    <ion-card-content>
     <ion-item>
       <ion-label class="ion-text-wrap">
         <h3>{{prestador.nomeIgreja}}</h3>
@@ -122,20 +130,22 @@
     <ion-grid>
       <ion-row>
         <ion-col size="4">
-          <ion-button size="small" (click)="redirect('prestador-cadastro-igreja-vinculo')">Editar</ion-button>
+          <ion-button size="small" (click)="redirect('prestador-cadastro-igreja-vinculo')">
+            <ion-icon name="create-outline" style="margin-right:10px;"></ion-icon>Editar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
+    </ion-card-content>
   </ion-card>
 
-  <div class="ion-text-end" style="margin-top: 20px;">
-    <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4"
-      clear>
-      <ion-icon name="chevron-back-outline"></ion-icon>Voltar
+  <div class="ion-text-end" style="margin-top: 20px;margin-right: 15px; margin-bottom: 20px;">
+    <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4" clear>
+      <ion-icon name="chevron-back-outline" style="margin-right:10px;"></ion-icon>Voltar
     </ion-button>
 
-    <ion-button color="success" type="button" (click)="finalizar()" clear>Finalizar <ion-icon name="checkmark">
-      </ion-icon>
+    <ion-button color="success" type="button" (click)="finalizar()" clear>
+      <ion-icon name="checkmark" style="margin-right:10px;">
+      </ion-icon>Finalizar
     </ion-button>
   </div>
 </ion-content>

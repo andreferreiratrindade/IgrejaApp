@@ -40,11 +40,12 @@
           </ion-label>
           <ion-input type="number" maxlength="8" formControlName="cep" clearInput autocapitalize="off"></ion-input>
         </ion-item>
-
-        <ion-button color="primary"  size="small" (click)="buscarEnderecoPorCEP()" >
-          <ion-label>Buscar Endereço</ion-label>
-          <ion-icon name="search-outline"></ion-icon>
-        </ion-button>
+        <div class="ion-text-center">
+          <ion-button color="primary" size="small" (click)="buscarEnderecoPorCEP()">
+            <ion-icon name="search-outline" style="margin-right: 10px;"></ion-icon>
+            <ion-label>Buscar Endereço</ion-label>
+          </ion-button>
+        </div>
 
 
         <ion-item class="ion-no-border">
@@ -54,9 +55,14 @@
           </ion-label>
         </ion-item>
         <div class="ion-text-end" style="margin-top: 20px;">
-          <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4" clear>
-            <ion-icon name="chevron-back-outline"></ion-icon>Voltar</ion-button>
-          <ion-button color="success" type="button" (click)="prosseguir()" clear>Prosseguir <ion-icon name="checkmark"></ion-icon>
+          <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4"
+            clear>
+            <ion-icon name="chevron-back-outline" style="margin-right:10px;"></ion-icon>Voltar
+          </ion-button>
+          <ion-button color="success" type="button" (click)="prosseguir()" clear>
+            <ion-icon name="checkmark" style="margin-right:10px;">
+            </ion-icon>
+            Prosseguir
           </ion-button>
         </div>
       </form>

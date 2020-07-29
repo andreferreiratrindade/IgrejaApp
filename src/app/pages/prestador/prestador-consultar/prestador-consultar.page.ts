@@ -155,6 +155,14 @@ export class PrestadorConsultarPage implements OnInit {
             // Recupera Nome 
             this.recuperaNomePrestadores(lstusuarioId).then(() => { result() }).catch(err => { reject(err) });
 
+            
+            this.prestadores.forEach(x=>{ 
+
+                    x.servicos.forEach(y=>{
+                            y.nomeServico = this.servicos.filter(w=>{return w.servicoId == y.servicoId})[0].nomeServico;
+                        })
+                    x.descricaoServicos = x.servicos.map(y=>y.nomeServico).join(', ');
+                    });
             // Recupera Servicos
             //this.recuperaServicosPorPrestadores(lstusuarioId);
         });

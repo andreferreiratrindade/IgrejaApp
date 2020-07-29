@@ -1,12 +1,9 @@
-<ion-content fullscreen>
+<ion-content >
   <ion-header class="ion-no-border">
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>
-
-      </ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-card>
@@ -16,7 +13,7 @@
     <ion-card-content>
 
       <form [formGroup]="formulario" (ngSubmit)="ConsultarPrestador()">
-        <ion-item (click)="abrirModalServicos()" detail>
+        <ion-item (click)="abrirModalServicos()" >
           <ion-grid>
             <ion-row>
               <ion-col size="12">
@@ -28,9 +25,10 @@
               </ion-col>
             </ion-row>
           </ion-grid>
+          <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
         </ion-item>
 
-        <ion-item (click)="abrirModalUF()" detail>
+        <ion-item (click)="abrirModalUF()" >
           <ion-grid>
             <ion-row>
               <ion-col size="12">
@@ -42,9 +40,11 @@
               </ion-col>
             </ion-row>
           </ion-grid>
+          <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
+
         </ion-item>
 
-        <ion-item (click)="abrirModalCidade()" detail [disabled]="!formulario.value.uf">
+        <ion-item (click)="abrirModalCidade()" [disabled]="!formulario.value.uf">
           <ion-grid>
             <ion-row>
               <ion-col size="12">
@@ -56,8 +56,10 @@
               </ion-col>
             </ion-row>
           </ion-grid>
+          <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
+
         </ion-item>
-        <ion-item (click)="abrirModalIgreja()" detail [disabled]="!formulario.value.cidade">
+        <ion-item (click)="abrirModalIgreja()" [disabled]="!formulario.value.cidade">
           <ion-grid>
             <ion-row>
               <ion-col size="12">
@@ -69,15 +71,27 @@
               </ion-col>
             </ion-row>
           </ion-grid>
+          <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
+
         </ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col size="4">
-              <ion-button class="primary" type="submit">Pesquisar</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <div class="ion-text-end" style="margin-top: 20px;">
+
+          <ion-button class="primary" type="submit"><ion-icon name="search-outline" style="margin-right:10px;"></ion-icon>Pesquisar</ion-button>
+
+        </div>
       </form>
+<!-- 
+      <ion-list *ngIf="prestadores.length > 0" style="margin-top: 20px;margin-bottom: 20px;">
+        <ion-list-header style="margin-bottom: 20px;">
+          Prestadores
+        </ion-list-header>
+        <ion-item *ngFor="let item of prestadores" detail (click)="detalhes(item.usuarioId)">
+          <ion-label size="12">
+            <h2>{{item.nome}}</h2>
+            <p>{{item.descricaoServicos}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list> -->
     </ion-card-content>
   </ion-card>
 
@@ -85,7 +99,11 @@
     <ion-card-header>
 
       <ion-card-title>
-        <h3>{{item.nome}} </h3>
+          <h3>{{item.nome}}</h3>
+          <ion-label size="12">
+
+          <p>{{item.descricaoServicos}}</p>
+        </ion-label>
 
 
       </ion-card-title>
@@ -93,10 +111,11 @@
     <ion-card-content>
 
       <ion-item (click)="ligarTelefone(item.telefone)">
-        <ion-icon name="call-outline" slot="start"></ion-icon>
-        <ion-label color="primary" class="ion-no-border">
+        <ion-icon name="call-outline" slot="start" ></ion-icon>
+        <!-- <ion-label color="primary" class="ion-no-border">
           <h2>{{item.telefone}}</h2>
-        </ion-label>
+        </ion-label> -->
+        <ion-button color="tertiary" size="small"  type="button">{{item.telefone}}</ion-button>
       </ion-item>
       <ion-item class="ion-no-border">
         <ion-icon name="business-outline" slot="start"></ion-icon>
@@ -115,17 +134,17 @@
       </ion-item>
       <ion-grid>
         <ion-row>
-          <ion-col size="4">
-            <ion-button size="small" (click)="detalhes(item.usuarioId)">Detalhes</ion-button>
+          <ion-col size="6">
+            <ion-button size="small" (click)="detalhes(item.usuarioId)" color="secondary"><ion-icon name="eye-outline" style="margin-right:10px;"></ion-icon> Detalhes</ion-button>
           </ion-col>
           <ion-col size="4">
-            <ion-button size="small" (click)="ShareGeneric(item)">
+            <ion-button size="small" (click)="ShareGeneric(item)" color="light">
               <ion-icon name="share-social"></ion-icon>
             </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
-  </ion-card>
+  </ion-card> 
 
 </ion-content>

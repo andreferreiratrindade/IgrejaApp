@@ -15,25 +15,31 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title>Locais de Atendimento</ion-card-title>
-      <ion-button color="primary"(click)="abreModalSelecionarLocalAtendimento()"><ion-icon name="add-outline"></ion-icon> Novo</ion-button>
-
+      <div class="ion-text-end">
+        <ion-button color="primary" (click)="abreModalSelecionarLocalAtendimento()">
+          <ion-icon name="add-outline" style="margin-right:10px;"></ion-icon> Novo
+        </ion-button>
+      </div>
     </ion-card-header>
     <ion-card-content>
       <ion-list style="margin-top: 20px;">
-        <ion-item *ngFor="let item of locaisAtendimentos; let i = index" class="ion-no-border" button detail="false"  (click)="excluirButtonClick(item)" >
-          <ion-icon slot="end"  name="trash-outline" color="danger"></ion-icon>
+        <ion-item *ngFor="let item of locaisAtendimentos; let i = index" class="ion-no-border" button detail="false"
+          (click)="excluirButtonClick(item)">
+          <ion-icon slot="end" name="trash-outline" color="danger"></ion-icon>
           <ion-label class="ion-text-wrap">{{item.cidade}} / {{item.uf}}</ion-label>
-    
+
         </ion-item>
       </ion-list>
-  
+
       <div class="ion-text-end" style="margin-top: 20px;">
         <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4"
           clear>
-          <ion-icon name="chevron-back-outline"></ion-icon>Voltar
+          <ion-icon name="chevron-back-outline" style="margin-right:10px;"></ion-icon>Voltar
         </ion-button>
-        <ion-button color="success" type="button" (click)="prosseguir()" clear>Prosseguir <ion-icon name="checkmark">
+        <ion-button color="success" type="button" (click)="prosseguir()" clear>
+          <ion-icon name="checkmark" style="margin-right:10px;">
           </ion-icon>
+          Prosseguir
         </ion-button>
       </div>
     </ion-card-content>

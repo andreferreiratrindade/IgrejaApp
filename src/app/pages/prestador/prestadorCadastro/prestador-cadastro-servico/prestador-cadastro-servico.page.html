@@ -15,26 +15,32 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title>Serviços</ion-card-title>
-      <ion-button color="primary" (click)="abreModalSelecionaServico()"><ion-icon name="add-outline"></ion-icon> Novo</ion-button>
-
+      <div class="ion-text-end">
+        <ion-button color="primary" (click)="abreModalSelecionaServico()">
+          <ion-icon name="add-outline" style="margin-right:10px;"></ion-icon>Novo
+        </ion-button>
+      </div>
     </ion-card-header>
     <ion-card-content>
 
       <ion-list style="margin-top: 20px;">
-        <ion-item  *ngFor="let item of prestadorServicos"  class="ion-no-border" button detail="false"  (click)="editarServico(item)">
+        <ion-item *ngFor="let item of prestadorServicos" class="ion-no-border" button detail="false"
+          (click)="editarServico(item)">
           <ion-icon slot="end" color="primary" name="create-outline"></ion-icon>
           <ion-label>{{item.nomeServico}}</ion-label>
           <ion-label>{{item.breveDescricao}}</ion-label>
         </ion-item>
       </ion-list>
-  
+
       <div class="ion-text-end" style="margin-top: 20px;">
         <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4"
           clear>
-          <ion-icon name="chevron-back-outline"></ion-icon>Voltar
+          <ion-icon name="chevron-back-outline" style="margin-right:10px;"></ion-icon>Voltar
         </ion-button>
-        <ion-button color="success" type="button" (click)="prosseguir()" clear>Prosseguir <ion-icon name="checkmark">
+        <ion-button color="success" type="button" (click)="prosseguir()" clear>
+          <ion-icon name="checkmark" style="margin-right:10px;">
           </ion-icon>
+          Prosseguir
         </ion-button>
       </div>
     </ion-card-content>
