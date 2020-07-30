@@ -7,7 +7,7 @@ import { Config } from 'src/app/config';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
 import { HandlerError } from 'src/app/helpers/handlerError';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { Constants } from 'src/app/utils/constants';
@@ -42,6 +42,7 @@ export class CriarIgrejaPage implements OnInit {
     public loadingControll: LoadingContr,
     public ngZone: NgZone,
     public usuarioService: UsuarioService,
+    public modalController:ModalController
   ) {
 
     this.formData = new FormGroup({
@@ -133,9 +134,8 @@ export class CriarIgrejaPage implements OnInit {
         .then(() => {
           ToastCustom.SucessoToast(this.toastCtrl);
           this.loadingControll.hideLoader();
-          this.ngZone.run(() => {
-            this.router.navigate(['home']);
-          });
+          this.closeModal();
+
         }).catch((error) => {
           HandlerError.handler(error, this.toastCtrl);
           this.loadingControll.hideLoader();
@@ -167,5 +167,8 @@ export class CriarIgrejaPage implements OnInit {
       this.loadingControll.hideLoader();
 
     });
+  }
+  closeModal() {
+    this.modalController.dismiss(null, 'cancel');
   }
 }

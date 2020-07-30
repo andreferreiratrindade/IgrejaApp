@@ -152,9 +152,16 @@ const routes: Routes = [
   {
     path: 'adicionar-local-atendimento',
     loadChildren: () => import('./pages/prestador/prestadorCadastro/adicionar-local-atendimento/adicionar-local-atendimento.module').then( m => m.AdicionarLocalAtendimentoPageModule)
-  },  {
+  },
+  {
     path: 'editar-servico',
     loadChildren: () => import('./pages/prestador/prestadorCadastro/editar-servico/editar-servico.module').then( m => m.EditarServicoPageModule)
+  },
+  {
+    path: 'manter-igreja',
+    canActivate: [PerfilValidation_AdministradorSistema],
+
+    loadChildren: () => import('./pages/gerenciarIgreja/manter-igreja/manter-igreja.module').then( m => m.ManterIgrejaPageModule)
   }
 
 

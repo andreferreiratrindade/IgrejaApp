@@ -1,0 +1,41 @@
+<ion-content fullscreen>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Mantem Igrejas
+      </ion-title>
+    </ion-toolbar>
+
+
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <div class="ion-text-end" style="margin-top: 20px;margin-bottom: 20px;">
+        <ion-button color="primary" (click)="adicionarNovaIgreja()">
+          <ion-icon name="add-outline" style="margin-right:10px;"></ion-icon>Novo
+        </ion-button>
+      </div>
+      <ion-card-title>Consultar Igrejas</ion-card-title>
+     
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-searchbar type="text" debounce=1 placeholder="Pesquisar" animated #searchbar
+      (ionChange)="recuperaItens($event)" animated></ion-searchbar>
+
+      <ion-list style="margin-top: 20px;" *ngIf="igrejas.length > 0">
+        <ion-list-header >
+          Igrejas
+        </ion-list-header>
+        <ion-item *ngFor="let item of igrejas" class="ion-no-border" button  detail="false">
+          <ion-icon *ngIf="!item.deletado" slot="end" color="primary" name="ellipsis-vertical"></ion-icon>
+          <ion-label class="ion-text-wrap on-no-border">{{item.nomeIgreja}}<p>{{item.deletado?"deletado":""}}</p></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

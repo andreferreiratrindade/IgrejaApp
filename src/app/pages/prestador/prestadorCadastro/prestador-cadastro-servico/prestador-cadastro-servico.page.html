@@ -26,9 +26,10 @@
       <ion-list style="margin-top: 20px;">
         <ion-item *ngFor="let item of prestadorServicos" class="ion-no-border" button detail="false"
           (click)="editarServico(item)">
-          <ion-icon slot="end" color="primary" name="create-outline"></ion-icon>
+          <ion-icon slot="end" color="primary" name="ellipsis-vertical"></ion-icon>
           <ion-label>{{item.nomeServico}}</ion-label>
           <ion-label>{{item.breveDescricao}}</ion-label>
+
         </ion-item>
       </ion-list>
 

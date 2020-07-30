@@ -1,55 +1,60 @@
-<ion-header>
-  <ion-toolbar>
+<ion-content>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
       <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+        <ion-menu-button></ion-menu-button>
       </ion-buttons>
-    <ion-title>
-     Cadastre-se
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Cadastre-se</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="signUpForm" (ngSubmit)="signUpWithEmail()">
 
-<ion-content class="sign-up-content">
-  <form [formGroup]="signUpForm" (ngSubmit)="signUpWithEmail()">
-    <ion-list class="inputs-list" lines="full">
-      <ion-item class="input-item">
-        <ion-label position="floating">Nome<ion-text color="danger">*</ion-text></ion-label>
+        <ion-item>
+          <ion-label position="floating">Nome<ion-text color="danger">*</ion-text>
+          </ion-label>
 
-        <ion-input type="text" formControlName="nome" clearInput autocapitalize="off" ></ion-input>
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.nome" [form]="signUpForm"
-        [nomeCampo]="'nome'" ></app-mensagem-validacao>
+          <ion-input type="text" formControlName="nome" clearInput autocapitalize="off"></ion-input>
+        </ion-item>
 
-      <ion-item class="input-item">
-        <ion-label position="floating">Email<ion-text color="danger">*</ion-text></ion-label>
 
-        <ion-input type="email" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.email" [form]="signUpForm"
-        [nomeCampo]="'email'"></app-mensagem-validacao>
+        <ion-item>
+          <ion-label position="floating">Email<ion-text color="danger">*</ion-text>
+          </ion-label>
 
-      <ion-item class="input-item">
-        <ion-label position="floating">Senha<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input type="email" formControlName="email" clearInput autocapitalize="off" inputmode="email">
+          </ion-input>
+        </ion-item>
 
-        <ion-input type="password" formControlName="password"></ion-input>
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.password" [form]="signUpForm"
-        [nomeCampo]="'password'"></app-mensagem-validacao>
-      <ion-item class="input-item">
-        <ion-label position="floating">Confirmar Senha<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input type="password" formControlName="confirm_password"></ion-input>
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.confirm_password" [form]="signUpForm"
-        [nomeCampo]="'confirm_password'"></app-mensagem-validacao>
 
-    </ion-list>
+        <ion-item>
+          <ion-label position="floating">Senha<ion-text color="danger">*</ion-text>
+          </ion-label>
 
-    <ion-button class="sign-up-btn" type="submit" expand="block" >Cadastrar</ion-button>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
 
-    <ion-row class="sign-in-btn-wrapper">
-      <ion-button class="sign-in-btn" fill="clear" [routerLink]="['/sign-in']" routerDirection="root">
-        Já possui login?
-      </ion-button>
-    </ion-row>
-  </form>
+        <ion-item>
+          <ion-label position="floating">Confirmar Senha<ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input type="password" formControlName="confirm_password"></ion-input>
+        </ion-item>
+        <div class="ion-text-center" style="margin-top: 20px;">
+          <ion-button type="submit" color="primary" size="10">Cadastrar</ion-button>
+        </div>
+        <div class="ion-text-center" style="margin-top: 20px;">
+          <ion-label class="">ou</ion-label>
+        </div>
+        <div class="ion-text-center" style="margin-top: 20px;">
+
+          <ion-button color="light" [routerLink]="['/sign-in']" routerDirection="root">
+            Já possui login?
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

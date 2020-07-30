@@ -71,9 +71,27 @@ export class IgrejaRepService extends BaseRepository {
     return this.find({ elemento: "cidade", tipoComparacao: "==", comparacao: cidade });
   }
 
-  RecuperaNomeIgreja(igrejas: string[]) {
+  RecuperaNomeIgreja(igrejas: string[]) : Promise<any[]> {
 
     // return this.db.collection("igreja").where(firebase.firestore.FieldPath.documentId(),"array-contains",igrejas).get()
     return this.find({ elemento: "id", tipoComparacao: "in", comparacao: igrejas });
   }
+
+  RecuperaTodasAsIgrejas(): Promise<any[]> {
+    return new Promise<any>((resolve, reject) => {
+      this.db.collection('igreja')
+      .get()
+      .then((result) => {
+        let lst = [];
+        result.forEach(function (doc) {
+          lst.push(doc.data());
+        });
+        resolve(lst)
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+
+}
 }

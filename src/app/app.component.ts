@@ -147,8 +147,8 @@ export class AppComponent implements OnInit {
       },
 
       {
-        title: 'Adicionar Igreja',
-        url: 'criar-igreja',
+        title: 'Manter Igreja',
+        url: 'manter-igreja',
         icon: 'business',
         perfil: [Constants.PerfilUsuario.AdministradorSistema]
       }

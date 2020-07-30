@@ -5,6 +5,9 @@ import { IgrejaRepService } from 'src/app/repository/igreja/igreja-rep.service';
   providedIn: 'root'
 })
 export class IgrejaService {
+  RecuperaTodasAsIgrejas() : Promise<any[]>{
+    return this.igrejaRepService.RecuperaTodasAsIgrejas();
+  }
 
 
   constructor(public igrejaRepService: IgrejaRepService) { }
