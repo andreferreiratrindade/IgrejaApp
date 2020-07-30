@@ -718,7 +718,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Adicionar Serviço</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <form [formGroup]=\"formulario\" (ngSubmit)=\"salvar()\">\n    <ion-card>\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Serviço<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"text\" formControlName=\"nomeServico\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n    </ion-card>\n    <ion-button class=\"sign-up-btn\" type=\"submit\" expand=\"block\">\n      Adicionar</ion-button>\n  </form>\n</ion-content>";
+    __webpack_exports__["default"] = "\n\n<ion-content fullscreen>\n  <ion-content-header>\n   \n      <ion-toolbar>\n        <ion-buttons slot=\"start\">\n          <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n        </ion-buttons>\n     \n      </ion-toolbar>\n  </ion-content-header>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Adicionar Serviço</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item>\n        <ion-label position=\"floating\">Serviço<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"text\"  #nomeServico autofocus clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n      <ion-button class=\"primary\" type=\"button\" (click)=\"salvar()\" expand=\"block\">\n        Adicionar</ion-button>\n      </ion-card-content>\n    </ion-card>\n    \n</ion-content>";
     /***/
   },
 
@@ -1118,43 +1118,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /* harmony import */
 
 
-    var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/forms */
-    "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
-    /* harmony import */
-
-
-    var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! src/app/providers/dominioServico/dominio-servico.service */
     "./src/app/providers/dominioServico/dominio-servico.service.ts");
     /* harmony import */
 
 
-    var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! src/app/helpers/toastCustom */
     "./src/app/helpers/toastCustom.ts");
     /* harmony import */
 
 
-    var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! @ionic/angular */
     "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
     /* harmony import */
 
 
-    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! src/app/helpers/loadingContr */
     "./src/app/helpers/loadingContr.ts");
     /* harmony import */
 
 
-    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! src/app/helpers/handlerError */
     "./src/app/helpers/handlerError.ts");
     /* harmony import */
 
 
-    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! src/app/utils/constants */
     "./src/app/utils/constants.ts");
 
@@ -1166,9 +1160,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.toastCtrl = toastCtrl;
         this.loadingContr = loadingContr;
         this.modalController = modalController;
-        this.formulario = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-          'nomeServico': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]))
-        });
       }
 
       _createClass(AdicionaServicoPage, [{
@@ -1179,23 +1170,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: function salvar() {
           var _this4 = this;
 
-          if (!this.formulario.valid) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_8__["Constants"].Mensagens.CamposObrigatorios, this.toastCtrl);
+          if (!this.nomeServico) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_6__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_7__["Constants"].Mensagens.CamposObrigatorios, this.toastCtrl);
             return false;
           }
 
           this.loadingContr.showLoader();
           this.servicoService.recuperaDominioServico().then(function (result) {
             if (result.filter(function (x) {
-              return x.nomeServico == _this4.formulario.value.nomeServico;
+              return x.nomeServico == _this4.nomeServico;
             }).length > 0) {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Serviço já cadastrado.", _this4.toastCtrl);
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_6__["HandlerError"].handler("Serviço já cadastrado.", _this4.toastCtrl);
               return false;
             } else {
-              _this4.servicoService.adicionaServico(_this4.formulario.value.nomeServico).then(function (result) {
-                src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_4__["ToastCustom"].SucessoToast(_this4.toastCtrl);
+              _this4.servicoService.adicionaServico({
+                nomeServico: _this4.nomeServico.value
+              }).then(function (result) {
+                src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_3__["ToastCustom"].SucessoToast(_this4.toastCtrl);
               })["catch"](function (error) {
-                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this4.toastCtrl);
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_6__["HandlerError"].handler(error, _this4.toastCtrl);
 
                 _this4.loadingContr.hideLoader();
               });
@@ -1203,10 +1196,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             _this4.loadingContr.hideLoader();
           })["catch"](function (error) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this4.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_6__["HandlerError"].handler(error, _this4.toastCtrl);
 
             _this4.loadingContr.hideLoader();
           });
+        }
+      }, {
+        key: "ngAfterViewInit",
+        value: function ngAfterViewInit() {
+          var _this5 = this;
+
+          setTimeout(function () {
+            _this5.nomeServico.setFocus();
+          }, 800);
         }
       }, {
         key: "closeModal",
@@ -1220,16 +1222,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     AdicionaServicoPage.ctorParameters = function () {
       return [{
-        type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_3__["DominioServicoService"]
+        type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__["DominioServicoService"]
       }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"]
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"]
       }, {
-        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__["LoadingContr"]
+        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_5__["LoadingContr"]
       }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"]
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
       }];
     };
 
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('nomeServico')], AdicionaServicoPage.prototype, "nomeServico", void 0);
     AdicionaServicoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-adiciona-servico',
       template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
@@ -1314,7 +1317,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     var ModalIgrejaPage = /*#__PURE__*/function () {
       function ModalIgrejaPage(loadingContr, toastCtrl, igrejaService, modalController, navParams) {
-        var _this5 = this;
+        var _this6 = this;
 
         _classCallCheck(this, ModalIgrejaPage);
 
@@ -1332,8 +1335,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         } else {
           loadingContr.showLoader();
           this.igrejaService.RecuperaIgrejasPorEndereco(this.navParams.data.uf, this.navParams.data.cidade, this.navParams.data.bairro).then(function (result) {
-            _this5.itens = result;
-            _this5.dominioIgrejas = result;
+            _this6.itens = result;
+            _this6.dominioIgrejas = result;
             loadingContr.hideLoader();
           })["catch"](function (err) {
             loadingContr.hideLoader();
@@ -1348,10 +1351,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this6 = this;
+          var _this7 = this;
 
           setTimeout(function () {
-            _this6.inputElement.setFocus();
+            _this7.inputElement.setFocus();
           }, 800);
         }
       }, {
@@ -1493,10 +1496,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this7 = this;
+          var _this8 = this;
 
           setTimeout(function () {
-            _this7.inputElement.setFocus();
+            _this8.inputElement.setFocus();
           }, 800);
         }
       }, {

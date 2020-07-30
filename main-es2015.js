@@ -692,12 +692,6 @@ let AppComponent = class AppComponent {
                 url: 'mantem-servico',
                 icon: 'business',
                 perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorSistema]
-            },
-            {
-                title: 'Modulo Prestador',
-                url: 'modulo-prestador-home-adm-sistema',
-                icon: 'business',
-                perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorSistema]
             }
         ];
     }
@@ -2308,8 +2302,13 @@ class BaseRepository {
     // 	console.log(result);			
     // }));
     delete(id) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            throw new Error('Method not implemented.');
+        return new Promise((resolve, reject) => {
+            this.db.collection(this._collectionName).doc(id).set(Object.assign({ deletado: true }), { merge: true })
+                .then(() => {
+                resolve();
+            }).catch(err => {
+                reject(err);
+            });
         });
     }
     recuperaColletion(collection) {

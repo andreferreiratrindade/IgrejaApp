@@ -592,9 +592,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.dominioServico.recuperaDominioServico();
         }
       }, {
+        key: "recuperaDominioServicoAtivo",
+        value: function recuperaDominioServicoAtivo() {
+          return this.dominioServico.recuperaDominioServicoAtivo();
+        }
+      }, {
         key: "adicionaServico",
         value: function adicionaServico(servico) {
           return this.dominioServico.add(servico, null);
+        }
+      }, {
+        key: "excluirServico",
+        value: function excluirServico(servicoId) {
+          return this.dominioServico["delete"](servicoId);
         }
       }]);
 
@@ -799,7 +809,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               result.forEach(function (doc) {
                 lst.push({
                   nomeServico: doc.data().nomeServico,
-                  servicoId: doc.id
+                  servicoId: doc.id,
+                  deletado: doc.data().deletado
+                });
+              });
+              response(lst);
+            });
+          });
+        }
+      }, {
+        key: "recuperaDominioServicoAtivo",
+        value: function recuperaDominioServicoAtivo() {
+          var _this6 = this;
+
+          return new Promise(function (response, resp) {
+            _this6.db.collection("dominioServico").where("deletado", "==", false).get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push({
+                  nomeServico: doc.data().nomeServico,
+                  servicoId: doc.id,
+                  deletado: doc.data().deletado
                 });
               });
               response(lst);
@@ -861,22 +891,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super2 = _createSuper(IgrejaRepService);
 
       function IgrejaRepService() {
-        var _this6;
+        var _this7;
 
         _classCallCheck(this, IgrejaRepService);
 
-        _this6 = _super2.call(this);
-        _this6._collectionName = "igreja";
-        return _this6;
+        _this7 = _super2.call(this);
+        _this7._collectionName = "igreja";
+        return _this7;
       }
 
       _createClass(IgrejaRepService, [{
         key: "RecuperaIgrejasPorEndereco",
         value: function RecuperaIgrejasPorEndereco(uf, cidade, bairro) {
-          var _this7 = this;
+          var _this8 = this;
 
           return new Promise(function (resolve, reject) {
-            var query = _this7.db.collection('igreja').where("uf", "==", uf);
+            var query = _this8.db.collection('igreja').where("uf", "==", uf);
 
             if (cidade) {
               query = query.where("cidade", "==", cidade);
@@ -900,12 +930,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "RecuperaIgrejaPorAdministrador",
         value: function RecuperaIgrejaPorAdministrador(usuarioId) {
-          var _this8 = this;
+          var _this9 = this;
 
           return new Promise(function (resolve, reject) {
-            _this8.db.collection('igreja').where("administradores", "array-contains", {
-              usuarioId: usuarioId
-            }).get().then(function (result) {
+            _this9.db.collection('igreja').where("administradores", "array-contains", usuarioId).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());

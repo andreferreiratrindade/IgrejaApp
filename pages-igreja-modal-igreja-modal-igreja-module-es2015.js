@@ -175,7 +175,7 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return new Promise((resolve, reject) => {
             this.db.collection('igreja')
-                .where("administradores", "array-contains", { usuarioId: usuarioId })
+                .where("administradores", "array-contains", usuarioId)
                 .get()
                 .then((result) => {
                 let lst = [];

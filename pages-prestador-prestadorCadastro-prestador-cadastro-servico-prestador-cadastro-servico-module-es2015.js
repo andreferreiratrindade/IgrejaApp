@@ -239,7 +239,7 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
         });
         const modal = this.modalCtrl.create({
             component: src_app_pages_servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_6__["ModalServicosPage"],
-            componentProps: { servicos: servicos },
+            componentProps: { servicos: servicos.filter(x => { return !x.deletado; }) },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();
@@ -388,8 +388,14 @@ let DominioServicoService = class DominioServicoService {
     recuperaDominioServico() {
         return this.dominioServico.recuperaDominioServico();
     }
+    recuperaDominioServicoAtivo() {
+        return this.dominioServico.recuperaDominioServicoAtivo();
+    }
     adicionaServico(servico) {
         return this.dominioServico.add(servico, null);
+    }
+    excluirServico(servicoId) {
+        return this.dominioServico.delete(servicoId);
     }
 };
 DominioServicoService.ctorParameters = () => [
@@ -464,7 +470,21 @@ let DominioServicoRepositoryService = class DominioServicoRepositoryService exte
                 .then((result) => {
                 let lst = [];
                 result.forEach(function (doc) {
-                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id });
+                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id, deletado: doc.data().deletado });
+                });
+                response(lst);
+            });
+        });
+    }
+    recuperaDominioServicoAtivo() {
+        return new Promise((response, resp) => {
+            this.db.collection("dominioServico")
+                .where("deletado", "==", false)
+                .get()
+                .then((result) => {
+                let lst = [];
+                result.forEach(function (doc) {
+                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id, deletado: doc.data().deletado });
                 });
                 response(lst);
             });

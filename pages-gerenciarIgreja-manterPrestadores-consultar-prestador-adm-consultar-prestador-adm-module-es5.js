@@ -35,7 +35,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Manter Prestadores\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-card>\n    <ion-card-content>\n      <form [formGroup]=\"formConsultarPrestadorADM\" (ngSubmit)=\"ConsultarPrestador()\">\n\n        <ion-item (click)=\"abrirModalIgreja()\" detail>\n          <ion-label>Igreja\n          </ion-label>\n          <ion-note slot=\"end\" color=\"primary\"> {{formConsultarPrestadorADM.value.nomeIgreja}}</ion-note>\n        </ion-item>\n        <ion-item (click)=\"abrirModalSituacaoPrestador()\" detail>\n          <ion-label>Situação Prestador\n          </ion-label>\n          <ion-note slot=\"end\" color=\"primary\"> {{formConsultarPrestadorADM.value.nomeSituacaoPrestador}}</ion-note>\n        </ion-item>\n        <ion-button class=\"primary\" type=\"submit\" expand=\"block\">Pesquisar</ion-button>\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}} </h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item class=\"ion-no-border\">\n      <ion-icon name=\"business-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeIgreja}} </h2>\n      </ion-label>\n      <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"item.staMembro\">\n        membro\n      </ion-note>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"golf-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeSituacaoPrestador}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button size=\"small\" (click)=\"configuracoes(item.usuarioId)\">Configurações</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Prestadores\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Consultar Prestadores</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formConsultarPrestadorADM\" (ngSubmit)=\"ConsultarPrestador()\">\n\n        <ion-item (click)=\"abrirModalIgreja()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Igreja</ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formConsultarPrestadorADM.value.nomeIgreja}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <ion-item (click)=\"abrirModalSituacaoPrestador()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Situação Prestador\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note slot=\"end\" color=\"primary\"> {{formConsultarPrestadorADM.value.nomeSituacaoPrestador}}\n                </ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n\n          <ion-button class=\"primary\" type=\"submit\"><ion-icon name=\"search-outline\" style=\"margin-right:10px;\"></ion-icon>Pesquisar</ion-button>\n\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}} </h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item class=\"ion-no-border\">\n      <ion-icon name=\"business-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeIgreja}} </h2>\n      </ion-label>\n      <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"item.staMembro\">\n        membro\n      </ion-note>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"golf-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeSituacaoPrestador}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button size=\"small\" (click)=\"configuracoes(item.usuarioId)\">Configurações</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -296,7 +296,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2dlcmVuY2lhcklncmVqYS9tYW50ZXJQcmVzdGFkb3Jlcy9jb25zdWx0YXItcHJlc3RhZG9yLWFkbS9jb25zdWx0YXItcHJlc3RhZG9yLWFkbS5wYWdlLnNjc3MifQ== */";
+    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvZ2VyZW5jaWFySWdyZWphL21hbnRlclByZXN0YWRvcmVzL2NvbnN1bHRhci1wcmVzdGFkb3ItYWRtL2NvbnN1bHRhci1wcmVzdGFkb3ItYWRtLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvZ2VyZW5jaWFySWdyZWphL21hbnRlclByZXN0YWRvcmVzL2NvbnN1bHRhci1wcmVzdGFkb3ItYWRtL2NvbnN1bHRhci1wcmVzdGFkb3ItYWRtLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDRCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9nZXJlbmNpYXJJZ3JlamEvbWFudGVyUHJlc3RhZG9yZXMvY29uc3VsdGFyLXByZXN0YWRvci1hZG0vY29uc3VsdGFyLXByZXN0YWRvci1hZG0ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
     /***/
   },
 
@@ -388,44 +388,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
-    /*! @ionic-native/call-number/ngx */
-    "./node_modules/@ionic-native/call-number/__ivy_ngcc__/ngx/index.js");
-    /* harmony import */
-
-
-    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! src/app/utils/constants */
     "./src/app/utils/constants.ts");
     /* harmony import */
 
 
-    var _modalSituacaoPrestador_modal_situacao_prestador_modal_situacao_prestador_page__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    var _modalSituacaoPrestador_modal_situacao_prestador_modal_situacao_prestador_page__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ../modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.page */
     "./src/app/pages/gerenciarIgreja/manterPrestadores/modalSituacaoPrestador/modal-situacao-prestador/modal-situacao-prestador.page.ts");
     /* harmony import */
 
 
-    var src_app_pages_igreja_modal_igreja_modal_igreja_page__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    var src_app_pages_igreja_modal_igreja_modal_igreja_page__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! src/app/pages/igreja/modal-igreja/modal-igreja.page */
     "./src/app/pages/igreja/modal-igreja/modal-igreja.page.ts");
     /* harmony import */
 
 
-    var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+    var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
     /*! src/app/helpers/toastCustom */
     "./src/app/helpers/toastCustom.ts");
     /* harmony import */
 
 
-    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
     /*! src/app/helpers/handlerError */
     "./src/app/helpers/handlerError.ts");
 
     var ConsultarPrestadorAdmPage = /*#__PURE__*/function () {
-      function ConsultarPrestadorAdmPage(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl, callNumber) {
-        var _this = this;
-
+      function ConsultarPrestadorAdmPage(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl) {
         _classCallCheck(this, ConsultarPrestadorAdmPage);
 
         this.prestadorService = prestadorService;
@@ -436,7 +428,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.dominioServicoService = dominioServicoService;
         this.router = router;
         this.modalCtrl = modalCtrl;
-        this.callNumber = callNumber;
         this.prestadores = [];
         this.formConsultarPrestadorADM = new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormGroup"]({
           'nomeSituacaoPrestador': new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"](),
@@ -445,18 +436,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           'igrejaId': new _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormControl"]()
         });
         this.prestadores = [];
-        this.igrejaService.RecuperaIgrejaPorAdministrador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function (result) {
-          _this.igrejasDoAdmin = result;
-          loadingContr.hideLoader();
-        })["catch"](function (err) {
-          loadingContr.hideLoader();
-          console.log(err);
-        });
       }
 
       _createClass(ConsultarPrestadorAdmPage, [{
         key: "ngOnInit",
-        value: function ngOnInit() {// let usuario = Config.RecuperaInstancia().recuperaUsuario();
+        value: function ngOnInit() {
+          var _this = this;
+
+          this.loadingContr.showLoader();
+          this.igrejaService.RecuperaIgrejaPorAdministrador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function (result) {
+            _this.igrejasDoAdmin = result;
+
+            _this.formConsultarPrestadorADM.controls['nomeIgreja'].setValue(result[0].nomeIgreja);
+
+            _this.formConsultarPrestadorADM.controls['igrejaId'].setValue(result[0].id);
+
+            _this.loadingContr.hideLoader();
+          })["catch"](function (err) {
+            _this.loadingContr.hideLoader();
+
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_15__["HandlerError"].handler(err, _this.toastCtrl);
+          }); // let usuario = Config.RecuperaInstancia().recuperaUsuario();
           // this.igrejaService.RecuperaIgrejaPorAdministrador(usuario.usuarioId)
           //   .then(igrejaResult => {
           //     this.prestadorService.recuperaPrestadoresPorIgreja(igrejaResult.igrejaId)
@@ -479,7 +479,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             return obj;
           })).then(function (prestadoresResult) {
             if (!prestadoresResult || prestadoresResult.length == 0) {
-              src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_15__["ToastCustom"].CustomToast(_this2.toastCtrl, "Nenhum prestador encontrado.", "danger", 4000);
+              src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_14__["ToastCustom"].CustomToast(_this2.toastCtrl, "Nenhum prestador encontrado.", "danger", 4000);
 
               _this2.loadingContr.hideLoader();
 
@@ -489,7 +489,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             _this2.prestadores = prestadoresResult;
 
             _this2.prestadores.map(function (y) {
-              y.nomeSituacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_12__["Constants"].ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(y.situacaoPrestador);
+              y.nomeSituacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(y.situacaoPrestador);
             });
 
             var lstusuarioId = [];
@@ -506,7 +506,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
             _this2.recuperaNomeIgreja(lstIgrejaId);
           })["catch"](function (x) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_16__["HandlerError"].handler(x, _this2.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_15__["HandlerError"].handler(x, _this2.toastCtrl);
 
             _this2.loadingContr.hideLoader();
           });
@@ -531,7 +531,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
               _this3.loadingContr.hideLoader();
             })["catch"](function (x) {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_16__["HandlerError"].handler(x, _this3.toastCtrl);
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_15__["HandlerError"].handler(x, _this3.toastCtrl);
 
               _this3.loadingContr.hideLoader();
             });
@@ -553,7 +553,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               _this4.loadingContr.hideLoader();
             })["catch"](function (x) {
               reject(x);
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_16__["HandlerError"].handler(x, _this4.toastCtrl);
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_15__["HandlerError"].handler(x, _this4.toastCtrl);
 
               _this4.loadingContr.hideLoader();
             });
@@ -565,9 +565,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this5 = this;
 
           var modal = this.modalCtrl.create({
-            component: _modalSituacaoPrestador_modal_situacao_prestador_modal_situacao_prestador_page__WEBPACK_IMPORTED_MODULE_13__["ModalSituacaoPrestadorPage"],
+            component: _modalSituacaoPrestador_modal_situacao_prestador_modal_situacao_prestador_page__WEBPACK_IMPORTED_MODULE_12__["ModalSituacaoPrestadorPage"],
             componentProps: {
-              situacoes: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_12__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem()
+              situacoes: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem()
             },
             backdropDismiss: false
           }).then(function (modal) {
@@ -596,7 +596,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this6 = this;
 
           var modal = this.modalCtrl.create({
-            component: src_app_pages_igreja_modal_igreja_modal_igreja_page__WEBPACK_IMPORTED_MODULE_14__["ModalIgrejaPage"],
+            component: src_app_pages_igreja_modal_igreja_modal_igreja_page__WEBPACK_IMPORTED_MODULE_13__["ModalIgrejaPage"],
             componentProps: {
               igrejas: this.igrejasDoAdmin
             },
@@ -634,8 +634,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ModalController"]
-      }, {
-        type: _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_11__["CallNumber"]
       }];
     };
 
@@ -708,9 +706,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.dominioServico.recuperaDominioServico();
         }
       }, {
+        key: "recuperaDominioServicoAtivo",
+        value: function recuperaDominioServicoAtivo() {
+          return this.dominioServico.recuperaDominioServicoAtivo();
+        }
+      }, {
         key: "adicionaServico",
         value: function adicionaServico(servico) {
           return this.dominioServico.add(servico, null);
+        }
+      }, {
+        key: "excluirServico",
+        value: function excluirServico(servicoId) {
+          return this.dominioServico["delete"](servicoId);
         }
       }]);
 
@@ -915,7 +923,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               result.forEach(function (doc) {
                 lst.push({
                   nomeServico: doc.data().nomeServico,
-                  servicoId: doc.id
+                  servicoId: doc.id,
+                  deletado: doc.data().deletado
+                });
+              });
+              response(lst);
+            });
+          });
+        }
+      }, {
+        key: "recuperaDominioServicoAtivo",
+        value: function recuperaDominioServicoAtivo() {
+          var _this10 = this;
+
+          return new Promise(function (response, resp) {
+            _this10.db.collection("dominioServico").where("deletado", "==", false).get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push({
+                  nomeServico: doc.data().nomeServico,
+                  servicoId: doc.id,
+                  deletado: doc.data().deletado
                 });
               });
               response(lst);
@@ -977,22 +1005,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super2 = _createSuper(IgrejaRepService);
 
       function IgrejaRepService() {
-        var _this10;
+        var _this11;
 
         _classCallCheck(this, IgrejaRepService);
 
-        _this10 = _super2.call(this);
-        _this10._collectionName = "igreja";
-        return _this10;
+        _this11 = _super2.call(this);
+        _this11._collectionName = "igreja";
+        return _this11;
       }
 
       _createClass(IgrejaRepService, [{
         key: "RecuperaIgrejasPorEndereco",
         value: function RecuperaIgrejasPorEndereco(uf, cidade, bairro) {
-          var _this11 = this;
+          var _this12 = this;
 
           return new Promise(function (resolve, reject) {
-            var query = _this11.db.collection('igreja').where("uf", "==", uf);
+            var query = _this12.db.collection('igreja').where("uf", "==", uf);
 
             if (cidade) {
               query = query.where("cidade", "==", cidade);
@@ -1016,12 +1044,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "RecuperaIgrejaPorAdministrador",
         value: function RecuperaIgrejaPorAdministrador(usuarioId) {
-          var _this12 = this;
+          var _this13 = this;
 
           return new Promise(function (resolve, reject) {
-            _this12.db.collection('igreja').where("administradores", "array-contains", {
-              usuarioId: usuarioId
-            }).get().then(function (result) {
+            _this13.db.collection('igreja').where("administradores", "array-contains", usuarioId).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());

@@ -326,8 +326,14 @@ let DominioServicoService = class DominioServicoService {
     recuperaDominioServico() {
         return this.dominioServico.recuperaDominioServico();
     }
+    recuperaDominioServicoAtivo() {
+        return this.dominioServico.recuperaDominioServicoAtivo();
+    }
     adicionaServico(servico) {
         return this.dominioServico.add(servico, null);
+    }
+    excluirServico(servicoId) {
+        return this.dominioServico.delete(servicoId);
     }
 };
 DominioServicoService.ctorParameters = () => [
@@ -451,7 +457,21 @@ let DominioServicoRepositoryService = class DominioServicoRepositoryService exte
                 .then((result) => {
                 let lst = [];
                 result.forEach(function (doc) {
-                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id });
+                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id, deletado: doc.data().deletado });
+                });
+                response(lst);
+            });
+        });
+    }
+    recuperaDominioServicoAtivo() {
+        return new Promise((response, resp) => {
+            this.db.collection("dominioServico")
+                .where("deletado", "==", false)
+                .get()
+                .then((result) => {
+                let lst = [];
+                result.forEach(function (doc) {
+                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id, deletado: doc.data().deletado });
                 });
                 response(lst);
             });
@@ -515,7 +535,7 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return new Promise((resolve, reject) => {
             this.db.collection('igreja')
-                .where("administradores", "array-contains", { usuarioId: usuarioId })
+                .where("administradores", "array-contains", usuarioId)
                 .get()
                 .then((result) => {
                 let lst = [];

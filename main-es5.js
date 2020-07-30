@@ -909,11 +909,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             url: 'mantem-servico',
             icon: 'business',
             perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorSistema]
-          }, {
-            title: 'Modulo Prestador',
-            url: 'modulo-prestador-home-adm-sistema',
-            icon: 'business',
-            perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorSistema]
           }];
         }
       }, {
@@ -3595,20 +3590,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "delete",
         value: function _delete(id) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
-            return regeneratorRuntime.wrap(function _callee7$(_context7) {
-              while (1) {
-                switch (_context7.prev = _context7.next) {
-                  case 0:
-                    throw new Error('Method not implemented.');
+          var _this30 = this;
 
-                  case 1:
-                  case "end":
-                    return _context7.stop();
-                }
-              }
-            }, _callee7);
-          }));
+          return new Promise(function (resolve, reject) {
+            _this30.db.collection(_this30._collectionName).doc(id).set(Object.assign({
+              deletado: true
+            }), {
+              merge: true
+            }).then(function () {
+              resolve();
+            })["catch"](function (err) {
+              reject(err);
+            });
+          });
         }
       }, {
         key: "recuperaColletion",
@@ -3674,12 +3668,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(UsuarioRepService, [{
         key: "AdicionaPerfilAoUsuario",
         value: function AdicionaPerfilAoUsuario(usuarioId, perfil) {
-          var _this31 = this;
+          var _this32 = this;
 
           var ref = this.db.collection("usuario").doc(usuarioId);
           var ob = [perfil];
           return new Promise(function (retorno, reject) {
-            _this31.db.runTransaction(function (transaction) {
+            _this32.db.runTransaction(function (transaction) {
               // This code may get re-run multiple times if there are conflicts.
               return transaction.get(ref).then(function (doc) {
                 var usuario = doc.data();
@@ -3705,13 +3699,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }]);
 
       function UsuarioRepService() {
-        var _this30;
+        var _this31;
 
         _classCallCheck(this, UsuarioRepService);
 
-        _this30 = _super2.call(this);
-        _this30._collectionName = "usuario";
-        return _this30;
+        _this31 = _super2.call(this);
+        _this31._collectionName = "usuario";
+        return _this31;
       }
 
       return UsuarioRepService;

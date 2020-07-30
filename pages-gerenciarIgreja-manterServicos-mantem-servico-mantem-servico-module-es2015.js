@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n    animated #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\n    <ion-fab-button color=\"dark\" (click)=\"abreModalSelecionaServico()\">\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Serviços\n      </ion-title>\n    </ion-toolbar>\n\n\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Adicionar Serviço</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item>\n        <ion-label position=\"floating\">Serviço<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"nomeServico\" autofocus clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"primary\" (click)=\"salvar()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Serviços</ion-card-title>\n      <ion-searchbar type=\"text\" debounce=1 placeholder=\"Pesquisar\" animated #searchbar\n        (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-list style=\"margin-top: 20px;\">\n        <ion-item *ngFor=\"let item of servicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"excluirServico(item.servicoId)\">\n          <ion-icon *ngIf=\"!item.deletado\" slot=\"end\" color=\"danger\" name=\"trash-outline\"></ion-icon>\n          <ion-label>{{item.nomeServico}}<p>{{item.deletado?\"deletado\":\"\"}}</p></ion-label>\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -156,7 +156,7 @@ MantemServicoPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2dlcmVuY2lhcklncmVqYS9tYW50ZXJTZXJ2aWNvcy9tYW50ZW0tc2Vydmljby9tYW50ZW0tc2Vydmljby5wYWdlLnNjc3MifQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvZ2VyZW5jaWFySWdyZWphL21hbnRlclNlcnZpY29zL21hbnRlbS1zZXJ2aWNvL21hbnRlbS1zZXJ2aWNvLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvZ2VyZW5jaWFySWdyZWphL21hbnRlclNlcnZpY29zL21hbnRlbS1zZXJ2aWNvL21hbnRlbS1zZXJ2aWNvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDRCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9nZXJlbmNpYXJJZ3JlamEvbWFudGVyU2Vydmljb3MvbWFudGVtLXNlcnZpY28vbWFudGVtLXNlcnZpY28ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */");
 
 /***/ }),
 
@@ -175,20 +175,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/providers/dominioServico/dominio-servico.service */ "./src/app/providers/dominioServico/dominio-servico.service.ts");
 /* harmony import */ var _adiciona_servico_adiciona_servico_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../adiciona-servico/adiciona-servico.page */ "./src/app/pages/gerenciarIgreja/manterServicos/adiciona-servico/adiciona-servico.page.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/helpers/handlerError */ "./src/app/helpers/handlerError.ts");
+/* harmony import */ var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/utils/constants */ "./src/app/utils/constants.ts");
+/* harmony import */ var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/helpers/toastCustom */ "./src/app/helpers/toastCustom.ts");
+/* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
+
+
+
+
 
 
 
 
 
 let MantemServicoPage = class MantemServicoPage {
-    constructor(servicoService, modalCtrl) {
+    constructor(servicoService, modalCtrl, loadingContr, toastCtrl) {
         this.servicoService = servicoService;
         this.modalCtrl = modalCtrl;
+        this.loadingContr = loadingContr;
+        this.toastCtrl = toastCtrl;
         this.servicos = [];
+        this.dominioServicos = [];
     }
     ngOnInit() {
         this.servicoService.recuperaDominioServico().then(result => {
             this.servicos = result;
+            this.dominioServicos = result;
+        });
+    }
+    salvar() {
+        if (!this.nomeServico) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_6__["Constants"].Mensagens.CamposObrigatorios, this.toastCtrl);
+            return false;
+        }
+        this.servicoService.recuperaDominioServico().then(result => {
+            this.loadingContr.showLoader();
+            if (result.filter(x => x.nomeServico == this.nomeServico).length > 0) {
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler("Serviço já cadastrado.", this.toastCtrl);
+                this.loadingContr.hideLoader();
+                return false;
+            }
+            else {
+                this.servicoService.adicionaServico({ nomeServico: this.nomeServico, deletado: false })
+                    .then(result => {
+                    this.nomeServico = null;
+                    src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_7__["ToastCustom"].SucessoToast(this.toastCtrl);
+                    this.ngOnInit();
+                    this.loadingContr.hideLoader();
+                }).catch((error) => {
+                    src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(error, this.toastCtrl);
+                    this.loadingContr.hideLoader();
+                });
+            }
+        })
+            .catch((error) => {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(error, this.toastCtrl);
+            this.loadingContr.hideLoader();
         });
     }
     abreModalSelecionaServico() {
@@ -201,10 +243,33 @@ let MantemServicoPage = class MantemServicoPage {
             });
         });
     }
+    recuperaServicos(ev) {
+        let val = "";
+        if (ev && ev.target) {
+            val = ev.target.value;
+        }
+        if (val && val.trim() !== '') {
+            this.servicos = this.dominioServicos.filter(item => {
+                return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1;
+            });
+        }
+        else {
+            this.servicos = [...this.dominioServicos];
+        }
+        if (this.servicos.length > 10)
+            this.servicos.length = 10;
+    }
+    excluirServico(servicoId) {
+        this.servicoService.excluirServico(servicoId).then(result => {
+            this.ngOnInit();
+        });
+    }
 };
 MantemServicoPage.ctorParameters = () => [
     { type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__["DominioServicoService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"] },
+    { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__["LoadingContr"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] }
 ];
 MantemServicoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -244,8 +309,14 @@ let DominioServicoService = class DominioServicoService {
     recuperaDominioServico() {
         return this.dominioServico.recuperaDominioServico();
     }
+    recuperaDominioServicoAtivo() {
+        return this.dominioServico.recuperaDominioServicoAtivo();
+    }
     adicionaServico(servico) {
         return this.dominioServico.add(servico, null);
+    }
+    excluirServico(servicoId) {
+        return this.dominioServico.delete(servicoId);
     }
 };
 DominioServicoService.ctorParameters = () => [
@@ -320,7 +391,21 @@ let DominioServicoRepositoryService = class DominioServicoRepositoryService exte
                 .then((result) => {
                 let lst = [];
                 result.forEach(function (doc) {
-                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id });
+                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id, deletado: doc.data().deletado });
+                });
+                response(lst);
+            });
+        });
+    }
+    recuperaDominioServicoAtivo() {
+        return new Promise((response, resp) => {
+            this.db.collection("dominioServico")
+                .where("deletado", "==", false)
+                .get()
+                .then((result) => {
+                let lst = [];
+                result.forEach(function (doc) {
+                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id, deletado: doc.data().deletado });
                 });
                 response(lst);
             });

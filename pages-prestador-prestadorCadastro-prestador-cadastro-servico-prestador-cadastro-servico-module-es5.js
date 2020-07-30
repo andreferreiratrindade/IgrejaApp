@@ -454,7 +454,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var modal = this.modalCtrl.create({
             component: src_app_pages_servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_6__["ModalServicosPage"],
             componentProps: {
-              servicos: servicos
+              servicos: servicos.filter(function (x) {
+                return !x.deletado;
+              })
             },
             backdropDismiss: false
           }).then(function (modal) {
@@ -693,9 +695,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.dominioServico.recuperaDominioServico();
         }
       }, {
+        key: "recuperaDominioServicoAtivo",
+        value: function recuperaDominioServicoAtivo() {
+          return this.dominioServico.recuperaDominioServicoAtivo();
+        }
+      }, {
         key: "adicionaServico",
         value: function adicionaServico(servico) {
           return this.dominioServico.add(servico, null);
+        }
+      }, {
+        key: "excluirServico",
+        value: function excluirServico(servicoId) {
+          return this.dominioServico["delete"](servicoId);
         }
       }]);
 
@@ -813,7 +825,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               result.forEach(function (doc) {
                 lst.push({
                   nomeServico: doc.data().nomeServico,
-                  servicoId: doc.id
+                  servicoId: doc.id,
+                  deletado: doc.data().deletado
+                });
+              });
+              response(lst);
+            });
+          });
+        }
+      }, {
+        key: "recuperaDominioServicoAtivo",
+        value: function recuperaDominioServicoAtivo() {
+          var _this10 = this;
+
+          return new Promise(function (response, resp) {
+            _this10.db.collection("dominioServico").where("deletado", "==", false).get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push({
+                  nomeServico: doc.data().nomeServico,
+                  servicoId: doc.id,
+                  deletado: doc.data().deletado
                 });
               });
               response(lst);

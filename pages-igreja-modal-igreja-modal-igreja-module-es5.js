@@ -325,9 +325,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this3 = this;
 
           return new Promise(function (resolve, reject) {
-            _this3.db.collection('igreja').where("administradores", "array-contains", {
-              usuarioId: usuarioId
-            }).get().then(function (result) {
+            _this3.db.collection('igreja').where("administradores", "array-contains", usuarioId).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());

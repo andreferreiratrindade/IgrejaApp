@@ -1170,9 +1170,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this10 = this;
 
           return new Promise(function (resolve, reject) {
-            _this10.db.collection('igreja').where("administradores", "array-contains", {
-              usuarioId: usuarioId
-            }).get().then(function (result) {
+            _this10.db.collection('igreja').where("administradores", "array-contains", usuarioId).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());

@@ -12,6 +12,18 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -35,7 +47,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n    animated #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\n    <ion-fab-button color=\"dark\" (click)=\"abreModalSelecionaServico()\">\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Serviços\n      </ion-title>\n    </ion-toolbar>\n\n\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Adicionar Serviço</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item>\n        <ion-label position=\"floating\">Serviço<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"nomeServico\" autofocus clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"primary\" (click)=\"salvar()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Serviços</ion-card-title>\n      <ion-searchbar type=\"text\" debounce=1 placeholder=\"Pesquisar\" animated #searchbar\n        (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-list style=\"margin-top: 20px;\">\n        <ion-item *ngFor=\"let item of servicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"excluirServico(item.servicoId)\">\n          <ion-icon *ngIf=\"!item.deletado\" slot=\"end\" color=\"danger\" name=\"trash-outline\"></ion-icon>\n          <ion-label>{{item.nomeServico}}<p>{{item.deletado?\"deletado\":\"\"}}</p></ion-label>\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -290,7 +302,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2dlcmVuY2lhcklncmVqYS9tYW50ZXJTZXJ2aWNvcy9tYW50ZW0tc2Vydmljby9tYW50ZW0tc2Vydmljby5wYWdlLnNjc3MifQ== */";
+    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvZ2VyZW5jaWFySWdyZWphL21hbnRlclNlcnZpY29zL21hbnRlbS1zZXJ2aWNvL21hbnRlbS1zZXJ2aWNvLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvZ2VyZW5jaWFySWdyZWphL21hbnRlclNlcnZpY29zL21hbnRlbS1zZXJ2aWNvL21hbnRlbS1zZXJ2aWNvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDRCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9nZXJlbmNpYXJJZ3JlamEvbWFudGVyU2Vydmljb3MvbWFudGVtLXNlcnZpY28vbWFudGVtLXNlcnZpY28ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
     /***/
   },
 
@@ -343,14 +355,41 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! @ionic/angular */
     "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! src/app/helpers/handlerError */
+    "./src/app/helpers/handlerError.ts");
+    /* harmony import */
+
+
+    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! src/app/utils/constants */
+    "./src/app/utils/constants.ts");
+    /* harmony import */
+
+
+    var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! src/app/helpers/toastCustom */
+    "./src/app/helpers/toastCustom.ts");
+    /* harmony import */
+
+
+    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! src/app/helpers/loadingContr */
+    "./src/app/helpers/loadingContr.ts");
 
     var MantemServicoPage = /*#__PURE__*/function () {
-      function MantemServicoPage(servicoService, modalCtrl) {
+      function MantemServicoPage(servicoService, modalCtrl, loadingContr, toastCtrl) {
         _classCallCheck(this, MantemServicoPage);
 
         this.servicoService = servicoService;
         this.modalCtrl = modalCtrl;
+        this.loadingContr = loadingContr;
+        this.toastCtrl = toastCtrl;
         this.servicos = [];
+        this.dominioServicos = [];
       }
 
       _createClass(MantemServicoPage, [{
@@ -360,6 +399,51 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.servicoService.recuperaDominioServico().then(function (result) {
             _this.servicos = result;
+            _this.dominioServicos = result;
+          });
+        }
+      }, {
+        key: "salvar",
+        value: function salvar() {
+          var _this2 = this;
+
+          if (!this.nomeServico) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_6__["Constants"].Mensagens.CamposObrigatorios, this.toastCtrl);
+            return false;
+          }
+
+          this.servicoService.recuperaDominioServico().then(function (result) {
+            _this2.loadingContr.showLoader();
+
+            if (result.filter(function (x) {
+              return x.nomeServico == _this2.nomeServico;
+            }).length > 0) {
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler("Serviço já cadastrado.", _this2.toastCtrl);
+
+              _this2.loadingContr.hideLoader();
+
+              return false;
+            } else {
+              _this2.servicoService.adicionaServico({
+                nomeServico: _this2.nomeServico,
+                deletado: false
+              }).then(function (result) {
+                _this2.nomeServico = null;
+                src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_7__["ToastCustom"].SucessoToast(_this2.toastCtrl);
+
+                _this2.ngOnInit();
+
+                _this2.loadingContr.hideLoader();
+              })["catch"](function (error) {
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(error, _this2.toastCtrl);
+
+                _this2.loadingContr.hideLoader();
+              });
+            }
+          })["catch"](function (error) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(error, _this2.toastCtrl);
+
+            _this2.loadingContr.hideLoader();
           });
         }
       }, {
@@ -373,6 +457,34 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.onWillDismiss().then(function (resultModal) {});
           });
         }
+      }, {
+        key: "recuperaServicos",
+        value: function recuperaServicos(ev) {
+          var val = "";
+
+          if (ev && ev.target) {
+            val = ev.target.value;
+          }
+
+          if (val && val.trim() !== '') {
+            this.servicos = this.dominioServicos.filter(function (item) {
+              return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1;
+            });
+          } else {
+            this.servicos = _toConsumableArray(this.dominioServicos);
+          }
+
+          if (this.servicos.length > 10) this.servicos.length = 10;
+        }
+      }, {
+        key: "excluirServico",
+        value: function excluirServico(servicoId) {
+          var _this3 = this;
+
+          this.servicoService.excluirServico(servicoId).then(function (result) {
+            _this3.ngOnInit();
+          });
+        }
       }]);
 
       return MantemServicoPage;
@@ -383,6 +495,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__["DominioServicoService"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+      }, {
+        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__["LoadingContr"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"]
       }];
     };
 
@@ -454,9 +570,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.dominioServico.recuperaDominioServico();
         }
       }, {
+        key: "recuperaDominioServicoAtivo",
+        value: function recuperaDominioServicoAtivo() {
+          return this.dominioServico.recuperaDominioServicoAtivo();
+        }
+      }, {
         key: "adicionaServico",
         value: function adicionaServico(servico) {
           return this.dominioServico.add(servico, null);
+        }
+      }, {
+        key: "excluirServico",
+        value: function excluirServico(servicoId) {
+          return this.dominioServico["delete"](servicoId);
         }
       }]);
 
@@ -522,12 +648,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
        *
        */
       function DominioServicoRepositoryService() {
-        var _this2;
+        var _this4;
 
         _classCallCheck(this, DominioServicoRepositoryService);
 
-        _this2 = _super.call(this);
-        _this2.servicoConverter = {
+        _this4 = _super.call(this);
+        _this4.servicoConverter = {
           toFirestore: function toFirestore(servico) {
             return {
               servicoId: servico.servicoId,
@@ -535,19 +661,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             };
           }
         };
-        _this2._collectionName = "dominioServico";
-        return _this2;
+        _this4._collectionName = "dominioServico";
+        return _this4;
       }
 
       _createClass(DominioServicoRepositoryService, [{
         key: "recuperaServicoAutoComplete",
         value: function recuperaServicoAutoComplete(query) {
-          var _this3 = this;
+          var _this5 = this;
 
           return new Promise(function (response, resp) {
             var endText = query + "\uF8FF";
 
-            _this3.db.collection("dominioServico").orderBy("nomeServico").limit(10).where("nomeServico", ">=", query).where("nomeServico", "<=", endText) // .startAt(query)
+            _this5.db.collection("dominioServico").orderBy("nomeServico").limit(10).where("nomeServico", ">=", query).where("nomeServico", "<=", endText) // .startAt(query)
             // .endAt(endText)
             .get().then(function (result) {
               var lst = [];
@@ -566,15 +692,35 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "recuperaDominioServico",
         value: function recuperaDominioServico() {
-          var _this4 = this;
+          var _this6 = this;
 
           return new Promise(function (response, resp) {
-            _this4.db.collection("dominioServico").get().then(function (result) {
+            _this6.db.collection("dominioServico").get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({
                   nomeServico: doc.data().nomeServico,
-                  servicoId: doc.id
+                  servicoId: doc.id,
+                  deletado: doc.data().deletado
+                });
+              });
+              response(lst);
+            });
+          });
+        }
+      }, {
+        key: "recuperaDominioServicoAtivo",
+        value: function recuperaDominioServicoAtivo() {
+          var _this7 = this;
+
+          return new Promise(function (response, resp) {
+            _this7.db.collection("dominioServico").where("deletado", "==", false).get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push({
+                  nomeServico: doc.data().nomeServico,
+                  servicoId: doc.id,
+                  deletado: doc.data().deletado
                 });
               });
               response(lst);

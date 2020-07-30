@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n    <ion-title>\n      Login\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"sign-in-content\">\n  <form [formGroup]=\"signInForm\" (ngSubmit)=\"signInWithEmail()\">\n    <ion-list class=\"inputs-list\" lines=\"full\">\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Email <ion-text color=\"danger\">*</ion-text></ion-label>\n\n        <ion-input type=\"email\"  formControlName=\"email\" clearInput autocapitalize=\"off\" inputmode=\"email\"></ion-input>\n      </ion-item>\n      <app-mensagem-validacao [validation_messages_object]=\"validation_messages.email\" [form]=\"signInForm\"\n      [nomeCampo]=\"'email'\"></app-mensagem-validacao>\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Senha <ion-text color=\"danger\">*</ion-text></ion-label>\n\n        <ion-input type=\"password\"  formControlName=\"password\"></ion-input>\n      </ion-item>\n      <app-mensagem-validacao [validation_messages_object]=\"validation_messages.password\" [form]=\"signInForm\"\n      [nomeCampo]=\"'password'\"></app-mensagem-validacao>\n    </ion-list>\n\n    <ion-button class=\"sign-in-btn\" type=\"submit\" expand=\"block\">Entrar</ion-button>\n\n    <ion-row class=\"sign-up-btn-wrapper\">\n      <ion-button class=\"sign-up-btn\" fill=\"clear\" [routerLink]=\"['/sign-up']\" routerDirection=\"root\">\n        Cadastre-se\n      </ion-button>\n    </ion-row>\n  </form>\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n      <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n    <ion-title>\n      Login\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"sign-in-content\">\n  <form [formGroup]=\"signInForm\" (ngSubmit)=\"signInWithEmail()\">\n    <ion-list class=\"inputs-list\" lines=\"full\">\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Email <ion-text color=\"danger\">*</ion-text></ion-label>\n\n        <ion-input type=\"email\"  formControlName=\"email\" clearInput autocapitalize=\"off\" inputmode=\"email\"></ion-input>\n      </ion-item>\n      <app-mensagem-validacao [validation_messages_object]=\"validation_messages.email\" [form]=\"signInForm\"\n      [nomeCampo]=\"'email'\"></app-mensagem-validacao>\n\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Senha <ion-text color=\"danger\">*</ion-text></ion-label>\n\n        <ion-input type=\"password\"  formControlName=\"password\"></ion-input>\n      </ion-item>\n      <app-mensagem-validacao [validation_messages_object]=\"validation_messages.password\" [form]=\"signInForm\"\n      [nomeCampo]=\"'password'\"></app-mensagem-validacao>\n    </ion-list>\n\n    <ion-button class=\"sign-in-btn\" type=\"submit\" expand=\"block\">Entrar</ion-button>\n\n    <ion-row class=\"sign-up-btn-wrapper\">\n      <ion-button class=\"sign-up-btn\" fill=\"clear\" [routerLink]=\"['/sign-up']\" routerDirection=\"root\" clear>\n        Cadastre-se\n      </ion-button>\n    </ion-row>\n  </form>\n\n</ion-content>\n");
 
 /***/ }),
 
@@ -153,6 +153,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/helpers/handlerError */ "./src/app/helpers/handlerError.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/providers/usuario/usuario.service */ "./src/app/providers/usuario/usuario.service.ts");
+/* harmony import */ var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/utils/constants */ "./src/app/utils/constants.ts");
+
 
 
 
@@ -182,6 +184,8 @@ let SignInPage = class SignInPage {
                 { type: 'minlength', message: 'Senha deve ter no minimo 6 caracteres.' }
             ]
         };
+    }
+    ngOnInit() {
         this.signInForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
             'email': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
@@ -193,11 +197,10 @@ let SignInPage = class SignInPage {
             ]))
         });
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.authService.signOut();
     }
     signInWithEmail() {
         if (!this.signInForm.valid) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.", this.toast);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_10__["Constants"].Mensagens.CamposObrigatorios, this.toast);
             return false;
         }
         this.loadControl.showLoader();
@@ -205,7 +208,7 @@ let SignInPage = class SignInPage {
             .then(user => {
             this.usuarioService.recuperaUsuarioLogado();
             this.loadControl.hideLoader();
-            this.router.navigate([this.returnUrl]);
+            this.router.navigate([this.returnUrl], { skipLocationChange: true });
         })
             .catch(error => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Email ou senha incorreto(s)", this.toast);

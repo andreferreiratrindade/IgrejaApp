@@ -310,9 +310,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.dominioServico.recuperaDominioServico();
         }
       }, {
+        key: "recuperaDominioServicoAtivo",
+        value: function recuperaDominioServicoAtivo() {
+          return this.dominioServico.recuperaDominioServicoAtivo();
+        }
+      }, {
         key: "adicionaServico",
         value: function adicionaServico(servico) {
           return this.dominioServico.add(servico, null);
+        }
+      }, {
+        key: "excluirServico",
+        value: function excluirServico(servicoId) {
+          return this.dominioServico["delete"](servicoId);
         }
       }]);
 
@@ -430,7 +440,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               result.forEach(function (doc) {
                 lst.push({
                   nomeServico: doc.data().nomeServico,
-                  servicoId: doc.id
+                  servicoId: doc.id,
+                  deletado: doc.data().deletado
+                });
+              });
+              response(lst);
+            });
+          });
+        }
+      }, {
+        key: "recuperaDominioServicoAtivo",
+        value: function recuperaDominioServicoAtivo() {
+          var _this4 = this;
+
+          return new Promise(function (response, resp) {
+            _this4.db.collection("dominioServico").where("deletado", "==", false).get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push({
+                  nomeServico: doc.data().nomeServico,
+                  servicoId: doc.id,
+                  deletado: doc.data().deletado
                 });
               });
               response(lst);

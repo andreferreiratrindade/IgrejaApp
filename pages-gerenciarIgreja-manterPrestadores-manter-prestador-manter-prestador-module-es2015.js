@@ -160,7 +160,7 @@ ManterPrestadorPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorat
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2dlcmVuY2lhcklncmVqYS9tYW50ZXJQcmVzdGFkb3Jlcy9tYW50ZXItcHJlc3RhZG9yL21hbnRlci1wcmVzdGFkb3IucGFnZS5zY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvZ2VyZW5jaWFySWdyZWphL21hbnRlclByZXN0YWRvcmVzL21hbnRlci1wcmVzdGFkb3IvbWFudGVyLXByZXN0YWRvci5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2dlcmVuY2lhcklncmVqYS9tYW50ZXJQcmVzdGFkb3Jlcy9tYW50ZXItcHJlc3RhZG9yL21hbnRlci1wcmVzdGFkb3IucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksNEJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2dlcmVuY2lhcklncmVqYS9tYW50ZXJQcmVzdGFkb3Jlcy9tYW50ZXItcHJlc3RhZG9yL21hbnRlci1wcmVzdGFkb3IucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */");
 
 /***/ }),
 
@@ -322,8 +322,14 @@ let DominioServicoService = class DominioServicoService {
     recuperaDominioServico() {
         return this.dominioServico.recuperaDominioServico();
     }
+    recuperaDominioServicoAtivo() {
+        return this.dominioServico.recuperaDominioServicoAtivo();
+    }
     adicionaServico(servico) {
         return this.dominioServico.add(servico, null);
+    }
+    excluirServico(servicoId) {
+        return this.dominioServico.delete(servicoId);
     }
 };
 DominioServicoService.ctorParameters = () => [
@@ -447,7 +453,21 @@ let DominioServicoRepositoryService = class DominioServicoRepositoryService exte
                 .then((result) => {
                 let lst = [];
                 result.forEach(function (doc) {
-                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id });
+                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id, deletado: doc.data().deletado });
+                });
+                response(lst);
+            });
+        });
+    }
+    recuperaDominioServicoAtivo() {
+        return new Promise((response, resp) => {
+            this.db.collection("dominioServico")
+                .where("deletado", "==", false)
+                .get()
+                .then((result) => {
+                let lst = [];
+                result.forEach(function (doc) {
+                    lst.push({ nomeServico: doc.data().nomeServico, servicoId: doc.id, deletado: doc.data().deletado });
                 });
                 response(lst);
             });
@@ -511,7 +531,7 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return new Promise((resolve, reject) => {
             this.db.collection('igreja')
-                .where("administradores", "array-contains", { usuarioId: usuarioId })
+                .where("administradores", "array-contains", usuarioId)
                 .get()
                 .then((result) => {
                 let lst = [];
