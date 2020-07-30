@@ -413,11 +413,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.prestadorService.RecuperaPrestador(usuarioId).then(function (result) {
             _this.locaisAtendimentos = result.locaisAtendimento;
 
-            if (_this.locaisAtendimentos.length == 0) {
+            _this.loadingContr.hideLoader();
+
+            if (!_this.locaisAtendimentos || _this.locaisAtendimentos.length == 0) {
               _this.abreModalSelecionarLocalAtendimento();
             }
-
-            _this.loadingContr.hideLoader();
           })["catch"](function (err) {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this.toastCtrl);
 

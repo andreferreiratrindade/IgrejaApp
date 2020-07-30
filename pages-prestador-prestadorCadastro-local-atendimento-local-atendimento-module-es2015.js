@@ -227,10 +227,10 @@ let LocalAtendimentoPage = class LocalAtendimentoPage {
         this.prestadorService.RecuperaPrestador(usuarioId)
             .then((result) => {
             this.locaisAtendimentos = result.locaisAtendimento;
-            if (this.locaisAtendimentos.length == 0) {
+            this.loadingContr.hideLoader();
+            if (!this.locaisAtendimentos || this.locaisAtendimentos.length == 0) {
                 this.abreModalSelecionarLocalAtendimento();
             }
-            this.loadingContr.hideLoader();
         }).catch(err => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();

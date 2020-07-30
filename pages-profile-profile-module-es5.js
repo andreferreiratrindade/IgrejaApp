@@ -21,89 +21,110 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header class=\"ion-no-border\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"sign-in\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"profile-content\">\n  <ion-row class=\"user-details-wrapper\">\n    <ion-col size=\"6\" class=\"user-image-wrapper\">\n      <img class=\"user-image\" [src]=\"user.image\">\n    </ion-col>\n    <ion-col class=\"user-info-wrapper\" size=\"12\">\n      <h3>{{user.name}}</h3>\n      <p>{{user.description}}</p>\n    </ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col size=\"12\">\n      <h4>Mobile</h4>\n      <p>\n        {{user.phoneNumber}}\n      </p>\n    </ion-col>\n    <ion-col size=\"12\">\n      <h4>Email</h4>\n      <p>\n        {{user.email}}\n      </p>\n    </ion-col>\n    <ion-col size=\"12\">\n      <h4>Auth Provider</h4>\n      <p>\n        {{user.provider}}\n      </p>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-button expand=\"block\" fill=\"outline\" color=\"primary\" (click)=\"signOut()\">Sign out</ion-button>\n    </ion-col>\n  </ion-row>\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Meu Perfil</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Nome <ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n\n        <ion-input type=\"text\" [(ngModel)]=\"usuario.nome\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n      <ion-item class=\"input-item\">\n        <ion-label>{{usuario.email}}</ion-label>\n      </ion-item>\n\n      <ion-item>\n       \n        <ion-label *ngFor=\"let perfil of perfis\">{{perfil}}</ion-label>\n        \n      </ion-item>\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"success\" type=\"button\" (click)=\"salvar()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Salvar\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
     /***/
   },
 
   /***/
-  "./src/app/pages/profile/profile-can-activate.guard.ts":
-  /*!*************************************************************!*\
-    !*** ./src/app/pages/profile/profile-can-activate.guard.ts ***!
-    \*************************************************************/
+  "./src/app/helpers/handlerError.ts":
+  /*!*****************************************!*\
+    !*** ./src/app/helpers/handlerError.ts ***!
+    \*****************************************/
 
-  /*! exports provided: ProfilePageGuard */
+  /*! exports provided: HandlerError */
 
   /***/
-  function srcAppPagesProfileProfileCanActivateGuardTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppHelpersHandlerErrorTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ProfilePageGuard", function () {
-      return ProfilePageGuard;
+    __webpack_require__.d(__webpack_exports__, "HandlerError", function () {
+      return HandlerError;
     });
     /* harmony import */
 
 
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
+    var _toastCustom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! ./toastCustom */
+    "./src/app/helpers/toastCustom.ts");
 
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/router */
-    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-    /* harmony import */
-
-
-    var src_app_providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! src/app/providers/base-provider/firebase-auth-service.service */
-    "./src/app/providers/base-provider/firebase-auth-service.service.ts");
-
-    var ProfilePageGuard = /*#__PURE__*/function () {
-      function ProfilePageGuard(firebaseAuthService, router) {
-        _classCallCheck(this, ProfilePageGuard);
-
-        this.firebaseAuthService = firebaseAuthService;
-        this.router = router;
+    var HandlerError = /*#__PURE__*/function () {
+      function HandlerError() {
+        _classCallCheck(this, HandlerError);
       }
 
-      _createClass(ProfilePageGuard, [{
-        key: "canActivate",
-        value: function canActivate() {
-          // check if user is authenticated
-          if (this.firebaseAuthService.getLoggedInUser() != null) {
-            return true;
-          } else {
-            // Navigate to the login page
-            this.router.navigate(['sign-in']);
-            return false;
-          }
+      _createClass(HandlerError, null, [{
+        key: "handler",
+        value: function handler(err, toastCtrl) {
+          var data = err;
+          var message = data.error ? data.error.message : data;
+          console.log(message);
+
+          _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
         }
       }]);
 
-      return ProfilePageGuard;
+      return HandlerError;
     }();
-
-    ProfilePageGuard.ctorParameters = function () {
-      return [{
-        type: src_app_providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_3__["FirebaseAuthService"]
-      }, {
-        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
-      }];
-    };
-
-    ProfilePageGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], ProfilePageGuard);
     /***/
+
+  },
+
+  /***/
+  "./src/app/helpers/toastCustom.ts":
+  /*!****************************************!*\
+    !*** ./src/app/helpers/toastCustom.ts ***!
+    \****************************************/
+
+  /*! exports provided: ToastCustom */
+
+  /***/
+  function srcAppHelpersToastCustomTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ToastCustom", function () {
+      return ToastCustom;
+    });
+
+    var ToastCustom = /*#__PURE__*/function () {
+      function ToastCustom() {
+        _classCallCheck(this, ToastCustom);
+      }
+
+      _createClass(ToastCustom, null, [{
+        key: "errorToast",
+        value: function errorToast(msg, toastCtrl) {
+          this.CustomToast(toastCtrl, msg, "danger", 4000);
+        }
+      }, {
+        key: "SucessoToast",
+        value: function SucessoToast(toastCtrl) {
+          this.CustomToast(toastCtrl, "Operação realizada com sucesso.", "success", 4000);
+        }
+      }, {
+        key: "CustomToast",
+        value: function CustomToast(toastCtrl, message, color, duration) {
+          toastCtrl.create({
+            message: message,
+            duration: duration,
+            color: color
+          }).then(function (x) {
+            x.present();
+          });
+        }
+      }]);
+
+      return ToastCustom;
+    }();
+    /***/
+
   },
 
   /***/
@@ -167,26 +188,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-    /* harmony import */
-
-
-    var _profile_resolver__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-    /*! ./profile.resolver */
-    "./src/app/pages/profile/profile.resolver.ts");
-    /* harmony import */
-
-
-    var _profile_can_activate_guard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-    /*! ./profile-can-activate.guard */
-    "./src/app/pages/profile/profile-can-activate.guard.ts");
 
     var routes = [{
       path: '',
-      component: _profile_page__WEBPACK_IMPORTED_MODULE_5__["ProfilePage"],
-      resolve: {
-        data: _profile_resolver__WEBPACK_IMPORTED_MODULE_7__["ProfilePageResolver"]
-      },
-      canActivate: [_profile_can_activate_guard__WEBPACK_IMPORTED_MODULE_8__["ProfilePageGuard"]]
+      component: _profile_page__WEBPACK_IMPORTED_MODULE_5__["ProfilePage"]
     }];
 
     var ProfilePageModule = function ProfilePageModule() {
@@ -195,8 +200,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     ProfilePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forChild(routes)],
-      declarations: [_profile_page__WEBPACK_IMPORTED_MODULE_5__["ProfilePage"]],
-      providers: [_profile_resolver__WEBPACK_IMPORTED_MODULE_7__["ProfilePageResolver"], _profile_can_activate_guard__WEBPACK_IMPORTED_MODULE_8__["ProfilePageGuard"]]
+      declarations: [_profile_page__WEBPACK_IMPORTED_MODULE_5__["ProfilePage"]]
     })], ProfilePageModule);
     /***/
   },
@@ -255,23 +259,55 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/router */
-    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    var src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! src/app/providers/usuario/usuario.service */
+    "./src/app/providers/usuario/usuario.service.ts");
     /* harmony import */
 
 
-    var src_app_providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! src/app/providers/base-provider/firebase-auth-service.service */
-    "./src/app/providers/base-provider/firebase-auth-service.service.ts");
+    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/utils/constants */
+    "./src/app/utils/constants.ts");
+    /* harmony import */
+
+
+    var src_app_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/app/config */
+    "./src/app/config.ts");
+    /* harmony import */
+
+
+    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! src/app/helpers/handlerError */
+    "./src/app/helpers/handlerError.ts");
+    /* harmony import */
+
+
+    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! src/app/helpers/loadingContr */
+    "./src/app/helpers/loadingContr.ts");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! src/app/helpers/toastCustom */
+    "./src/app/helpers/toastCustom.ts");
 
     var ProfilePage = /*#__PURE__*/function () {
-      function ProfilePage(router, route, authService) {
+      function ProfilePage(loadingContr, toastCtrl, usuarioService) {
         _classCallCheck(this, ProfilePage);
 
-        this.router = router;
-        this.route = route;
-        this.authService = authService;
+        this.loadingContr = loadingContr;
+        this.toastCtrl = toastCtrl;
+        this.usuarioService = usuarioService;
+        this.usuario = {};
+        this.perfis = [];
       }
 
       _createClass(ProfilePage, [{
@@ -279,19 +315,38 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function ngOnInit() {
           var _this = this;
 
-          this.route.data.subscribe(function (result) {
-            _this.user = result['data'];
+          this.usuarioService.recuperaUsuarioLogado().then(function (result) {
+            _this.usuario = result;
+
+            if (result.perfis) {
+              _this.perfis = result.perfis.map(function (y) {
+                return src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].PerfilUsuario.RecuperaDescricaoPorValor(y);
+              });
+            }
           });
         }
       }, {
-        key: "signOut",
-        value: function signOut() {
+        key: "salvar",
+        value: function salvar() {
           var _this2 = this;
 
-          this.authService.signOut().subscribe(function () {
-            // Sign-out successful.
-            _this2.router.navigate(['sign-in']);
-          }, function (error) {});
+          if (!this.usuario.nome) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].Mensagens.CamposObrigatorios, this.toastCtrl);
+            return false;
+          }
+
+          this.loadingContr.showLoader();
+          this.usuarioService.atualizaUsuario(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, {
+            nome: this.usuario.nome
+          }).then(function (result) {
+            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_8__["ToastCustom"].SucessoToast(_this2.toastCtrl);
+
+            _this2.loadingContr.hideLoader();
+          })["catch"](function (error) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(error, _this2.toastCtrl);
+
+            _this2.loadingContr.hideLoader();
+          });
         }
       }]);
 
@@ -300,11 +355,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     ProfilePage.ctorParameters = function () {
       return [{
-        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__["LoadingContr"]
       }, {
-        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ToastController"]
       }, {
-        type: src_app_providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_3__["FirebaseAuthService"]
+        type: src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"]
       }];
     };
 
@@ -317,71 +372,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       /*! ./profile.page.scss */
       "./src/app/pages/profile/profile.page.scss"))["default"]]
     })], ProfilePage);
-    /***/
-  },
-
-  /***/
-  "./src/app/pages/profile/profile.resolver.ts":
-  /*!***************************************************!*\
-    !*** ./src/app/pages/profile/profile.resolver.ts ***!
-    \***************************************************/
-
-  /*! exports provided: ProfilePageResolver */
-
-  /***/
-  function srcAppPagesProfileProfileResolverTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ProfilePageResolver", function () {
-      return ProfilePageResolver;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var src_app_providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! src/app/providers/base-provider/firebase-auth-service.service */
-    "./src/app/providers/base-provider/firebase-auth-service.service.ts");
-
-    var ProfilePageResolver = /*#__PURE__*/function () {
-      function ProfilePageResolver(firebaseAuthService) {
-        _classCallCheck(this, ProfilePageResolver);
-
-        this.firebaseAuthService = firebaseAuthService;
-      }
-
-      _createClass(ProfilePageResolver, [{
-        key: "resolve",
-        value: function resolve() {
-          return this.firebaseAuthService.getProfileData();
-        }
-      }]);
-
-      return ProfilePageResolver;
-    }();
-
-    ProfilePageResolver.ctorParameters = function () {
-      return [{
-        type: src_app_providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_2__["FirebaseAuthService"]
-      }];
-    };
-
-    ProfilePageResolver = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], ProfilePageResolver);
     /***/
   }
 }]);

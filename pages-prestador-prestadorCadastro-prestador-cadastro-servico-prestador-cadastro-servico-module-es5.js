@@ -431,7 +431,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
               _this.loadingContr.hideLoader();
 
-              if (_this.prestadorServicos.length == 0) {
+              if (!_this.prestadorServicos || _this.prestadorServicos.length == 0) {
                 _this.abreModalSelecionaServico();
               }
             });

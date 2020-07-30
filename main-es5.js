@@ -357,6 +357,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       path: 'profile',
+      canActivate: [_providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__["UsuarioLogadoValidation"]],
       loadChildren: function loadChildren() {
         return __webpack_require__.e(
         /*! import() | pages-profile-profile-module */
@@ -919,7 +920,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }, {
             title: 'Manter Serviços',
             url: 'mantem-servico',
-            icon: 'business',
+            icon: 'construct',
             perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorSistema]
           }];
         }
@@ -1819,33 +1820,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
-  "./src/app/pages/profile/profile.model.ts":
-  /*!************************************************!*\
-    !*** ./src/app/pages/profile/profile.model.ts ***!
-    \************************************************/
-
-  /*! exports provided: ProfileModel */
-
-  /***/
-  function srcAppPagesProfileProfileModelTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "ProfileModel", function () {
-      return ProfileModel;
-    });
-
-    var ProfileModel = function ProfileModel() {
-      _classCallCheck(this, ProfileModel);
-    };
-    /***/
-
-  },
-
-  /***/
   "./src/app/pages/tablinks/tablinks.page.scss":
   /*!***************************************************!*\
     !*** ./src/app/pages/tablinks/tablinks.page.scss ***!
@@ -1918,7 +1892,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             descricao: 'Prestadores',
             icon: 'search-sharp'
           }, {
-            tab: 'sign-in',
+            tab: 'profile',
             descricao: 'Meu Perfil',
             icon: 'person'
           }];
@@ -2487,13 +2461,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var src_app_pages_profile_profile_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-    /*! src/app/pages/profile/profile.model */
-    "./src/app/pages/profile/profile.model.ts");
-    /* harmony import */
-
-
-    var src_app_config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var src_app_config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! src/app/config */
     "./src/app/config.ts");
 
@@ -2540,47 +2508,38 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "setProviderAdditionalInfo",
         value: function setProviderAdditionalInfo(additionalInfo) {
           this.userProviderAdditionalInfo = Object.assign({}, additionalInfo);
-        }
-      }, {
-        key: "getProfileData",
-        value: function getProfileData() {
-          var userModel = new src_app_pages_profile_profile_model__WEBPACK_IMPORTED_MODULE_6__["ProfileModel"]();
-          var providerData = this.currentUser.providerData[0];
-
-          if (this.userProviderAdditionalInfo) {
-            providerData = Object.assign(Object.assign({}, providerData), this.userProviderAdditionalInfo);
-          } // Default imgs are too small and our app needs a bigger image
-
-
-          switch (providerData.providerId) {
-            case 'facebook.com':
-              userModel.image = providerData.photoURL + '?height=400';
-              break;
-
-            case 'password':
-              userModel.image = 'https://s3-us-west-2.amazonaws.com/ionicthemes/otros/avatar-placeholder.png';
-              break;
-
-            case 'twitter.com':
-              userModel.image = providerData.photoURL.replace('_normal', '_400x400');
-              break;
-
-            case 'google.com':
-              userModel.image = providerData.photoURL.split('=')[0];
-              break;
-
-            default:
-              userModel.image = providerData.photoURL;
-          }
-
-          userModel.name = providerData.name || providerData.displayName || 'What\'s your name?';
-          userModel.role = 'How would you describe yourself?';
-          userModel.description = providerData.description || 'Anything else you would like to share with the world?';
-          userModel.phoneNumber = providerData.phoneNumber || 'Is there a number where I can reach you?';
-          userModel.email = providerData.email || 'Where can I send you emails?';
-          userModel.provider = providerData.providerId !== 'password' ? providerData.providerId : 'Credentials';
-          return userModel;
-        } // Get the currently signed-in user
+        } //   public getProfileData() {
+        //   const userModel = new ProfileModel();
+        //   let providerData: any = this.currentUser.providerData[0];
+        //   if (this.userProviderAdditionalInfo) {
+        //     providerData = { ...providerData, ...this.userProviderAdditionalInfo };
+        //   }
+        //   // Default imgs are too small and our app needs a bigger image
+        //   switch (providerData.providerId) {
+        //     case 'facebook.com':
+        //       userModel.image = providerData.photoURL + '?height=400';
+        //       break;
+        //     case 'password':
+        //       userModel.image = 'https://s3-us-west-2.amazonaws.com/ionicthemes/otros/avatar-placeholder.png';
+        //       break;
+        //     case 'twitter.com':
+        //       userModel.image = providerData.photoURL.replace('_normal', '_400x400');
+        //       break;
+        //     case 'google.com':
+        //       userModel.image = providerData.photoURL.split('=')[0];
+        //       break;
+        //     default:
+        //       userModel.image = providerData.photoURL;
+        //   }
+        //   userModel.name = providerData.name || providerData.displayName || 'What\'s your name?';
+        //   userModel.role = 'How would you describe yourself?';
+        //   userModel.description = providerData.description || 'Anything else you would like to share with the world?';
+        //   userModel.phoneNumber = providerData.phoneNumber || 'Is there a number where I can reach you?';
+        //   userModel.email = providerData.email || 'Where can I send you emails?';
+        //   userModel.provider = (providerData.providerId !== 'password') ? providerData.providerId : 'Credentials';
+        //   return userModel;
+        // }
+        // Get the currently signed-in user
 
       }, {
         key: "getLoggedInUser",
@@ -2590,7 +2549,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "signOut",
         value: function signOut() {
-          src_app_config__WEBPACK_IMPORTED_MODULE_7__["Config"].RecuperaInstancia().adicionaUsuario(null);
+          src_app_config__WEBPACK_IMPORTED_MODULE_6__["Config"].RecuperaInstancia().adicionaUsuario(null);
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.angularFire.signOut());
         }
       }, {
@@ -2947,6 +2906,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       _createClass(UsuarioService, [{
+        key: "atualizaUsuario",
+        value: function atualizaUsuario(usuarioId, item) {
+          return this.usuarioRepository.update(usuarioId, item);
+        }
+      }, {
         key: "AdicionaUsuarioLogado",
         value: function AdicionaUsuarioLogado(obj) {
           this.usuarioSubject.next(obj);
@@ -3529,23 +3493,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         };
 
-        this.update = function (documentName, item) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this26, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-            return regeneratorRuntime.wrap(function _callee6$(_context6) {
-              while (1) {
-                switch (_context6.prev = _context6.next) {
-                  case 0:
-                    return _context6.abrupt("return", null);
-
-                  case 1:
-                  case "end":
-                    return _context6.stop();
-                }
-              }
-            }, _callee6);
-          }));
-        };
-
         this.db = firebase_app__WEBPACK_IMPORTED_MODULE_1__["firestore"]();
       }
 
@@ -3563,15 +3510,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               reject(error);
             });
           });
-        } // .where(element.obj, element.type, element.compare)
-
+        }
       }, {
-        key: "find",
-        value: function find(filter) {
+        key: "update",
+        value: function update(id, item) {
           var _this28 = this;
 
           return new Promise(function (resolve, reject) {
-            var ref = _this28.db.collection(_this28._collectionName).where(filter.elemento, filter.tipoComparacao, filter.comparacao).get().then(function (result) {
+            _this28.db.collection(_this28._collectionName).doc(id).update(Object.assign({}, item)).then(function (result) {
+              resolve(result);
+            })["catch"](function (error) {
+              reject(error);
+            });
+          });
+          return null; // const result = await firebase.database().ref(documentName).set({ ...item });
+          // return result;
+          // if (documentRef.collection.length <= 0) {
+          // 	const result = await documentRef.update({ ...item });
+          // 	return result;
+          // } else {
+          // 	console.log('error ', documentRef);
+          // 	return Promise.reject(`${this._collectionName} collection not fount!!`);
+          // }
+        }
+      }, {
+        key: "find",
+        // .where(element.obj, element.type, element.compare)
+        value: function find(filter) {
+          var _this29 = this;
+
+          return new Promise(function (resolve, reject) {
+            var ref = _this29.db.collection(_this29._collectionName).where(filter.elemento, filter.tipoComparacao, filter.comparacao).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({
@@ -3588,10 +3557,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "findOne",
         value: function findOne(id) {
-          var _this29 = this;
+          var _this30 = this;
 
           return new Promise(function (resolve, reject) {
-            _this29.db.collection(_this29._collectionName).doc(id).get().then(function (result) {
+            _this30.db.collection(_this30._collectionName).doc(id).get().then(function (result) {
               resolve(result.data());
             });
           });
@@ -3602,10 +3571,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "delete",
         value: function _delete(id) {
-          var _this30 = this;
+          var _this31 = this;
 
           return new Promise(function (resolve, reject) {
-            _this30.db.collection(_this30._collectionName).doc(id).set(Object.assign({
+            _this31.db.collection(_this31._collectionName).doc(id).set(Object.assign({
               deletado: true
             }), {
               merge: true
@@ -3680,12 +3649,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(UsuarioRepService, [{
         key: "AdicionaPerfilAoUsuario",
         value: function AdicionaPerfilAoUsuario(usuarioId, perfil) {
-          var _this32 = this;
+          var _this33 = this;
 
           var ref = this.db.collection("usuario").doc(usuarioId);
           var ob = [perfil];
           return new Promise(function (retorno, reject) {
-            _this32.db.runTransaction(function (transaction) {
+            _this33.db.runTransaction(function (transaction) {
               // This code may get re-run multiple times if there are conflicts.
               return transaction.get(ref).then(function (doc) {
                 var usuario = doc.data();
@@ -3711,13 +3680,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }]);
 
       function UsuarioRepService() {
-        var _this31;
+        var _this32;
 
         _classCallCheck(this, UsuarioRepService);
 
-        _this31 = _super2.call(this);
-        _this31._collectionName = "usuario";
-        return _this31;
+        _this32 = _super2.call(this);
+        _this32._collectionName = "usuario";
+        return _this32;
       }
 
       return UsuarioRepService;
@@ -3752,9 +3721,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var Constants;
 
     (function (Constants) {
-      var PerfilUsuario = function PerfilUsuario() {
-        _classCallCheck(this, PerfilUsuario);
-      };
+      var PerfilUsuario = /*#__PURE__*/function () {
+        function PerfilUsuario() {
+          _classCallCheck(this, PerfilUsuario);
+        }
+
+        _createClass(PerfilUsuario, null, [{
+          key: "RecuperaListagem",
+          value: function RecuperaListagem() {
+            return [{
+              valor: this.AdministradorIgreja,
+              descricao: "Administrador Igreja"
+            }, {
+              valor: this.AdministradorSistema,
+              descricao: "Administrador Sistema"
+            }, {
+              valor: this.Prestador,
+              descricao: "Prestador"
+            }];
+          }
+        }, {
+          key: "RecuperaDescricaoPorValor",
+          value: function RecuperaDescricaoPorValor(valor) {
+            return this.RecuperaListagem().filter(function (y) {
+              return y.valor == valor;
+            })[0].descricao;
+          }
+        }]);
+
+        return PerfilUsuario;
+      }();
 
       PerfilUsuario.AdministradorSistema = 1;
       PerfilUsuario.AdministradorIgreja = 2;

@@ -384,6 +384,7 @@ const routes = [
     },
     {
         path: 'profile',
+        canActivate: [_providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__["UsuarioLogadoValidation"]],
         loadChildren: () => __webpack_require__.e(/*! import() | pages-profile-profile-module */ "pages-profile-profile-module").then(__webpack_require__.bind(null, /*! ./pages/profile/profile.module */ "./src/app/pages/profile/profile.module.ts")).then(m => m.ProfilePageModule)
     },
     {
@@ -695,7 +696,7 @@ let AppComponent = class AppComponent {
             {
                 title: 'Manter Serviços',
                 url: 'mantem-servico',
-                icon: 'business',
+                icon: 'construct',
                 perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorSistema]
             }
         ];
@@ -1196,22 +1197,6 @@ LoadingContr = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
-/***/ "./src/app/pages/profile/profile.model.ts":
-/*!************************************************!*\
-  !*** ./src/app/pages/profile/profile.model.ts ***!
-  \************************************************/
-/*! exports provided: ProfileModel */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileModel", function() { return ProfileModel; });
-class ProfileModel {
-}
-
-
-/***/ }),
-
 /***/ "./src/app/pages/tablinks/tablinks.page.scss":
 /*!***************************************************!*\
   !*** ./src/app/pages/tablinks/tablinks.page.scss ***!
@@ -1255,7 +1240,7 @@ let TablinksPage = class TablinksPage {
                 icon: 'search-sharp'
             },
             {
-                tab: 'sign-in',
+                tab: 'profile',
                 descricao: 'Meu Perfil',
                 icon: 'person',
             }
@@ -1537,9 +1522,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var src_app_pages_profile_profile_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/pages/profile/profile.model */ "./src/app/pages/profile/profile.model.ts");
-/* harmony import */ var src_app_config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/config */ "./src/app/config.ts");
-
+/* harmony import */ var src_app_config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/config */ "./src/app/config.ts");
 
 
 
@@ -1577,43 +1560,43 @@ let FirebaseAuthService = class FirebaseAuthService {
     setProviderAdditionalInfo(additionalInfo) {
         this.userProviderAdditionalInfo = Object.assign({}, additionalInfo);
     }
-    getProfileData() {
-        const userModel = new src_app_pages_profile_profile_model__WEBPACK_IMPORTED_MODULE_6__["ProfileModel"]();
-        let providerData = this.currentUser.providerData[0];
-        if (this.userProviderAdditionalInfo) {
-            providerData = Object.assign(Object.assign({}, providerData), this.userProviderAdditionalInfo);
-        }
-        // Default imgs are too small and our app needs a bigger image
-        switch (providerData.providerId) {
-            case 'facebook.com':
-                userModel.image = providerData.photoURL + '?height=400';
-                break;
-            case 'password':
-                userModel.image = 'https://s3-us-west-2.amazonaws.com/ionicthemes/otros/avatar-placeholder.png';
-                break;
-            case 'twitter.com':
-                userModel.image = providerData.photoURL.replace('_normal', '_400x400');
-                break;
-            case 'google.com':
-                userModel.image = providerData.photoURL.split('=')[0];
-                break;
-            default:
-                userModel.image = providerData.photoURL;
-        }
-        userModel.name = providerData.name || providerData.displayName || 'What\'s your name?';
-        userModel.role = 'How would you describe yourself?';
-        userModel.description = providerData.description || 'Anything else you would like to share with the world?';
-        userModel.phoneNumber = providerData.phoneNumber || 'Is there a number where I can reach you?';
-        userModel.email = providerData.email || 'Where can I send you emails?';
-        userModel.provider = (providerData.providerId !== 'password') ? providerData.providerId : 'Credentials';
-        return userModel;
-    }
+    //   public getProfileData() {
+    //   const userModel = new ProfileModel();
+    //   let providerData: any = this.currentUser.providerData[0];
+    //   if (this.userProviderAdditionalInfo) {
+    //     providerData = { ...providerData, ...this.userProviderAdditionalInfo };
+    //   }
+    //   // Default imgs are too small and our app needs a bigger image
+    //   switch (providerData.providerId) {
+    //     case 'facebook.com':
+    //       userModel.image = providerData.photoURL + '?height=400';
+    //       break;
+    //     case 'password':
+    //       userModel.image = 'https://s3-us-west-2.amazonaws.com/ionicthemes/otros/avatar-placeholder.png';
+    //       break;
+    //     case 'twitter.com':
+    //       userModel.image = providerData.photoURL.replace('_normal', '_400x400');
+    //       break;
+    //     case 'google.com':
+    //       userModel.image = providerData.photoURL.split('=')[0];
+    //       break;
+    //     default:
+    //       userModel.image = providerData.photoURL;
+    //   }
+    //   userModel.name = providerData.name || providerData.displayName || 'What\'s your name?';
+    //   userModel.role = 'How would you describe yourself?';
+    //   userModel.description = providerData.description || 'Anything else you would like to share with the world?';
+    //   userModel.phoneNumber = providerData.phoneNumber || 'Is there a number where I can reach you?';
+    //   userModel.email = providerData.email || 'Where can I send you emails?';
+    //   userModel.provider = (providerData.providerId !== 'password') ? providerData.providerId : 'Credentials';
+    //   return userModel;
+    // }
     // Get the currently signed-in user
     getLoggedInUser() {
         return this.currentUser;
     }
     signOut() {
-        src_app_config__WEBPACK_IMPORTED_MODULE_7__["Config"].RecuperaInstancia().adicionaUsuario(null);
+        src_app_config__WEBPACK_IMPORTED_MODULE_6__["Config"].RecuperaInstancia().adicionaUsuario(null);
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.angularFire.signOut());
     }
     signInWithEmail(email, password) {
@@ -1820,6 +1803,9 @@ let UsuarioService = class UsuarioService {
         this.usuarioRepository = usuarioRepository;
         this.firebaseAutentication = firebaseAutentication;
         this.usuarioSubject = new rxjs__WEBPACK_IMPORTED_MODULE_5__["Subject"]();
+    }
+    atualizaUsuario(usuarioId, item) {
+        return this.usuarioRepository.update(usuarioId, item);
     }
     AdicionaUsuarioLogado(obj) {
         this.usuarioSubject.next(obj);
@@ -2244,18 +2230,6 @@ class BaseRepository {
             //	const result = await this._db.collection(this._collectionName).add({ ...item });
             return null;
         });
-        this.update = (documentName, item) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return null;
-            // const result = await firebase.database().ref(documentName).set({ ...item });
-            // return result;
-            // if (documentRef.collection.length <= 0) {
-            // 	const result = await documentRef.update({ ...item });
-            // 	return result;
-            // } else {
-            // 	console.log('error ', documentRef);
-            // 	return Promise.reject(`${this._collectionName} collection not fount!!`);
-            // }
-        });
         this.db = firebase_app__WEBPACK_IMPORTED_MODULE_1__["firestore"]();
     }
     get serverTimestamp() {
@@ -2276,6 +2250,28 @@ class BaseRepository {
             });
         });
     }
+    update(id, item) {
+        return new Promise((resolve, reject) => {
+            this.db.collection(this._collectionName).doc(id)
+                .update(Object.assign({}, item))
+                .then(result => {
+                resolve(result);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+        return null;
+        // const result = await firebase.database().ref(documentName).set({ ...item });
+        // return result;
+        // if (documentRef.collection.length <= 0) {
+        // 	const result = await documentRef.update({ ...item });
+        // 	return result;
+        // } else {
+        // 	console.log('error ', documentRef);
+        // 	return Promise.reject(`${this._collectionName} collection not fount!!`);
+        // }
+    }
+    ;
     // .where(element.obj, element.type, element.compare)
     find(filter) {
         return new Promise((resolve, reject) => {
@@ -2394,6 +2390,16 @@ __webpack_require__.r(__webpack_exports__);
 var Constants;
 (function (Constants) {
     class PerfilUsuario {
+        static RecuperaListagem() {
+            return [
+                { valor: this.AdministradorIgreja, descricao: "Administrador Igreja" },
+                { valor: this.AdministradorSistema, descricao: "Administrador Sistema" },
+                { valor: this.Prestador, descricao: "Prestador" }
+            ];
+        }
+        static RecuperaDescricaoPorValor(valor) {
+            return this.RecuperaListagem().filter(y => y.valor == valor)[0].descricao;
+        }
     }
     PerfilUsuario.AdministradorSistema = 1;
     PerfilUsuario.AdministradorIgreja = 2;
