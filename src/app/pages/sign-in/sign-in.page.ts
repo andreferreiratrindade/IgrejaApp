@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,16 +7,17 @@ import { Subscription } from 'rxjs';
 import { FirebaseAuthService } from 'src/app/providers/base-provider/firebase-auth-service.service';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { HandlerError } from 'src/app/helpers/handlerError';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 import { Config } from 'src/app/config';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
+import { Constants } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: 'sign-in.page.html',
   styleUrls: ['sign-in.page.scss'],
 })
-export class SignInPage {
+export class SignInPage implements OnInit {
   signInForm: FormGroup;
   submitError: string;
   authRedirectResult: Subscription;
@@ -41,6 +42,10 @@ export class SignInPage {
     public usuarioService: UsuarioService,
     public toast: ToastController
   ) {
+
+  }
+
+  ngOnInit(): void {
     this.signInForm = new FormGroup({
       'email': new FormControl('', Validators.compose([
         Validators.required,
@@ -53,14 +58,12 @@ export class SignInPage {
     });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-    this.authService.signOut();
   }
 
   signInWithEmail() {
 
     if (!this.signInForm.valid) {
-      HandlerError.handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.", this.toast)
+      HandlerError.handler(Constants.Mensagens.CamposObrigatorios, this.toast)
       return false;
     }
 
@@ -70,7 +73,8 @@ export class SignInPage {
 
         this.usuarioService.recuperaUsuarioLogado();
         this.loadControl.hideLoader();
-        this.router.navigate([this.returnUrl]);
+        this.router.navigate([this.returnUrl], { skipLocationChange: true });
+        
       })
       .catch(error => {
         HandlerError.handler("Email ou senha incorreto(s)", this.toast);

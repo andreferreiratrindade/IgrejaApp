@@ -29,7 +29,7 @@ export abstract class BaseRepository implements IWrite, IRead {
 	};
 
 	add(item: any, id: string): Promise<DocumentReference> {
-		
+
 		let idTemp = id ? id : this.db.collection(this._collectionName).doc().id;
 		item.id = idTemp;
 		return new Promise((resolve, reject) => {
@@ -61,41 +61,48 @@ export abstract class BaseRepository implements IWrite, IRead {
 	find(filter: any): Promise<any[]> {
 		return new Promise((resolve, reject) => {
 			let ref = this.db.collection(this._collectionName)
-			.where(filter.elemento, filter.tipoComparacao, filter.comparacao)
-			.get()
-			.then((result) => {
+				.where(filter.elemento, filter.tipoComparacao, filter.comparacao)
+				.get()
+				.then((result) => {
 
-				let lst = [];
-				result.forEach(function (doc) {
+					let lst = [];
+					result.forEach(function (doc) {
 
-					lst.push({data : doc.data(), id:doc.id});
+						lst.push({ data: doc.data(), id: doc.id });
+					})
+					resolve(lst);
 				})
-				resolve(lst);
-			})
-			.catch(function (error) {
-				reject(error)
-			});
+				.catch(function (error) {
+					reject(error)
+				});
 		});
 	}
 
-	findOne(id: string): Promise < any > {
-			return new Promise((resolve, reject) => {
-				this.db.collection(this._collectionName).doc(id)
-					.get()
-					.then((result) => {
-						resolve(result.data());
-					});
-			});
-		}
+	findOne(id: string): Promise<any> {
+		return new Promise((resolve, reject) => {
+			this.db.collection(this._collectionName).doc(id)
+				.get()
+				.then((result) => {
+					resolve(result.data());
+				});
+		});
+	}
 	// return  firebase.database().ref(documentName).once("value",(result=>{
 
 	// 	console.log(result);			
 	// }));
 
-	async delete (id: string): Promise < boolean > {
-			throw new Error('Method not implemented.');
-		}
-		recuperaColletion(collection: string) {
-			return this.db.collection(collection);
-		}
+	delete(id: string): Promise<boolean> {
+		return new Promise((resolve, reject) => {
+			this.db.collection(this._collectionName).doc(id).set({...{deletado: true}},{merge:true})
+				.then(() => {
+					resolve();
+				}).catch(err => {
+					reject(err);
+				});
+		});
 	}
+	recuperaColletion(collection: string) {
+		return this.db.collection(collection);
+	}
+}

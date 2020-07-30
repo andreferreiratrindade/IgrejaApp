@@ -1,22 +1,29 @@
-<ion-header translucent={true}>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="" (click)="closeModal()" text="Voltar"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Adicionar Serviço</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content fullscreen>
-  <form [formGroup]="formulario" (ngSubmit)="salvar()">
-    <ion-card>
-      <ion-item class="input-item">
+  <ion-content-header>
+   
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="" (click)="closeModal()" text="Voltar"></ion-back-button>
+        </ion-buttons>
+     
+      </ion-toolbar>
+  </ion-content-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Adicionar Serviço</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item>
         <ion-label position="floating">Serviço<ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="text" formControlName="nomeServico" clearInput autocapitalize="off"></ion-input>
+        <ion-input type="text"  #nomeServico autofocus clearInput autocapitalize="off"></ion-input>
       </ion-item>
+      <ion-button class="primary" type="button" (click)="salvar()" expand="block">
+        Adicionar</ion-button>
+      </ion-card-content>
     </ion-card>
-    <ion-button class="sign-up-btn" type="submit" expand="block">
-      Adicionar</ion-button>
-  </form>
+    
 </ion-content>

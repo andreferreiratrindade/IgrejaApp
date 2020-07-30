@@ -68,7 +68,7 @@ export class PrestadorCadastroServicoPage implements OnInit {
 
     const modal = this.modalCtrl.create({
       component: ModalServicosPage,
-      componentProps: { servicos: servicos},
+      componentProps: { servicos: servicos.filter(x=>{return !x.deletado})},
       backdropDismiss: false,
     }).then((modal) => {
       modal.present();

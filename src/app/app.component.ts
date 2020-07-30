@@ -173,13 +173,7 @@ export class AppComponent implements OnInit {
         icon: 'business',
         perfil: [Constants.PerfilUsuario.AdministradorSistema]
       }
-      ,
-      {
-        title: 'Modulo Prestador',
-        url: 'modulo-prestador-home-adm-sistema',
-        icon: 'business',
-        perfil: [Constants.PerfilUsuario.AdministradorSistema]
-      }
+      
     ];
   }
 }

@@ -1,63 +1,78 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Adicionar Igreja
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content fullscreen>
-  <form [formGroup]="formData" (ngSubmit)="salvarIgreja()">
-    <ion-list class="inputs-list" lines="full">
-      <ion-item class="input-item">
-        <ion-label position="floating">Nome Igreja <ion-text color="danger">*</ion-text>
-        </ion-label>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Manter Igreja
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-        <ion-input type="text" formControlName="nomeIgreja" clearInput autocapitalize="off"></ion-input>
-      </ion-item>
-      <app-mensagem-validacao [validation_messages_object]="validation_messages.nomeIgreja" [form]="formData"
-        [nomeCampo]="'nomeIgreja'"></app-mensagem-validacao>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Adicionar Igreja</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formData" (ngSubmit)="salvarIgreja()">
+        <ion-item class="input-item">
+          <ion-label position="floating">Nome Igreja <ion-text color="danger">*</ion-text>
+          </ion-label>
 
-      <ion-item class="input-item">
-        <ion-label position="floating">Cep <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input type="text" formControlName="cep" clearInput autocapitalize="off"></ion-input>
-      </ion-item>
+          <ion-input type="text" formControlName="nomeIgreja" clearInput autocapitalize="off"></ion-input>
+        </ion-item>
+        <app-mensagem-validacao [validation_messages_object]="validation_messages.nomeIgreja" [form]="formData"
+          [nomeCampo]="'nomeIgreja'"></app-mensagem-validacao>
 
-      <ion-chip color="tertiary" (click)="buscarEnderecoPorCEP()" size="6">
-        <ion-label>Buscar Endereço</ion-label>
-        <ion-icon name="search-outline"></ion-icon>
-      </ion-chip>
-      <ion-item class="input-item">
-        <ion-label class="ion-text-wrap" *ngIf="formData.value.logradouro">
-          <p>{{formData.value.logradouro}}, {{formData.value.bairro}} - {{formData.value.cidade}} / {{formData.value.uf}}</p>
-        </ion-label>
+        <ion-item class="input-item">
+          <ion-label position="floating">Cep <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input type="text" formControlName="cep" clearInput autocapitalize="off"></ion-input>
+        </ion-item>
+        <div class="ion-text-center">
+          <ion-button color="primary" size="small" (click)="buscarEnderecoPorCEP()">
+            <ion-icon name="search-outline" style="margin-right: 10px;"></ion-icon>
+            <ion-label>Buscar Endereço</ion-label>
+          </ion-button>
+        </div>
 
-        <app-mensagem-validacao [validation_messages_object]="validation_messages.cep" [form]="formData"
-          [nomeCampo]="'cep'"></app-mensagem-validacao>
-      </ion-item>
+        <ion-item class="input-item">
+          <ion-label class="ion-text-wrap" *ngIf="formData.value.logradouro">
+            <p>{{formData.value.logradouro}}, {{formData.value.bairro}} - {{formData.value.cidade}} /
+              {{formData.value.uf}}</p>
+          </ion-label>
 
-      <ion-item class="input-item">
-        <ion-label position="floating" class="ion-text-wrap">Email do administrador da igreja <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input type="text" formControlName="emailAdministrador" clearInput autocapitalize="off"></ion-input>
-      </ion-item>
-      <ion-chip color="tertiary" (click)="buscarUsuarioAdministradorIgreja()" size="6">
-        <ion-label>Buscar Administrador</ion-label>
-        <ion-icon name="search-outline"></ion-icon>
-      </ion-chip>
-      <ion-item class="input-item">
-        <ion-label class="ion-text-wrap" *ngIf="formData.value.administradorUsuarioId">
-          <p>{{formData.value.emailAdministrador}}</p>
-          <p>{{formData.value.nomeAdministrador}}</p>
-        </ion-label>
-      </ion-item>
+          <app-mensagem-validacao [validation_messages_object]="validation_messages.cep" [form]="formData"
+            [nomeCampo]="'cep'"></app-mensagem-validacao>
+        </ion-item>
 
-    </ion-list>
-    <ion-button class="sign-up-btn" type="submit"  expand="block">
-      Adicionar Igreja</ion-button>
-  </form>
+        <ion-item class="input-item">
+          <ion-label position="floating" class="ion-text-wrap">Email do administrador da igreja <ion-text
+              color="danger">*</ion-text>
+          </ion-label>
+          <ion-input type="text" formControlName="emailAdministrador" clearInput autocapitalize="off"></ion-input>
+        </ion-item>
+        <div class="ion-text-center">
+          <ion-button color="primary" size="small" (click)="buscarUsuarioAdministradorIgreja()">
+            <ion-icon name="search-outline" style="margin-right: 10px;"></ion-icon>
+            <ion-label>Buscar Administrador</ion-label>
+          </ion-button>
+        </div>
+        <ion-item class="input-item">
+          <ion-label class="ion-text-wrap" *ngIf="formData.value.administradorUsuarioId">
+            <p>{{formData.value.emailAdministrador}}</p>
+            <p>{{formData.value.nomeAdministrador}}</p>
+          </ion-label>
+        </ion-item>
+        <div class="ion-text-end" style="margin-top: 20px;">
+          <ion-button color="success" type="submit" clear>
+            <ion-icon name="checkmark" style="margin-right:10px;">
+            </ion-icon>
+            Criar Igreja
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

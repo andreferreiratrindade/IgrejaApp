@@ -48,7 +48,7 @@ export class IgrejaRepService extends BaseRepository {
   RecuperaIgrejaPorAdministrador(usuarioId): Promise<any[]> {
     return new Promise<any>((resolve, reject) => {
       this.db.collection('igreja')
-        .where("administradores", "array-contains", {usuarioId:usuarioId})
+        .where("administradores", "array-contains", usuarioId)
         .get()
         .then((result) => {
           let lst = [];

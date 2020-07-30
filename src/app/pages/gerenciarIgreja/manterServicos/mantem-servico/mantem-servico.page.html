@@ -1,26 +1,50 @@
-<ion-header translucent={true}>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="" (click)="closeModal()" text="Voltar"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Serviços</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-    <ion-searchbar type="text" 
-    debounce = 1
-    placeholder="Pesquisar"
-    animated #searchbar
-    (ionChange)="recuperaServicos($event)" animated></ion-searchbar>
-  <ion-list>
-      <ion-item *ngFor="let item of servicos" (click)="selecionarServico(item)" detail>
-        <ion-label>{{item.nomeServico}}</ion-label>
-      </ion-item>
-  </ion-list>
-  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button color="dark" (click)="abreModalSelecionaServico()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+<ion-content fullscreen>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Mantem Serviços
+      </ion-title>
+    </ion-toolbar>
 
+
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Adicionar Serviço</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label position="floating">Serviço<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="nomeServico" autofocus clearInput autocapitalize="off"></ion-input>
+      </ion-item>
+      <div class="ion-text-end" style="margin-top: 20px;">
+        <ion-button color="primary" (click)="salvar()">
+          <ion-icon name="add-outline" style="margin-right:10px;"></ion-icon>Novo
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Serviços</ion-card-title>
+      <ion-searchbar type="text" debounce=1 placeholder="Pesquisar" animated #searchbar
+        (ionChange)="recuperaServicos($event)" animated></ion-searchbar>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-list style="margin-top: 20px;">
+        <ion-item *ngFor="let item of servicos" class="ion-no-border" button detail="false"
+          (click)="excluirServico(item.servicoId)">
+          <ion-icon *ngIf="!item.deletado" slot="end" color="danger" name="trash-outline"></ion-icon>
+          <ion-label>{{item.nomeServico}}<p>{{item.deletado?"deletado":""}}</p></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

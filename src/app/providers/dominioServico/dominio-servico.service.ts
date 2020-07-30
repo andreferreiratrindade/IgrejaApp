@@ -16,7 +16,17 @@ export class DominioServicoService {
     return this.dominioServico.recuperaDominioServico();
   }
 
-  public adicionaServico(servico:any){
+  public recuperaDominioServicoAtivo() : Promise<any>{
+    
+    return this.dominioServico.recuperaDominioServicoAtivo();
+  }
+
+  public adicionaServico(servico:any) : Promise<any>{
+  
     return this.dominioServico.add(servico,null);
+  }
+
+  public excluirServico(servicoId:string){
+      return this.dominioServico.delete(servicoId);
   }
 }

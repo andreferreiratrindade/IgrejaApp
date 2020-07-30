@@ -34,8 +34,7 @@ export class ConsultarPrestadorAdmPage implements OnInit {
     public loadingContr: LoadingContr,
     public dominioServicoService: DominioServicoService,
     public router: Router,
-    public modalCtrl: ModalController,
-    private callNumber: CallNumber
+    public modalCtrl: ModalController
   ) {
 
     this.formConsultarPrestadorADM = new FormGroup({
@@ -45,22 +44,21 @@ export class ConsultarPrestadorAdmPage implements OnInit {
       'igrejaId': new FormControl(),
     });
     this.prestadores = [];
-
-    this.igrejaService.RecuperaIgrejaPorAdministrador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
-      .then(result => {
-        this.igrejasDoAdmin = result;
-        loadingContr.hideLoader();
-      }).catch(err => {
-
-        loadingContr.hideLoader();
-        console.log(err);
-      });
   }
 
-
-
-
   ngOnInit() {
+    this.loadingContr.showLoader();
+    this.igrejaService.RecuperaIgrejaPorAdministrador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+    .then(result => {
+      this.igrejasDoAdmin = result;
+      this.formConsultarPrestadorADM.controls['nomeIgreja'].setValue(result[0].nomeIgreja);
+      this.formConsultarPrestadorADM.controls['igrejaId'].setValue(result[0].id);
+      this.loadingContr.hideLoader();
+    }).catch(err => {
+
+      this.loadingContr.hideLoader();
+      HandlerError.handler(err, this.toastCtrl);
+    });
     // let usuario = Config.RecuperaInstancia().recuperaUsuario();
 
     // this.igrejaService.RecuperaIgrejaPorAdministrador(usuario.usuarioId)
@@ -86,6 +84,7 @@ export class ConsultarPrestadorAdmPage implements OnInit {
       )
       .then(prestadoresResult => {
         
+
         if (!prestadoresResult || prestadoresResult.length == 0) {
           ToastCustom.CustomToast(this.toastCtrl, "Nenhum prestador encontrado.", "danger", 4000);
           this.loadingContr.hideLoader();
@@ -145,6 +144,7 @@ export class ConsultarPrestadorAdmPage implements OnInit {
         });
     });
   }
+
   abrirModalSituacaoPrestador() {
     const modal = this.modalCtrl.create({
       component: ModalSituacaoPrestadorPage,
@@ -182,6 +182,5 @@ export class ConsultarPrestadorAdmPage implements OnInit {
         }
       });
     });
-
   }
 }

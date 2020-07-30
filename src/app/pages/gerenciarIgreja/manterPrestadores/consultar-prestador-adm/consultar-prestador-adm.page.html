@@ -1,30 +1,58 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Manter Prestadores
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
+<ion-content fullscreen>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Mantem Prestadores
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
   <ion-card>
+    <ion-card-header>
+      <ion-card-title>Consultar Prestadores</ion-card-title>
+    </ion-card-header>
     <ion-card-content>
       <form [formGroup]="formConsultarPrestadorADM" (ngSubmit)="ConsultarPrestador()">
 
-        <ion-item (click)="abrirModalIgreja()" detail>
-          <ion-label>Igreja
-          </ion-label>
-          <ion-note slot="end" color="primary"> {{formConsultarPrestadorADM.value.nomeIgreja}}</ion-note>
+        <ion-item (click)="abrirModalIgreja()">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12">
+                <ion-label>Igreja</ion-label>
+              </ion-col>
+              <ion-col size="12">
+                <ion-note color="primary"> {{formConsultarPrestadorADM.value.nomeIgreja}}</ion-note>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
+
         </ion-item>
-        <ion-item (click)="abrirModalSituacaoPrestador()" detail>
-          <ion-label>Situação Prestador
-          </ion-label>
-          <ion-note slot="end" color="primary"> {{formConsultarPrestadorADM.value.nomeSituacaoPrestador}}</ion-note>
+        <ion-item (click)="abrirModalSituacaoPrestador()">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12">
+                <ion-label>Situação Prestador
+                </ion-label>
+              </ion-col>
+              <ion-col size="12">
+                <ion-note slot="end" color="primary"> {{formConsultarPrestadorADM.value.nomeSituacaoPrestador}}
+                </ion-note>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
+
         </ion-item>
-        <ion-button class="primary" type="submit" expand="block">Pesquisar</ion-button>
+        <div class="ion-text-end" style="margin-top: 20px;">
+
+          <ion-button class="primary" type="submit"><ion-icon name="search-outline" style="margin-right:10px;"></ion-icon>Pesquisar</ion-button>
+
+        </div>
       </form>
     </ion-card-content>
   </ion-card>
