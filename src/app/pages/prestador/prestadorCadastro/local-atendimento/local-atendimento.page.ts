@@ -52,10 +52,11 @@ export class LocalAtendimentoPage implements OnInit {
     this.prestadorService.RecuperaPrestador(usuarioId)
       .then((result) => {
         this.locaisAtendimentos = result.locaisAtendimento;
-        if(this.locaisAtendimentos.length == 0){ 
-            this.abreModalSelecionarLocalAtendimento();
-        }
         this.loadingContr.hideLoader();
+
+        if (!this.locaisAtendimentos || this.locaisAtendimentos.length == 0) {
+          this.abreModalSelecionarLocalAtendimento();
+        }
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
@@ -63,7 +64,7 @@ export class LocalAtendimentoPage implements OnInit {
 
   }
 
-  public validaAdicionarLocalAtendimento(localAtendimento:any) {
+  public validaAdicionarLocalAtendimento(localAtendimento: any) {
     let valido = true;
     let mensagem = "";
 
@@ -85,10 +86,10 @@ export class LocalAtendimentoPage implements OnInit {
   }
 
 
-   excluirButtonClick(item) {
+  excluirButtonClick(item) {
 
     this.excluirLocalizacao(item);
-  this.alertController.create({
+    this.alertController.create({
       header: 'Atenção',
       message: 'Deseja excluir registro?',
       buttons: [
@@ -101,13 +102,13 @@ export class LocalAtendimentoPage implements OnInit {
           }
         }
       ]
-    }).then(result=>{  result.present().then(tt=>{console.log('Teste')}) });
+    }).then(result => { result.present().then(tt => { console.log('Teste') }) });
 
   }
 
   private excluirLocalizacao(item: any) {
 
-    let index = this.locaisAtendimentos.findIndex(y =>  y.cidade == item.cidade && y.uf == item.uf ); //find index in your array
+    let index = this.locaisAtendimentos.findIndex(y => y.cidade == item.cidade && y.uf == item.uf); //find index in your array
     this.locaisAtendimentos.splice(index, 1);//remove element from array
 
     this.loadingContr.showLoader();
@@ -127,7 +128,7 @@ export class LocalAtendimentoPage implements OnInit {
 
   public prosseguir() {
 
-    if(this.locaisAtendimentos.length == 0){
+    if (this.locaisAtendimentos.length == 0) {
       HandlerError.handler("Favor informar local de atendimento.", this.toastCtrl);
       return false;
     }
@@ -155,7 +156,7 @@ export class LocalAtendimentoPage implements OnInit {
   }
 
   public abreModalSelecionarLocalAtendimento() {
-    
+
     const modal = this.modalCtrl.create({
       component: AdicionarLocalAtendimentoPage,
       backdropDismiss: false,
@@ -165,7 +166,7 @@ export class LocalAtendimentoPage implements OnInit {
         if (resultModal.data) {
           let localAtendimento = { uf: resultModal.data.uf, cidade: resultModal.data.cidade };
           let msg = this.validaAdicionarLocalAtendimento(localAtendimento)
-          if(!msg.valido){
+          if (!msg.valido) {
             HandlerError.handler(msg.mensagem, this.toastCtrl);
             return false;
           }

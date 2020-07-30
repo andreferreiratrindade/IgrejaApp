@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, Subject, from } from 'rxjs';
 import { Platform } from '@ionic/angular';
 import { User, auth } from 'firebase/app';
-import { ProfileModel } from 'src/app/pages/profile/profile.model';
 import { Config } from 'src/app/config';
 import { UsuarioRepService } from 'src/app/repository/usuario/usuario-rep.service';
 
@@ -49,40 +48,40 @@ setProviderAdditionalInfo(additionalInfo: any) {
   this.userProviderAdditionalInfo = { ...additionalInfo };
 }
 
-  public getProfileData() {
-  const userModel = new ProfileModel();
-  let providerData: any = this.currentUser.providerData[0];
+//   public getProfileData() {
+//   const userModel = new ProfileModel();
+//   let providerData: any = this.currentUser.providerData[0];
 
-  if (this.userProviderAdditionalInfo) {
-    providerData = { ...providerData, ...this.userProviderAdditionalInfo };
-  }
+//   if (this.userProviderAdditionalInfo) {
+//     providerData = { ...providerData, ...this.userProviderAdditionalInfo };
+//   }
 
-  // Default imgs are too small and our app needs a bigger image
-  switch (providerData.providerId) {
-    case 'facebook.com':
-      userModel.image = providerData.photoURL + '?height=400';
-      break;
-    case 'password':
-      userModel.image = 'https://s3-us-west-2.amazonaws.com/ionicthemes/otros/avatar-placeholder.png';
-      break;
-    case 'twitter.com':
-      userModel.image = providerData.photoURL.replace('_normal', '_400x400');
-      break;
-    case 'google.com':
-      userModel.image = providerData.photoURL.split('=')[0];
-      break;
-    default:
-      userModel.image = providerData.photoURL;
-  }
-  userModel.name = providerData.name || providerData.displayName || 'What\'s your name?';
-  userModel.role = 'How would you describe yourself?';
-  userModel.description = providerData.description || 'Anything else you would like to share with the world?';
-  userModel.phoneNumber = providerData.phoneNumber || 'Is there a number where I can reach you?';
-  userModel.email = providerData.email || 'Where can I send you emails?';
-  userModel.provider = (providerData.providerId !== 'password') ? providerData.providerId : 'Credentials';
+//   // Default imgs are too small and our app needs a bigger image
+//   switch (providerData.providerId) {
+//     case 'facebook.com':
+//       userModel.image = providerData.photoURL + '?height=400';
+//       break;
+//     case 'password':
+//       userModel.image = 'https://s3-us-west-2.amazonaws.com/ionicthemes/otros/avatar-placeholder.png';
+//       break;
+//     case 'twitter.com':
+//       userModel.image = providerData.photoURL.replace('_normal', '_400x400');
+//       break;
+//     case 'google.com':
+//       userModel.image = providerData.photoURL.split('=')[0];
+//       break;
+//     default:
+//       userModel.image = providerData.photoURL;
+//   }
+//   userModel.name = providerData.name || providerData.displayName || 'What\'s your name?';
+//   userModel.role = 'How would you describe yourself?';
+//   userModel.description = providerData.description || 'Anything else you would like to share with the world?';
+//   userModel.phoneNumber = providerData.phoneNumber || 'Is there a number where I can reach you?';
+//   userModel.email = providerData.email || 'Where can I send you emails?';
+//   userModel.provider = (providerData.providerId !== 'password') ? providerData.providerId : 'Credentials';
 
-  return userModel;
-}
+//   return userModel;
+// }
 
 // Get the currently signed-in user
 getLoggedInUser() {

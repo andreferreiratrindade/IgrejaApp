@@ -45,7 +45,19 @@ export abstract class BaseRepository implements IWrite, IRead {
 		});
 	}
 
-	update = async (documentName: string, item: any): Promise<any> => {
+	update(id: string, item: any): Promise<any> {
+		return new Promise((resolve, reject) => {
+
+			this.db.collection(this._collectionName).doc(id)
+				.update({ ...item })
+				.then(result => {
+
+					resolve(result);
+				}).catch(error => {
+					reject(error);
+
+				})
+		});
 		return null;
 		// const result = await firebase.database().ref(documentName).set({ ...item });
 		// return result;
@@ -94,7 +106,7 @@ export abstract class BaseRepository implements IWrite, IRead {
 
 	delete(id: string): Promise<boolean> {
 		return new Promise((resolve, reject) => {
-			this.db.collection(this._collectionName).doc(id).set({...{deletado: true}},{merge:true})
+			this.db.collection(this._collectionName).doc(id).set({ ...{ deletado: true } }, { merge: true })
 				.then(() => {
 					resolve();
 				}).catch(err => {

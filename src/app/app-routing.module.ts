@@ -41,6 +41,7 @@ const routes: Routes = [
   ,
   {
     path: 'profile',
+    canActivate: [UsuarioLogadoValidation],
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {

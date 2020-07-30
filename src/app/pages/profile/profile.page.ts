@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProfileModel } from './profile.model';
 import { FirebaseAuthService } from 'src/app/providers/base-provider/firebase-auth-service.service';
+import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
+import { Constants } from 'src/app/utils/constants';
+import { Config } from 'src/app/config';
+import { HandlerError } from 'src/app/helpers/handlerError';
+import { LoadingContr } from 'src/app/helpers/loadingContr';
+import { ToastController } from '@ionic/angular';
+import { ToastCustom } from 'src/app/helpers/toastCustom';
 
 @Component({
   selector: 'app-profile',
@@ -9,26 +15,39 @@ import { FirebaseAuthService } from 'src/app/providers/base-provider/firebase-au
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  user: ProfileModel;
-
+  usuario: any = {};
+  perfis: any[] = [];
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private authService: FirebaseAuthService
+    public loadingContr: LoadingContr,
+    public toastCtrl: ToastController,
+
+    private usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
-    this.route.data
-    .subscribe((result) => {
-      this.user = result['data'];
+    this.usuarioService.recuperaUsuarioLogado().then(result => {
+      this.usuario = result;
+      if (result.perfis) {
+        this.perfis = result.perfis.map(y => { return Constants.PerfilUsuario.RecuperaDescricaoPorValor(y) });
+      }
+
     })
   }
 
-  signOut() {
-    this.authService.signOut().subscribe(() => {
-      // Sign-out successful.
-      this.router.navigate(['sign-in']);
-    }, (error) => {
+  salvar() {
+
+    if (!this.usuario.nome) {
+      HandlerError.handler(Constants.Mensagens.CamposObrigatorios, this.toastCtrl)
+      return false;
+    }
+    this.loadingContr.showLoader()
+
+    this.usuarioService.atualizaUsuario(Config.RecuperaInstancia().recuperaUsuario().usuarioId, { nome: this.usuario.nome }).then(result => {
+      ToastCustom.SucessoToast(this.toastCtrl);
+      this.loadingContr.hideLoader()
+    }).catch((error) => {
+      HandlerError.handler(error, this.toastCtrl);
+      this.loadingContr.hideLoader();
     });
   }
 

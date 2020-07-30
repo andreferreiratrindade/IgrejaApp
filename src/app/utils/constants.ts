@@ -4,6 +4,19 @@ export module Constants {
       public static AdministradorSistema: number = 1;
       public static AdministradorIgreja: number = 2;
       public static Prestador: number = 3;
+
+      public static RecuperaListagem():any[]{
+         return [
+            {valor:this.AdministradorIgreja,descricao:"Administrador Igreja"},
+            {valor:this.AdministradorSistema,descricao:"Administrador Sistema"},
+            {valor:this.Prestador,descricao:"Prestador"}
+
+         ]
+      }
+
+      public static RecuperaDescricaoPorValor(valor: any): string {
+         return this.RecuperaListagem().filter(y => y.valor == valor)[0].descricao;
+      }
       
    }
 

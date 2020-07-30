@@ -48,7 +48,7 @@ export class PrestadorCadastroServicoPage implements OnInit {
           });
           this.loadingContr.hideLoader();
 
-          if (this.prestadorServicos.length == 0) {
+          if (!this.prestadorServicos || this.prestadorServicos.length == 0) {
             this.abreModalSelecionaServico();
           }
 

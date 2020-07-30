@@ -8,6 +8,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuarioService {
+  atualizaUsuario(usuarioId: string, item:any): Promise<any> {
+    return this.usuarioRepository.update(usuarioId,item);
+  }
 
   private usuarioSubject = new Subject<any>();
 

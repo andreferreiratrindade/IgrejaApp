@@ -170,7 +170,7 @@ export class AppComponent implements OnInit {
       {
         title: 'Manter Serviços',
         url: 'mantem-servico',
-        icon: 'business',
+        icon: 'construct',
         perfil: [Constants.PerfilUsuario.AdministradorSistema]
       }
       

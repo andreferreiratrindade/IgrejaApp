@@ -25,7 +25,7 @@ export class TablinksPage implements OnInit {
         icon: 'search-sharp'
       },
       {
-        tab: 'sign-in',
+        tab: 'profile',
         descricao: 'Meu Perfil',
         icon: 'person',
       }
