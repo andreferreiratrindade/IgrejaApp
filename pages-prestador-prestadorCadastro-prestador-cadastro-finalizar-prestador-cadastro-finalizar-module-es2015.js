@@ -369,6 +369,9 @@ let IgrejaService = class IgrejaService {
     constructor(igrejaRepService) {
         this.igrejaRepService = igrejaRepService;
     }
+    RecuperaTodasAsIgrejas() {
+        return this.igrejaRepService.RecuperaTodasAsIgrejas();
+    }
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
     }
@@ -555,6 +558,22 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
     RecuperaNomeIgreja(igrejas) {
         // return this.db.collection("igreja").where(firebase.firestore.FieldPath.documentId(),"array-contains",igrejas).get()
         return this.find({ elemento: "id", tipoComparacao: "in", comparacao: igrejas });
+    }
+    RecuperaTodasAsIgrejas() {
+        return new Promise((resolve, reject) => {
+            this.db.collection('igreja')
+                .get()
+                .then((result) => {
+                let lst = [];
+                result.forEach(function (doc) {
+                    lst.push(doc.data());
+                });
+                resolve(lst);
+            })
+                .catch((err) => {
+                reject(err);
+            });
+        });
     }
 };
 IgrejaRepService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

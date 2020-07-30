@@ -497,6 +497,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
 
       _createClass(IgrejaService, [{
+        key: "RecuperaTodasAsIgrejas",
+        value: function RecuperaTodasAsIgrejas() {
+          return this.igrejaRepService.RecuperaTodasAsIgrejas();
+        }
+      }, {
         key: "RecuperaIgrejaPorAdministrador",
         value: function RecuperaIgrejaPorAdministrador(usuarioId) {
           return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
@@ -789,6 +794,23 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             elemento: "id",
             tipoComparacao: "in",
             comparacao: igrejas
+          });
+        }
+      }, {
+        key: "RecuperaTodasAsIgrejas",
+        value: function RecuperaTodasAsIgrejas() {
+          var _this9 = this;
+
+          return new Promise(function (resolve, reject) {
+            _this9.db.collection('igreja').get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push(doc.data());
+              });
+              resolve(lst);
+            })["catch"](function (err) {
+              reject(err);
+            });
           });
         }
       }]);

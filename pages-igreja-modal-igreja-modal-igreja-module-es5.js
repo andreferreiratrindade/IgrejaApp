@@ -198,6 +198,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       _createClass(IgrejaService, [{
+        key: "RecuperaTodasAsIgrejas",
+        value: function RecuperaTodasAsIgrejas() {
+          return this.igrejaRepService.RecuperaTodasAsIgrejas();
+        }
+      }, {
         key: "RecuperaIgrejaPorAdministrador",
         value: function RecuperaIgrejaPorAdministrador(usuarioId) {
           return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
@@ -353,6 +358,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             elemento: "id",
             tipoComparacao: "in",
             comparacao: igrejas
+          });
+        }
+      }, {
+        key: "RecuperaTodasAsIgrejas",
+        value: function RecuperaTodasAsIgrejas() {
+          var _this4 = this;
+
+          return new Promise(function (resolve, reject) {
+            _this4.db.collection('igreja').get().then(function (result) {
+              var lst = [];
+              result.forEach(function (doc) {
+                lst.push(doc.data());
+              });
+              resolve(lst);
+            })["catch"](function (err) {
+              reject(err);
+            });
           });
         }
       }]);
