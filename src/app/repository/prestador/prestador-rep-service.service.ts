@@ -216,8 +216,6 @@ export class PrestadorRepServiceService extends BaseRepository {
 
                 let lst = [];
                 result.forEach(function (doc) {
-                    debugger
-                    console.log(doc);
                     if (doc.data().locaisAtendimento) {
 
                         doc.data().locaisAtendimento.forEach(x => {
