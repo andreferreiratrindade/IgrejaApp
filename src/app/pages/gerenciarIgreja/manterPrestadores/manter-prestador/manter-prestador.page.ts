@@ -42,7 +42,8 @@ export class ManterPrestadorPage implements OnInit {
       this.prestador = { usuarioId: params['prestadorUsuarioId'] };
 
       this.loadingContr.showLoader();
-      this.situacoesPrestador = Constants.ListTipoSituacaoPrestador.RecuperaListagem();
+      this.situacoesPrestador = Constants.ListTipoSituacaoPrestador.RecuperaListagem()
+              .filter(y=>{return y.value!== Constants.TipoSituacaoPrestador.PrestadorEmEdicao});
 
       this.prestadorService.RecuperaPrestador(this.prestador.usuarioId)
         .then((result) => {

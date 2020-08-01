@@ -1,15 +1,16 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { Constants } from 'src/app/utils/constants';
 import { HandlerError } from 'src/app/helpers/handlerError';
 import { Config } from 'src/app/config';
 import { ModalServicosPage } from 'src/app/pages/servico/modal-servicos/modal-servicos.page';
-import { AlertController, ToastController, ModalController } from '@ionic/angular';
+import { AlertController, ToastController, ModalController, ActionSheetController } from '@ionic/angular';
 import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-servico.service';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { Router } from '@angular/router';
 import { SortByPipe } from 'src/app/pipes/sortBy/sort-by.pipe';
+import { ConfirmAlert } from 'src/app/helpers/confirmAlert';
 
 @Component({
   selector: 'app-prestador-cadastro-servico',
@@ -21,6 +22,7 @@ export class PrestadorCadastroServicoPage implements OnInit {
 
   dominioServicos: any[];
   prestadorServicos: any[];
+  prestador :any = null;
   constructor(public dominioServicoService: DominioServicoService,
     public loadingContr: LoadingContr,
     public prestadorService: PrestadorService,
@@ -29,7 +31,10 @@ export class PrestadorCadastroServicoPage implements OnInit {
     public alertController: AlertController,
     private ngZone: NgZone,
     public router: Router,
-    public sortBy:SortByPipe
+    public sortBy: SortByPipe,
+    public actionSheetCtrl: ActionSheetController,
+    public confirmAlert: ConfirmAlert,
+    private _cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -51,9 +56,9 @@ export class PrestadorCadastroServicoPage implements OnInit {
 
           this.loadingContr.hideLoader();
 
-          if (!this.prestadorServicos || this.prestadorServicos.length == 0) {
-            this.abreModalSelecionaServico();
-          }
+          // if (!this.prestadorServicos || this.prestadorServicos.length == 0) {
+          //   this.abreModalSelecionaServico();
+          // }
 
         });
 
@@ -79,12 +84,12 @@ export class PrestadorCadastroServicoPage implements OnInit {
       modal.onWillDismiss().then(resultModal => {
         if (!resultModal.data) {
           return false;
-        }       
+        }
         if (resultModal.data.length > 0) {
 
           ToastCustom.SucessoToast(this.toastCtrl);
 
-         resultModal.data.forEach(element => {
+          resultModal.data.forEach(element => {
             this.prestadorServicos.push(element);
             this.prestadorService
               .AdicionaServicoAoPrestador(Config.RecuperaInstancia()
@@ -92,7 +97,7 @@ export class PrestadorCadastroServicoPage implements OnInit {
                 servicoId: element.servicoId,
                 usuarioId: Config.RecuperaInstancia()
                   .recuperaUsuario().usuarioId
-             
+
               }).catch(err => {
                 HandlerError.handler(err, this.toastCtrl);
                 this.loadingContr.hideLoader();
@@ -124,6 +129,7 @@ export class PrestadorCadastroServicoPage implements OnInit {
   }
 
   excluirServico(item) {
+
     this.loadingContr.showLoader();
 
     this.prestadorService
@@ -132,6 +138,8 @@ export class PrestadorCadastroServicoPage implements OnInit {
       .then((result) => {
 
         this.prestadorServicos = this.prestadorServicos.filter(y => y.servicoId != item.servicoId);
+        this._cdr.detectChanges();
+
         this.loadingContr.hideLoader();
         ToastCustom.SucessoToast(this.toastCtrl);
       }).catch(err => {
@@ -141,46 +149,71 @@ export class PrestadorCadastroServicoPage implements OnInit {
 
   }
 
-  async excluirButtonClick(item) {
-    const alert = await this.alertController.create({
-      header: 'Atenção',
-      message: 'Deseja excluir registro?',
+  async servicoOpcoes(item) {
+
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: item.nomeServico,
       buttons: [
         {
-          text: 'Não',
-        }, {
-          text: 'Sim',
+          text: 'Breve comentário',
           handler: () => {
-            this.excluirServico(item)
+
+
+          }
+        },
+        {
+          text: 'Remover',
+          role: 'destructive',
+
+          handler: () => {
+            const result = this.confirmAlert.confirmationAlert(this.alertController,
+              'Deseja excluir o serviço <strong>' + item.nomeServico + '</strong>?'
+            ).then(result => {
+              if (result) {
+
+                this.excluirServico(item);
+              }
+            });
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
           }
         }
       ]
     });
-    await alert.present();
 
+    await actionSheet.present();
   }
+
+
 
   prosseguir() {
     if (this.prestadorServicos.length == 0) {
       ToastCustom.CustomToast(this.toastCtrl, "Favor adicionar serviço, antes de continuar", "danger", 4000);
       return false;
     }
+    this.router.navigate(['prestador-cadastro-igreja-vinculo']);
 
-    this.loadingContr.showLoader();
-    let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
+    // this.loadingContr.showLoader();
+    // let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
+    // if (this.prestador) {
+    //   obj.situacaoPrestador = this.prestador.situacaoPrestador;
+    // }
+    // this.prestadorService
+    //   .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
 
-    this.prestadorService
-      .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
-
-        this.loadingContr.hideLoader();
-        ToastCustom.SucessoToast(this.toastCtrl);
-        this.ngZone.run(() => {
-          this.router.navigate(['prestador-cadastro-igreja-vinculo']);
-        });
-      }).catch(err => {
-        HandlerError.handler(err, this.toastCtrl);
-        this.loadingContr.hideLoader();
-      });
+    //     this.loadingContr.hideLoader();
+    //     ToastCustom.SucessoToast(this.toastCtrl);
+    //     this.ngZone.run(() => {
+    //       this.router.navigate(['prestador-cadastro-igreja-vinculo']);
+    //     });
+    //   }).catch(err => {
+    //     HandlerError.handler(err, this.toastCtrl);
+    //     this.loadingContr.hideLoader();
+    //   });
   }
 
   public voltar() {
@@ -191,7 +224,7 @@ export class PrestadorCadastroServicoPage implements OnInit {
 
   }
 
-  public ordenaServicos(){
-    this.sortBy.transform(this.prestadorServicos,"nomeServico");
+  public ordenaServicos() {
+    this.sortBy.transform(this.prestadorServicos, "nomeServico");
   }
 }

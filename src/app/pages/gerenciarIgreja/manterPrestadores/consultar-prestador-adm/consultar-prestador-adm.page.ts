@@ -149,7 +149,7 @@ export class ConsultarPrestadorAdmPage implements OnInit {
   abrirModalSituacaoPrestador() {
     const modal = this.modalCtrl.create({
       component: ModalSituacaoPrestadorPage,
-      componentProps: { situacoes: Constants.ListTipoSituacaoPrestador.RecuperaListagem() },
+      componentProps: { situacoes: Constants.ListTipoSituacaoPrestador.RecuperaListagem().filter(y=>{return y.value!== Constants.TipoSituacaoPrestador.PrestadorEmEdicao}) },
       backdropDismiss: false,
     }).then((modal) => {
       modal.present();

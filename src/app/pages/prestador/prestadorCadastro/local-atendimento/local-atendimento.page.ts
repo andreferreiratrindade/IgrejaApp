@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ModalCidadePage } from 'src/app/pages/cidade/modal-cidade/modal-cidade.page';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { Constants } from 'src/app/utils/constants';
 import { constants } from 'buffer';
 import { AdicionarLocalAtendimentoPage } from '../adicionar-local-atendimento/adicionar-local-atendimento.page';
+import { ConfirmAlert } from 'src/app/helpers/confirmAlert';
 
 @Component({
   selector: 'app-local-atendimento',
@@ -23,14 +24,17 @@ export class LocalAtendimentoPage implements OnInit {
   formulario: FormGroup;
   locaisAtendimentos: any[] = [];
   cidades: string[];
-  ngZone: any;
+  prestador: any = null;
   constructor(public prestadorService: PrestadorService,
     public toastCtrl: ToastController,
     public loadingContr: LoadingContr,
     public router: Router,
     public modalCtrl: ModalController,
     public alertController: AlertController,
-    public buscarCEPService: BuscarCEPService
+    public buscarCEPService: BuscarCEPService,
+    public confirmAlert: ConfirmAlert,
+    private _cdr: ChangeDetectorRef
+
   ) {
 
     this.formulario = new FormGroup({
@@ -51,12 +55,13 @@ export class LocalAtendimentoPage implements OnInit {
     let usuarioId = Config.RecuperaInstancia().recuperaUsuario().usuarioId;
     this.prestadorService.RecuperaPrestador(usuarioId)
       .then((result) => {
+        this.prestador = result;
         this.locaisAtendimentos = result.locaisAtendimento;
         this.loadingContr.hideLoader();
 
-        if (!this.locaisAtendimentos || this.locaisAtendimentos.length == 0) {
-          this.abreModalSelecionarLocalAtendimento();
-        }
+        // if (!this.locaisAtendimentos || this.locaisAtendimentos.length == 0) {
+        //   this.abreModalSelecionarLocalAtendimento();
+        // }
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
@@ -65,8 +70,6 @@ export class LocalAtendimentoPage implements OnInit {
   }
 
   public validaAdicionarLocalAtendimento(localAtendimento: any) {
-    let valido = true;
-    let mensagem = "";
 
     let obj = { valido: true, mensagem: "" };
     if (!localAtendimento.cidade || !localAtendimento.uf) {
@@ -88,22 +91,15 @@ export class LocalAtendimentoPage implements OnInit {
 
   excluirButtonClick(item) {
 
-    this.excluirLocalizacao(item);
-    this.alertController.create({
-      header: 'Atenção',
-      message: 'Deseja excluir registro?',
-      buttons: [
-        {
-          text: 'Não',
-        }, {
-          text: 'Sim',
-          handler: () => {
-            //this.excluirLocalizacao(item)
-          }
-        }
-      ]
-    }).then(result => { result.present().then(tt => { console.log('Teste') }) });
+    this.confirmAlert.confirmationAlert(this.alertController,
+      'Deseja excluir local de atendimento <strong>' + item.cidade + " / " + item.uf + '</strong>?'
+    ).then(result => {
+      if (result) {
 
+        this.excluirLocalizacao(item);
+
+      }
+    });
   }
 
   private excluirLocalizacao(item: any) {
@@ -117,6 +113,8 @@ export class LocalAtendimentoPage implements OnInit {
       .ExcluirLocalAtendimento(Config.RecuperaInstancia()
         .recuperaUsuario().usuarioId, item)
       .then((result) => {
+        this.locaisAtendimentos = this.locaisAtendimentos.filter(y => { return y.cidade == item.cidade && y.uf == item.uf });
+        this._cdr.detectChanges();
 
         this.loadingContr.hideLoader();
         ToastCustom.SucessoToast(this.toastCtrl);
@@ -133,21 +131,26 @@ export class LocalAtendimentoPage implements OnInit {
       return false;
     }
 
-    this.loadingContr.showLoader();
-    let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.CadastroServicos };
+    this.router.navigate(['prestador-cadastro-servico']);
 
-    this.prestadorService
-      .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
+    // this.loadingContr.showLoader();
+    // let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
 
-        this.loadingContr.hideLoader();
-        ToastCustom.SucessoToast(this.toastCtrl);
+    // if (this.prestador) {
+    //   obj.situacaoPrestador = this.prestador.situacaoPrestador;
+    // }
+    // this.prestadorService
+    //   .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
 
-        this.router.navigate(['prestador-cadastro-servico']);
+    //     this.loadingContr.hideLoader();
+    //     ToastCustom.SucessoToast(this.toastCtrl);
 
-      }).catch(err => {
-        HandlerError.handler(err, this.toastCtrl);
-        this.loadingContr.hideLoader();
-      });
+    //     this.router.navigate(['prestador-cadastro-servico']);
+
+    //   }).catch(err => {
+    //     HandlerError.handler(err, this.toastCtrl);
+    //     this.loadingContr.hideLoader();
+    //   });
   }
 
 

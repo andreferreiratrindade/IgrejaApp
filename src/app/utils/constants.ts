@@ -26,9 +26,7 @@ export module Constants {
    export class ListTipoSituacaoPrestador {
       public static RecuperaListagem(): any[] {
          return [
-            { valor: TipoSituacaoPrestador.CadastroDadosEmpresa, descricao: "Informações Iniciais" },
-            { valor: TipoSituacaoPrestador.CadastroServicos, descricao: "Serviços" },
-            { valor: TipoSituacaoPrestador.CadastroIgrejaVinculo, descricao: "Igreja Vinculada" },
+            { valor: TipoSituacaoPrestador.PrestadorEmEdicao, descricao: "Prestador em Edição" },
             { valor: TipoSituacaoPrestador.PendenteAutorizacao, descricao: "Pendente de Autorização" },
             { valor: TipoSituacaoPrestador.Ativo, descricao: "Ativo" },
             { valor: TipoSituacaoPrestador.Suspenso, descricao: "Suspenso" }
@@ -43,15 +41,9 @@ export module Constants {
 
    export class TipoSituacaoPrestador {
       public static PrestadorEmEdicao : number = 1;
-      public static CadastroDadosEmpresa: number = 0;
-      public static CadastroLocalAtendimento: number = 1;
-      public static CadastroServicos: number = 2;
-      public static CadastroIgrejaVinculo: number = 3;
-      public static FinalizarCadastro: number = 4;
-      public static PendenteAutorizacao: number = 5;
-      public static Ativo: number = 6;
-      public static Suspenso: number = 7;
-      public static Cancelado: number = 8;
+      public static PendenteAutorizacao: number = 2;
+      public static Ativo: number = 3;
+      public static Suspenso: number = 4;
    }
 
    export class TipoMinisterio {

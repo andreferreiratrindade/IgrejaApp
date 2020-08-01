@@ -24,7 +24,7 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
   formulario: FormGroup;
   locaisAtendimentos: any[] = [];
   cidades: string[];
-  ngZone: any;
+  prestador:any = null;
   constructor(public prestadorService: PrestadorService,
     public toastCtrl: ToastController,
     public loadingContr: LoadingContr,
@@ -63,6 +63,7 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
   ngOnInit() {
     this.prestadorService.RecuperaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
       .then(resultPrestador => {
+        this.prestador = resultPrestador;
         this.igrejaService.RecuperaNomeIgreja([resultPrestador.igrejaId])
           .then(resultIgreja => {
             let igreja = resultIgreja[0];
@@ -155,8 +156,7 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
     }
     this.loadingContr.showLoader();
     let obj = {
-      situacaoPrestador: Constants.TipoSituacaoPrestador.FinalizarCadastro
-      , igrejaId: this.formulario.value.igrejaId
+      igrejaId: this.formulario.value.igrejaId
       , staMembro: this.formulario.value.staMembro
     };
 

@@ -26,7 +26,7 @@
 
 
         <ion-item *ngFor="let item of prestadorServicos" class="ion-no-border" button detail="false"
-          (click)="editarServico(item)">
+          (click)="servicoOpcoes(item)">
           <ion-label class="ion-text-wrap "><h3>{{item.nomeServico}}</h3> <p>{{item.breveDescricao}}</p></ion-label>
           <ion-icon slot="end" color="primary" name="ellipsis-vertical"></ion-icon>
 

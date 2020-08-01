@@ -19,11 +19,8 @@ import { ToastCustom } from 'src/app/helpers/toastCustom';
 })
 export class DadosEmpresaPage implements OnInit {
 
-  igrejas: any[]
   formulario: FormGroup;
-  authRedirectResult: Subscription;
   prestador: any = {}
-  StaMembro: boolean;
 
   validation_messages = {
     'telefone': [
@@ -121,7 +118,6 @@ export class DadosEmpresaPage implements OnInit {
       this.loadingContr.hideLoader()
 
     }).catch(x => {
-      this.igrejas = [];
       this.loadingContr.hideLoader()
       HandlerError.handler(x, this.toastCtrl);
     })
@@ -141,7 +137,11 @@ export class DadosEmpresaPage implements OnInit {
     this.loadingContr.showLoader()
     let obj = this.formulario.value;
     obj.usuarioId = Config.RecuperaInstancia().recuperaUsuario().usuarioId
-    obj.situacaoPrestador = Constants.TipoSituacaoPrestador.CadastroLocalAtendimento;
+    obj.situacaoPrestador = Constants.TipoSituacaoPrestador.PrestadorEmEdicao ;
+
+    if(this.prestador){
+      obj.situacaoPrestador = this.prestador.situacaoPrestador;
+    }
 
     this.prestadorService.AdicionarNovoPrestador(obj)
       .then(() => {

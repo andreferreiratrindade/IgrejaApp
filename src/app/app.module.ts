@@ -22,6 +22,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { MaskTelefonePipe } from './pipes/mask-telefone.pipe';
 import { PipesModule } from './pipes/pipes';
 import { SortByPipe } from './pipes/sortBy/sort-by.pipe';
+import { ConfirmAlert } from './helpers/confirmAlert';
 firebase.initializeApp(environment.firebase);
 
 @NgModule({
@@ -49,6 +50,7 @@ firebase.initializeApp(environment.firebase);
     BaseProvider,
     SocialSharing,
     FirebaseAuthService,
+    ConfirmAlert,
     SortByPipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

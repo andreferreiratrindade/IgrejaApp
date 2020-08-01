@@ -76,53 +76,10 @@ export class AppComponent implements OnInit {
 
     this.usuarioService.recuperaUsuarioLogado().then(() => {
 
-      console.log(this.paginas)
     });
   }
 
-  /*
-  get paginas() {
-    
-    let paginas =  this.RecuperaPaginasMenuLateral().filter(page => {
-      let retorno = true;
-      if (page.perfil) {
-        retorno = page.perfil.filter(x => {
-          let retorno = false;
-          if (this.usuarioLogado) {
-            let perfisDoUsuario = this.usuarioLogado.perfis
-
-            if (perfisDoUsuario) {
-              retorno = perfisDoUsuario.filter(perfis => {
-                return perfis == x;
-              }).length > 0;
-            }
-          }
-          return retorno;
-        }).length > 0;
-      }
-
-      // if (page.perfilInverso) {
-
-      //   retorno = page.perfilInverso.filter(x => {
-      //     let retorno = false;
-      //     if (this.usuarioLogado) {
-      //       let perfisDoUsuario = this.usuarioLogado.perfis
-
-      //       if (perfisDoUsuario) {
-      //         retorno = perfisDoUsuario.filter(perfis => {
-      //           return perfis != x;
-      //         }).length > 0;
-      //       }
-      //     }
-
-      //     return retorno;
-      //   }).length > 0;
-      // }
-      return retorno
-    });
-    console.log(paginas);
-    return paginas;
-  }*/
+  
 
   get recuperaDadosUsuario() {
 
