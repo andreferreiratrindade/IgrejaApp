@@ -105,6 +105,7 @@ export class NovoPage  {
       };
       this.usuarioService.AdicionarUsuario(usuarioObj).then(x=> {
         this.loadCtr.hideLoader();
+        this.signUpForm.reset();
           ToastCustom.SucessoToast(this.toastCtrl);
           this.redirectLoggedUserToProfilePage();
       }).catch(error => {

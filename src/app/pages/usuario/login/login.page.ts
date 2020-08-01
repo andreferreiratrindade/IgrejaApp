@@ -71,7 +71,7 @@ export class LoginPage implements OnInit {
     this.loadControl.showLoader();
     this.authService.signInWithEmail(this.signInForm.value['email'], this.signInForm.value['password'])
       .then(user => {
-
+        this.signInForm.reset();
         this.usuarioService.recuperaUsuarioLogado();
         this.loadControl.hideLoader();
         this.router.navigate([this.returnUrl], { skipLocationChange: true });

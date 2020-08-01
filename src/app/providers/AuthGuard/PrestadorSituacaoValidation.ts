@@ -37,9 +37,6 @@ export class PrestadorSituacaoValidation implements CanActivate {
                             situacaoPrestador = result.situacaoPrestador
                         }
                         switch (situacaoPrestador) {
-                            case Constants.TipoSituacaoPrestador.CadastroDadosEmpresa:
-                                redirectStr = "dados-empresa"
-                                break;
                             case Constants.TipoSituacaoPrestador.PrestadorEmEdicao:
                                 redirectStr = "dados-empresa"
                                 break;

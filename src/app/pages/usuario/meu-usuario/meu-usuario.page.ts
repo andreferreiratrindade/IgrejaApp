@@ -20,18 +20,21 @@ export class MeuUsuarioPage implements OnInit {
   constructor(
     public loadingContr: LoadingContr,
     public toastCtrl: ToastController,
+    private usuarioService: UsuarioService,
+    private route: ActivatedRoute
 
-    private usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
-    this.usuarioService.recuperaUsuarioLogado().then(result => {
-      this.usuario = result;
-      if (result.perfis) {
-        this.perfis = result.perfis.map(y => { return Constants.PerfilUsuario.RecuperaDescricaoPorValor(y) });
-      }
+    this.route.queryParams.subscribe(params => {
+      this.usuarioService.recuperaUsuarioLogado().then(result => {
+        this.usuario = result;
+        if (result.perfis) {
+          this.perfis = result.perfis.map(y => { return Constants.PerfilUsuario.RecuperaDescricaoPorValor(y) });
+        }
 
-    })
+      });
+    });
   }
 
   salvar() {
