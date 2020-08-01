@@ -19,7 +19,6 @@ import { Constants } from 'src/app/utils/constants';
 import { FavoritoService } from 'src/app/providers/favorito/favorito.service';
 import { Config } from 'src/app/config';
 import { VisualizarPrestadorPage } from '../visualizar-prestador/visualizar-prestador.page';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { MaskTelefonePipe } from 'src/app/pipes/mask-telefone.pipe';
 @Component({
     selector: 'app-prestador-consultar',

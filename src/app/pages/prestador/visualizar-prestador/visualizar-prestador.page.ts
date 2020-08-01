@@ -10,6 +10,7 @@ import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
 import { Constants } from 'src/app/utils/constants';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-visualizar-prestador',
