@@ -4,11 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PrestadorCadastroServicoPageRoutingModule } from './prestador-cadastro-servico-routing.module';
+import { MeuUsuarioPageRoutingModule } from './meu-usuario-routing.module';
 
-import { PrestadorCadastroServicoPage } from './prestador-cadastro-servico.page';
+import { MeuUsuarioPage } from './meu-usuario.page';
 import { ComponentsModule } from 'src/app/components/components.module';
-import { PipesModule } from 'src/app/pipes/pipes';
 
 @NgModule({
   imports: [
@@ -16,10 +15,9 @@ import { PipesModule } from 'src/app/pipes/pipes';
     FormsModule,
     ReactiveFormsModule,
     ComponentsModule,
-    PipesModule,
     IonicModule,
-    PrestadorCadastroServicoPageRoutingModule
+    MeuUsuarioPageRoutingModule
   ],
-  declarations: [PrestadorCadastroServicoPage]
+  declarations: [MeuUsuarioPage]
 })
-export class PrestadorCadastroServicoPageModule {}
+export class MeuUsuarioPageModule {}

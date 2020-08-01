@@ -13,11 +13,12 @@ import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
 import { Constants } from 'src/app/utils/constants';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: 'sign-in.page.html',
-  styleUrls: ['sign-in.page.scss'],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class SignInPage implements OnInit {
+export class LoginPage implements OnInit {
+
   signInForm: FormGroup;
   submitError: string;
   authRedirectResult: Subscription;

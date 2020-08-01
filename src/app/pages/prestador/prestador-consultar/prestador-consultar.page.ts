@@ -20,6 +20,7 @@ import { FavoritoService } from 'src/app/providers/favorito/favorito.service';
 import { Config } from 'src/app/config';
 import { VisualizarPrestadorPage } from '../visualizar-prestador/visualizar-prestador.page';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { MaskTelefonePipe } from 'src/app/pipes/mask-telefone.pipe';
 @Component({
     selector: 'app-prestador-consultar',
     templateUrl: './prestador-consultar.page.html',
@@ -32,15 +33,8 @@ export class PrestadorConsultarPage implements OnInit {
     servicos: any[];
     formulario: FormGroup;
     prestadores: any[];
-    validation_messages = {
-        'uf': [
-            { type: 'required', message: 'Campo de preenchimento obrigatório.' }
-        ],
-        'servicoId': [
-            { type: 'required', message: 'Campo de preenchimento obrigatório.' }
-        ]
-    };
-
+    nomeServicoSelecionado : string = "Todos"
+    servicosSelecionados : any[] = [];
     constructor(public prestadorService: PrestadorService,
         public toastCtrl: ToastController,
         public igrejaService: IgrejaService,
@@ -60,7 +54,6 @@ export class PrestadorConsultarPage implements OnInit {
             ])),
             'cidade': new FormControl(),
             'bairro': new FormControl(),
-            'nomeServico': new FormControl(),
             'nomeIgreja': new FormControl(),
             'igrejaId': new FormControl(),
             'ufApresentacao': new FormControl(),
@@ -118,7 +111,7 @@ export class PrestadorConsultarPage implements OnInit {
                 this.formulario.value['uf']
                 , this.formulario.value['cidade']
                 , this.formulario.value['bairro']
-                , this.formulario.value['servicoId']
+                , this.servicosSelecionados.map(y=>{return y.servicoId})
                 , this.formulario.value.igrejaId)
             .then(prestadoresResult => {
                 if (!prestadoresResult || prestadoresResult.length == 0) {
@@ -243,10 +236,9 @@ export class PrestadorConsultarPage implements OnInit {
         }).then((modal) => {
             modal.present();
             modal.onWillDismiss().then(resultModal => {
-
-                if (resultModal) {
-                    this.formulario.value.nomeServico = resultModal.data.nomeServico;
-                    this.formulario.value.servicoId = resultModal.data.servicoId;
+                if (resultModal.data) {
+                    this.servicosSelecionados = resultModal.data;
+                    this.nomeServicoSelecionado = this.servicosSelecionados.map(y=>{return y.nomeServico}).join('; ');
                 }
             });
         });
@@ -260,7 +252,7 @@ export class PrestadorConsultarPage implements OnInit {
         }).then((modal) => {
             modal.present();
             modal.onWillDismiss().then(resultModal => {
-                if (resultModal) {
+                if (resultModal.data) {
                     this.formulario.controls["ufApresentacao"].setValue(resultModal.data.nome + " / " + resultModal.data.sigla);
                     this.formulario.controls["uf"].setValue(resultModal.data.sigla);
                     this.formulario.controls["cidade"].setValue(null);
@@ -281,7 +273,7 @@ export class PrestadorConsultarPage implements OnInit {
         }).then((modal) => {
             modal.present();
             modal.onWillDismiss().then(resultModal => {
-                if (resultModal) {
+                if (resultModal.data) {
                     this.formulario.value.cidade = resultModal.data;
                     this.formulario.value.bairro = null;
                     this.formulario.value.nomeIgreja = null;
@@ -299,7 +291,7 @@ export class PrestadorConsultarPage implements OnInit {
         }).then((modal) => {
             modal.present();
             modal.onWillDismiss().then(resultModal => {
-                if (resultModal) {
+                if (resultModal.data) {
                     this.formulario.value.bairro = resultModal.data;
                     this.formulario.value.nomeIgreja = null;
                     this.formulario.value.igrejaId = null;
@@ -319,7 +311,7 @@ export class PrestadorConsultarPage implements OnInit {
         }).then((modal) => {
             modal.present();
             modal.onWillDismiss().then(resultModal => {
-                if (resultModal) {
+                if (resultModal.data) {
                     this.formulario.value.nomeIgreja = resultModal.data.nomeIgreja;
                     this.formulario.value.igrejaId = resultModal.data.id;
                 }

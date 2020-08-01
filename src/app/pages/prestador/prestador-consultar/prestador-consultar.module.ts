@@ -8,6 +8,7 @@ import { PrestadorConsultarPageRoutingModule } from './prestador-consultar-routi
 
 import { PrestadorConsultarPage } from './prestador-consultar.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { PipesModule } from 'src/app/pipes/pipes';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ReactiveFormsModule,
     ComponentsModule,
     IonicModule,
+    PipesModule,
     PrestadorConsultarPageRoutingModule
   ],
   declarations: [PrestadorConsultarPage]

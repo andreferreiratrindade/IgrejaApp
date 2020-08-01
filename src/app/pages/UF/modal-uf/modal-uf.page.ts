@@ -21,7 +21,6 @@ export class ModalUFPage implements OnInit, AfterViewInit {
     public modalController: ModalController,
     public navParams: NavParams) {
     this.dominioUF = this.navParams.data.UFs;
-    this.recuperaItens(null);
     
   }
 
@@ -33,6 +32,8 @@ export class ModalUFPage implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.recuperaItens(null);
+
   }
 
   recuperaItens(ev: any) {

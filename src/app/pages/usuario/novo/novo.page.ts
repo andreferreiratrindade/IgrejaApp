@@ -11,13 +11,12 @@ import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { ToastController } from '@ionic/angular';
 import { HandlerError } from 'src/app/helpers/handlerError';
 
-
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.page.html',
-  styleUrls: ['./sign-up.page.scss'],
+  selector: 'app-novo',
+  templateUrl: './novo.page.html',
+  styleUrls: ['./novo.page.scss'],
 })
-export class SignUpPage {
+export class NovoPage  {
   signUpForm: FormGroup;
   submitError: string;
   authRedirectResult: Subscription;

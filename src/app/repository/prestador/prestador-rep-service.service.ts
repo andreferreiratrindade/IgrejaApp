@@ -206,26 +206,11 @@ export class PrestadorRepServiceService extends BaseRepository {
     }
 
     RecuperaPestadoresPesquisar(ufSelecionado: string, cidadeSelecionado: string,
-        bairro: string, servicoId: string, igrejaId: string): Promise<any[]> {
+        bairro: string, servicoId: string[], igrejaId: string): Promise<any[]> {
         return new Promise((resolve, reject) => {
-
-
-
-
             let query = this.db.collectionGroup("prestador")
                 // .where("locaisAtendimento", "array-contains", { uf: ufSelecionado })
                 .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Ativo);
-
-            // if (cidadeSelecionado) {
-            //     query = query.where("cidade", "==", cidadeSelecionado);
-            // }
-
-            // if (bairro) {
-            //     query = query.where("bairro", "==", bairro);
-            // }
-            // if (servicoId) {
-            //     query = query.whereArrayContains("servicos", "array-contains", servicoId);
-            // }
 
             query.get().then(result => {
 
@@ -237,13 +222,12 @@ export class PrestadorRepServiceService extends BaseRepository {
 
                             if (x.cidade == cidadeSelecionado && x.uf == ufSelecionado) {
                                 if (doc.data().servicos) {
-                                    let servicosTemp = doc.data().servicos.filter(y => { return y.servicoId == servicoId });
-                                    if (servicosTemp.length > 0 || !servicoId) {
+                                    let servicosTemp = doc.data().servicos.filter(y => { return servicoId.includes(y.servicoId)});
+                                    if (servicosTemp.length > 0 || servicoId.length == 0) {
 
                                         let prestador = doc.data();
                                         if (igrejaId) {
-                                            if (prestador.igrejas
-                                                .filter(y => { return y.igrejaId == igrejaId }).length > 0) {
+                                            if (prestador.igrejaId  == igrejaId ) {
                                                 lst.push(prestador);
                                             }
                                         } else {
@@ -270,7 +254,7 @@ export class PrestadorRepServiceService extends BaseRepository {
             this.db.collectionGroup("prestador")
                 .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Ativo)
                 .get().then(result => {
-                    
+
                     let lst = [];
                     result.forEach(function (doc) {
 
@@ -342,7 +326,7 @@ export class PrestadorRepServiceService extends BaseRepository {
 
             this.db.collection("usuario").doc(prestador.usuarioId)
                 .collection("prestador").doc(prestador.usuarioId)
-                .set({ ...prestador },{merge:true}).then((obj) => {
+                .set({ ...prestador }, { merge: true }).then((obj) => {
                     resolve(obj);
                 }).catch(err => {
                     reject(err);

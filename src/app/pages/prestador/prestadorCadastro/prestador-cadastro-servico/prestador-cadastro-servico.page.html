@@ -14,24 +14,24 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Serviços</ion-card-title>
       <div class="ion-text-end">
         <ion-button color="primary" (click)="abreModalSelecionaServico()">
           <ion-icon name="add-outline" style="margin-right:10px;"></ion-icon>Novo
         </ion-button>
       </div>
+      <ion-card-title>Serviços</ion-card-title>
+      
     </ion-card-header>
     <ion-card-content>
 
-      <ion-list style="margin-top: 20px;">
+
         <ion-item *ngFor="let item of prestadorServicos" class="ion-no-border" button detail="false"
           (click)="editarServico(item)">
+          <ion-label class="ion-text-wrap "><h3>{{item.nomeServico}}</h3> <p>{{item.breveDescricao}}</p></ion-label>
           <ion-icon slot="end" color="primary" name="ellipsis-vertical"></ion-icon>
-          <ion-label>{{item.nomeServico}}</ion-label>
-          <ion-label>{{item.breveDescricao}}</ion-label>
 
         </ion-item>
-      </ion-list>
+
 
       <div class="ion-text-end" style="margin-top: 20px;">
         <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4"

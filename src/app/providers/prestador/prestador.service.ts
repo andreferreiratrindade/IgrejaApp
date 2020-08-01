@@ -52,7 +52,7 @@ export class PrestadorService {
   }
 
   RecuperaPestadoresPesquisar(ufSelecionado: string, cidadeSelecionado: string
-    , bairro: string, servicoId: string
+    , bairro: string, servicoId: string[]
     , igrejaId: string): Promise<any[]> {
     return this.prestadorRepService.RecuperaPestadoresPesquisar(ufSelecionado, cidadeSelecionado, bairro, servicoId, igrejaId);
   }

@@ -30,20 +30,7 @@ const routes: Routes = [
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
-  {
-    path: 'sign-in',
-    loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule)
-  },
-  {
-    path: 'sign-up',
-    loadChildren: () => import('./pages/sign-up/sign-up.module').then( m => m.SignUpPageModule)
-  }
-  ,
-  {
-    path: 'profile',
-    canActivate: [UsuarioLogadoValidation],
-    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
-  },
+
   {
     path: 'criar-igreja',
      canActivate: [PerfilValidation_AdministradorSistema],
@@ -163,7 +150,22 @@ const routes: Routes = [
     canActivate: [PerfilValidation_AdministradorSistema],
 
     loadChildren: () => import('./pages/gerenciarIgreja/manter-igreja/manter-igreja.module').then( m => m.ManterIgrejaPageModule)
+  },
+  {
+    path: 'sign-up',
+    loadChildren: () => import('./pages/usuario/novo/novo.module').then( m => m.NovoPageModule)
+  },
+  {
+    path: 'sign-in',
+    loadChildren: () => import('./pages/usuario/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'profile',
+    canActivate: [UsuarioLogadoValidation],
+
+    loadChildren: () => import('./pages/usuario/meu-usuario/meu-usuario.module').then( m => m.MeuUsuarioPageModule)
   }
+
 
 
 ];

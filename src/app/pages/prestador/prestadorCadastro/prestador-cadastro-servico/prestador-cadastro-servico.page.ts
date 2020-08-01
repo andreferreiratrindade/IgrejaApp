@@ -9,6 +9,7 @@ import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { Router } from '@angular/router';
+import { SortByPipe } from 'src/app/pipes/sortBy/sort-by.pipe';
 
 @Component({
   selector: 'app-prestador-cadastro-servico',
@@ -20,7 +21,6 @@ export class PrestadorCadastroServicoPage implements OnInit {
 
   dominioServicos: any[];
   prestadorServicos: any[];
-  servicoAdicionado: any;
   constructor(public dominioServicoService: DominioServicoService,
     public loadingContr: LoadingContr,
     public prestadorService: PrestadorService,
@@ -28,7 +28,8 @@ export class PrestadorCadastroServicoPage implements OnInit {
     public toastCtrl: ToastController,
     public alertController: AlertController,
     private ngZone: NgZone,
-    public router: Router
+    public router: Router,
+    public sortBy:SortByPipe
   ) { }
 
   ngOnInit() {
@@ -46,6 +47,8 @@ export class PrestadorCadastroServicoPage implements OnInit {
             listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
             return listItem;
           });
+          this.ordenaServicos();
+
           this.loadingContr.hideLoader();
 
           if (!this.prestadorServicos || this.prestadorServicos.length == 0) {
@@ -62,38 +65,40 @@ export class PrestadorCadastroServicoPage implements OnInit {
 
   abreModalSelecionaServico() {
 
-    let servicos = this.dominioServicos.filter(x=>{
-      return  this.prestadorServicos.filter(y=> {return y.servicoId == x.servicoId} ).length ==0
+    let servicos = this.dominioServicos.filter(x => {
+      return this.prestadorServicos.filter(y => { return y.servicoId == x.servicoId }).length == 0
     });
 
     const modal = this.modalCtrl.create({
       component: ModalServicosPage,
-      componentProps: { servicos: servicos.filter(x=>{return !x.deletado})},
+      componentProps: { servicos: servicos.filter(x => { return !x.deletado }) },
       backdropDismiss: false,
     }).then((modal) => {
       modal.present();
 
       modal.onWillDismiss().then(resultModal => {
-        this.servicoAdicionado = resultModal.data;
-        if (this.servicoAdicionado) {
-          this.loadingContr.showLoader();
+        if (!resultModal.data) {
+          return false;
+        }       
+        if (resultModal.data.length > 0) {
 
-          this.prestadorService
-            .AdicionaServicoAoPrestador(Config.RecuperaInstancia()
-              .recuperaUsuario().usuarioId, {
-              servicoId: this.servicoAdicionado.servicoId,
-              usuarioId: Config.RecuperaInstancia()
-                .recuperaUsuario().usuarioId
-            })
-            .then((result) => {
-              this.prestadorServicos.push(this.servicoAdicionado);
-              this.loadingContr.hideLoader();
-              ToastCustom.SucessoToast(this.toastCtrl);
+          ToastCustom.SucessoToast(this.toastCtrl);
 
-            }).catch(err => {
-              HandlerError.handler(err, this.toastCtrl);
-              this.loadingContr.hideLoader();
-            })
+         resultModal.data.forEach(element => {
+            this.prestadorServicos.push(element);
+            this.prestadorService
+              .AdicionaServicoAoPrestador(Config.RecuperaInstancia()
+                .recuperaUsuario().usuarioId, {
+                servicoId: element.servicoId,
+                usuarioId: Config.RecuperaInstancia()
+                  .recuperaUsuario().usuarioId
+             
+              }).catch(err => {
+                HandlerError.handler(err, this.toastCtrl);
+                this.loadingContr.hideLoader();
+              })
+          });
+          this.ordenaServicos();
         }
       });
     }).catch(err => {
@@ -178,11 +183,15 @@ export class PrestadorCadastroServicoPage implements OnInit {
       });
   }
 
-  public voltar(){
+  public voltar() {
     this.router.navigate(['prestador-local-atendimento']);
   }
 
-  public editarServico(item:any){
+  public editarServico(item: any) {
 
+  }
+
+  public ordenaServicos(){
+    this.sortBy.transform(this.prestadorServicos,"nomeServico");
   }
 }

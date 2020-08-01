@@ -10,11 +10,11 @@ import { ToastController } from '@ionic/angular';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+  selector: 'app-meu-usuario',
+  templateUrl: './meu-usuario.page.html',
+  styleUrls: ['./meu-usuario.page.scss'],
 })
-export class ProfilePage implements OnInit {
+export class MeuUsuarioPage implements OnInit {
   usuario: any = {};
   perfis: any[] = [];
   constructor(

@@ -52,7 +52,7 @@ export class DominioServicoRepositoryService extends BaseRepository {
 
     recuperaDominioServico(): Promise<any> {
         return new Promise<any>((response, resp) => {
-            this.db.collection("dominioServico").get()
+            this.db.collection("dominioServico").orderBy("nomeServico").get()
             .then((result) => {
 
                 let lst = [];
@@ -69,6 +69,7 @@ export class DominioServicoRepositoryService extends BaseRepository {
         return new Promise<any>((response, resp) => {
             this.db.collection("dominioServico")
             .where("deletado","==",false)
+            .orderBy("nomeServico")
             .get()
             .then((result) => {
 

@@ -5,50 +5,90 @@ import { HandlerError } from 'src/app/helpers/handlerError';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 
 @Component({
-    selector: 'app-modal-servicos',
-    templateUrl: './modal-servicos.page.html',
-    styleUrls: ['./modal-servicos.page.scss'],
+  selector: 'app-modal-servicos',
+  templateUrl: './modal-servicos.page.html',
+  styleUrls: ['./modal-servicos.page.scss'],
 })
-export class ModalServicosPage implements OnInit , AfterViewInit {
+export class ModalServicosPage implements OnInit, AfterViewInit {
 
-    private dominioServicos: any[] = [];
-    servicos: any[] = [];
+  private dominioServicos: any[] = [];
+  servicos: any[] = [];
+  servicosSelecionados: any[] = [];
+  nomeServico: string = null
   @ViewChild('searchbar') inputElement: IonInput;
 
-    constructor(
-        public toast: ToastController,
-        public loadControl: LoadingContr,
-        public modalController: ModalController,
-        public navParams : NavParams) {
+  constructor(
+    public toast: ToastController,
+    public loadControl: LoadingContr,
+    public modalController: ModalController,
+    public navParams: NavParams) {
+    this.dominioServicos = this.navParams.data.servicos;
 
-                this.dominioServicos = this.navParams.data.servicos;
-                this.servicos = this.dominioServicos 
-         }
+  }
 
-    ngOnInit() {
+  ngOnInit() {
+    this.recuperaServicos(null);
+
+  }
+
+  ngAfterViewInit() {
+
+    setTimeout(() => {
+      this.inputElement.setFocus();
+    }, 800);
+  }
+
+  recuperaServicos(ev: any) {
+
+    let val = "";
+    if (ev && ev.target) {
+      val = ev.target.value;
+    }
+    if (val && val.trim() !== '') {
+      this.servicos = this.dominioServicos.filter(item => { return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1 });
+    } else {
+      this.servicos = [...this.dominioServicos];
     }
 
-    ngAfterViewInit() {
+    this.nomeServico = val;
 
-        setTimeout(() => {
-          this.inputElement.setFocus();
-        }, 800);
-      }
-    
-    recuperaServicos(ev: any) {
-        const val = ev.target.value;
-        if (val && val.trim() !== '') {
-                this.servicos = this.dominioServicos.filter(item=>{return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1});
-        }else{
-               this.servicos = this.dominioServicos;
-        }
-    }
+    this.servicos = this.servicos.filter(x => { return this.servicosSelecionados.filter(y => y.servicoId == x.servicoId).length == 0 });
 
-    closeModal() {
-        this.modalController.dismiss(null, 'cancel');
-    }
+    if (this.servicos.length > 10) this.servicos.length = 10;
 
-    selecionarServico(item:any){
-        this.modalController.dismiss(item, 'success');
-    }
+  }
+
+  closeModal() {
+    this.modalController.dismiss(null, 'cancel');
+  }
+
+  selecionarServico(item: any) {
+
+    this.servicosSelecionados.push(item);
+    let index = this.servicos.findIndex(y => y.servicoId == item.servicoId); //find index in your array
+    this.servicos.splice(index, 1);//remove element from array
+
+    let obj = {
+      target:
+        { value: this.nomeServico }
+    };
+    this.recuperaServicos(obj);
+  }
+
+  removeServico(item: any) {
+    let index = this.servicosSelecionados.findIndex(y => y.servicoId == item.servicoId); //find index in your array
+    this.servicosSelecionados.splice(index, 1);//remove element from array
+
+    let obj = {
+      target:
+        { value: this.nomeServico }
+    };
+    this.recuperaServicos(obj);
+  }
+
+  ok(){
+    this.modalController.dismiss(this.servicosSelecionados, 'success');
+
+  }
+
 }

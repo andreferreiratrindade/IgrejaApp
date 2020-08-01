@@ -17,7 +17,7 @@ import { appVersion } from 'src/environments/appVersion';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public version = appVersion.version;
-  public usuarioLogado: any ={}
+  public usuarioLogado: any = {}
   public paginas: any[] = [];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.usuarioService.RecuperaUsuarioObservable().subscribe((data)=>{
+    this.usuarioService.RecuperaUsuarioObservable().subscribe((data) => {
       this.usuarioLogado = data;
 
       this.paginas = this.RecuperaPaginasMenuLateral().filter(page => {
@@ -62,12 +62,20 @@ export class AppComponent implements OnInit {
             return retorno;
           }).length > 0;
         }
+        
+        if (page.perfilInverso) {
+
+
+          if(this.usuarioLogado &&  this.usuarioLogado.perfis){
+            retorno = this.usuarioLogado.perfis.filter(pfUser => {return page.perfilInverso.includes(Number(pfUser))}).length == 0;
+          }
+        }
         return retorno;
       });
     });
 
     this.usuarioService.recuperaUsuarioLogado().then(() => {
-      
+
       console.log(this.paginas)
     });
   }
@@ -137,43 +145,43 @@ export class AppComponent implements OnInit {
       {
         title: 'Consultar Prestador',
         url: 'prestador-consultar',
-        icon: 'search'
+        icon: 'fas fa-search'
       },
       {
         title: 'Seja um Prestador',
         url: 'dados-empresa',
-        icon: 'people',
-        perfilInverso: [Constants.PerfilUsuario.Prestador]
+        icon: 'fas fa-toolbox',
+        perfilInverso: [Constants.PerfilUsuario.Prestador, Constants.PerfilUsuario.AdministradorSistema, Constants.PerfilUsuario.AdministradorIgreja]
       },
 
       {
         title: 'Manter Igreja',
         url: 'manter-igreja',
-        icon: 'business',
+        icon: 'fas fa-church',
         perfil: [Constants.PerfilUsuario.AdministradorSistema]
       }
       ,
       {
         title: 'Manter Prestadores',
         url: 'consultar-prestador-adm',
-        icon: 'business',
+        icon: 'fas fa-tools',
         perfil: [Constants.PerfilUsuario.AdministradorIgreja]
       }
       ,
       {
         title: 'Meu Cadastro Prestador',
         url: 'meu-cadastro-prestador',
-        icon: 'business',
+        icon: 'fas fa-tools',
         perfil: [Constants.PerfilUsuario.Prestador]
       }
       ,
       {
         title: 'Manter Serviços',
         url: 'mantem-servico',
-        icon: 'construct',
+        icon: 'fas fa-tools',
         perfil: [Constants.PerfilUsuario.AdministradorSistema]
       }
-      
+
     ];
   }
 }

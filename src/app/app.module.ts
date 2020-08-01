@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -12,7 +11,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FirebaseAuthService } from './providers/base-provider/firebase-auth-service.service';
 import { environment } from 'src/environments/environment';
 import { ComponentsModule } from './components/components.module';
-import { MensagemValidacaoComponent } from './components/mensagem-validacao/mensagem-validacao.component';
 import { BaseProvider } from './providers/base-provider/base-provider';
 import { BuscarCEPService } from './providers/buscaCEP/buscar-cep.service';
 import { Http, HttpModule } from '@angular/http';
@@ -21,7 +19,9 @@ import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore
 import * as firebase from 'firebase/app';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-
+import { MaskTelefonePipe } from './pipes/mask-telefone.pipe';
+import { PipesModule } from './pipes/pipes';
+import { SortByPipe } from './pipes/sortBy/sort-by.pipe';
 firebase.initializeApp(environment.firebase);
 
 @NgModule({
@@ -37,7 +37,9 @@ firebase.initializeApp(environment.firebase);
     ComponentsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    PipesModule.forRoot()
+    
   ],
   providers: [
     StatusBar,
@@ -47,6 +49,7 @@ firebase.initializeApp(environment.firebase);
     BaseProvider,
     SocialSharing,
     FirebaseAuthService,
+    SortByPipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

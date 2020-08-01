@@ -4,11 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PrestadorCadastroServicoPageRoutingModule } from './prestador-cadastro-servico-routing.module';
+import { NovoPageRoutingModule } from './novo-routing.module';
 
-import { PrestadorCadastroServicoPage } from './prestador-cadastro-servico.page';
+import { NovoPage } from './novo.page';
 import { ComponentsModule } from 'src/app/components/components.module';
-import { PipesModule } from 'src/app/pipes/pipes';
 
 @NgModule({
   imports: [
@@ -16,10 +15,9 @@ import { PipesModule } from 'src/app/pipes/pipes';
     FormsModule,
     ReactiveFormsModule,
     ComponentsModule,
-    PipesModule,
     IonicModule,
-    PrestadorCadastroServicoPageRoutingModule
+    NovoPageRoutingModule
   ],
-  declarations: [PrestadorCadastroServicoPage]
+  declarations: [NovoPage]
 })
-export class PrestadorCadastroServicoPageModule {}
+export class NovoPageModule {}
