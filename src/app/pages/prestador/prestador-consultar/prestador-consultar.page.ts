@@ -33,8 +33,8 @@ export class PrestadorConsultarPage implements OnInit {
     servicos: any[];
     formulario: FormGroup;
     prestadores: any[];
-    nomeServicoSelecionado : string = "Todos"
-    servicosSelecionados : any[] = [];
+    nomeServicoSelecionado: string = "Todos"
+    servicosSelecionados: any[] = [];
     constructor(public prestadorService: PrestadorService,
         public toastCtrl: ToastController,
         public igrejaService: IgrejaService,
@@ -43,9 +43,8 @@ export class PrestadorConsultarPage implements OnInit {
         public dominioServicoService: DominioServicoService,
         public router: Router,
         public modalCtrl: ModalController,
-        private callNumber: CallNumber,
         private favoritoService: FavoritoService,
-        private socialSharing: SocialSharing
+
     ) {
 
         this.formulario = new FormGroup({
@@ -63,7 +62,7 @@ export class PrestadorConsultarPage implements OnInit {
 
     ngOnInit() {
         this.loadingContr.showLoader();
-        
+
         this.dominioServicoService.recuperaDominioServico()
             .then(result => {
                 this.servicos = result;
@@ -75,7 +74,7 @@ export class PrestadorConsultarPage implements OnInit {
 
         this.prestadorService.RecuperaUfPrestadorDisponiveis()
             .then(result => {
-                this.UfList = result.map(x=>{return Constants.ListagemUF.RecuperaObjetoPorUF(x)});
+                this.UfList = result.map(x => { return Constants.ListagemUF.RecuperaObjetoPorUF(x) });
                 this.loadingContr.hideLoader();
             }).catch(x => {
                 this.loadingContr.hideLoader();
@@ -83,7 +82,7 @@ export class PrestadorConsultarPage implements OnInit {
             });
     }
 
-    buscarCidades(uf:string) {
+    buscarCidades(uf: string) {
         this.loadingContr.showLoader();
         this.formulario.controls['cidade'].setValue(null);
         this.cidadeList = [];
@@ -111,7 +110,7 @@ export class PrestadorConsultarPage implements OnInit {
                 this.formulario.value['uf']
                 , this.formulario.value['cidade']
                 , this.formulario.value['bairro']
-                , this.servicosSelecionados.map(y=>{return y.servicoId})
+                , this.servicosSelecionados.map(y => { return y.servicoId })
                 , this.formulario.value.igrejaId)
             .then(prestadoresResult => {
                 if (!prestadoresResult || prestadoresResult.length == 0) {
@@ -123,95 +122,34 @@ export class PrestadorConsultarPage implements OnInit {
                 lstusuarioId = prestadoresResult.map(x => { return x.usuarioId });
                 this.prestadores = prestadoresResult;
 
-                let lstIgrejaId = [];
-                lstIgrejaId = prestadoresResult.map(x => { return x.igrejaId });
+                this.usuarioService.RecuperaNomeUsuarios(lstusuarioId)
+                    .then(usuariosResult => {
+                        this.prestadores.map(x => {
+                            x.nome = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.nome;
+                            x.email = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.email;
+                        });
+                        this.loadingContr.hideLoader();
 
-                this.consultaMasterPrestador(lstusuarioId, lstIgrejaId).then(() => {
-                    this.loadingContr.hideLoader();
+                        this.ionContent.scrollToPoint(0, 350, 800);
 
-                }).catch(x => {
-                    HandlerError.handler(x, this.toastCtrl);
-                    this.loadingContr.hideLoader();
+                    }).catch(x => {
+                        HandlerError.handler(x, this.toastCtrl);
+                        this.loadingContr.hideLoader();
+                    });
+                    
+                this.prestadores.forEach(x => {
+
+                    x.servicos.forEach(y => {
+                        y.nomeServico = this.servicos.filter(w => { return w.servicoId == y.servicoId })[0].nomeServico;
+                    })
+                    x.descricaoServicos = x.servicos.map(y => y.nomeServico).join(', ');
                 });
+
 
             }).catch(x => {
                 HandlerError.handler(x, this.toastCtrl);
                 this.loadingContr.hideLoader();
             });
-    }
-
-    private consultaMasterPrestador(lstusuarioId, lstIgrejaId): Promise<any> {
-        return new Promise<any>((result, reject) => {
-            // Recupera igreja 
-            this.recuperaNomeIgreja(lstIgrejaId).then(() => { result() }).catch(err => { reject(err) });
-
-            // Recupera Nome 
-            this.recuperaNomePrestadores(lstusuarioId).then(() => { result() }).catch(err => { reject(err) });
-
-            
-            this.prestadores.forEach(x=>{ 
-
-                    x.servicos.forEach(y=>{
-                            y.nomeServico = this.servicos.filter(w=>{return w.servicoId == y.servicoId})[0].nomeServico;
-                        })
-                    x.descricaoServicos = x.servicos.map(y=>y.nomeServico).join(', ');
-                    });
-            // Recupera Servicos
-            //this.recuperaServicosPorPrestadores(lstusuarioId);
-        });
-    }
-
-
-    private recuperaServicosPorPrestadores(lstusuarioId): Promise<any> {
-        return new Promise(() => {
-            this.prestadorService.recuperaServicosPorPrestadores(lstusuarioId)
-                .then(servicosPorPrestador => {
-                    this.prestadores.map(x => {
-                        x.servicos = servicosPorPrestador.find(y => { y.usuarioId == x.usuarioId });
-                    })
-                    this.loadingContr.hideLoader();
-
-                }).catch(x => {
-                    HandlerError.handler(x, this.toastCtrl);
-                    this.loadingContr.hideLoader();
-                });
-        });
-    }
-
-    private recuperaNomePrestadores(lstusuarioId): Promise<any> {
-        return new Promise((result, reject) => {
-            this.usuarioService.RecuperaNomeUsuarios(lstusuarioId)
-                .then(usuariosResult => {
-                    this.prestadores.map(x => {
-                        x.nome = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.nome;
-                        x.email = usuariosResult.find(y => y.data.usuarioId == x.usuarioId).data.email;
-                    });
-
-                    this.ionContent.scrollToPoint(0, 350, 800);
-                    result();
-                }).catch(x => {
-
-                    HandlerError.handler(x, this.toastCtrl);
-                    this.loadingContr.hideLoader();
-                });
-        });
-    }
-
-    private recuperaNomeIgreja(lstIgrejaId): Promise<any> {
-        return new Promise((result, reject) => {
-
-            this.igrejaService.RecuperaNomeIgreja(lstIgrejaId)
-                .then(resultIgreja => {
-                    this.prestadores.map(x => {
-                        x.nomeIgreja = resultIgreja.find(y => y.data.id == x.igrejaId).data.nomeIgreja;
-                    });
-                    result()
-                }).catch(x => {
-                    reject(x)
-                    HandlerError.handler(x, this.toastCtrl);
-                    this.loadingContr.hideLoader();
-                });
-        });
     }
 
     public detalhes(usuarioId) {
@@ -222,7 +160,7 @@ export class PrestadorConsultarPage implements OnInit {
         }).then((modal) => {
             modal.present();
             modal.onWillDismiss().then(resultModal => {
-               
+
             });
         });
         // this.router.navigate(['/visualizar-prestador'], { queryParams: { usuarioId: usuarioId } });
@@ -238,7 +176,7 @@ export class PrestadorConsultarPage implements OnInit {
             modal.onWillDismiss().then(resultModal => {
                 if (resultModal.data) {
                     this.servicosSelecionados = resultModal.data;
-                    this.nomeServicoSelecionado = this.servicosSelecionados.map(y=>{return y.nomeServico}).join('; ');
+                    this.nomeServicoSelecionado = this.servicosSelecionados.map(y => { return y.nomeServico }).join('; ');
                 }
             });
         });
@@ -268,7 +206,7 @@ export class PrestadorConsultarPage implements OnInit {
     public abrirModalCidade() {
         const modal = this.modalCtrl.create({
             component: ModalCidadePage,
-            componentProps: { cidades:this.cidadeList },
+            componentProps: { cidades: this.cidadeList },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();
@@ -320,20 +258,12 @@ export class PrestadorConsultarPage implements OnInit {
     }
 
     public abrirModalPrestadorDetalhes(usuarioId) {
-        
+
     }
     public formularioValido(): boolean {
         return this.formulario.value.uf && this.formulario.value.cidade;
     }
 
-    public ligarTelefone(telefone: any) {
-        this.callNumber.callNumber(telefone, true).then(() => {
-
-
-        }).catch(x => {
-            HandlerError.handler(x, this.toastCtrl);
-        });
-    }
     public adicionarPrestadorFavorito(usuarioId: string) {
         this.favoritoService.AdicionaPrestadorFavorito(usuarioId, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
             .then(() => { });
@@ -343,17 +273,4 @@ export class PrestadorConsultarPage implements OnInit {
         this.favoritoService.RemovePrestadorFavorito(usuarioId, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
             .then(() => { });
     }
-
-    // ShareGeneric(parameter){
-    //     const url = this.link
-    //     const text = parameter+'\n'
-    //     this.socialSharing.share(text, 'MEDIUM', null, url)
-    //   }
-      
-    ShareGeneric(prestador:any){
-
-        let texto = prestador.nome + " / "+ prestador.telefone;
-
-        this.socialSharing.share(texto, null, null);
-      }
 }

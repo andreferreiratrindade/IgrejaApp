@@ -9,6 +9,7 @@ import { HandlerError } from 'src/app/helpers/handlerError';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
 import { Constants } from 'src/app/utils/constants';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-visualizar-prestador',
@@ -18,8 +19,8 @@ import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 export class VisualizarPrestadorPage implements OnInit {
 
   prestador: any = {};
-  prestadorServicos : any[] = [];
-  usuario : any = {};
+  prestadorServicos: any[] = [];
+  usuario: any = {};
   usuarioId: string;
   constructor(public prestadorService: PrestadorService,
     public dominioServicoService: DominioServicoService,
@@ -31,6 +32,9 @@ export class VisualizarPrestadorPage implements OnInit {
     private route: ActivatedRoute,
     private usuarioService: UsuarioService,
     public modalController: ModalController,
+    private callNumber: CallNumber,
+    private socialSharing: SocialSharing
+
 
   ) {
 
@@ -39,12 +43,6 @@ export class VisualizarPrestadorPage implements OnInit {
 
   ngOnInit() {
     this.loadingContr.showLoader();
-
-    this.usuarioService.RecuperaNomeUsuarios([this.usuarioId])
-      .then(resultado => {
-
-        this.usuario = resultado[0].data;
-      })
 
     this.prestadorService.RecuperaPrestador(this.usuarioId)
       .then((result) => {
@@ -63,6 +61,7 @@ export class VisualizarPrestadorPage implements OnInit {
         this.loadingContr.hideLoader();
       });
 
+
     this.prestadorService.recuperaServicosPorPrestador(this.usuarioId)
       .then(result => {
         this.prestadorServicos = result;
@@ -75,6 +74,7 @@ export class VisualizarPrestadorPage implements OnInit {
             listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
             return listItem;
           });
+          this.prestador.descricaoServicos = this.prestadorServicos.map(y => { return y.nomeServico }).join(', ');
           this.loadingContr.hideLoader();
         });
 
@@ -82,11 +82,30 @@ export class VisualizarPrestadorPage implements OnInit {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
       });
+
+    this.usuarioService.RecuperaNomeUsuarios([this.usuarioId])
+      .then(resultado => {
+
+        this.prestador.nome = resultado[0].data.nome;
+      }).catch(err => {
+        HandlerError.handler(err, this.toastCtrl);
+        this.loadingContr.hideLoader();
+      });
+
   }
 
   closeModal() {
     this.modalController.dismiss(null, 'cancel');
   }
 
+  ShareGeneric(prestador: any) {
 
+    let texto = prestador.nome + " / " + prestador.telefone;
+
+    this.socialSharing.share(texto, null, null);
+  }
+
+  public ligarTelefone(telefone: any) {
+    this.callNumber.callNumber(telefone, true);
+  }
 }

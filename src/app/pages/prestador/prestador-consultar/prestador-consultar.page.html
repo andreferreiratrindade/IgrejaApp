@@ -81,22 +81,21 @@
 
         </div>
       </form>
-      <!-- 
-      <ion-list *ngIf="prestadores.length > 0" style="margin-top: 20px;margin-bottom: 20px;">
-        <ion-list-header style="margin-bottom: 20px;">
-          Prestadores
-        </ion-list-header>
-        <ion-item *ngFor="let item of prestadores" detail (click)="detalhes(item.usuarioId)">
-          <ion-label size="12">
-            <h2>{{item.nome}}</h2>
-            <p>{{item.descricaoServicos}}</p>
-          </ion-label>
-        </ion-item>
-      </ion-list> -->
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngFor="let item of prestadores" class="ion-no-border">
+  <ion-card *ngFor="let item of prestadores" class="ion-no-border" (click)="detalhes(item.usuarioId)">
+    <ion-card-content>
+      <ion-item lines="none" detail>
+        <ion-label>
+          <h2>{{item.nome}}</h2>
+          <p>{{item.descricaoServicos}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-card *ngFor="let item of prestadores" class="ion-no-border">
     <ion-card-header>
 
       <ion-card-title>
@@ -145,6 +144,6 @@
         </ion-row>
       </ion-grid>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
 </ion-content>

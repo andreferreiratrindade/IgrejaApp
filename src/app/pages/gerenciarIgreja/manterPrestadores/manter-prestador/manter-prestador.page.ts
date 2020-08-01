@@ -21,8 +21,8 @@ export class ManterPrestadorPage implements OnInit {
   situacoesPrestador: any[];
 
   prestador: any = {};
-  prestadorUsuario : any = {};
-  prestadorServicos : any[]= [];
+  prestadorUsuario: any = {};
+  prestadorServicos: any[] = [];
 
   constructor(public prestadorService: PrestadorService,
     public dominioServicoService: DominioServicoService,
@@ -32,65 +32,68 @@ export class ManterPrestadorPage implements OnInit {
     public toastCtrl: ToastController,
     public igrejaService: IgrejaService,
     private route: ActivatedRoute
-    ) {
-      
-    this.prestador = { usuarioId: this.route.snapshot.queryParams['prestadorUsuarioId'] };
+  ) {
 
   }
 
   ngOnInit() {
-    this.loadingContr.showLoader();
-    this.situacoesPrestador = Constants.ListTipoSituacaoPrestador.RecuperaListagem();
-   
-    this.prestadorService.RecuperaPrestador(this.prestador.usuarioId)
-      .then((result) => {
-        this.prestador = result;
-       
-        this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
-          this.prestador.nomeIgreja = result[0].data.nomeIgreja;
-          this.loadingContr.hideLoader();
-        }).catch(err => {
-          HandlerError.handler(err, this.toastCtrl);
-          this.loadingContr.hideLoader();
-        });
 
-      }).catch(err => {
-        HandlerError.handler(err, this.toastCtrl);
-        this.loadingContr.hideLoader();
-      });
+    this.route.queryParams.subscribe(params => {
+      this.prestador = { usuarioId: params['prestadorUsuarioId'] };
 
+      this.loadingContr.showLoader();
+      this.situacoesPrestador = Constants.ListTipoSituacaoPrestador.RecuperaListagem();
 
-    this.prestadorService.recuperaServicosPorPrestador(this.prestador.usuarioId)
-      .then(result => {
-        this.prestadorServicos = result;
-        this.dominioServicoService.recuperaDominioServico().then(x => {
+      this.prestadorService.RecuperaPrestador(this.prestador.usuarioId)
+        .then((result) => {
+          this.prestador = result;
 
-          this.prestadorServicos.map((listItem) => {
-            listItem.expanded = false;
-
-            listItem.breveDescricao = listItem.breveDescricao ?? "";
-            listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
-            return listItem;
+          this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
+            this.prestador.nomeIgreja = result[0].data.nomeIgreja;
+            this.loadingContr.hideLoader();
+          }).catch(err => {
+            HandlerError.handler(err, this.toastCtrl);
+            this.loadingContr.hideLoader();
           });
-          this.loadingContr.hideLoader();
+
         }).catch(err => {
           HandlerError.handler(err, this.toastCtrl);
           this.loadingContr.hideLoader();
         });
 
-      }).catch(err => {
-        HandlerError.handler(err, this.toastCtrl);
-        this.loadingContr.hideLoader();
-      });
+
+      this.prestadorService.recuperaServicosPorPrestador(this.prestador.usuarioId)
+        .then(result => {
+          this.prestadorServicos = result;
+          this.dominioServicoService.recuperaDominioServico().then(x => {
+
+            this.prestadorServicos.map((listItem) => {
+              listItem.expanded = false;
+
+              listItem.breveDescricao = listItem.breveDescricao ?? "";
+              listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
+              return listItem;
+            });
+            this.loadingContr.hideLoader();
+          }).catch(err => {
+            HandlerError.handler(err, this.toastCtrl);
+            this.loadingContr.hideLoader();
+          });
+
+        }).catch(err => {
+          HandlerError.handler(err, this.toastCtrl);
+          this.loadingContr.hideLoader();
+        });
 
       this.usuarioService.RecuperaUsuarioPorUsuarioId(this.prestador.usuarioId)
-      .then(result=>{
-        this.prestador.nome = result.nome;
-        this.prestador.email= result.email;
-      }).catch(err => {
-        HandlerError.handler(err, this.toastCtrl);
-        this.loadingContr.hideLoader();
-      });
+        .then(result => {
+          this.prestador.nome = result.nome;
+          this.prestador.email = result.email;
+        }).catch(err => {
+          HandlerError.handler(err, this.toastCtrl);
+          this.loadingContr.hideLoader();
+        });
+    });
   }
 
   atualizarPrestador() {
@@ -107,7 +110,7 @@ export class ManterPrestadorPage implements OnInit {
       });
   }
 
-  public voltar(){
-    
+  public voltar() {
+
   }
 }

@@ -1,55 +1,48 @@
-<ion-header translucent={true}>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="" (click)="closeModal()" text="Voltar"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Detalhes - Prestador</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
   <ion-card class="ion-no-border">
-    <ion-card-header>
+    <ion-button (click)="closeModal()" fill="clear" style="margin-left: -9px; margin-top: 0px;">
+      <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-card-header style="padding-top: 0px;margin-top: -20px;">
 
       <ion-card-title>
-        <h3>Dados empresa</h3>
+        <h3>{{prestador.nome}}</h3>
+        <ion-label size="12">
+          <p>{{prestador.descricaoServicos}}</p>
+        </ion-label>
       </ion-card-title>
     </ion-card-header>
-    <ion-item>
-      <ion-label class="ion-text-wrap">
-        <p>Nome</p>
-        <h3>{{usuario.nome}}</h3>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="ion-text-wrap">
-        <p>Email</p>
-        <h3>{{usuario.email}}</h3>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="ion-text-wrap">
-        <p>Razão Social</p>
-        <h3>{{prestador.razaoSocial}}</h3>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="ion-text-wrap">
-        <p>Telefone</p>
-        <h3>{{prestador.telefone}}</h3>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="ion-text-wrap">
-        <p>Endereço</p>
-        <h3>{{prestador.logradouro}}, {{prestador.bairro}} - {{prestador.cidade}} / {{prestador.uf}}</h3>
-      </ion-label>
-    </ion-item>
+    <ion-card-content>
 
+      <ion-item (click)="ligarTelefone(prestador.telefone)" class="ion-no-border">
+        <ion-icon class="fas fa-phone-alt" style="padding-right: 11px;margin-left: 3px;"></ion-icon>
+        <ion-button color="tertiary" size="small" type="button">{{prestador.telefone | maskTelefone}}</ion-button>
+      </ion-item>
+      <ion-item class="ion-no-border">
+        <ion-icon class="fas fa-church" style="padding-right: 11px;"></ion-icon>
+        <ion-label class="ion-text-wrap on-no-border">
+          <h2>{{prestador.nomeIgreja}} </h2>
+          <div class="ion-text-end">
+            <ion-note color="tertiary" slot="end" *ngIf="prestador.staMembro">
+              membro
+            </ion-note>
+          </div>
+        </ion-label>
+
+      </ion-item>
+      <ion-item class="ion-no-border">
+        <ion-icon class="fas fa-map-marker-alt" style="padding-right: 11px;margin-left: 7px;"></ion-icon>
+        <ion-label class="ion-text-wrap on-no-border">
+          <h2>{{prestador.bairro}} - {{prestador.cidade}} / {{prestador.uf}}</h2>
+        </ion-label>
+      </ion-item>
+      <div class="ion-text-end">
+        <ion-button size="small" (click)="ShareGeneric(item)" color="light">
+          <ion-icon name="share-social"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-content>
   </ion-card>
-
-
   <ion-card class="ion-no-border">
     <ion-card-header>
 
@@ -75,21 +68,6 @@
       <ion-label class="ion-text-wrap">
         <h2>{{item.nomeServico}}</h2>
         <h3>{{item.breveDescricao}}</h3>
-      </ion-label>
-    </ion-item>
-  </ion-card>
-
-  <ion-card class="ion-no-border">
-    <ion-card-header>
-
-      <ion-card-title>
-        <h3>Igreja Vinculo</h3>
-      </ion-card-title>
-    </ion-card-header>
-    <ion-item>
-      <ion-label class="ion-text-wrap">
-        <h3>{{prestador.nomeIgreja}}</h3>
-        <h3>{{prestador.staMembro}}</h3>
       </ion-label>
     </ion-item>
   </ion-card>

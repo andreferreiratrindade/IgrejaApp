@@ -47,6 +47,7 @@ export class ConsultarPrestadorAdmPage implements OnInit {
   }
 
   ngOnInit() {
+
     this.loadingContr.showLoader();
     this.igrejaService.RecuperaIgrejaPorAdministrador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
     .then(result => {
@@ -154,7 +155,7 @@ export class ConsultarPrestadorAdmPage implements OnInit {
       modal.present();
       modal.onWillDismiss().then(resultModal => {
 
-        if (resultModal) {
+        if (resultModal.data) {
           this.formConsultarPrestadorADM.controls['nomeSituacaoPrestador'].setValue(resultModal.data.descricao);
           this.formConsultarPrestadorADM.controls['situacaoPrestador'].setValue(resultModal.data.valor);
         }
