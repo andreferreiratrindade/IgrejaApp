@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Detalhes - Prestador</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Dados empresa</h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <p>Nome</p>\n        <h3>{{usuario.nome}}</h3>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <p>Email</p>\n        <h3>{{usuario.email}}</h3>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <p>Razão Social</p>\n        <h3>{{prestador.razaoSocial}}</h3>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <p>Telefone</p>\n        <h3>{{prestador.telefone}}</h3>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <p>Endereço</p>\n        <h3>{{prestador.logradouro}}, {{prestador.bairro}} - {{prestador.cidade}} / {{prestador.uf}}</h3>\n      </ion-label>\n    </ion-item>\n\n  </ion-card>\n\n\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Local Atendimento</h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item *ngFor=\"let item of prestador.locaisAtendimento; let i = index\">\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{i+1}}. {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n  </ion-card>\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Serviços</h3>\n      </ion-card-title>\n    </ion-card-header>\n\n    <ion-item *ngFor=\"let item of prestadorServicos\">\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{item.nomeServico}}</h2>\n        <h3>{{item.breveDescricao}}</h3>\n      </ion-label>\n    </ion-item>\n  </ion-card>\n\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Igreja Vinculo</h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <h3>{{prestador.nomeIgreja}}</h3>\n        <h3>{{prestador.staMembro}}</h3>\n      </ion-label>\n    </ion-item>\n  </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n  <ion-card class=\"ion-no-border\">\n    <ion-button (click)=\"closeModal()\" fill=\"clear\" style=\"margin-left: -9px; margin-top: 0px;\">\n      <ion-icon slot=\"icon-only\" name=\"close-circle-outline\"></ion-icon>\n    </ion-button>\n    <ion-card-header style=\"padding-top: 0px;margin-top: -20px;\">\n\n      <ion-card-title>\n        <h3>{{prestador.nome}}</h3>\n        <ion-label size=\"12\">\n          <p>{{prestador.descricaoServicos}}</p>\n        </ion-label>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item (click)=\"ligarTelefone(prestador.telefone)\" class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-phone-alt\" style=\"padding-right: 11px;margin-left: 3px;\"></ion-icon>\n        <ion-button color=\"tertiary\" size=\"small\" type=\"button\">{{prestador.telefone | maskTelefone}}</ion-button>\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-church\" style=\"padding-right: 11px;\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{prestador.nomeIgreja}} </h2>\n          <div class=\"ion-text-end\">\n            <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"prestador.staMembro\">\n              membro\n            </ion-note>\n          </div>\n        </ion-label>\n\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-map-marker-alt\" style=\"padding-right: 11px;margin-left: 7px;\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{prestador.bairro}} - {{prestador.cidade}} / {{prestador.uf}}</h2>\n        </ion-label>\n      </ion-item>\n      <div class=\"ion-text-end\">\n        <ion-button size=\"small\" (click)=\"ShareGeneric(item)\" color=\"light\">\n          <ion-icon name=\"share-social\"></ion-icon>\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Local Atendimento</h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item *ngFor=\"let item of prestador.locaisAtendimento; let i = index\">\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{i+1}}. {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n  </ion-card>\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Serviços</h3>\n      </ion-card-title>\n    </ion-card-header>\n\n    <ion-item *ngFor=\"let item of prestadorServicos\">\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{item.nomeServico}}</h2>\n        <h3>{{item.breveDescricao}}</h3>\n      </ion-label>\n    </ion-item>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -77,7 +77,7 @@ class ToastCustom {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci92aXN1YWxpemFyLXByZXN0YWRvci92aXN1YWxpemFyLXByZXN0YWRvci5wYWdlLnNjc3MifQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvcHJlc3RhZG9yL3Zpc3VhbGl6YXItcHJlc3RhZG9yL3Zpc3VhbGl6YXItcHJlc3RhZG9yLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvcHJlc3RhZG9yL3Zpc3VhbGl6YXItcHJlc3RhZG9yL3Zpc3VhbGl6YXItcHJlc3RhZG9yLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDRCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9wcmVzdGFkb3IvdmlzdWFsaXphci1wcmVzdGFkb3IvdmlzdWFsaXphci1wcmVzdGFkb3IucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */");
 
 /***/ }),
 
@@ -102,6 +102,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/providers/usuario/usuario.service */ "./src/app/providers/usuario/usuario.service.ts");
 /* harmony import */ var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/utils/constants */ "./src/app/utils/constants.ts");
 /* harmony import */ var src_app_providers_igreja_igreja_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/providers/igreja/igreja.service */ "./src/app/providers/igreja/igreja.service.ts");
+/* harmony import */ var _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic-native/call-number/ngx */ "./node_modules/@ionic-native/call-number/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/social-sharing/ngx */ "./node_modules/@ionic-native/social-sharing/__ivy_ngcc__/ngx/index.js");
+
+
 
 
 
@@ -114,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let VisualizarPrestadorPage = class VisualizarPrestadorPage {
-    constructor(prestadorService, dominioServicoService, loadingContr, ngZone, router, toastCtrl, igrejaService, route, usuarioService, modalController) {
+    constructor(prestadorService, dominioServicoService, loadingContr, ngZone, router, toastCtrl, igrejaService, route, usuarioService, modalController, callNumber, socialSharing) {
         this.prestadorService = prestadorService;
         this.dominioServicoService = dominioServicoService;
         this.loadingContr = loadingContr;
@@ -125,6 +129,8 @@ let VisualizarPrestadorPage = class VisualizarPrestadorPage {
         this.route = route;
         this.usuarioService = usuarioService;
         this.modalController = modalController;
+        this.callNumber = callNumber;
+        this.socialSharing = socialSharing;
         this.prestador = {};
         this.prestadorServicos = [];
         this.usuario = {};
@@ -132,10 +138,6 @@ let VisualizarPrestadorPage = class VisualizarPrestadorPage {
     }
     ngOnInit() {
         this.loadingContr.showLoader();
-        this.usuarioService.RecuperaNomeUsuarios([this.usuarioId])
-            .then(resultado => {
-            this.usuario = resultado[0].data;
-        });
         this.prestadorService.RecuperaPrestador(this.usuarioId)
             .then((result) => {
             this.prestador = result;
@@ -163,8 +165,16 @@ let VisualizarPrestadorPage = class VisualizarPrestadorPage {
                     listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
                     return listItem;
                 });
+                this.prestador.descricaoServicos = this.prestadorServicos.map(y => { return y.nomeServico; }).join(', ');
                 this.loadingContr.hideLoader();
             });
+        }).catch(err => {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(err, this.toastCtrl);
+            this.loadingContr.hideLoader();
+        });
+        this.usuarioService.RecuperaNomeUsuarios([this.usuarioId])
+            .then(resultado => {
+            this.prestador.nome = resultado[0].data.nome;
         }).catch(err => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();
@@ -172,6 +182,13 @@ let VisualizarPrestadorPage = class VisualizarPrestadorPage {
     }
     closeModal() {
         this.modalController.dismiss(null, 'cancel');
+    }
+    ShareGeneric(prestador) {
+        let texto = prestador.nome + " / " + prestador.telefone;
+        this.socialSharing.share(texto, null, null);
+    }
+    ligarTelefone(telefone) {
+        this.callNumber.callNumber(telefone, true);
     }
 };
 VisualizarPrestadorPage.ctorParameters = () => [
@@ -184,7 +201,9 @@ VisualizarPrestadorPage.ctorParameters = () => [
     { type: src_app_providers_igreja_igreja_service__WEBPACK_IMPORTED_MODULE_10__["IgrejaService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"] },
     { type: src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_8__["UsuarioService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"] },
+    { type: _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_11__["CallNumber"] },
+    { type: _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_12__["SocialSharing"] }
 ];
 VisualizarPrestadorPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

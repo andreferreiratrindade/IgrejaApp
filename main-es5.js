@@ -3531,6 +3531,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             query.get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
+                debugger;
+                console.log(doc);
+
                 if (doc.data().locaisAtendimento) {
                   doc.data().locaisAtendimento.forEach(function (x) {
                     if (x.cidade == cidadeSelecionado && x.uf == ufSelecionado) {

@@ -2224,6 +2224,8 @@ let PrestadorRepServiceService = class PrestadorRepServiceService extends _repos
             query.get().then(result => {
                 let lst = [];
                 result.forEach(function (doc) {
+                    debugger;
+                    console.log(doc);
                     if (doc.data().locaisAtendimento) {
                         doc.data().locaisAtendimento.forEach(x => {
                             if (x.cidade == cidadeSelecionado && x.uf == ufSelecionado) {

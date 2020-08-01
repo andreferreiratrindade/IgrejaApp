@@ -87,7 +87,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n    </ion-toolbar>\n  </ion-header>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Consultar Prestador</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <form [formGroup]=\"formulario\" (ngSubmit)=\"ConsultarPrestador()\">\n        <ion-item (click)=\"abrirModalServicos()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Serviço</ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\">{{nomeServicoSelecionado}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n        </ion-item>\n\n        <ion-item (click)=\"abrirModalUF()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>UF<ion-text color=\"danger\">*</ion-text>\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formulario.value.ufApresentacao}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n\n        <ion-item (click)=\"abrirModalCidade()\" [disabled]=\"!formulario.value.uf\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Cidade<ion-text color=\"danger\">*</ion-text>\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formulario.value.cidade}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <ion-item (click)=\"abrirModalIgreja()\" [disabled]=\"!formulario.value.cidade\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Igreja\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formulario.value.nomeIgreja}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n\n          <ion-button class=\"primary\" type=\"submit\">\n            <ion-icon name=\"search-outline\" style=\"margin-right:10px;\"></ion-icon>Pesquisar\n          </ion-button>\n\n        </div>\n      </form>\n      <!-- \n      <ion-list *ngIf=\"prestadores.length > 0\" style=\"margin-top: 20px;margin-bottom: 20px;\">\n        <ion-list-header style=\"margin-bottom: 20px;\">\n          Prestadores\n        </ion-list-header>\n        <ion-item *ngFor=\"let item of prestadores\" detail (click)=\"detalhes(item.usuarioId)\">\n          <ion-label size=\"12\">\n            <h2>{{item.nome}}</h2>\n            <p>{{item.descricaoServicos}}</p>\n          </ion-label>\n        </ion-item>\n      </ion-list> -->\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}}</h3>\n        <ion-label size=\"12\">\n          <p>{{item.descricaoServicos}}</p>\n        </ion-label>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item (click)=\"ligarTelefone(item.telefone)\" class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-phone-alt\" style=\"padding-right: 11px;margin-left: 3px;\"></ion-icon>\n        <ion-button color=\"tertiary\" size=\"small\" type=\"button\" >{{item.telefone | maskTelefone}}</ion-button>\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-church\" style=\"padding-right: 11px;\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{item.nomeIgreja}} </h2>\n          <div class=\"ion-text-end\">\n            <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"item.staMembro\">\n              membro\n            </ion-note>\n          </div>\n        </ion-label>\n\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-map-marker-alt\" style=\"padding-right: 11px;margin-left: 7px;\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n        </ion-label>\n      </ion-item>\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"6\">\n            <ion-button size=\"small\" (click)=\"detalhes(item.usuarioId)\" color=\"secondary\">\n              <ion-icon name=\"eye-outline\" style=\"margin-right:10px;\"></ion-icon> Detalhes\n            </ion-button>\n          </ion-col>\n          <ion-col size=\"4\">\n            <ion-button size=\"small\" (click)=\"ShareGeneric(item)\" color=\"light\">\n              <ion-icon name=\"share-social\"></ion-icon>\n            </ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n    </ion-toolbar>\n  </ion-header>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Consultar Prestador</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <form [formGroup]=\"formulario\" (ngSubmit)=\"ConsultarPrestador()\">\n        <ion-item (click)=\"abrirModalServicos()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Serviço</ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\">{{nomeServicoSelecionado}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n        </ion-item>\n\n        <ion-item (click)=\"abrirModalUF()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>UF<ion-text color=\"danger\">*</ion-text>\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formulario.value.ufApresentacao}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n\n        <ion-item (click)=\"abrirModalCidade()\" [disabled]=\"!formulario.value.uf\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Cidade<ion-text color=\"danger\">*</ion-text>\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formulario.value.cidade}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <ion-item (click)=\"abrirModalIgreja()\" [disabled]=\"!formulario.value.cidade\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Igreja\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formulario.value.nomeIgreja}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n\n          <ion-button class=\"primary\" type=\"submit\">\n            <ion-icon name=\"search-outline\" style=\"margin-right:10px;\"></ion-icon>Pesquisar\n          </ion-button>\n\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" class=\"ion-no-border\" (click)=\"detalhes(item.usuarioId)\">\n    <ion-card-content>\n      <ion-item lines=\"none\" detail>\n        <ion-label>\n          <h2>{{item.nome}}</h2>\n          <p>{{item.descricaoServicos}}</p>\n        </ion-label>\n      </ion-item>\n    </ion-card-content>\n  </ion-card>\n\n  <!-- <ion-card *ngFor=\"let item of prestadores\" class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}}</h3>\n        <ion-label size=\"12\">\n          <p>{{item.descricaoServicos}}</p>\n        </ion-label>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item (click)=\"ligarTelefone(item.telefone)\" class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-phone-alt\" style=\"padding-right: 11px;margin-left: 3px;\"></ion-icon>\n        <ion-button color=\"tertiary\" size=\"small\" type=\"button\" >{{item.telefone | maskTelefone}}</ion-button>\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-church\" style=\"padding-right: 11px;\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{item.nomeIgreja}} </h2>\n          <div class=\"ion-text-end\">\n            <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"item.staMembro\">\n              membro\n            </ion-note>\n          </div>\n        </ion-label>\n\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-map-marker-alt\" style=\"padding-right: 11px;margin-left: 7px;\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n        </ion-label>\n      </ion-item>\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"6\">\n            <ion-button size=\"small\" (click)=\"detalhes(item.usuarioId)\" color=\"secondary\">\n              <ion-icon name=\"eye-outline\" style=\"margin-right:10px;\"></ion-icon> Detalhes\n            </ion-button>\n          </ion-col>\n          <ion-col size=\"4\">\n            <ion-button size=\"small\" (click)=\"ShareGeneric(item)\" color=\"light\">\n              <ion-icon name=\"share-social\"></ion-icon>\n            </ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-card-content>\n  </ion-card> -->\n\n</ion-content>";
     /***/
   },
 
@@ -705,42 +705,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
-    /*! @ionic-native/call-number/ngx */
-    "./node_modules/@ionic-native/call-number/__ivy_ngcc__/ngx/index.js");
-    /* harmony import */
-
-
-    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
     /*! src/app/utils/constants */
     "./src/app/utils/constants.ts");
     /* harmony import */
 
 
-    var src_app_providers_favorito_favorito_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+    var src_app_providers_favorito_favorito_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
     /*! src/app/providers/favorito/favorito.service */
     "./src/app/providers/favorito/favorito.service.ts");
     /* harmony import */
 
 
-    var src_app_config__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
+    var src_app_config__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
     /*! src/app/config */
     "./src/app/config.ts");
     /* harmony import */
 
 
-    var _visualizar_prestador_visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
+    var _visualizar_prestador_visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
     /*! ../visualizar-prestador/visualizar-prestador.page */
     "./src/app/pages/prestador/visualizar-prestador/visualizar-prestador.page.ts");
-    /* harmony import */
-
-
-    var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(
-    /*! @ionic-native/social-sharing/ngx */
-    "./node_modules/@ionic-native/social-sharing/__ivy_ngcc__/ngx/index.js");
 
     var PrestadorConsultarPage = /*#__PURE__*/function () {
-      function PrestadorConsultarPage(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl, callNumber, favoritoService, socialSharing) {
+      function PrestadorConsultarPage(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl, favoritoService) {
         _classCallCheck(this, PrestadorConsultarPage);
 
         this.prestadorService = prestadorService;
@@ -751,9 +739,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.dominioServicoService = dominioServicoService;
         this.router = router;
         this.modalCtrl = modalCtrl;
-        this.callNumber = callNumber;
         this.favoritoService = favoritoService;
-        this.socialSharing = socialSharing;
         this.nomeServicoSelecionado = "Todos";
         this.servicosSelecionados = [];
         this.formulario = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
@@ -784,7 +770,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
           this.prestadorService.RecuperaUfPrestadorDisponiveis().then(function (result) {
             _this3.UfList = result.map(function (x) {
-              return src_app_utils_constants__WEBPACK_IMPORTED_MODULE_18__["Constants"].ListagemUF.RecuperaObjetoPorUF(x);
+              return src_app_utils_constants__WEBPACK_IMPORTED_MODULE_17__["Constants"].ListagemUF.RecuperaObjetoPorUF(x);
             });
 
             _this3.loadingContr.hideLoader();
@@ -818,7 +804,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this5 = this;
 
           if (!this.formularioValido()) {
-            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_11__["ToastCustom"].CustomToast(this.toastCtrl, src_app_utils_constants__WEBPACK_IMPORTED_MODULE_18__["Constants"].Mensagens.CamposObrigatorios, "danger", 4000);
+            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_11__["ToastCustom"].CustomToast(this.toastCtrl, src_app_utils_constants__WEBPACK_IMPORTED_MODULE_17__["Constants"].Mensagens.CamposObrigatorios, "danger", 4000);
             return false;
           }
 
@@ -840,87 +826,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               return x.usuarioId;
             });
             _this5.prestadores = prestadoresResult;
-            var lstIgrejaId = [];
-            lstIgrejaId = prestadoresResult.map(function (x) {
-              return x.igrejaId;
-            });
 
-            _this5.consultaMasterPrestador(lstusuarioId, lstIgrejaId).then(function () {
-              _this5.loadingContr.hideLoader();
-            })["catch"](function (x) {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this5.toastCtrl);
-
-              _this5.loadingContr.hideLoader();
-            });
-          })["catch"](function (x) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this5.toastCtrl);
-
-            _this5.loadingContr.hideLoader();
-          });
-        }
-      }, {
-        key: "consultaMasterPrestador",
-        value: function consultaMasterPrestador(lstusuarioId, lstIgrejaId) {
-          var _this6 = this;
-
-          return new Promise(function (result, reject) {
-            // Recupera igreja 
-            _this6.recuperaNomeIgreja(lstIgrejaId).then(function () {
-              result();
-            })["catch"](function (err) {
-              reject(err);
-            }); // Recupera Nome 
-
-
-            _this6.recuperaNomePrestadores(lstusuarioId).then(function () {
-              result();
-            })["catch"](function (err) {
-              reject(err);
-            });
-
-            _this6.prestadores.forEach(function (x) {
-              x.servicos.forEach(function (y) {
-                y.nomeServico = _this6.servicos.filter(function (w) {
-                  return w.servicoId == y.servicoId;
-                })[0].nomeServico;
-              });
-              x.descricaoServicos = x.servicos.map(function (y) {
-                return y.nomeServico;
-              }).join(', ');
-            }); // Recupera Servicos
-            //this.recuperaServicosPorPrestadores(lstusuarioId);
-
-          });
-        }
-      }, {
-        key: "recuperaServicosPorPrestadores",
-        value: function recuperaServicosPorPrestadores(lstusuarioId) {
-          var _this7 = this;
-
-          return new Promise(function () {
-            _this7.prestadorService.recuperaServicosPorPrestadores(lstusuarioId).then(function (servicosPorPrestador) {
-              _this7.prestadores.map(function (x) {
-                x.servicos = servicosPorPrestador.find(function (y) {
-                  y.usuarioId == x.usuarioId;
-                });
-              });
-
-              _this7.loadingContr.hideLoader();
-            })["catch"](function (x) {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this7.toastCtrl);
-
-              _this7.loadingContr.hideLoader();
-            });
-          });
-        }
-      }, {
-        key: "recuperaNomePrestadores",
-        value: function recuperaNomePrestadores(lstusuarioId) {
-          var _this8 = this;
-
-          return new Promise(function (result, reject) {
-            _this8.usuarioService.RecuperaNomeUsuarios(lstusuarioId).then(function (usuariosResult) {
-              _this8.prestadores.map(function (x) {
+            _this5.usuarioService.RecuperaNomeUsuarios(lstusuarioId).then(function (usuariosResult) {
+              _this5.prestadores.map(function (x) {
                 x.nome = usuariosResult.find(function (y) {
                   return y.data.usuarioId == x.usuarioId;
                 }).data.nome;
@@ -929,43 +837,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 }).data.email;
               });
 
-              _this8.ionContent.scrollToPoint(0, 350, 800);
+              _this5.loadingContr.hideLoader();
 
-              result();
+              _this5.ionContent.scrollToPoint(0, 350, 800);
             })["catch"](function (x) {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this8.toastCtrl);
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this5.toastCtrl);
 
-              _this8.loadingContr.hideLoader();
+              _this5.loadingContr.hideLoader();
             });
-          });
-        }
-      }, {
-        key: "recuperaNomeIgreja",
-        value: function recuperaNomeIgreja(lstIgrejaId) {
-          var _this9 = this;
 
-          return new Promise(function (result, reject) {
-            _this9.igrejaService.RecuperaNomeIgreja(lstIgrejaId).then(function (resultIgreja) {
-              _this9.prestadores.map(function (x) {
-                x.nomeIgreja = resultIgreja.find(function (y) {
-                  return y.data.id == x.igrejaId;
-                }).data.nomeIgreja;
+            _this5.prestadores.forEach(function (x) {
+              x.servicos.forEach(function (y) {
+                y.nomeServico = _this5.servicos.filter(function (w) {
+                  return w.servicoId == y.servicoId;
+                })[0].nomeServico;
               });
-
-              result();
-            })["catch"](function (x) {
-              reject(x);
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this9.toastCtrl);
-
-              _this9.loadingContr.hideLoader();
+              x.descricaoServicos = x.servicos.map(function (y) {
+                return y.nomeServico;
+              }).join(', ');
             });
+          })["catch"](function (x) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this5.toastCtrl);
+
+            _this5.loadingContr.hideLoader();
           });
         }
       }, {
         key: "detalhes",
         value: function detalhes(usuarioId) {
           var modal = this.modalCtrl.create({
-            component: _visualizar_prestador_visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_21__["VisualizarPrestadorPage"],
+            component: _visualizar_prestador_visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_20__["VisualizarPrestadorPage"],
             componentProps: {
               usuarioId: usuarioId
             },
@@ -978,7 +879,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModalServicos",
         value: function abrirModalServicos() {
-          var _this10 = this;
+          var _this6 = this;
 
           var modal = this.modalCtrl.create({
             component: _servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_12__["ModalServicosPage"],
@@ -990,8 +891,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
               if (resultModal.data) {
-                _this10.servicosSelecionados = resultModal.data;
-                _this10.nomeServicoSelecionado = _this10.servicosSelecionados.map(function (y) {
+                _this6.servicosSelecionados = resultModal.data;
+                _this6.nomeServicoSelecionado = _this6.servicosSelecionados.map(function (y) {
                   return y.nomeServico;
                 }).join('; ');
               }
@@ -1001,7 +902,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModalUF",
         value: function abrirModalUF() {
-          var _this11 = this;
+          var _this7 = this;
 
           var modal = this.modalCtrl.create({
             component: _UF_modal_uf_modal_uf_page__WEBPACK_IMPORTED_MODULE_15__["ModalUFPage"],
@@ -1013,19 +914,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
               if (resultModal.data) {
-                _this11.formulario.controls["ufApresentacao"].setValue(resultModal.data.nome + " / " + resultModal.data.sigla);
+                _this7.formulario.controls["ufApresentacao"].setValue(resultModal.data.nome + " / " + resultModal.data.sigla);
 
-                _this11.formulario.controls["uf"].setValue(resultModal.data.sigla);
+                _this7.formulario.controls["uf"].setValue(resultModal.data.sigla);
 
-                _this11.formulario.controls["cidade"].setValue(null);
+                _this7.formulario.controls["cidade"].setValue(null);
 
-                _this11.formulario.controls["bairro"].setValue(null);
+                _this7.formulario.controls["bairro"].setValue(null);
 
-                _this11.formulario.controls["nomeIgreja"].setValue(null);
+                _this7.formulario.controls["nomeIgreja"].setValue(null);
 
-                _this11.formulario.controls["igrejaId"].setValue(null);
+                _this7.formulario.controls["igrejaId"].setValue(null);
 
-                _this11.buscarCidades(resultModal.data.sigla);
+                _this7.buscarCidades(resultModal.data.sigla);
               }
             });
           });
@@ -1033,7 +934,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModalCidade",
         value: function abrirModalCidade() {
-          var _this12 = this;
+          var _this8 = this;
 
           var modal = this.modalCtrl.create({
             component: _cidade_modal_cidade_modal_cidade_page__WEBPACK_IMPORTED_MODULE_14__["ModalCidadePage"],
@@ -1045,10 +946,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
               if (resultModal.data) {
-                _this12.formulario.value.cidade = resultModal.data;
-                _this12.formulario.value.bairro = null;
-                _this12.formulario.value.nomeIgreja = null;
-                _this12.formulario.value.igrejaId = null;
+                _this8.formulario.value.cidade = resultModal.data;
+                _this8.formulario.value.bairro = null;
+                _this8.formulario.value.nomeIgreja = null;
+                _this8.formulario.value.igrejaId = null;
               }
             });
           });
@@ -1056,7 +957,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModalBairro",
         value: function abrirModalBairro() {
-          var _this13 = this;
+          var _this9 = this;
 
           var modal = this.modalCtrl.create({
             component: _bairro_modal_bairro_modal_bairro_page__WEBPACK_IMPORTED_MODULE_13__["ModalBairroPage"],
@@ -1069,9 +970,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
               if (resultModal.data) {
-                _this13.formulario.value.bairro = resultModal.data;
-                _this13.formulario.value.nomeIgreja = null;
-                _this13.formulario.value.igrejaId = null;
+                _this9.formulario.value.bairro = resultModal.data;
+                _this9.formulario.value.nomeIgreja = null;
+                _this9.formulario.value.igrejaId = null;
               }
             });
           });
@@ -1079,7 +980,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModalIgreja",
         value: function abrirModalIgreja() {
-          var _this14 = this;
+          var _this10 = this;
 
           var modal = this.modalCtrl.create({
             component: _igreja_modal_igreja_modal_igreja_page__WEBPACK_IMPORTED_MODULE_16__["ModalIgrejaPage"],
@@ -1093,8 +994,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
               if (resultModal.data) {
-                _this14.formulario.value.nomeIgreja = resultModal.data.nomeIgreja;
-                _this14.formulario.value.igrejaId = resultModal.data.id;
+                _this10.formulario.value.nomeIgreja = resultModal.data.nomeIgreja;
+                _this10.formulario.value.igrejaId = resultModal.data.id;
               }
             });
           });
@@ -1108,34 +1009,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.formulario.value.uf && this.formulario.value.cidade;
         }
       }, {
-        key: "ligarTelefone",
-        value: function ligarTelefone(telefone) {
-          var _this15 = this;
-
-          this.callNumber.callNumber(telefone, true).then(function () {})["catch"](function (x) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this15.toastCtrl);
-          });
-        }
-      }, {
         key: "adicionarPrestadorFavorito",
         value: function adicionarPrestadorFavorito(usuarioId) {
-          this.favoritoService.AdicionaPrestadorFavorito(usuarioId, src_app_config__WEBPACK_IMPORTED_MODULE_20__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function () {});
+          this.favoritoService.AdicionaPrestadorFavorito(usuarioId, src_app_config__WEBPACK_IMPORTED_MODULE_19__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function () {});
         }
       }, {
         key: "removePrestadorFavorito",
         value: function removePrestadorFavorito(usuarioId) {
-          this.favoritoService.RemovePrestadorFavorito(usuarioId, src_app_config__WEBPACK_IMPORTED_MODULE_20__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function () {});
-        } // ShareGeneric(parameter){
-        //     const url = this.link
-        //     const text = parameter+'\n'
-        //     this.socialSharing.share(text, 'MEDIUM', null, url)
-        //   }
-
-      }, {
-        key: "ShareGeneric",
-        value: function ShareGeneric(prestador) {
-          var texto = prestador.nome + " / " + prestador.telefone;
-          this.socialSharing.share(texto, null, null);
+          this.favoritoService.RemovePrestadorFavorito(usuarioId, src_app_config__WEBPACK_IMPORTED_MODULE_19__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function () {});
         }
       }]);
 
@@ -1160,11 +1041,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"]
       }, {
-        type: _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_17__["CallNumber"]
-      }, {
-        type: src_app_providers_favorito_favorito_service__WEBPACK_IMPORTED_MODULE_19__["FavoritoService"]
-      }, {
-        type: _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_22__["SocialSharing"]
+        type: src_app_providers_favorito_favorito_service__WEBPACK_IMPORTED_MODULE_18__["FavoritoService"]
       }];
     };
 
@@ -1299,7 +1176,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(FavoritoRepService, [{
         key: "AdicionaPrestadorFavorito",
         value: function AdicionaPrestadorFavorito(prestadorUsuarioId, usuarioId) {
-          var _this16 = this;
+          var _this11 = this;
 
           var ref = this.db.collection("favorito").doc(usuarioId);
           var obj = [{
@@ -1307,7 +1184,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             usuarioId: usuarioId
           }];
           return new Promise(function (retorno, reject) {
-            _this16.db.runTransaction(function (transaction) {
+            _this11.db.runTransaction(function (transaction) {
               // This code may get re-run multiple times if there are conflicts.
               return transaction.get(ref).then(function (doc) {
                 var favorito = doc.data();
@@ -1333,7 +1210,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "RemovePrestadorFavorito",
         value: function RemovePrestadorFavorito(prestadorUsuarioId, usuarioId) {
-          var _this17 = this;
+          var _this12 = this;
 
           var ref = this.db.collection("favorito").doc(usuarioId);
           var obj = [{
@@ -1341,7 +1218,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             usuarioId: usuarioId
           }];
           return new Promise(function (retorno, reject) {
-            _this17.db.runTransaction(function (transaction) {
+            _this12.db.runTransaction(function (transaction) {
               // This code may get re-run multiple times if there are conflicts.
               return transaction.get(ref).then(function (doc) {
                 var prestadores = [];

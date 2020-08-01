@@ -122,13 +122,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./visualizar-prestador.page */
     "./src/app/pages/prestador/visualizar-prestador/visualizar-prestador.page.ts");
+    /* harmony import */
+
+
+    var src_app_pipes_pipes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! src/app/pipes/pipes */
+    "./src/app/pipes/pipes.ts");
+    /* harmony import */
+
+
+    var src_app_components_components_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! src/app/components/components.module */
+    "./src/app/components/components.module.ts");
 
     var VisualizarPrestadorPageModule = function VisualizarPrestadorPageModule() {
       _classCallCheck(this, VisualizarPrestadorPageModule);
     };
 
     VisualizarPrestadorPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _visualizar_prestador_routing_module__WEBPACK_IMPORTED_MODULE_5__["VisualizarPrestadorPageRoutingModule"]],
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], src_app_components_components_module__WEBPACK_IMPORTED_MODULE_8__["ComponentsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], src_app_pipes_pipes__WEBPACK_IMPORTED_MODULE_7__["PipesModule"], _visualizar_prestador_routing_module__WEBPACK_IMPORTED_MODULE_5__["VisualizarPrestadorPageRoutingModule"]],
       declarations: [_visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_6__["VisualizarPrestadorPage"]]
     })], VisualizarPrestadorPageModule);
     /***/

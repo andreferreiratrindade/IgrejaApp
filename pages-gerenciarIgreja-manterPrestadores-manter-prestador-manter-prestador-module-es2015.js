@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>\n      Manter Prestador\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>\n      Dados empresa\n    </ion-list-header>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <p>Nome</p>\n        <h3>{{prestador.nome}}</h3>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <p>Email</p>\n        <h3>{{prestador.email}}</h3>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <p>Razão Social</p>\n        <h3>{{prestador.razaoSocial}}</h3>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <p>Telefone</p>\n        <h3>{{prestador.telefone}}</h3>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <p>Endereço</p>\n        <h3>{{prestador.logradouro}}, {{prestador.bairro}} - {{prestador.cidade}} / {{prestador.uf}}</h3>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n  <ion-list>\n    <ion-list-header>\n      Local Atendimento\n    </ion-list-header>\n    <ion-item *ngFor=\"let item of prestador.locaisAtendimento\">\n      <ion-label class=\"ion-text-wrap\">\n        <h1>{{item.cidade}} / {{item.uf}}</h1>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n  <ion-list>\n    <ion-list-header>\n      Serviços\n    </ion-list-header>\n    <ion-item *ngFor=\"let item of prestadorServicos\">\n      <ion-label class=\"ion-text-wrap\">\n        <h1>{{item.nomeServico}}</h1>\n        <h3>{{item.breveDescricao}}</h3>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n\n  <ion-list>\n    <ion-list-header>\n      Igreja Vinculo\n    </ion-list-header>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap\">\n        <h3>{{prestador.nomeIgreja}}</h3>\n        <h3>{{prestador.staMembro}}</h3>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n  <ion-list>\n    <ion-item>\n      <ion-label>Situação do Prestador</ion-label>\n      <ion-select [(ngModel)]=\"prestador.situacaoPrestador\">\n        <ion-select-option *ngFor=\"let item of situacoesPrestador\" [value]=\"item.valor\">\n          {{ item.descricao }}\n        </ion-select-option>\n      </ion-select>\n    </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button class=\"default\" type=\"button\" (click)=\"voltar()\">Voltar</ion-button>\n        </ion-col>\n        <ion-col size=\"4\">\n          <ion-button class=\"success\" type=\"button\" (click)=\"atualizarPrestador()\">Atualizar</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Manter Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Dados Empresa</h3>\n\n\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">\n          <p>Nome</p>\n          <h3>{{prestador.nome}}</h3>\n        </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">\n          <p>Email</p>\n          <h3>{{prestador.email}}</h3>\n        </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">\n          <p>Razão Social</p>\n          <h3>{{prestador.razaoSocial}}</h3>\n        </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">\n          <p>Telefone</p>\n          <h3>{{prestador.telefone}}</h3>\n        </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">\n          <p>Endereço</p>\n          <h3>{{prestador.logradouro}}, {{prestador.bairro}} - {{prestador.cidade}} / {{prestador.uf}}</h3>\n        </ion-label>\n      </ion-item>\n\n    </ion-card-content>\n  </ion-card>\n\n\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Local Atendimento</h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-item *ngFor=\"let item of prestador.locaisAtendimento; let i = index\">\n        <ion-label class=\"ion-text-wrap\">\n          <h2>{{item.cidade}} / {{item.uf}}</h2>\n        </ion-label>\n      </ion-item>\n\n    </ion-card-content>\n  </ion-card>\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Serviços</h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-item *ngFor=\"let item of prestadorServicos\">\n        <ion-label class=\"ion-text-wrap\">\n          <h2>{{item.nomeServico}}</h2>\n          <h3>{{item.breveDescricao}}</h3>\n        </ion-label>\n      </ion-item>\n\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Igreja Vinculo</h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">\n          <h3>{{prestador.nomeIgreja}}</h3>\n        </ion-label>\n      </ion-item>\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">\n          <h3>Membro: {{prestador.staMembro?\"Sim\":\"Não\"}}</h3>\n        </ion-label>\n      </ion-item>\n    </ion-card-content>\n  </ion-card>\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Situação</h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-select [(ngModel)]=\"prestador.situacaoPrestador\">\n        <ion-select-option *ngFor=\"let item of situacoesPrestador\" [value]=\"item.valor\">\n          {{ item.descricao }}\n        </ion-select-option>\n      </ion-select>\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;margin-right: 15px; margin-bottom: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button class=\"success\" type=\"button\" (click)=\"atualizarPrestador()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\"></ion-icon>Atualizar\n        </ion-button>\n\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -211,52 +211,54 @@ let ManterPrestadorPage = class ManterPrestadorPage {
         this.prestador = {};
         this.prestadorUsuario = {};
         this.prestadorServicos = [];
-        this.prestador = { usuarioId: this.route.snapshot.queryParams['prestadorUsuarioId'] };
     }
     ngOnInit() {
-        this.loadingContr.showLoader();
-        this.situacoesPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_2__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem();
-        this.prestadorService.RecuperaPrestador(this.prestador.usuarioId)
-            .then((result) => {
-            this.prestador = result;
-            this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
-                this.prestador.nomeIgreja = result[0].data.nomeIgreja;
-                this.loadingContr.hideLoader();
-            }).catch(err => {
-                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_11__["HandlerError"].handler(err, this.toastCtrl);
-                this.loadingContr.hideLoader();
-            });
-        }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_11__["HandlerError"].handler(err, this.toastCtrl);
-            this.loadingContr.hideLoader();
-        });
-        this.prestadorService.recuperaServicosPorPrestador(this.prestador.usuarioId)
-            .then(result => {
-            this.prestadorServicos = result;
-            this.dominioServicoService.recuperaDominioServico().then(x => {
-                this.prestadorServicos.map((listItem) => {
-                    var _a;
-                    listItem.expanded = false;
-                    listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
-                    listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
-                    return listItem;
+        this.route.queryParams.subscribe(params => {
+            this.prestador = { usuarioId: params['prestadorUsuarioId'] };
+            this.loadingContr.showLoader();
+            this.situacoesPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_2__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem();
+            this.prestadorService.RecuperaPrestador(this.prestador.usuarioId)
+                .then((result) => {
+                this.prestador = result;
+                this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
+                    this.prestador.nomeIgreja = result[0].data.nomeIgreja;
+                    this.loadingContr.hideLoader();
+                }).catch(err => {
+                    src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_11__["HandlerError"].handler(err, this.toastCtrl);
+                    this.loadingContr.hideLoader();
                 });
-                this.loadingContr.hideLoader();
             }).catch(err => {
                 src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_11__["HandlerError"].handler(err, this.toastCtrl);
                 this.loadingContr.hideLoader();
             });
-        }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_11__["HandlerError"].handler(err, this.toastCtrl);
-            this.loadingContr.hideLoader();
-        });
-        this.usuarioService.RecuperaUsuarioPorUsuarioId(this.prestador.usuarioId)
-            .then(result => {
-            this.prestador.nome = result.nome;
-            this.prestador.email = result.email;
-        }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_11__["HandlerError"].handler(err, this.toastCtrl);
-            this.loadingContr.hideLoader();
+            this.prestadorService.recuperaServicosPorPrestador(this.prestador.usuarioId)
+                .then(result => {
+                this.prestadorServicos = result;
+                this.dominioServicoService.recuperaDominioServico().then(x => {
+                    this.prestadorServicos.map((listItem) => {
+                        var _a;
+                        listItem.expanded = false;
+                        listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
+                        listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
+                        return listItem;
+                    });
+                    this.loadingContr.hideLoader();
+                }).catch(err => {
+                    src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_11__["HandlerError"].handler(err, this.toastCtrl);
+                    this.loadingContr.hideLoader();
+                });
+            }).catch(err => {
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_11__["HandlerError"].handler(err, this.toastCtrl);
+                this.loadingContr.hideLoader();
+            });
+            this.usuarioService.RecuperaUsuarioPorUsuarioId(this.prestador.usuarioId)
+                .then(result => {
+                this.prestador.nome = result.nome;
+                this.prestador.email = result.email;
+            }).catch(err => {
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_11__["HandlerError"].handler(err, this.toastCtrl);
+                this.loadingContr.hideLoader();
+            });
         });
     }
     atualizarPrestador() {
