@@ -16,7 +16,7 @@ import { HandlerError } from 'src/app/helpers/handlerError';
   templateUrl: './novo.page.html',
   styleUrls: ['./novo.page.scss'],
 })
-export class NovoPage  {
+export class NovoPage {
   signUpForm: FormGroup;
   submitError: string;
   authRedirectResult: Subscription;
@@ -43,9 +43,9 @@ export class NovoPage  {
     public router: Router,
     private ngZone: NgZone,
     private authService: FirebaseAuthService,
-    public usuarioService:UsuarioService,
-    public loadCtr:LoadingContr,
-    public toastCtrl:ToastController
+    public usuarioService: UsuarioService,
+    public loadCtr: LoadingContr,
+    public toastCtrl: ToastController
   ) {
     this.signUpForm = new FormGroup({
       email: new FormControl('', Validators.compose([
@@ -67,13 +67,13 @@ export class NovoPage  {
     // Get firebase authentication redirect result invoken when using signInWithRedirect()
     // signInWithRedirect() is only used when client is in web but not desktop
     this.authRedirectResult = this.authService.getRedirectResult()
-    .subscribe(result => {
-      if (result.user) {
-        this.redirectLoggedUserToProfilePage();
-      } else if (result.error) {
-        this.submitError = result.error;
-      }
-    });
+      .subscribe(result => {
+        if (result.user) {
+          this.redirectLoggedUserToProfilePage();
+        } else if (result.error) {
+          this.submitError = result.error;
+        }
+      });
   }
 
   // Once the auth provider finished the authentication flow, and the auth redirect completes,
@@ -89,78 +89,78 @@ export class NovoPage  {
 
   signUpWithEmail() {
 
-    if(!this.signUpForm.valid ){
-      HandlerError.handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.",this.toastCtrl)
+    if (!this.signUpForm.valid) {
+      HandlerError.handler("Favor preencher todos os campos devidamente sinalizados antes de continuar.", this.toastCtrl)
       return false;
     }
 
     this.loadCtr.showLoader();
     this.authService.signUpWithEmail(this.signUpForm.value['email'], this.signUpForm.value['password'])
-    .then(user => {
-      // navigate to user profile
-      let usuarioObj = {
-       nome :this.signUpForm.value['nome'],
-       usuarioId :user.user.uid,
-       email :this.signUpForm.value['email'],
-      };
-      this.usuarioService.AdicionarUsuario(usuarioObj).then(x=> {
-        this.loadCtr.hideLoader();
-        this.signUpForm.reset();
+      .then(user => {
+        // navigate to user profile
+        let usuarioObj = {
+          nome: this.signUpForm.value['nome'],
+          usuarioId: user.user.uid,
+          email: this.signUpForm.value['email'],
+        };
+        this.usuarioService.AdicionarUsuario(usuarioObj).then(x => {
+          this.loadCtr.hideLoader();
+          this.signUpForm.reset();
           ToastCustom.SucessoToast(this.toastCtrl);
           this.redirectLoggedUserToProfilePage();
-      }).catch(error => {
+        }).catch(error => {
           HandlerError.handler(error, this.toastCtrl);
-      this.loadCtr.hideLoader();
+          this.loadCtr.hideLoader();
 
-      });
-    }).catch(err => {
-      HandlerError.handler(err, this.toastCtrl);
-      this.loadCtr.hideLoader();
-    })
+        });
+      }).catch(err => {
+        HandlerError.handler(err, this.toastCtrl);
+        this.loadCtr.hideLoader();
+      })
   }
 
   facebookSignUp() {
     this.authService.signInWithFacebook()
-    .then((result: any) => {
-      if (result.additionalUserInfo) {
-        this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
-      }
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
-    }).catch((error) => {
-      // Handle Errors here.
-    });
+      .then((result: any) => {
+        if (result.additionalUserInfo) {
+          this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
+        }
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        // const token = result.credential.accessToken;
+        // The signed-in user info is in result.user;
+        this.redirectLoggedUserToProfilePage();
+      }).catch((error) => {
+        // Handle Errors here.
+      });
   }
 
   googleSignUp() {
     this.authService.signInWithGoogle()
-    .then((result: any) => {
-      if (result.additionalUserInfo) {
-        this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
-      }
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
-    }).catch((error) => {
-      // Handle Errors here.
-    });
+      .then((result: any) => {
+        if (result.additionalUserInfo) {
+          this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
+        }
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        // const token = result.credential.accessToken;
+        // The signed-in user info is in result.user;
+        this.redirectLoggedUserToProfilePage();
+      }).catch((error) => {
+        // Handle Errors here.
+      });
   }
 
   twitterSignUp() {
     this.authService.signInWithTwitter()
-    .then((result: any) => {
-      if (result.additionalUserInfo) {
-        this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
-      }
-      // This gives you a Twitter Access Token. You can use it to access the Twitter API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info is in result.user;
-      this.redirectLoggedUserToProfilePage();
-    }).catch((error) => {
-      // Handle Errors here.
-    });
+      .then((result: any) => {
+        if (result.additionalUserInfo) {
+          this.authService.setProviderAdditionalInfo(result.additionalUserInfo.profile);
+        }
+        // This gives you a Twitter Access Token. You can use it to access the Twitter API.
+        // const token = result.credential.accessToken;
+        // The signed-in user info is in result.user;
+        this.redirectLoggedUserToProfilePage();
+      }).catch((error) => {
+        // Handle Errors here.
+      });
   }
 }
