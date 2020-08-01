@@ -320,53 +320,60 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    /* harmony import */
+
+
+    var src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! src/app/providers/usuario/usuario.service */
     "./src/app/providers/usuario/usuario.service.ts");
     /* harmony import */
 
 
-    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/utils/constants */
     "./src/app/utils/constants.ts");
     /* harmony import */
 
 
-    var src_app_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var src_app_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! src/app/config */
     "./src/app/config.ts");
     /* harmony import */
 
 
-    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! src/app/helpers/handlerError */
     "./src/app/helpers/handlerError.ts");
     /* harmony import */
 
 
-    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! src/app/helpers/loadingContr */
     "./src/app/helpers/loadingContr.ts");
     /* harmony import */
 
 
-    var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! @ionic/angular */
     "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
     /* harmony import */
 
 
-    var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! src/app/helpers/toastCustom */
     "./src/app/helpers/toastCustom.ts");
 
     var MeuUsuarioPage = /*#__PURE__*/function () {
-      function MeuUsuarioPage(loadingContr, toastCtrl, usuarioService) {
+      function MeuUsuarioPage(loadingContr, toastCtrl, usuarioService, route) {
         _classCallCheck(this, MeuUsuarioPage);
 
         this.loadingContr = loadingContr;
         this.toastCtrl = toastCtrl;
         this.usuarioService = usuarioService;
+        this.route = route;
         this.usuario = {};
         this.perfis = [];
       }
@@ -376,14 +383,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function ngOnInit() {
           var _this = this;
 
-          this.usuarioService.recuperaUsuarioLogado().then(function (result) {
-            _this.usuario = result;
+          this.route.queryParams.subscribe(function (params) {
+            _this.usuarioService.recuperaUsuarioLogado().then(function (result) {
+              _this.usuario = result;
 
-            if (result.perfis) {
-              _this.perfis = result.perfis.map(function (y) {
-                return src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].PerfilUsuario.RecuperaDescricaoPorValor(y);
-              });
-            }
+              if (result.perfis) {
+                _this.perfis = result.perfis.map(function (y) {
+                  return src_app_utils_constants__WEBPACK_IMPORTED_MODULE_4__["Constants"].PerfilUsuario.RecuperaDescricaoPorValor(y);
+                });
+              }
+            });
           });
         }
       }, {
@@ -392,19 +401,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this2 = this;
 
           if (!this.usuario.nome) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].Mensagens.CamposObrigatorios, this.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_6__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_4__["Constants"].Mensagens.CamposObrigatorios, this.toastCtrl);
             return false;
           }
 
           this.loadingContr.showLoader();
-          this.usuarioService.atualizaUsuario(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, {
+          this.usuarioService.atualizaUsuario(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, {
             nome: this.usuario.nome
           }).then(function (result) {
-            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_8__["ToastCustom"].SucessoToast(_this2.toastCtrl);
+            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_9__["ToastCustom"].SucessoToast(_this2.toastCtrl);
 
             _this2.loadingContr.hideLoader();
           })["catch"](function (error) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(error, _this2.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_6__["HandlerError"].handler(error, _this2.toastCtrl);
 
             _this2.loadingContr.hideLoader();
           });
@@ -416,11 +425,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     MeuUsuarioPage.ctorParameters = function () {
       return [{
-        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__["LoadingContr"]
+        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_7__["LoadingContr"]
       }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ToastController"]
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["ToastController"]
       }, {
-        type: src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_2__["UsuarioService"]
+        type: src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_3__["UsuarioService"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
       }];
     };
 

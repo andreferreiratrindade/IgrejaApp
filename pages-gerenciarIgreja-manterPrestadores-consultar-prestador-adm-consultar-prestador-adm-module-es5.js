@@ -567,7 +567,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var modal = this.modalCtrl.create({
             component: _modalSituacaoPrestador_modal_situacao_prestador_modal_situacao_prestador_page__WEBPACK_IMPORTED_MODULE_12__["ModalSituacaoPrestadorPage"],
             componentProps: {
-              situacoes: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem()
+              situacoes: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem().filter(function (y) {
+                return y.value !== src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao;
+              })
             },
             backdropDismiss: false
           }).then(function (modal) {

@@ -483,8 +483,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
             _this2.loadingContr.hideLoader();
           })["catch"](function (x) {
-            _this2.igrejas = [];
-
             _this2.loadingContr.hideLoader();
 
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(x, _this2.toastCtrl);
@@ -508,7 +506,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.loadingContr.showLoader();
           var obj = this.formulario.value;
           obj.usuarioId = src_app_config__WEBPACK_IMPORTED_MODULE_10__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId;
-          obj.situacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.CadastroLocalAtendimento;
+          obj.situacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao;
+
+          if (this.prestador) {
+            obj.situacaoPrestador = this.prestador.situacaoPrestador;
+          }
+
           this.prestadorService.AdicionarNovoPrestador(obj).then(function () {
             _this3.loadingContr.hideLoader();
 

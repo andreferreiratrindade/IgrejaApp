@@ -270,7 +270,7 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" menuId=\"mainContent\" side=\"start\">\n      <ion-header>\n        <ion-toolbar color=\"default\">\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n\n          <span *ngIf=\"usuarioLogado\">\n            <ion-list-header>\n              <h3>\n                {{recuperaDadosUsuario.nome.split(' ')[0]}}</h3>\n            </ion-list-header>\n            <ion-note>{{recuperaDadosUsuario.email}}</ion-note>\n\n            <ion-chip color=\"tertiary\" (click)=\"logoff()\" slot=\"close\" routerDirection=\"root\"\n              routerLink=\"prestador-consultar\" size=\"6\">\n              <ion-label>Sair</ion-label>\n              <ion-icon name=\"log-out-outline\"></ion-icon>\n            </ion-chip>\n          </span>\n\n          <ion-menu-toggle *ngFor=\"let p of paginas\">\n            <ion-item routerDirection=\"root\" [routerLink]=\"p.url\" detail=\"false\">\n              <ion-icon style=\"padding-right: 15px;\" class=\"{{p.icon}}\" ></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n            \n          </ion-menu-toggle>\n\n        </ion-list>\n        <ion-footer class=\"ion-no-border\">\n          <ion-toolbar>\n            <ion-label>{{ version }}</ion-label>\n          </ion-toolbar>\n        </ion-footer>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\">\n\n      <app-tablinks></app-tablinks>\n\n    </ion-router-outlet>\n  </ion-split-pane>\n</ion-app>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" menuId=\"mainContent\" side=\"start\">\n      <ion-header>\n        <ion-toolbar color=\"default\">\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n\n          <span *ngIf=\"usuarioLogado\">\n            <ion-list-header>\n              <h3>\n                {{recuperaDadosUsuario.nome.split(' ')[0]}}</h3>\n            </ion-list-header>\n            <ion-note>{{recuperaDadosUsuario.email}}</ion-note>\n\n            <ion-chip color=\"tertiary\" (click)=\"logoff()\" slot=\"close\" routerDirection=\"root\"\n              routerLink=\"prestador-consultar\" size=\"6\">\n              <ion-label>Sair</ion-label>\n              <ion-icon name=\"log-out-outline\"></ion-icon>\n            </ion-chip>\n          </span>\n\n          <ion-menu-toggle *ngFor=\"let p of paginas\">\n            <ion-item routerDirection=\"root\" [routerLink]=\"p.url\" detail=\"false\">\n              <ion-icon style=\"padding-right: 15px;\" class=\"{{p.icon}}\" ></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n            \n          </ion-menu-toggle>\n\n        </ion-list>\n        <!-- <ion-footer class=\"ion-no-border\">\n          <ion-toolbar>\n            <ion-label>{{ version }}</ion-label>\n          </ion-toolbar>\n        </ion-footer> -->\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\">\n\n      <app-tablinks></app-tablinks>\n\n    </ion-router-outlet>\n  </ion-split-pane>\n</ion-app>");
 
 /***/ }),
 
@@ -609,52 +609,8 @@ let AppComponent = class AppComponent {
             });
         });
         this.usuarioService.recuperaUsuarioLogado().then(() => {
-            console.log(this.paginas);
         });
     }
-    /*
-    get paginas() {
-      
-      let paginas =  this.RecuperaPaginasMenuLateral().filter(page => {
-        let retorno = true;
-        if (page.perfil) {
-          retorno = page.perfil.filter(x => {
-            let retorno = false;
-            if (this.usuarioLogado) {
-              let perfisDoUsuario = this.usuarioLogado.perfis
-  
-              if (perfisDoUsuario) {
-                retorno = perfisDoUsuario.filter(perfis => {
-                  return perfis == x;
-                }).length > 0;
-              }
-            }
-            return retorno;
-          }).length > 0;
-        }
-  
-        // if (page.perfilInverso) {
-  
-        //   retorno = page.perfilInverso.filter(x => {
-        //     let retorno = false;
-        //     if (this.usuarioLogado) {
-        //       let perfisDoUsuario = this.usuarioLogado.perfis
-  
-        //       if (perfisDoUsuario) {
-        //         retorno = perfisDoUsuario.filter(perfis => {
-        //           return perfis != x;
-        //         }).length > 0;
-        //       }
-        //     }
-  
-        //     return retorno;
-        //   }).length > 0;
-        // }
-        return retorno
-      });
-      console.log(paginas);
-      return paginas;
-    }*/
     get recuperaDadosUsuario() {
         var _a;
         return (_a = _config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario()) !== null && _a !== void 0 ? _a : { nome: "", email: "" };
@@ -763,6 +719,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ionic-native/social-sharing/ngx */ "./node_modules/@ionic-native/social-sharing/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _pipes_pipes__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./pipes/pipes */ "./src/app/pipes/pipes.ts");
 /* harmony import */ var _pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./pipes/sortBy/sort-by.pipe */ "./src/app/pipes/sortBy/sort-by.pipe.ts");
+/* harmony import */ var _helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./helpers/confirmAlert */ "./src/app/helpers/confirmAlert.ts");
+
 
 
 
@@ -815,6 +773,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _providers_base_provider_base_provider__WEBPACK_IMPORTED_MODULE_14__["BaseProvider"],
             _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_21__["SocialSharing"],
             _providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_11__["FirebaseAuthService"],
+            _helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_24__["ConfirmAlert"],
             _pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_23__["SortByPipe"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
         ],
@@ -1140,6 +1099,54 @@ class Config {
     }
     recuperaUsuario() {
         return this.usuario;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/helpers/confirmAlert.ts":
+/*!*****************************************!*\
+  !*** ./src/app/helpers/confirmAlert.ts ***!
+  \*****************************************/
+/*! exports provided: ConfirmAlert */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmAlert", function() { return ConfirmAlert; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class ConfirmAlert {
+    constructor() {
+    }
+    confirmationAlert(alertController, message) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            let resolveFunction;
+            const promise = new Promise(resolve => {
+                resolveFunction = resolve;
+            });
+            const alert = yield alertController.create({
+                header: 'Atenção',
+                message,
+                buttons: [
+                    {
+                        text: 'Não',
+                        handler: () => resolveFunction(false)
+                    },
+                    {
+                        text: 'Sim',
+                        handler: () => resolveFunction(true)
+                    }
+                ]
+            });
+            yield alert.present();
+            alert.onDidDismiss().then(() => {
+                // this update will happen after "alert" dismiss and within the scope of the HomePage component. 
+                console.log("onDidDismiss");
+            });
+            return promise;
+        });
     }
 }
 
@@ -2224,8 +2231,6 @@ let PrestadorRepServiceService = class PrestadorRepServiceService extends _repos
             query.get().then(result => {
                 let lst = [];
                 result.forEach(function (doc) {
-                    debugger;
-                    console.log(doc);
                     if (doc.data().locaisAtendimento) {
                         doc.data().locaisAtendimento.forEach(x => {
                             if (x.cidade == cidadeSelecionado && x.uf == ufSelecionado) {
@@ -2546,9 +2551,7 @@ var Constants;
     class ListTipoSituacaoPrestador {
         static RecuperaListagem() {
             return [
-                { valor: TipoSituacaoPrestador.CadastroDadosEmpresa, descricao: "Informações Iniciais" },
-                { valor: TipoSituacaoPrestador.CadastroServicos, descricao: "Serviços" },
-                { valor: TipoSituacaoPrestador.CadastroIgrejaVinculo, descricao: "Igreja Vinculada" },
+                { valor: TipoSituacaoPrestador.PrestadorEmEdicao, descricao: "Prestador em Edição" },
                 { valor: TipoSituacaoPrestador.PendenteAutorizacao, descricao: "Pendente de Autorização" },
                 { valor: TipoSituacaoPrestador.Ativo, descricao: "Ativo" },
                 { valor: TipoSituacaoPrestador.Suspenso, descricao: "Suspenso" }
@@ -2562,15 +2565,9 @@ var Constants;
     class TipoSituacaoPrestador {
     }
     TipoSituacaoPrestador.PrestadorEmEdicao = 1;
-    TipoSituacaoPrestador.CadastroDadosEmpresa = 0;
-    TipoSituacaoPrestador.CadastroLocalAtendimento = 1;
-    TipoSituacaoPrestador.CadastroServicos = 2;
-    TipoSituacaoPrestador.CadastroIgrejaVinculo = 3;
-    TipoSituacaoPrestador.FinalizarCadastro = 4;
-    TipoSituacaoPrestador.PendenteAutorizacao = 5;
-    TipoSituacaoPrestador.Ativo = 6;
-    TipoSituacaoPrestador.Suspenso = 7;
-    TipoSituacaoPrestador.Cancelado = 8;
+    TipoSituacaoPrestador.PendenteAutorizacao = 2;
+    TipoSituacaoPrestador.Ativo = 3;
+    TipoSituacaoPrestador.Suspenso = 4;
     Constants.TipoSituacaoPrestador = TipoSituacaoPrestador;
     class TipoMinisterio {
     }

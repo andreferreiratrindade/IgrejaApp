@@ -422,6 +422,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.loadControl.showLoader();
           this.authService.signInWithEmail(this.signInForm.value['email'], this.signInForm.value['password']).then(function (user) {
+            _this.signInForm.reset();
+
             _this.usuarioService.recuperaUsuarioLogado();
 
             _this.loadControl.hideLoader();

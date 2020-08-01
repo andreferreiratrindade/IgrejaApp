@@ -35,7 +35,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar color=\"secondary\" value=\"0.60\" buffer=\"0.80\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\">\n        <ion-button color=\"primary\" (click)=\"abreModalSelecionaServico()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Serviços</ion-card-title>\n      \n    </ion-card-header>\n    <ion-card-content>\n\n\n        <ion-item *ngFor=\"let item of prestadorServicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"editarServico(item)\">\n          <ion-label class=\"ion-text-wrap \"><h3>{{item.nomeServico}}</h3> <p>{{item.breveDescricao}}</p></ion-label>\n          <ion-icon slot=\"end\" color=\"primary\" name=\"ellipsis-vertical\"></ion-icon>\n\n        </ion-item>\n\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Prosseguir\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar color=\"secondary\" value=\"0.60\" buffer=\"0.80\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\">\n        <ion-button color=\"primary\" (click)=\"abreModalSelecionaServico()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Serviços</ion-card-title>\n      \n    </ion-card-header>\n    <ion-card-content>\n\n\n        <ion-item *ngFor=\"let item of prestadorServicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"servicoOpcoes(item)\">\n          <ion-label class=\"ion-text-wrap \"><h3>{{item.nomeServico}}</h3> <p>{{item.breveDescricao}}</p></ion-label>\n          <ion-icon slot=\"end\" color=\"primary\" name=\"ellipsis-vertical\"></ion-icon>\n\n        </ion-item>\n\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Prosseguir\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -346,66 +346,66 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! src/app/utils/constants */
-    "./src/app/utils/constants.ts");
-    /* harmony import */
-
-
-    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! src/app/helpers/handlerError */
     "./src/app/helpers/handlerError.ts");
     /* harmony import */
 
 
-    var src_app_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var src_app_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/config */
     "./src/app/config.ts");
     /* harmony import */
 
 
-    var src_app_pages_servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var src_app_pages_servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! src/app/pages/servico/modal-servicos/modal-servicos.page */
     "./src/app/pages/servico/modal-servicos/modal-servicos.page.ts");
     /* harmony import */
 
 
-    var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! @ionic/angular */
     "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
     /* harmony import */
 
 
-    var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! src/app/providers/dominioServico/dominio-servico.service */
     "./src/app/providers/dominioServico/dominio-servico.service.ts");
     /* harmony import */
 
 
-    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! src/app/helpers/loadingContr */
     "./src/app/helpers/loadingContr.ts");
     /* harmony import */
 
 
-    var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! src/app/providers/prestador/prestador.service */
     "./src/app/providers/prestador/prestador.service.ts");
     /* harmony import */
 
 
-    var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
     /* harmony import */
 
 
-    var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! src/app/pipes/sortBy/sort-by.pipe */
     "./src/app/pipes/sortBy/sort-by.pipe.ts");
+    /* harmony import */
+
+
+    var src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    /*! src/app/helpers/confirmAlert */
+    "./src/app/helpers/confirmAlert.ts");
 
     var PrestadorCadastroServicoPage = /*#__PURE__*/function () {
-      function PrestadorCadastroServicoPage(dominioServicoService, loadingContr, prestadorService, modalCtrl, toastCtrl, alertController, ngZone, router, sortBy) {
+      function PrestadorCadastroServicoPage(dominioServicoService, loadingContr, prestadorService, modalCtrl, toastCtrl, alertController, ngZone, router, sortBy, actionSheetCtrl, confirmAlert, _cdr) {
         _classCallCheck(this, PrestadorCadastroServicoPage);
 
         this.dominioServicoService = dominioServicoService;
@@ -417,6 +417,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.ngZone = ngZone;
         this.router = router;
         this.sortBy = sortBy;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.confirmAlert = confirmAlert;
+        this._cdr = _cdr;
+        this.prestador = null;
       }
 
       _createClass(PrestadorCadastroServicoPage, [{
@@ -425,7 +429,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this = this;
 
           this.loadingContr.showLoader();
-          this.prestadorService.recuperaServicosPorPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function (result) {
+          this.prestadorService.recuperaServicosPorPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function (result) {
             _this.prestadorServicos = result;
 
             _this.dominioServicoService.recuperaDominioServico().then(function (x) {
@@ -444,14 +448,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
               _this.ordenaServicos();
 
-              _this.loadingContr.hideLoader();
+              _this.loadingContr.hideLoader(); // if (!this.prestadorServicos || this.prestadorServicos.length == 0) {
+              //   this.abreModalSelecionaServico();
+              // }
 
-              if (!_this.prestadorServicos || _this.prestadorServicos.length == 0) {
-                _this.abreModalSelecionaServico();
-              }
             });
           })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, _this.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, _this.toastCtrl);
 
             _this.loadingContr.hideLoader();
           });
@@ -467,7 +470,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }).length == 0;
           });
           var modal = this.modalCtrl.create({
-            component: src_app_pages_servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_6__["ModalServicosPage"],
+            component: src_app_pages_servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_5__["ModalServicosPage"],
             componentProps: {
               servicos: servicos.filter(function (x) {
                 return !x.deletado;
@@ -486,11 +489,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 resultModal.data.forEach(function (element) {
                   _this2.prestadorServicos.push(element);
 
-                  _this2.prestadorService.AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, {
+                  _this2.prestadorService.AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, {
                     servicoId: element.servicoId,
-                    usuarioId: src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId
+                    usuarioId: src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId
                   })["catch"](function (err) {
-                    src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, _this2.toastCtrl);
+                    src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, _this2.toastCtrl);
 
                     _this2.loadingContr.hideLoader();
                   });
@@ -500,7 +503,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               }
             });
           })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, _this2.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, _this2.toastCtrl);
 
             _this2.loadingContr.hideLoader();
           });
@@ -514,12 +517,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             servicoId: item.servicoId,
             breveDescricao: item.breveDescricao
           };
-          this.prestadorService.AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, servico).then(function (result) {
+          this.prestadorService.AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, servico).then(function (result) {
             _this3.loadingContr.hideLoader();
 
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(_this3.toastCtrl);
           })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, _this3.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, _this3.toastCtrl);
 
             _this3.loadingContr.hideLoader();
           });
@@ -530,49 +533,60 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this4 = this;
 
           this.loadingContr.showLoader();
-          this.prestadorService.ExcluirServico(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, item.servicoId).then(function (result) {
+          this.prestadorService.ExcluirServico(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, item.servicoId).then(function (result) {
             _this4.prestadorServicos = _this4.prestadorServicos.filter(function (y) {
               return y.servicoId != item.servicoId;
             });
+
+            _this4._cdr.detectChanges();
 
             _this4.loadingContr.hideLoader();
 
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(_this4.toastCtrl);
           })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, _this4.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, _this4.toastCtrl);
 
             _this4.loadingContr.hideLoader();
           });
         }
       }, {
-        key: "excluirButtonClick",
-        value: function excluirButtonClick(item) {
+        key: "servicoOpcoes",
+        value: function servicoOpcoes(item) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
             var _this5 = this;
 
-            var alert;
+            var actionSheet;
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
                     _context.next = 2;
-                    return this.alertController.create({
-                      header: 'Atenção',
-                      message: 'Deseja excluir registro?',
+                    return this.actionSheetCtrl.create({
+                      header: item.nomeServico,
                       buttons: [{
-                        text: 'Não'
+                        text: 'Breve comentário',
+                        handler: function handler() {}
                       }, {
-                        text: 'Sim',
+                        text: 'Remover',
+                        role: 'destructive',
                         handler: function handler() {
-                          _this5.excluirServico(item);
+                          var result = _this5.confirmAlert.confirmationAlert(_this5.alertController, 'Deseja excluir o serviço <strong>' + item.nomeServico + '</strong>?').then(function (result) {
+                            if (result) {
+                              _this5.excluirServico(item);
+                            }
+                          });
                         }
+                      }, {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        handler: function handler() {}
                       }]
                     });
 
                   case 2:
-                    alert = _context.sent;
+                    actionSheet = _context.sent;
                     _context.next = 5;
-                    return alert.present();
+                    return actionSheet.present();
 
                   case 5:
                   case "end":
@@ -585,30 +599,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "prosseguir",
         value: function prosseguir() {
-          var _this6 = this;
-
           if (this.prestadorServicos.length == 0) {
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].CustomToast(this.toastCtrl, "Favor adicionar serviço, antes de continuar", "danger", 4000);
             return false;
           }
 
-          this.loadingContr.showLoader();
-          var obj = {
-            situacaoPrestador: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao
-          };
-          this.prestadorService.AtualizaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(function () {
-            _this6.loadingContr.hideLoader();
-
-            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(_this6.toastCtrl);
-
-            _this6.ngZone.run(function () {
-              _this6.router.navigate(['prestador-cadastro-igreja-vinculo']);
-            });
-          })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, _this6.toastCtrl);
-
-            _this6.loadingContr.hideLoader();
-          });
+          this.router.navigate(['prestador-cadastro-igreja-vinculo']); // this.loadingContr.showLoader();
+          // let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
+          // if (this.prestador) {
+          //   obj.situacaoPrestador = this.prestador.situacaoPrestador;
+          // }
+          // this.prestadorService
+          //   .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
+          //     this.loadingContr.hideLoader();
+          //     ToastCustom.SucessoToast(this.toastCtrl);
+          //     this.ngZone.run(() => {
+          //       this.router.navigate(['prestador-cadastro-igreja-vinculo']);
+          //     });
+          //   }).catch(err => {
+          //     HandlerError.handler(err, this.toastCtrl);
+          //     this.loadingContr.hideLoader();
+          //   });
         }
       }, {
         key: "voltar",
@@ -630,23 +641,29 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     PrestadorCadastroServicoPage.ctorParameters = function () {
       return [{
-        type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_8__["DominioServicoService"]
+        type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_7__["DominioServicoService"]
       }, {
-        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_9__["LoadingContr"]
+        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__["LoadingContr"]
       }, {
-        type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_10__["PrestadorService"]
+        type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_9__["PrestadorService"]
       }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ModalController"]
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ModalController"]
       }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ToastController"]
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ToastController"]
       }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["AlertController"]
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"]
       }, {
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"]
       }, {
-        type: _angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"]
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"]
       }, {
-        type: src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_12__["SortByPipe"]
+        type: src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_11__["SortByPipe"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ActionSheetController"]
+      }, {
+        type: src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_12__["ConfirmAlert"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]
       }];
     };
 
@@ -796,12 +813,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
        *
        */
       function DominioServicoRepositoryService() {
-        var _this7;
+        var _this6;
 
         _classCallCheck(this, DominioServicoRepositoryService);
 
-        _this7 = _super.call(this);
-        _this7.servicoConverter = {
+        _this6 = _super.call(this);
+        _this6.servicoConverter = {
           toFirestore: function toFirestore(servico) {
             return {
               servicoId: servico.servicoId,
@@ -809,19 +826,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             };
           }
         };
-        _this7._collectionName = "dominioServico";
-        return _this7;
+        _this6._collectionName = "dominioServico";
+        return _this6;
       }
 
       _createClass(DominioServicoRepositoryService, [{
         key: "recuperaServicoAutoComplete",
         value: function recuperaServicoAutoComplete(query) {
-          var _this8 = this;
+          var _this7 = this;
 
           return new Promise(function (response, resp) {
             var endText = query + "\uF8FF";
 
-            _this8.db.collection("dominioServico").orderBy("nomeServico").limit(10).where("nomeServico", ">=", query).where("nomeServico", "<=", endText) // .startAt(query)
+            _this7.db.collection("dominioServico").orderBy("nomeServico").limit(10).where("nomeServico", ">=", query).where("nomeServico", "<=", endText) // .startAt(query)
             // .endAt(endText)
             .get().then(function (result) {
               var lst = [];
@@ -840,10 +857,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "recuperaDominioServico",
         value: function recuperaDominioServico() {
-          var _this9 = this;
+          var _this8 = this;
 
           return new Promise(function (response, resp) {
-            _this9.db.collection("dominioServico").orderBy("nomeServico").get().then(function (result) {
+            _this8.db.collection("dominioServico").orderBy("nomeServico").get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({
@@ -859,10 +876,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "recuperaDominioServicoAtivo",
         value: function recuperaDominioServicoAtivo() {
-          var _this10 = this;
+          var _this9 = this;
 
           return new Promise(function (response, resp) {
-            _this10.db.collection("dominioServico").where("deletado", "==", false).orderBy("nomeServico").get().then(function (result) {
+            _this9.db.collection("dominioServico").where("deletado", "==", false).orderBy("nomeServico").get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({

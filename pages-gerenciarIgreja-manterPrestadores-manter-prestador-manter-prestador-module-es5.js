@@ -421,7 +421,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
             _this.loadingContr.showLoader();
 
-            _this.situacoesPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_2__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem();
+            _this.situacoesPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_2__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem().filter(function (y) {
+              return y.value !== src_app_utils_constants__WEBPACK_IMPORTED_MODULE_2__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao;
+            });
 
             _this.prestadorService.RecuperaPrestador(_this.prestador.usuarioId).then(function (result) {
               _this.prestador = result;

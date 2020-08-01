@@ -285,7 +285,6 @@ let DadosEmpresaPage = class DadosEmpresaPage {
             }
             this.loadingContr.hideLoader();
         }).catch(x => {
-            this.igrejas = [];
             this.loadingContr.hideLoader();
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(x, this.toastCtrl);
         });
@@ -302,7 +301,10 @@ let DadosEmpresaPage = class DadosEmpresaPage {
         this.loadingContr.showLoader();
         let obj = this.formulario.value;
         obj.usuarioId = src_app_config__WEBPACK_IMPORTED_MODULE_10__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId;
-        obj.situacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.CadastroLocalAtendimento;
+        obj.situacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao;
+        if (this.prestador) {
+            obj.situacaoPrestador = this.prestador.situacaoPrestador;
+        }
         this.prestadorService.AdicionarNovoPrestador(obj)
             .then(() => {
             this.loadingContr.hideLoader();

@@ -304,7 +304,7 @@ let ConsultarPrestadorAdmPage = class ConsultarPrestadorAdmPage {
     abrirModalSituacaoPrestador() {
         const modal = this.modalCtrl.create({
             component: _modalSituacaoPrestador_modal_situacao_prestador_modal_situacao_prestador_page__WEBPACK_IMPORTED_MODULE_12__["ModalSituacaoPrestadorPage"],
-            componentProps: { situacoes: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem() },
+            componentProps: { situacoes: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem().filter(y => { return y.value !== src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao; }) },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();

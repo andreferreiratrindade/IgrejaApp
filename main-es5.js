@@ -146,7 +146,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" menuId=\"mainContent\" side=\"start\">\n      <ion-header>\n        <ion-toolbar color=\"default\">\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n\n          <span *ngIf=\"usuarioLogado\">\n            <ion-list-header>\n              <h3>\n                {{recuperaDadosUsuario.nome.split(' ')[0]}}</h3>\n            </ion-list-header>\n            <ion-note>{{recuperaDadosUsuario.email}}</ion-note>\n\n            <ion-chip color=\"tertiary\" (click)=\"logoff()\" slot=\"close\" routerDirection=\"root\"\n              routerLink=\"prestador-consultar\" size=\"6\">\n              <ion-label>Sair</ion-label>\n              <ion-icon name=\"log-out-outline\"></ion-icon>\n            </ion-chip>\n          </span>\n\n          <ion-menu-toggle *ngFor=\"let p of paginas\">\n            <ion-item routerDirection=\"root\" [routerLink]=\"p.url\" detail=\"false\">\n              <ion-icon style=\"padding-right: 15px;\" class=\"{{p.icon}}\" ></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n            \n          </ion-menu-toggle>\n\n        </ion-list>\n        <ion-footer class=\"ion-no-border\">\n          <ion-toolbar>\n            <ion-label>{{ version }}</ion-label>\n          </ion-toolbar>\n        </ion-footer>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\">\n\n      <app-tablinks></app-tablinks>\n\n    </ion-router-outlet>\n  </ion-split-pane>\n</ion-app>";
+    __webpack_exports__["default"] = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" menuId=\"mainContent\" side=\"start\">\n      <ion-header>\n        <ion-toolbar color=\"default\">\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n\n          <span *ngIf=\"usuarioLogado\">\n            <ion-list-header>\n              <h3>\n                {{recuperaDadosUsuario.nome.split(' ')[0]}}</h3>\n            </ion-list-header>\n            <ion-note>{{recuperaDadosUsuario.email}}</ion-note>\n\n            <ion-chip color=\"tertiary\" (click)=\"logoff()\" slot=\"close\" routerDirection=\"root\"\n              routerLink=\"prestador-consultar\" size=\"6\">\n              <ion-label>Sair</ion-label>\n              <ion-icon name=\"log-out-outline\"></ion-icon>\n            </ion-chip>\n          </span>\n\n          <ion-menu-toggle *ngFor=\"let p of paginas\">\n            <ion-item routerDirection=\"root\" [routerLink]=\"p.url\" detail=\"false\">\n              <ion-icon style=\"padding-right: 15px;\" class=\"{{p.icon}}\" ></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n            \n          </ion-menu-toggle>\n\n        </ion-list>\n        <!-- <ion-footer class=\"ion-no-border\">\n          <ion-toolbar>\n            <ion-label>{{ version }}</ion-label>\n          </ion-toolbar>\n        </ion-footer> -->\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\">\n\n      <app-tablinks></app-tablinks>\n\n    </ion-router-outlet>\n  </ion-split-pane>\n</ion-app>";
     /***/
   },
 
@@ -843,49 +843,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               return retorno;
             });
           });
-          this.usuarioService.recuperaUsuarioLogado().then(function () {
-            console.log(_this2.paginas);
-          });
+          this.usuarioService.recuperaUsuarioLogado().then(function () {});
         }
-        /*
-        get paginas() {
-          
-          let paginas =  this.RecuperaPaginasMenuLateral().filter(page => {
-            let retorno = true;
-            if (page.perfil) {
-              retorno = page.perfil.filter(x => {
-                let retorno = false;
-                if (this.usuarioLogado) {
-                  let perfisDoUsuario = this.usuarioLogado.perfis
-                     if (perfisDoUsuario) {
-                    retorno = perfisDoUsuario.filter(perfis => {
-                      return perfis == x;
-                    }).length > 0;
-                  }
-                }
-                return retorno;
-              }).length > 0;
-            }
-               // if (page.perfilInverso) {
-               //   retorno = page.perfilInverso.filter(x => {
-            //     let retorno = false;
-            //     if (this.usuarioLogado) {
-            //       let perfisDoUsuario = this.usuarioLogado.perfis
-               //       if (perfisDoUsuario) {
-            //         retorno = perfisDoUsuario.filter(perfis => {
-            //           return perfis != x;
-            //         }).length > 0;
-            //       }
-            //     }
-               //     return retorno;
-            //   }).length > 0;
-            // }
-            return retorno
-          });
-          console.log(paginas);
-          return paginas;
-        }*/
-
       }, {
         key: "logoff",
         value: function logoff() {
@@ -1146,6 +1105,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(
     /*! ./pipes/sortBy/sort-by.pipe */
     "./src/app/pipes/sortBy/sort-by.pipe.ts");
+    /* harmony import */
+
+
+    var _helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(
+    /*! ./helpers/confirmAlert */
+    "./src/app/helpers/confirmAlert.ts");
 
     firebase_app__WEBPACK_IMPORTED_MODULE_19__["initializeApp"](src_environments_environment__WEBPACK_IMPORTED_MODULE_12__["environment"].firebase);
 
@@ -1159,7 +1124,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_17__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_17__["ReactiveFormsModule"], _angular_http__WEBPACK_IMPORTED_MODULE_16__["HttpModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot({
         mode: 'ios'
       }), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _components_components_module__WEBPACK_IMPORTED_MODULE_13__["ComponentsModule"], _angular_fire__WEBPACK_IMPORTED_MODULE_9__["AngularFireModule"].initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_12__["environment"].firebase), _angular_fire_auth__WEBPACK_IMPORTED_MODULE_10__["AngularFireAuthModule"], angularfire2_firestore__WEBPACK_IMPORTED_MODULE_18__["AngularFirestoreModule"], _pipes_pipes__WEBPACK_IMPORTED_MODULE_22__["PipesModule"].forRoot()],
-      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_15__["BuscarCEPService"], _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_20__["CallNumber"], _providers_base_provider_base_provider__WEBPACK_IMPORTED_MODULE_14__["BaseProvider"], _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_21__["SocialSharing"], _providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_11__["FirebaseAuthService"], _pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_23__["SortByPipe"], {
+      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_15__["BuscarCEPService"], _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_20__["CallNumber"], _providers_base_provider_base_provider__WEBPACK_IMPORTED_MODULE_14__["BaseProvider"], _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_21__["SocialSharing"], _providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_11__["FirebaseAuthService"], _helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_24__["ConfirmAlert"], _pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_23__["SortByPipe"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
       }],
@@ -1711,6 +1676,94 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/helpers/confirmAlert.ts":
+  /*!*****************************************!*\
+    !*** ./src/app/helpers/confirmAlert.ts ***!
+    \*****************************************/
+
+  /*! exports provided: ConfirmAlert */
+
+  /***/
+  function srcAppHelpersConfirmAlertTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ConfirmAlert", function () {
+      return ConfirmAlert;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var ConfirmAlert = /*#__PURE__*/function () {
+      function ConfirmAlert() {
+        _classCallCheck(this, ConfirmAlert);
+      }
+
+      _createClass(ConfirmAlert, [{
+        key: "confirmationAlert",
+        value: function confirmationAlert(alertController, message) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var resolveFunction, promise, alert;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    promise = new Promise(function (resolve) {
+                      resolveFunction = resolve;
+                    });
+                    _context3.next = 3;
+                    return alertController.create({
+                      header: 'Atenção',
+                      message: message,
+                      buttons: [{
+                        text: 'Não',
+                        handler: function handler() {
+                          return resolveFunction(false);
+                        }
+                      }, {
+                        text: 'Sim',
+                        handler: function handler() {
+                          return resolveFunction(true);
+                        }
+                      }]
+                    });
+
+                  case 3:
+                    alert = _context3.sent;
+                    _context3.next = 6;
+                    return alert.present();
+
+                  case 6:
+                    alert.onDidDismiss().then(function () {
+                      // this update will happen after "alert" dismiss and within the scope of the HomePage component. 
+                      console.log("onDidDismiss");
+                    });
+                    return _context3.abrupt("return", promise);
+
+                  case 8:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3);
+          }));
+        }
+      }]);
+
+      return ConfirmAlert;
+    }();
+    /***/
+
+  },
+
+  /***/
   "./src/app/helpers/loadingContr.ts":
   /*!*****************************************!*\
     !*** ./src/app/helpers/loadingContr.ts ***!
@@ -1762,15 +1815,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(LoadingContr, [{
         key: "showLoader",
         value: function showLoader() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
             var _this3 = this;
 
-            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
               while (1) {
-                switch (_context3.prev = _context3.next) {
+                switch (_context4.prev = _context4.next) {
                   case 0:
                     this.isLoading = true;
-                    _context3.next = 3;
+                    _context4.next = 3;
                     return this.loadingController.create({// duration: 5000,
                     }).then(function (a) {
                       a.present().then(function () {
@@ -1781,30 +1834,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
 
                   case 3:
-                    return _context3.abrupt("return", _context3.sent);
-
-                  case 4:
-                  case "end":
-                    return _context3.stop();
-                }
-              }
-            }, _callee3, this);
-          }));
-        } // Hide the loader if already created otherwise return error
-
-      }, {
-        key: "hideLoader",
-        value: function hideLoader() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-            return regeneratorRuntime.wrap(function _callee4$(_context4) {
-              while (1) {
-                switch (_context4.prev = _context4.next) {
-                  case 0:
-                    this.isLoading = false;
-                    _context4.next = 3;
-                    return this.loadingController.dismiss();
-
-                  case 3:
                     return _context4.abrupt("return", _context4.sent);
 
                   case 4:
@@ -1813,6 +1842,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             }, _callee4, this);
+          }));
+        } // Hide the loader if already created otherwise return error
+
+      }, {
+        key: "hideLoader",
+        value: function hideLoader() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+              while (1) {
+                switch (_context5.prev = _context5.next) {
+                  case 0:
+                    this.isLoading = false;
+                    _context5.next = 3;
+                    return this.loadingController.dismiss();
+
+                  case 3:
+                    return _context5.abrupt("return", _context5.sent);
+
+                  case 4:
+                  case "end":
+                    return _context5.stop();
+                }
+              }
+            }, _callee5, this);
           }));
         }
       }], [{
@@ -3531,9 +3584,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             query.get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
-                debugger;
-                console.log(doc);
-
                 if (doc.data().locaisAtendimento) {
                   doc.data().locaisAtendimento.forEach(function (x) {
                     if (x.cidade == cidadeSelecionado && x.uf == ufSelecionado) {
@@ -3702,19 +3752,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         // success
         this.addCollection = function (item) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this26, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this26, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            return regeneratorRuntime.wrap(function _callee6$(_context6) {
               while (1) {
-                switch (_context5.prev = _context5.next) {
+                switch (_context6.prev = _context6.next) {
                   case 0:
-                    return _context5.abrupt("return", null);
+                    return _context6.abrupt("return", null);
 
                   case 1:
                   case "end":
-                    return _context5.stop();
+                    return _context6.stop();
                 }
               }
-            }, _callee5);
+            }, _callee6);
           }));
         };
 
@@ -3998,14 +4048,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           key: "RecuperaListagem",
           value: function RecuperaListagem() {
             return [{
-              valor: TipoSituacaoPrestador.CadastroDadosEmpresa,
-              descricao: "Informações Iniciais"
-            }, {
-              valor: TipoSituacaoPrestador.CadastroServicos,
-              descricao: "Serviços"
-            }, {
-              valor: TipoSituacaoPrestador.CadastroIgrejaVinculo,
-              descricao: "Igreja Vinculada"
+              valor: TipoSituacaoPrestador.PrestadorEmEdicao,
+              descricao: "Prestador em Edição"
             }, {
               valor: TipoSituacaoPrestador.PendenteAutorizacao,
               descricao: "Pendente de Autorização"
@@ -4036,15 +4080,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       };
 
       TipoSituacaoPrestador.PrestadorEmEdicao = 1;
-      TipoSituacaoPrestador.CadastroDadosEmpresa = 0;
-      TipoSituacaoPrestador.CadastroLocalAtendimento = 1;
-      TipoSituacaoPrestador.CadastroServicos = 2;
-      TipoSituacaoPrestador.CadastroIgrejaVinculo = 3;
-      TipoSituacaoPrestador.FinalizarCadastro = 4;
-      TipoSituacaoPrestador.PendenteAutorizacao = 5;
-      TipoSituacaoPrestador.Ativo = 6;
-      TipoSituacaoPrestador.Suspenso = 7;
-      TipoSituacaoPrestador.Cancelado = 8;
+      TipoSituacaoPrestador.PendenteAutorizacao = 2;
+      TipoSituacaoPrestador.Ativo = 3;
+      TipoSituacaoPrestador.Suspenso = 4;
       Constants.TipoSituacaoPrestador = TipoSituacaoPrestador;
 
       var TipoMinisterio = function TipoMinisterio() {

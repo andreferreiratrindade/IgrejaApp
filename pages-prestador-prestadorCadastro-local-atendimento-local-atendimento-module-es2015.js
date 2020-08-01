@@ -187,6 +187,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/helpers/toastCustom */ "./src/app/helpers/toastCustom.ts");
 /* harmony import */ var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/utils/constants */ "./src/app/utils/constants.ts");
 /* harmony import */ var _adicionar_local_atendimento_adicionar_local_atendimento_page__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../adicionar-local-atendimento/adicionar-local-atendimento.page */ "./src/app/pages/prestador/prestadorCadastro/adicionar-local-atendimento/adicionar-local-atendimento.page.ts");
+/* harmony import */ var src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/helpers/confirmAlert */ "./src/app/helpers/confirmAlert.ts");
+
 
 
 
@@ -201,7 +203,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LocalAtendimentoPage = class LocalAtendimentoPage {
-    constructor(prestadorService, toastCtrl, loadingContr, router, modalCtrl, alertController, buscarCEPService) {
+    constructor(prestadorService, toastCtrl, loadingContr, router, modalCtrl, alertController, buscarCEPService, confirmAlert, _cdr) {
         this.prestadorService = prestadorService;
         this.toastCtrl = toastCtrl;
         this.loadingContr = loadingContr;
@@ -209,7 +211,10 @@ let LocalAtendimentoPage = class LocalAtendimentoPage {
         this.modalCtrl = modalCtrl;
         this.alertController = alertController;
         this.buscarCEPService = buscarCEPService;
+        this.confirmAlert = confirmAlert;
+        this._cdr = _cdr;
         this.locaisAtendimentos = [];
+        this.prestador = null;
         this.formulario = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             'uf': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
@@ -226,19 +231,18 @@ let LocalAtendimentoPage = class LocalAtendimentoPage {
         let usuarioId = src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId;
         this.prestadorService.RecuperaPrestador(usuarioId)
             .then((result) => {
+            this.prestador = result;
             this.locaisAtendimentos = result.locaisAtendimento;
             this.loadingContr.hideLoader();
-            if (!this.locaisAtendimentos || this.locaisAtendimentos.length == 0) {
-                this.abreModalSelecionarLocalAtendimento();
-            }
+            // if (!this.locaisAtendimentos || this.locaisAtendimentos.length == 0) {
+            //   this.abreModalSelecionarLocalAtendimento();
+            // }
         }).catch(err => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();
         });
     }
     validaAdicionarLocalAtendimento(localAtendimento) {
-        let valido = true;
-        let mensagem = "";
         let obj = { valido: true, mensagem: "" };
         if (!localAtendimento.cidade || !localAtendimento.uf) {
             obj.valido = false;
@@ -254,21 +258,11 @@ let LocalAtendimentoPage = class LocalAtendimentoPage {
         return obj;
     }
     excluirButtonClick(item) {
-        this.excluirLocalizacao(item);
-        this.alertController.create({
-            header: 'Atenção',
-            message: 'Deseja excluir registro?',
-            buttons: [
-                {
-                    text: 'Não',
-                }, {
-                    text: 'Sim',
-                    handler: () => {
-                        //this.excluirLocalizacao(item)
-                    }
-                }
-            ]
-        }).then(result => { result.present().then(tt => { console.log('Teste'); }); });
+        this.confirmAlert.confirmationAlert(this.alertController, 'Deseja excluir local de atendimento <strong>' + item.cidade + " / " + item.uf + '</strong>?').then(result => {
+            if (result) {
+                this.excluirLocalizacao(item);
+            }
+        });
     }
     excluirLocalizacao(item) {
         let index = this.locaisAtendimentos.findIndex(y => y.cidade == item.cidade && y.uf == item.uf); //find index in your array
@@ -278,6 +272,8 @@ let LocalAtendimentoPage = class LocalAtendimentoPage {
             .ExcluirLocalAtendimento(src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia()
             .recuperaUsuario().usuarioId, item)
             .then((result) => {
+            this.locaisAtendimentos = this.locaisAtendimentos.filter(y => { return y.cidade == item.cidade && y.uf == item.uf; });
+            this._cdr.detectChanges();
             this.loadingContr.hideLoader();
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(this.toastCtrl);
         }).catch(err => {
@@ -290,17 +286,21 @@ let LocalAtendimentoPage = class LocalAtendimentoPage {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler("Favor informar local de atendimento.", this.toastCtrl);
             return false;
         }
-        this.loadingContr.showLoader();
-        let obj = { situacaoPrestador: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.CadastroServicos };
-        this.prestadorService
-            .AtualizaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
-            this.loadingContr.hideLoader();
-            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(this.toastCtrl);
-            this.router.navigate(['prestador-cadastro-servico']);
-        }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, this.toastCtrl);
-            this.loadingContr.hideLoader();
-        });
+        this.router.navigate(['prestador-cadastro-servico']);
+        // this.loadingContr.showLoader();
+        // let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
+        // if (this.prestador) {
+        //   obj.situacaoPrestador = this.prestador.situacaoPrestador;
+        // }
+        // this.prestadorService
+        //   .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
+        //     this.loadingContr.hideLoader();
+        //     ToastCustom.SucessoToast(this.toastCtrl);
+        //     this.router.navigate(['prestador-cadastro-servico']);
+        //   }).catch(err => {
+        //     HandlerError.handler(err, this.toastCtrl);
+        //     this.loadingContr.hideLoader();
+        //   });
     }
     voltar() {
         this.router.navigate(['dados-empresa']);
@@ -345,7 +345,9 @@ LocalAtendimentoPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"] },
-    { type: src_app_providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_7__["BuscarCEPService"] }
+    { type: src_app_providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_7__["BuscarCEPService"] },
+    { type: src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_13__["ConfirmAlert"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"] }
 ];
 LocalAtendimentoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

@@ -443,6 +443,7 @@ let PrestadorCadastroIgrejaVinculoPage = class PrestadorCadastroIgrejaVinculoPag
         this.alertController = alertController;
         this.buscarCEPService = buscarCEPService;
         this.locaisAtendimentos = [];
+        this.prestador = null;
         this.formulario = new _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormGroup"]({
             'uf': new _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].compose([
                 _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required
@@ -468,6 +469,7 @@ let PrestadorCadastroIgrejaVinculoPage = class PrestadorCadastroIgrejaVinculoPag
     ngOnInit() {
         this.prestadorService.RecuperaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_12__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
             .then(resultPrestador => {
+            this.prestador = resultPrestador;
             this.igrejaService.RecuperaNomeIgreja([resultPrestador.igrejaId])
                 .then(resultIgreja => {
                 let igreja = resultIgreja[0];
@@ -548,7 +550,6 @@ let PrestadorCadastroIgrejaVinculoPage = class PrestadorCadastroIgrejaVinculoPag
         }
         this.loadingContr.showLoader();
         let obj = {
-            situacaoPrestador: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.FinalizarCadastro,
             igrejaId: this.formulario.value.igrejaId,
             staMembro: this.formulario.value.staMembro
         };

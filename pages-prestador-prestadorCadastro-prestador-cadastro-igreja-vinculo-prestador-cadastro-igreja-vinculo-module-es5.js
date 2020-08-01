@@ -806,6 +806,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.alertController = alertController;
         this.buscarCEPService = buscarCEPService;
         this.locaisAtendimentos = [];
+        this.prestador = null;
         this.formulario = new _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormGroup"]({
           'uf': new _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required])),
           'ufApresentacao': new _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required])),
@@ -823,6 +824,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this3 = this;
 
           this.prestadorService.RecuperaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_12__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function (resultPrestador) {
+            _this3.prestador = resultPrestador;
+
             _this3.igrejaService.RecuperaNomeIgreja([resultPrestador.igrejaId]).then(function (resultIgreja) {
               var igreja = resultIgreja[0];
 
@@ -940,7 +943,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.loadingContr.showLoader();
           var obj = {
-            situacaoPrestador: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.FinalizarCadastro,
             igrejaId: this.formulario.value.igrejaId,
             staMembro: this.formulario.value.staMembro
           };

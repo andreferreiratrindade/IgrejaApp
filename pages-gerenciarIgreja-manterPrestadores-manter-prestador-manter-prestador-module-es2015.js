@@ -216,7 +216,8 @@ let ManterPrestadorPage = class ManterPrestadorPage {
         this.route.queryParams.subscribe(params => {
             this.prestador = { usuarioId: params['prestadorUsuarioId'] };
             this.loadingContr.showLoader();
-            this.situacoesPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_2__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem();
+            this.situacoesPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_2__["Constants"].ListTipoSituacaoPrestador.RecuperaListagem()
+                .filter(y => { return y.value !== src_app_utils_constants__WEBPACK_IMPORTED_MODULE_2__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao; });
             this.prestadorService.RecuperaPrestador(this.prestador.usuarioId)
                 .then((result) => {
                 this.prestador = result;

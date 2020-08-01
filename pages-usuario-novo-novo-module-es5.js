@@ -462,6 +462,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             _this3.usuarioService.AdicionarUsuario(usuarioObj).then(function (x) {
               _this3.loadCtr.hideLoader();
 
+              _this3.signUpForm.reset();
+
               src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_8__["ToastCustom"].SucessoToast(_this3.toastCtrl);
 
               _this3.redirectLoggedUserToProfilePage();

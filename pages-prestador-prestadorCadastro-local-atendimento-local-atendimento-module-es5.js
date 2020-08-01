@@ -383,9 +383,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _adicionar_local_atendimento_adicionar_local_atendimento_page__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ../adicionar-local-atendimento/adicionar-local-atendimento.page */
     "./src/app/pages/prestador/prestadorCadastro/adicionar-local-atendimento/adicionar-local-atendimento.page.ts");
+    /* harmony import */
+
+
+    var src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! src/app/helpers/confirmAlert */
+    "./src/app/helpers/confirmAlert.ts");
 
     var LocalAtendimentoPage = /*#__PURE__*/function () {
-      function LocalAtendimentoPage(prestadorService, toastCtrl, loadingContr, router, modalCtrl, alertController, buscarCEPService) {
+      function LocalAtendimentoPage(prestadorService, toastCtrl, loadingContr, router, modalCtrl, alertController, buscarCEPService, confirmAlert, _cdr) {
         _classCallCheck(this, LocalAtendimentoPage);
 
         this.prestadorService = prestadorService;
@@ -395,7 +401,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.modalCtrl = modalCtrl;
         this.alertController = alertController;
         this.buscarCEPService = buscarCEPService;
+        this.confirmAlert = confirmAlert;
+        this._cdr = _cdr;
         this.locaisAtendimentos = [];
+        this.prestador = null;
         this.formulario = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
           'uf': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])),
           'ufApresentacao': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])),
@@ -411,13 +420,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.loadingContr.showLoader();
           var usuarioId = src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId;
           this.prestadorService.RecuperaPrestador(usuarioId).then(function (result) {
+            _this.prestador = result;
             _this.locaisAtendimentos = result.locaisAtendimento;
 
-            _this.loadingContr.hideLoader();
+            _this.loadingContr.hideLoader(); // if (!this.locaisAtendimentos || this.locaisAtendimentos.length == 0) {
+            //   this.abreModalSelecionarLocalAtendimento();
+            // }
 
-            if (!_this.locaisAtendimentos || _this.locaisAtendimentos.length == 0) {
-              _this.abreModalSelecionarLocalAtendimento();
-            }
           })["catch"](function (err) {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this.toastCtrl);
 
@@ -427,8 +436,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "validaAdicionarLocalAtendimento",
         value: function validaAdicionarLocalAtendimento(localAtendimento) {
-          var valido = true;
-          var mensagem = "";
           var obj = {
             valido: true,
             mensagem: ""
@@ -453,27 +460,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "excluirButtonClick",
         value: function excluirButtonClick(item) {
-          this.excluirLocalizacao(item);
-          this.alertController.create({
-            header: 'Atenção',
-            message: 'Deseja excluir registro?',
-            buttons: [{
-              text: 'Não'
-            }, {
-              text: 'Sim',
-              handler: function handler() {//this.excluirLocalizacao(item)
-              }
-            }]
-          }).then(function (result) {
-            result.present().then(function (tt) {
-              console.log('Teste');
-            });
+          var _this2 = this;
+
+          this.confirmAlert.confirmationAlert(this.alertController, 'Deseja excluir local de atendimento <strong>' + item.cidade + " / " + item.uf + '</strong>?').then(function (result) {
+            if (result) {
+              _this2.excluirLocalizacao(item);
+            }
           });
         }
       }, {
         key: "excluirLocalizacao",
         value: function excluirLocalizacao(item) {
-          var _this2 = this;
+          var _this3 = this;
 
           var index = this.locaisAtendimentos.findIndex(function (y) {
             return y.cidade == item.cidade && y.uf == item.uf;
@@ -483,40 +481,43 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.loadingContr.showLoader();
           this.prestadorService.ExcluirLocalAtendimento(src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, item).then(function (result) {
-            _this2.loadingContr.hideLoader();
+            _this3.locaisAtendimentos = _this3.locaisAtendimentos.filter(function (y) {
+              return y.cidade == item.cidade && y.uf == item.uf;
+            });
 
-            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this2.toastCtrl);
-          })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this2.toastCtrl);
+            _this3._cdr.detectChanges();
 
-            _this2.loadingContr.hideLoader();
-          });
-        }
-      }, {
-        key: "prosseguir",
-        value: function prosseguir() {
-          var _this3 = this;
-
-          if (this.locaisAtendimentos.length == 0) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler("Favor informar local de atendimento.", this.toastCtrl);
-            return false;
-          }
-
-          this.loadingContr.showLoader();
-          var obj = {
-            situacaoPrestador: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.CadastroServicos
-          };
-          this.prestadorService.AtualizaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(function () {
             _this3.loadingContr.hideLoader();
 
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this3.toastCtrl);
-
-            _this3.router.navigate(['prestador-cadastro-servico']);
           })["catch"](function (err) {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this3.toastCtrl);
 
             _this3.loadingContr.hideLoader();
           });
+        }
+      }, {
+        key: "prosseguir",
+        value: function prosseguir() {
+          if (this.locaisAtendimentos.length == 0) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler("Favor informar local de atendimento.", this.toastCtrl);
+            return false;
+          }
+
+          this.router.navigate(['prestador-cadastro-servico']); // this.loadingContr.showLoader();
+          // let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
+          // if (this.prestador) {
+          //   obj.situacaoPrestador = this.prestador.situacaoPrestador;
+          // }
+          // this.prestadorService
+          //   .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
+          //     this.loadingContr.hideLoader();
+          //     ToastCustom.SucessoToast(this.toastCtrl);
+          //     this.router.navigate(['prestador-cadastro-servico']);
+          //   }).catch(err => {
+          //     HandlerError.handler(err, this.toastCtrl);
+          //     this.loadingContr.hideLoader();
+          //   });
         }
       }, {
         key: "voltar",
@@ -590,6 +591,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"]
       }, {
         type: src_app_providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_7__["BuscarCEPService"]
+      }, {
+        type: src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_13__["ConfirmAlert"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]
       }];
     };
 

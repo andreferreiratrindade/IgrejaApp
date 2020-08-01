@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar color=\"secondary\" value=\"0.60\" buffer=\"0.80\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\">\n        <ion-button color=\"primary\" (click)=\"abreModalSelecionaServico()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Serviços</ion-card-title>\n      \n    </ion-card-header>\n    <ion-card-content>\n\n\n        <ion-item *ngFor=\"let item of prestadorServicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"editarServico(item)\">\n          <ion-label class=\"ion-text-wrap \"><h3>{{item.nomeServico}}</h3> <p>{{item.breveDescricao}}</p></ion-label>\n          <ion-icon slot=\"end\" color=\"primary\" name=\"ellipsis-vertical\"></ion-icon>\n\n        </ion-item>\n\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Prosseguir\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar color=\"secondary\" value=\"0.60\" buffer=\"0.80\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\">\n        <ion-button color=\"primary\" (click)=\"abreModalSelecionaServico()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Serviços</ion-card-title>\n      \n    </ion-card-header>\n    <ion-card-content>\n\n\n        <ion-item *ngFor=\"let item of prestadorServicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"servicoOpcoes(item)\">\n          <ion-label class=\"ion-text-wrap \"><h3>{{item.nomeServico}}</h3> <p>{{item.breveDescricao}}</p></ion-label>\n          <ion-icon slot=\"end\" color=\"primary\" name=\"ellipsis-vertical\"></ion-icon>\n\n        </ion-item>\n\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Prosseguir\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -180,16 +180,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/helpers/toastCustom */ "./src/app/helpers/toastCustom.ts");
-/* harmony import */ var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/utils/constants */ "./src/app/utils/constants.ts");
-/* harmony import */ var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/helpers/handlerError */ "./src/app/helpers/handlerError.ts");
-/* harmony import */ var src_app_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/config */ "./src/app/config.ts");
-/* harmony import */ var src_app_pages_servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/pages/servico/modal-servicos/modal-servicos.page */ "./src/app/pages/servico/modal-servicos/modal-servicos.page.ts");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/providers/dominioServico/dominio-servico.service */ "./src/app/providers/dominioServico/dominio-servico.service.ts");
-/* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
-/* harmony import */ var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/providers/prestador/prestador.service */ "./src/app/providers/prestador/prestador.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/pipes/sortBy/sort-by.pipe */ "./src/app/pipes/sortBy/sort-by.pipe.ts");
+/* harmony import */ var src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/helpers/handlerError */ "./src/app/helpers/handlerError.ts");
+/* harmony import */ var src_app_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/config */ "./src/app/config.ts");
+/* harmony import */ var src_app_pages_servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/pages/servico/modal-servicos/modal-servicos.page */ "./src/app/pages/servico/modal-servicos/modal-servicos.page.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/providers/dominioServico/dominio-servico.service */ "./src/app/providers/dominioServico/dominio-servico.service.ts");
+/* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
+/* harmony import */ var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/providers/prestador/prestador.service */ "./src/app/providers/prestador/prestador.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/pipes/sortBy/sort-by.pipe */ "./src/app/pipes/sortBy/sort-by.pipe.ts");
+/* harmony import */ var src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/helpers/confirmAlert */ "./src/app/helpers/confirmAlert.ts");
 
 
 
@@ -204,7 +204,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
-    constructor(dominioServicoService, loadingContr, prestadorService, modalCtrl, toastCtrl, alertController, ngZone, router, sortBy) {
+    constructor(dominioServicoService, loadingContr, prestadorService, modalCtrl, toastCtrl, alertController, ngZone, router, sortBy, actionSheetCtrl, confirmAlert, _cdr) {
         this.dominioServicoService = dominioServicoService;
         this.loadingContr = loadingContr;
         this.prestadorService = prestadorService;
@@ -214,10 +214,14 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
         this.ngZone = ngZone;
         this.router = router;
         this.sortBy = sortBy;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.confirmAlert = confirmAlert;
+        this._cdr = _cdr;
+        this.prestador = null;
     }
     ngOnInit() {
         this.loadingContr.showLoader();
-        this.prestadorService.recuperaServicosPorPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
+        this.prestadorService.recuperaServicosPorPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
             .then(result => {
             this.prestadorServicos = result;
             this.dominioServicoService.recuperaDominioServico().then(x => {
@@ -231,12 +235,12 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
                 });
                 this.ordenaServicos();
                 this.loadingContr.hideLoader();
-                if (!this.prestadorServicos || this.prestadorServicos.length == 0) {
-                    this.abreModalSelecionaServico();
-                }
+                // if (!this.prestadorServicos || this.prestadorServicos.length == 0) {
+                //   this.abreModalSelecionaServico();
+                // }
             });
         }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, this.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();
         });
     }
@@ -245,7 +249,7 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
             return this.prestadorServicos.filter(y => { return y.servicoId == x.servicoId; }).length == 0;
         });
         const modal = this.modalCtrl.create({
-            component: src_app_pages_servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_6__["ModalServicosPage"],
+            component: src_app_pages_servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_5__["ModalServicosPage"],
             componentProps: { servicos: servicos.filter(x => { return !x.deletado; }) },
             backdropDismiss: false,
         }).then((modal) => {
@@ -259,13 +263,13 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
                     resultModal.data.forEach(element => {
                         this.prestadorServicos.push(element);
                         this.prestadorService
-                            .AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia()
+                            .AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia()
                             .recuperaUsuario().usuarioId, {
                             servicoId: element.servicoId,
-                            usuarioId: src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia()
+                            usuarioId: src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia()
                                 .recuperaUsuario().usuarioId
                         }).catch(err => {
-                            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, this.toastCtrl);
+                            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, this.toastCtrl);
                             this.loadingContr.hideLoader();
                         });
                     });
@@ -273,54 +277,68 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
                 }
             });
         }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, this.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();
         });
     }
     salvarBreveDescricao(item) {
         let servico = { servicoId: item.servicoId, breveDescricao: item.breveDescricao };
         this.prestadorService
-            .AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia()
+            .AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia()
             .recuperaUsuario().usuarioId, servico)
             .then((result) => {
             this.loadingContr.hideLoader();
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(this.toastCtrl);
         }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, this.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();
         });
     }
     excluirServico(item) {
         this.loadingContr.showLoader();
         this.prestadorService
-            .ExcluirServico(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia()
+            .ExcluirServico(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia()
             .recuperaUsuario().usuarioId, item.servicoId)
             .then((result) => {
             this.prestadorServicos = this.prestadorServicos.filter(y => y.servicoId != item.servicoId);
+            this._cdr.detectChanges();
             this.loadingContr.hideLoader();
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(this.toastCtrl);
         }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, this.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();
         });
     }
-    excluirButtonClick(item) {
+    servicoOpcoes(item) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const alert = yield this.alertController.create({
-                header: 'Atenção',
-                message: 'Deseja excluir registro?',
+            const actionSheet = yield this.actionSheetCtrl.create({
+                header: item.nomeServico,
                 buttons: [
                     {
-                        text: 'Não',
-                    }, {
-                        text: 'Sim',
+                        text: 'Breve comentário',
                         handler: () => {
-                            this.excluirServico(item);
+                        }
+                    },
+                    {
+                        text: 'Remover',
+                        role: 'destructive',
+                        handler: () => {
+                            const result = this.confirmAlert.confirmationAlert(this.alertController, 'Deseja excluir o serviço <strong>' + item.nomeServico + '</strong>?').then(result => {
+                                if (result) {
+                                    this.excluirServico(item);
+                                }
+                            });
+                        }
+                    },
+                    {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        handler: () => {
                         }
                     }
                 ]
             });
-            yield alert.present();
+            yield actionSheet.present();
         });
     }
     prosseguir() {
@@ -328,19 +346,23 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].CustomToast(this.toastCtrl, "Favor adicionar serviço, antes de continuar", "danger", 4000);
             return false;
         }
-        this.loadingContr.showLoader();
-        let obj = { situacaoPrestador: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao };
-        this.prestadorService
-            .AtualizaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
-            this.loadingContr.hideLoader();
-            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(this.toastCtrl);
-            this.ngZone.run(() => {
-                this.router.navigate(['prestador-cadastro-igreja-vinculo']);
-            });
-        }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, this.toastCtrl);
-            this.loadingContr.hideLoader();
-        });
+        this.router.navigate(['prestador-cadastro-igreja-vinculo']);
+        // this.loadingContr.showLoader();
+        // let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
+        // if (this.prestador) {
+        //   obj.situacaoPrestador = this.prestador.situacaoPrestador;
+        // }
+        // this.prestadorService
+        //   .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
+        //     this.loadingContr.hideLoader();
+        //     ToastCustom.SucessoToast(this.toastCtrl);
+        //     this.ngZone.run(() => {
+        //       this.router.navigate(['prestador-cadastro-igreja-vinculo']);
+        //     });
+        //   }).catch(err => {
+        //     HandlerError.handler(err, this.toastCtrl);
+        //     this.loadingContr.hideLoader();
+        //   });
     }
     voltar() {
         this.router.navigate(['prestador-local-atendimento']);
@@ -352,15 +374,18 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
     }
 };
 PrestadorCadastroServicoPage.ctorParameters = () => [
-    { type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_8__["DominioServicoService"] },
-    { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_9__["LoadingContr"] },
-    { type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_10__["PrestadorService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ModalController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ToastController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["AlertController"] },
+    { type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_7__["DominioServicoService"] },
+    { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__["LoadingContr"] },
+    { type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_9__["PrestadorService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ModalController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ToastController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"] },
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"] },
-    { type: src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_12__["SortByPipe"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"] },
+    { type: src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_11__["SortByPipe"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ActionSheetController"] },
+    { type: src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_12__["ConfirmAlert"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"] }
 ];
 PrestadorCadastroServicoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
