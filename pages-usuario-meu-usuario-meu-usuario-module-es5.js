@@ -4,24 +4,24 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-profile-profile-module"], {
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-usuario-meu-usuario-meu-usuario-module"], {
   /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/profile/profile.page.html":
-  /*!***************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/profile/profile.page.html ***!
-    \***************************************************************************************/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/usuario/meu-usuario/meu-usuario.page.html":
+  /*!*******************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/usuario/meu-usuario/meu-usuario.page.html ***!
+    \*******************************************************************************************************/
 
   /*! exports provided: default */
 
   /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppPagesProfileProfilePageHtml(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesRawLoaderDistCjsJsSrcAppPagesUsuarioMeuUsuarioMeuUsuarioPageHtml(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Meu Perfil</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Nome <ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n\n        <ion-input type=\"text\" [(ngModel)]=\"usuario.nome\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n      <ion-item class=\"input-item\">\n        <ion-label>{{usuario.email}}</ion-label>\n      </ion-item>\n\n      <ion-item>\n       \n        <ion-label *ngFor=\"let perfil of perfis\">{{perfil}}</ion-label>\n        \n      </ion-item>\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"success\" type=\"button\" (click)=\"salvar()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Salvar\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Meu Perfil</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-item class=\"input-item\">\n        <ion-label position=\"floating\">Nome <ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n\n        <ion-input type=\"text\" [(ngModel)]=\"usuario.nome\" clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n      <ion-item class=\"input-item\">\n        <p>{{usuario.email}}</p>\n      </ion-item>\n\n      <ion-item>\n       \n        <p *ngFor=\"let perfil of perfis\">{{perfil}}</p>\n        \n      </ion-item>\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"success\" type=\"button\" (click)=\"salvar()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Salvar\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -128,23 +128,83 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
-  "./src/app/pages/profile/profile.module.ts":
-  /*!*************************************************!*\
-    !*** ./src/app/pages/profile/profile.module.ts ***!
-    \*************************************************/
+  "./src/app/pages/usuario/meu-usuario/meu-usuario-routing.module.ts":
+  /*!*************************************************************************!*\
+    !*** ./src/app/pages/usuario/meu-usuario/meu-usuario-routing.module.ts ***!
+    \*************************************************************************/
 
-  /*! exports provided: ProfilePageModule */
+  /*! exports provided: MeuUsuarioPageRoutingModule */
 
   /***/
-  function srcAppPagesProfileProfileModuleTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppPagesUsuarioMeuUsuarioMeuUsuarioRoutingModuleTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ProfilePageModule", function () {
-      return ProfilePageModule;
+    __webpack_require__.d(__webpack_exports__, "MeuUsuarioPageRoutingModule", function () {
+      return MeuUsuarioPageRoutingModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _meu_usuario_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./meu-usuario.page */
+    "./src/app/pages/usuario/meu-usuario/meu-usuario.page.ts");
+
+    var routes = [{
+      path: '',
+      component: _meu_usuario_page__WEBPACK_IMPORTED_MODULE_3__["MeuUsuarioPage"]
+    }];
+
+    var MeuUsuarioPageRoutingModule = function MeuUsuarioPageRoutingModule() {
+      _classCallCheck(this, MeuUsuarioPageRoutingModule);
+    };
+
+    MeuUsuarioPageRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+    })], MeuUsuarioPageRoutingModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/usuario/meu-usuario/meu-usuario.module.ts":
+  /*!*****************************************************************!*\
+    !*** ./src/app/pages/usuario/meu-usuario/meu-usuario.module.ts ***!
+    \*****************************************************************/
+
+  /*! exports provided: MeuUsuarioPageModule */
+
+  /***/
+  function srcAppPagesUsuarioMeuUsuarioMeuUsuarioModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "MeuUsuarioPageModule", function () {
+      return MeuUsuarioPageModule;
     });
     /* harmony import */
 
@@ -179,70 +239,71 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _profile_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./profile.page */
-    "./src/app/pages/profile/profile.page.ts");
+    var _meu_usuario_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./meu-usuario-routing.module */
+    "./src/app/pages/usuario/meu-usuario/meu-usuario-routing.module.ts");
     /* harmony import */
 
 
-    var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-    /*! @angular/router */
-    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    var _meu_usuario_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./meu-usuario.page */
+    "./src/app/pages/usuario/meu-usuario/meu-usuario.page.ts");
+    /* harmony import */
 
-    var routes = [{
-      path: '',
-      component: _profile_page__WEBPACK_IMPORTED_MODULE_5__["ProfilePage"]
-    }];
 
-    var ProfilePageModule = function ProfilePageModule() {
-      _classCallCheck(this, ProfilePageModule);
+    var src_app_components_components_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! src/app/components/components.module */
+    "./src/app/components/components.module.ts");
+
+    var MeuUsuarioPageModule = function MeuUsuarioPageModule() {
+      _classCallCheck(this, MeuUsuarioPageModule);
     };
 
-    ProfilePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forChild(routes)],
-      declarations: [_profile_page__WEBPACK_IMPORTED_MODULE_5__["ProfilePage"]]
-    })], ProfilePageModule);
+    MeuUsuarioPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], src_app_components_components_module__WEBPACK_IMPORTED_MODULE_7__["ComponentsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _meu_usuario_routing_module__WEBPACK_IMPORTED_MODULE_5__["MeuUsuarioPageRoutingModule"]],
+      declarations: [_meu_usuario_page__WEBPACK_IMPORTED_MODULE_6__["MeuUsuarioPage"]]
+    })], MeuUsuarioPageModule);
     /***/
   },
 
   /***/
-  "./src/app/pages/profile/profile.page.scss":
-  /*!*************************************************!*\
-    !*** ./src/app/pages/profile/profile.page.scss ***!
-    \*************************************************/
+  "./src/app/pages/usuario/meu-usuario/meu-usuario.page.scss":
+  /*!*****************************************************************!*\
+    !*** ./src/app/pages/usuario/meu-usuario/meu-usuario.page.scss ***!
+    \*****************************************************************/
 
   /*! exports provided: default */
 
   /***/
-  function srcAppPagesProfileProfilePageScss(module, __webpack_exports__, __webpack_require__) {
+  function srcAppPagesUsuarioMeuUsuarioMeuUsuarioPageScss(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".profile-content {\n  --padding-bottom: 16px;\n  --padding-end: 16px;\n  --padding-start: 16px;\n  --padding-top: 16px;\n}\n.profile-content .user-image {\n  border-radius: 4%;\n}\n.profile-content .user-details-wrapper {\n  justify-content: center;\n}\n.profile-content .user-details-wrapper .user-image-wrapper {\n  text-align: center;\n}\n.profile-content .user-details-wrapper .user-info-wrapper {\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvcHJvZmlsZS9wcm9maWxlLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvcHJvZmlsZS9wcm9maWxlLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHNCQUFBO0VBQ0EsbUJBQUE7RUFDQSxxQkFBQTtFQUNBLG1CQUFBO0FDQ0Y7QURDRTtFQUNFLGlCQUFBO0FDQ0o7QURFRTtFQUNFLHVCQUFBO0FDQUo7QURFSTtFQUNFLGtCQUFBO0FDQU47QURHSTtFQUNFLGtCQUFBO0FDRE4iLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9wcm9maWxlL3Byb2ZpbGUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByb2ZpbGUtY29udGVudCB7XG4gIC0tcGFkZGluZy1ib3R0b206IDE2cHg7XG4gIC0tcGFkZGluZy1lbmQ6IDE2cHg7XG4gIC0tcGFkZGluZy1zdGFydDogMTZweDtcbiAgLS1wYWRkaW5nLXRvcDogMTZweDtcblxuICAudXNlci1pbWFnZSB7XG4gICAgYm9yZGVyLXJhZGl1czogNCU7XG4gIH1cblxuICAudXNlci1kZXRhaWxzLXdyYXBwZXIge1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuXG4gICAgLnVzZXItaW1hZ2Utd3JhcHBlciB7XG4gICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgfVxuXG4gICAgLnVzZXItaW5mby13cmFwcGVyIHtcbiAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB9XG4gIH1cbn1cbiIsIi5wcm9maWxlLWNvbnRlbnQge1xuICAtLXBhZGRpbmctYm90dG9tOiAxNnB4O1xuICAtLXBhZGRpbmctZW5kOiAxNnB4O1xuICAtLXBhZGRpbmctc3RhcnQ6IDE2cHg7XG4gIC0tcGFkZGluZy10b3A6IDE2cHg7XG59XG4ucHJvZmlsZS1jb250ZW50IC51c2VyLWltYWdlIHtcbiAgYm9yZGVyLXJhZGl1czogNCU7XG59XG4ucHJvZmlsZS1jb250ZW50IC51c2VyLWRldGFpbHMtd3JhcHBlciB7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuLnByb2ZpbGUtY29udGVudCAudXNlci1kZXRhaWxzLXdyYXBwZXIgLnVzZXItaW1hZ2Utd3JhcHBlciB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5wcm9maWxlLWNvbnRlbnQgLnVzZXItZGV0YWlscy13cmFwcGVyIC51c2VyLWluZm8td3JhcHBlciB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iXX0= */";
+    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvdXN1YXJpby9tZXUtdXN1YXJpby9tZXUtdXN1YXJpby5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL3VzdWFyaW8vbWV1LXVzdWFyaW8vbWV1LXVzdWFyaW8ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksNEJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3VzdWFyaW8vbWV1LXVzdWFyaW8vbWV1LXVzdWFyaW8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
     /***/
   },
 
   /***/
-  "./src/app/pages/profile/profile.page.ts":
-  /*!***********************************************!*\
-    !*** ./src/app/pages/profile/profile.page.ts ***!
-    \***********************************************/
+  "./src/app/pages/usuario/meu-usuario/meu-usuario.page.ts":
+  /*!***************************************************************!*\
+    !*** ./src/app/pages/usuario/meu-usuario/meu-usuario.page.ts ***!
+    \***************************************************************/
 
-  /*! exports provided: ProfilePage */
+  /*! exports provided: MeuUsuarioPage */
 
   /***/
-  function srcAppPagesProfileProfilePageTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppPagesUsuarioMeuUsuarioMeuUsuarioPageTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "ProfilePage", function () {
-      return ProfilePage;
+    __webpack_require__.d(__webpack_exports__, "MeuUsuarioPage", function () {
+      return MeuUsuarioPage;
     });
     /* harmony import */
 
@@ -299,9 +360,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*! src/app/helpers/toastCustom */
     "./src/app/helpers/toastCustom.ts");
 
-    var ProfilePage = /*#__PURE__*/function () {
-      function ProfilePage(loadingContr, toastCtrl, usuarioService) {
-        _classCallCheck(this, ProfilePage);
+    var MeuUsuarioPage = /*#__PURE__*/function () {
+      function MeuUsuarioPage(loadingContr, toastCtrl, usuarioService) {
+        _classCallCheck(this, MeuUsuarioPage);
 
         this.loadingContr = loadingContr;
         this.toastCtrl = toastCtrl;
@@ -310,7 +371,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.perfis = [];
       }
 
-      _createClass(ProfilePage, [{
+      _createClass(MeuUsuarioPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
           var _this = this;
@@ -350,10 +411,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
       }]);
 
-      return ProfilePage;
+      return MeuUsuarioPage;
     }();
 
-    ProfilePage.ctorParameters = function () {
+    MeuUsuarioPage.ctorParameters = function () {
       return [{
         type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_6__["LoadingContr"]
       }, {
@@ -363,16 +424,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }];
     };
 
-    ProfilePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-profile',
+    MeuUsuarioPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-meu-usuario',
       template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-      /*! raw-loader!./profile.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/profile/profile.page.html"))["default"],
+      /*! raw-loader!./meu-usuario.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/usuario/meu-usuario/meu-usuario.page.html"))["default"],
       styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-      /*! ./profile.page.scss */
-      "./src/app/pages/profile/profile.page.scss"))["default"]]
-    })], ProfilePage);
+      /*! ./meu-usuario.page.scss */
+      "./src/app/pages/usuario/meu-usuario/meu-usuario.page.scss"))["default"]]
+    })], MeuUsuarioPage);
     /***/
   }
 }]);
-//# sourceMappingURL=pages-profile-profile-module-es5.js.map
+//# sourceMappingURL=pages-usuario-meu-usuario-meu-usuario-module-es5.js.map

@@ -4,17 +4,17 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-sign-in-sign-in-module"], {
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-usuario-login-login-module"], {
   /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/sign-in/sign-in.page.html":
-  /*!***************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/sign-in/sign-in.page.html ***!
-    \***************************************************************************************/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/usuario/login/login.page.html":
+  /*!*******************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/usuario/login/login.page.html ***!
+    \*******************************************************************************************/
 
   /*! exports provided: default */
 
   /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppPagesSignInSignInPageHtml(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesRawLoaderDistCjsJsSrcAppPagesUsuarioLoginLoginPageHtml(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
@@ -128,23 +128,83 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
-  "./src/app/pages/sign-in/sign-in.module.ts":
-  /*!*************************************************!*\
-    !*** ./src/app/pages/sign-in/sign-in.module.ts ***!
-    \*************************************************/
+  "./src/app/pages/usuario/login/login-routing.module.ts":
+  /*!*************************************************************!*\
+    !*** ./src/app/pages/usuario/login/login-routing.module.ts ***!
+    \*************************************************************/
 
-  /*! exports provided: SignInPageModule */
+  /*! exports provided: LoginPageRoutingModule */
 
   /***/
-  function srcAppPagesSignInSignInModuleTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppPagesUsuarioLoginLoginRoutingModuleTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "SignInPageModule", function () {
-      return SignInPageModule;
+    __webpack_require__.d(__webpack_exports__, "LoginPageRoutingModule", function () {
+      return LoginPageRoutingModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _login_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./login.page */
+    "./src/app/pages/usuario/login/login.page.ts");
+
+    var routes = [{
+      path: '',
+      component: _login_page__WEBPACK_IMPORTED_MODULE_3__["LoginPage"]
+    }];
+
+    var LoginPageRoutingModule = function LoginPageRoutingModule() {
+      _classCallCheck(this, LoginPageRoutingModule);
+    };
+
+    LoginPageRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+    })], LoginPageRoutingModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/usuario/login/login.module.ts":
+  /*!*****************************************************!*\
+    !*** ./src/app/pages/usuario/login/login.module.ts ***!
+    \*****************************************************/
+
+  /*! exports provided: LoginPageModule */
+
+  /***/
+  function srcAppPagesUsuarioLoginLoginModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "LoginPageModule", function () {
+      return LoginPageModule;
     });
     /* harmony import */
 
@@ -167,27 +227,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! @ionic/angular */
-    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-    /* harmony import */
-
-
-    var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/forms */
     "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
     /* harmony import */
 
 
-    var _sign_in_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./sign-in.page */
-    "./src/app/pages/sign-in/sign-in.page.ts");
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
     /* harmony import */
 
 
-    var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-    /*! @angular/router */
-    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    var _login_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./login-routing.module */
+    "./src/app/pages/usuario/login/login-routing.module.ts");
+    /* harmony import */
+
+
+    var _login_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./login.page */
+    "./src/app/pages/usuario/login/login.page.ts");
     /* harmony import */
 
 
@@ -195,60 +255,55 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*! src/app/components/components.module */
     "./src/app/components/components.module.ts");
 
-    var routes = [{
-      path: '',
-      component: _sign_in_page__WEBPACK_IMPORTED_MODULE_5__["SignInPage"]
-    }];
-
-    var SignInPageModule = function SignInPageModule() {
-      _classCallCheck(this, SignInPageModule);
+    var LoginPageModule = function LoginPageModule() {
+      _classCallCheck(this, LoginPageModule);
     };
 
-    SignInPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], src_app_components_components_module__WEBPACK_IMPORTED_MODULE_7__["ComponentsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forChild(routes)],
-      declarations: [_sign_in_page__WEBPACK_IMPORTED_MODULE_5__["SignInPage"]]
-    })], SignInPageModule);
+    LoginPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], src_app_components_components_module__WEBPACK_IMPORTED_MODULE_7__["ComponentsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _login_routing_module__WEBPACK_IMPORTED_MODULE_5__["LoginPageRoutingModule"]],
+      declarations: [_login_page__WEBPACK_IMPORTED_MODULE_6__["LoginPage"]]
+    })], LoginPageModule);
     /***/
   },
 
   /***/
-  "./src/app/pages/sign-in/sign-in.page.scss":
-  /*!*************************************************!*\
-    !*** ./src/app/pages/sign-in/sign-in.page.scss ***!
-    \*************************************************/
+  "./src/app/pages/usuario/login/login.page.scss":
+  /*!*****************************************************!*\
+    !*** ./src/app/pages/usuario/login/login.page.scss ***!
+    \*****************************************************/
 
   /*! exports provided: default */
 
   /***/
-  function srcAppPagesSignInSignInPageScss(module, __webpack_exports__, __webpack_require__) {
+  function srcAppPagesUsuarioLoginLoginPageScss(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvc2lnbi1pbi9zaWduLWluLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvc2lnbi1pbi9zaWduLWluLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDRCQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9zaWduLWluL3NpZ24taW4ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgcGFkZGluZy1sZWZ0OiAwcHggIWltcG9ydGFudDtcbn1cbiIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
+    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvdXN1YXJpby9sb2dpbi9sb2dpbi5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL3VzdWFyaW8vbG9naW4vbG9naW4ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksNEJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3VzdWFyaW8vbG9naW4vbG9naW4ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
     /***/
   },
 
   /***/
-  "./src/app/pages/sign-in/sign-in.page.ts":
-  /*!***********************************************!*\
-    !*** ./src/app/pages/sign-in/sign-in.page.ts ***!
-    \***********************************************/
+  "./src/app/pages/usuario/login/login.page.ts":
+  /*!***************************************************!*\
+    !*** ./src/app/pages/usuario/login/login.page.ts ***!
+    \***************************************************/
 
-  /*! exports provided: SignInPage */
+  /*! exports provided: LoginPage */
 
   /***/
-  function srcAppPagesSignInSignInPageTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppPagesUsuarioLoginLoginPageTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "SignInPage", function () {
-      return SignInPage;
+    __webpack_require__.d(__webpack_exports__, "LoginPage", function () {
+      return LoginPage;
     });
     /* harmony import */
 
@@ -317,9 +372,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*! src/app/utils/constants */
     "./src/app/utils/constants.ts");
 
-    var SignInPage = /*#__PURE__*/function () {
-      function SignInPage(angularFire, router, route, authService, loadControl, usuarioService, toast) {
-        _classCallCheck(this, SignInPage);
+    var LoginPage = /*#__PURE__*/function () {
+      function LoginPage(angularFire, router, route, authService, loadControl, usuarioService, toast) {
+        _classCallCheck(this, LoginPage);
 
         this.angularFire = angularFire;
         this.router = router;
@@ -346,7 +401,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         };
       }
 
-      _createClass(SignInPage, [{
+      _createClass(LoginPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
           this.signInForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
@@ -382,10 +437,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
       }]);
 
-      return SignInPage;
+      return LoginPage;
     }();
 
-    SignInPage.ctorParameters = function () {
+    LoginPage.ctorParameters = function () {
       return [{
         type: _angular_fire_auth__WEBPACK_IMPORTED_MODULE_2__["AngularFireAuth"]
       }, {
@@ -403,16 +458,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }];
     };
 
-    SignInPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-sign-in',
+    LoginPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-login',
       template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-      /*! raw-loader!./sign-in.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/sign-in/sign-in.page.html"))["default"],
+      /*! raw-loader!./login.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/usuario/login/login.page.html"))["default"],
       styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-      /*! ./sign-in.page.scss */
-      "./src/app/pages/sign-in/sign-in.page.scss"))["default"]]
-    })], SignInPage);
+      /*! ./login.page.scss */
+      "./src/app/pages/usuario/login/login.page.scss"))["default"]]
+    })], LoginPage);
     /***/
   }
 }]);
-//# sourceMappingURL=pages-sign-in-sign-in-module-es5.js.map
+//# sourceMappingURL=pages-usuario-login-login-module-es5.js.map

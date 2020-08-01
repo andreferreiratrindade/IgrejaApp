@@ -146,7 +146,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" menuId=\"mainContent\" side=\"start\">\n      <ion-header>\n        <ion-toolbar color=\"default\">\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n\n          <span *ngIf=\"usuarioLogado\">\n            <ion-list-header>\n              <h3>\n                {{recuperaDadosUsuario.nome.split(' ')[0]}}</h3>\n            </ion-list-header>\n            <ion-note>{{recuperaDadosUsuario.email}}</ion-note>\n\n            <ion-chip color=\"tertiary\" (click)=\"logoff()\" slot=\"close\" routerDirection=\"root\"\n              routerLink=\"prestador-consultar\" size=\"6\">\n              <ion-label>Sair</ion-label>\n              <ion-icon name=\"log-out-outline\"></ion-icon>\n            </ion-chip>\n          </span>\n\n          <ion-menu-toggle *ngFor=\"let p of paginas\">\n            <ion-item routerDirection=\"root\" [routerLink]=\"p.url\" detail=\"false\">\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\"></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n\n        </ion-list>\n        <ion-footer class=\"ion-no-border\">\n          <ion-toolbar>\n            <ion-label>{{ version }}</ion-label>\n          </ion-toolbar>\n        </ion-footer>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\">\n\n      <app-tablinks></app-tablinks>\n\n    </ion-router-outlet>\n  </ion-split-pane>\n</ion-app>";
+    __webpack_exports__["default"] = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" menuId=\"mainContent\" side=\"start\">\n      <ion-header>\n        <ion-toolbar color=\"default\">\n          <ion-title>Menu</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n\n          <span *ngIf=\"usuarioLogado\">\n            <ion-list-header>\n              <h3>\n                {{recuperaDadosUsuario.nome.split(' ')[0]}}</h3>\n            </ion-list-header>\n            <ion-note>{{recuperaDadosUsuario.email}}</ion-note>\n\n            <ion-chip color=\"tertiary\" (click)=\"logoff()\" slot=\"close\" routerDirection=\"root\"\n              routerLink=\"prestador-consultar\" size=\"6\">\n              <ion-label>Sair</ion-label>\n              <ion-icon name=\"log-out-outline\"></ion-icon>\n            </ion-chip>\n          </span>\n\n          <ion-menu-toggle *ngFor=\"let p of paginas\">\n            <ion-item routerDirection=\"root\" [routerLink]=\"p.url\" detail=\"false\">\n              <ion-icon style=\"padding-right: 15px;\" class=\"{{p.icon}}\" ></ion-icon>\n              <ion-label>{{ p.title }}</ion-label>\n            </ion-item>\n            \n          </ion-menu-toggle>\n\n        </ion-list>\n        <ion-footer class=\"ion-no-border\">\n          <ion-toolbar>\n            <ion-label>{{ version }}</ion-label>\n          </ion-toolbar>\n        </ion-footer>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\">\n\n      <app-tablinks></app-tablinks>\n\n    </ion-router-outlet>\n  </ion-split-pane>\n</ion-app>";
     /***/
   },
 
@@ -331,40 +331,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /*! ./folder/folder.module */
         "./src/app/folder/folder.module.ts")).then(function (m) {
           return m.FolderPageModule;
-        });
-      }
-    }, {
-      path: 'sign-in',
-      loadChildren: function loadChildren() {
-        return __webpack_require__.e(
-        /*! import() | pages-sign-in-sign-in-module */
-        "pages-sign-in-sign-in-module").then(__webpack_require__.bind(null,
-        /*! ./pages/sign-in/sign-in.module */
-        "./src/app/pages/sign-in/sign-in.module.ts")).then(function (m) {
-          return m.SignInPageModule;
-        });
-      }
-    }, {
-      path: 'sign-up',
-      loadChildren: function loadChildren() {
-        return __webpack_require__.e(
-        /*! import() | pages-sign-up-sign-up-module */
-        "pages-sign-up-sign-up-module").then(__webpack_require__.bind(null,
-        /*! ./pages/sign-up/sign-up.module */
-        "./src/app/pages/sign-up/sign-up.module.ts")).then(function (m) {
-          return m.SignUpPageModule;
-        });
-      }
-    }, {
-      path: 'profile',
-      canActivate: [_providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__["UsuarioLogadoValidation"]],
-      loadChildren: function loadChildren() {
-        return __webpack_require__.e(
-        /*! import() | pages-profile-profile-module */
-        "pages-profile-profile-module").then(__webpack_require__.bind(null,
-        /*! ./pages/profile/profile.module */
-        "./src/app/pages/profile/profile.module.ts")).then(function (m) {
-          return m.ProfilePageModule;
         });
       }
     }, {
@@ -654,6 +620,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.ManterIgrejaPageModule;
         });
       }
+    }, {
+      path: 'sign-up',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-usuario-novo-novo-module */
+        "pages-usuario-novo-novo-module").then(__webpack_require__.bind(null,
+        /*! ./pages/usuario/novo/novo.module */
+        "./src/app/pages/usuario/novo/novo.module.ts")).then(function (m) {
+          return m.NovoPageModule;
+        });
+      }
+    }, {
+      path: 'sign-in',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-usuario-login-login-module */
+        "pages-usuario-login-login-module").then(__webpack_require__.bind(null,
+        /*! ./pages/usuario/login/login.module */
+        "./src/app/pages/usuario/login/login.module.ts")).then(function (m) {
+          return m.LoginPageModule;
+        });
+      }
+    }, {
+      path: 'profile',
+      canActivate: [_providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__["UsuarioLogadoValidation"]],
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-usuario-meu-usuario-meu-usuario-module */
+        "pages-usuario-meu-usuario-meu-usuario-module").then(__webpack_require__.bind(null,
+        /*! ./pages/usuario/meu-usuario/meu-usuario.module */
+        "./src/app/pages/usuario/meu-usuario/meu-usuario.module.ts")).then(function (m) {
+          return m.MeuUsuarioPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
@@ -832,6 +832,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }).length > 0;
               }
 
+              if (page.perfilInverso) {
+                if (_this2.usuarioLogado && _this2.usuarioLogado.perfis) {
+                  retorno = _this2.usuarioLogado.perfis.filter(function (pfUser) {
+                    return page.perfilInverso.includes(Number(pfUser));
+                  }).length == 0;
+                }
+              }
+
               return retorno;
             });
           });
@@ -896,31 +904,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return [{
             title: 'Consultar Prestador',
             url: 'prestador-consultar',
-            icon: 'search'
+            icon: 'fas fa-search'
           }, {
             title: 'Seja um Prestador',
             url: 'dados-empresa',
-            icon: 'people',
-            perfilInverso: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.Prestador]
+            icon: 'fas fa-toolbox',
+            perfilInverso: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.Prestador, _utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorSistema, _utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorIgreja]
           }, {
             title: 'Manter Igreja',
             url: 'manter-igreja',
-            icon: 'business',
+            icon: 'fas fa-church',
             perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorSistema]
           }, {
             title: 'Manter Prestadores',
             url: 'consultar-prestador-adm',
-            icon: 'business',
+            icon: 'fas fa-tools',
             perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorIgreja]
           }, {
             title: 'Meu Cadastro Prestador',
             url: 'meu-cadastro-prestador',
-            icon: 'business',
+            icon: 'fas fa-tools',
             perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.Prestador]
           }, {
             title: 'Manter Serviços',
             url: 'mantem-servico',
-            icon: 'construct',
+            icon: 'fas fa-tools',
             perfil: [_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].PerfilUsuario.AdministradorSistema]
           }];
         }
@@ -1126,6 +1134,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
     /*! @ionic-native/social-sharing/ngx */
     "./node_modules/@ionic-native/social-sharing/__ivy_ngcc__/ngx/index.js");
+    /* harmony import */
+
+
+    var _pipes_pipes__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(
+    /*! ./pipes/pipes */
+    "./src/app/pipes/pipes.ts");
+    /* harmony import */
+
+
+    var _pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(
+    /*! ./pipes/sortBy/sort-by.pipe */
+    "./src/app/pipes/sortBy/sort-by.pipe.ts");
 
     firebase_app__WEBPACK_IMPORTED_MODULE_19__["initializeApp"](src_environments_environment__WEBPACK_IMPORTED_MODULE_12__["environment"].firebase);
 
@@ -1138,8 +1158,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       entryComponents: [],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_17__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_17__["ReactiveFormsModule"], _angular_http__WEBPACK_IMPORTED_MODULE_16__["HttpModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot({
         mode: 'ios'
-      }), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _components_components_module__WEBPACK_IMPORTED_MODULE_13__["ComponentsModule"], _angular_fire__WEBPACK_IMPORTED_MODULE_9__["AngularFireModule"].initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_12__["environment"].firebase), _angular_fire_auth__WEBPACK_IMPORTED_MODULE_10__["AngularFireAuthModule"], angularfire2_firestore__WEBPACK_IMPORTED_MODULE_18__["AngularFirestoreModule"]],
-      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_15__["BuscarCEPService"], _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_20__["CallNumber"], _providers_base_provider_base_provider__WEBPACK_IMPORTED_MODULE_14__["BaseProvider"], _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_21__["SocialSharing"], _providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_11__["FirebaseAuthService"], {
+      }), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _components_components_module__WEBPACK_IMPORTED_MODULE_13__["ComponentsModule"], _angular_fire__WEBPACK_IMPORTED_MODULE_9__["AngularFireModule"].initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_12__["environment"].firebase), _angular_fire_auth__WEBPACK_IMPORTED_MODULE_10__["AngularFireAuthModule"], angularfire2_firestore__WEBPACK_IMPORTED_MODULE_18__["AngularFirestoreModule"], _pipes_pipes__WEBPACK_IMPORTED_MODULE_22__["PipesModule"].forRoot()],
+      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_15__["BuscarCEPService"], _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_20__["CallNumber"], _providers_base_provider_base_provider__WEBPACK_IMPORTED_MODULE_14__["BaseProvider"], _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_21__["SocialSharing"], _providers_base_provider_firebase_auth_service_service__WEBPACK_IMPORTED_MODULE_11__["FirebaseAuthService"], _pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_23__["SortByPipe"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
       }],
@@ -1911,6 +1931,219 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./tablinks.page.scss */
       "./src/app/pages/tablinks/tablinks.page.scss"))["default"]]
     })], TablinksPage);
+    /***/
+  },
+
+  /***/
+  "./src/app/pipes/mask-telefone.pipe.ts":
+  /*!*********************************************!*\
+    !*** ./src/app/pipes/mask-telefone.pipe.ts ***!
+    \*********************************************/
+
+  /*! exports provided: MaskTelefonePipe */
+
+  /***/
+  function srcAppPipesMaskTelefonePipeTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "MaskTelefonePipe", function () {
+      return MaskTelefonePipe;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+    var MaskTelefonePipe = /*#__PURE__*/function () {
+      function MaskTelefonePipe() {
+        _classCallCheck(this, MaskTelefonePipe);
+      }
+
+      _createClass(MaskTelefonePipe, [{
+        key: "transform",
+        value: function transform(rawNum) {
+          var value;
+          var valueStr = rawNum ? rawNum.toString() : null;
+
+          if (valueStr && valueStr.toString().length == 11) {
+            value = "(" + valueStr.substring(0, 2) + ") " + valueStr.substring(2, 7) + "-" + valueStr.substring(7, 11);
+          }
+
+          if (valueStr && valueStr.toString().length == 10) {
+            value = "(" + valueStr.substring(0, 2) + ") " + valueStr.substring(2, 6) + "-" + valueStr.substring(6, 10);
+          }
+
+          return value;
+        }
+      }]);
+
+      return MaskTelefonePipe;
+    }();
+
+    MaskTelefonePipe = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
+      name: 'maskTelefone'
+    })], MaskTelefonePipe);
+    /***/
+  },
+
+  /***/
+  "./src/app/pipes/pipes.ts":
+  /*!********************************!*\
+    !*** ./src/app/pipes/pipes.ts ***!
+    \********************************/
+
+  /*! exports provided: PipesModule */
+
+  /***/
+  function srcAppPipesPipesTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "PipesModule", function () {
+      return PipesModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _mask_telefone_pipe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./mask-telefone.pipe */
+    "./src/app/pipes/mask-telefone.pipe.ts");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var _sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ./sortBy/sort-by.pipe */
+    "./src/app/pipes/sortBy/sort-by.pipe.ts");
+
+    var PipesModule_1;
+
+    var PipesModule = PipesModule_1 = /*#__PURE__*/function () {
+      function PipesModule() {
+        _classCallCheck(this, PipesModule);
+      }
+
+      _createClass(PipesModule, null, [{
+        key: "forRoot",
+        value: function forRoot() {
+          return {
+            ngModule: PipesModule_1,
+            providers: []
+          };
+        }
+      }]);
+
+      return PipesModule;
+    }();
+
+    PipesModule = PipesModule_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      declarations: [_mask_telefone_pipe__WEBPACK_IMPORTED_MODULE_2__["MaskTelefonePipe"], _sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_4__["SortByPipe"]],
+      imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"]],
+      exports: [_mask_telefone_pipe__WEBPACK_IMPORTED_MODULE_2__["MaskTelefonePipe"], _sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_4__["SortByPipe"]]
+    })], PipesModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/pipes/sortBy/sort-by.pipe.ts":
+  /*!**********************************************!*\
+    !*** ./src/app/pipes/sortBy/sort-by.pipe.ts ***!
+    \**********************************************/
+
+  /*! exports provided: SortByPipe */
+
+  /***/
+  function srcAppPipesSortBySortByPipeTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "SortByPipe", function () {
+      return SortByPipe;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /*
+     *ngFor="let c of oneDimArray | sortBy:'asc'"
+     *ngFor="let c of arrayOfObjects | sortBy:'asc':'propertyName'"
+    */
+
+
+    var SortByPipe = /*#__PURE__*/function () {
+      function SortByPipe() {
+        _classCallCheck(this, SortByPipe);
+      }
+
+      _createClass(SortByPipe, [{
+        key: "transform",
+        value: function transform(array, field) {
+          if (!Array.isArray(array)) {
+            return;
+          }
+
+          array.sort(function (a, b) {
+            if (a[field] < b[field]) {
+              return -1;
+            } else if (a[field] > b[field]) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          return array;
+        }
+      }]);
+
+      return SortByPipe;
+    }();
+
+    SortByPipe = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
+      name: 'sortBy'
+    })], SortByPipe);
     /***/
   },
 
@@ -3293,16 +3526,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           return new Promise(function (resolve, reject) {
             var query = _this21.db.collectionGroup("prestador") // .where("locaisAtendimento", "array-contains", { uf: ufSelecionado })
-            .where("situacaoPrestador", "==", src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.Ativo); // if (cidadeSelecionado) {
-            //     query = query.where("cidade", "==", cidadeSelecionado);
-            // }
-            // if (bairro) {
-            //     query = query.where("bairro", "==", bairro);
-            // }
-            // if (servicoId) {
-            //     query = query.whereArrayContains("servicos", "array-contains", servicoId);
-            // }
-
+            .where("situacaoPrestador", "==", src_app_utils_constants__WEBPACK_IMPORTED_MODULE_3__["Constants"].TipoSituacaoPrestador.Ativo);
 
             query.get().then(function (result) {
               var lst = [];
@@ -3312,16 +3536,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     if (x.cidade == cidadeSelecionado && x.uf == ufSelecionado) {
                       if (doc.data().servicos) {
                         var servicosTemp = doc.data().servicos.filter(function (y) {
-                          return y.servicoId == servicoId;
+                          return servicoId.includes(y.servicoId);
                         });
 
-                        if (servicosTemp.length > 0 || !servicoId) {
+                        if (servicosTemp.length > 0 || servicoId.length == 0) {
                           var prestador = doc.data();
 
                           if (igrejaId) {
-                            if (prestador.igrejas.filter(function (y) {
-                              return y.igrejaId == igrejaId;
-                            }).length > 0) {
+                            if (prestador.igrejaId == igrejaId) {
                               lst.push(prestador);
                             }
                           } else {

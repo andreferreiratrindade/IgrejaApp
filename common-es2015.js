@@ -498,7 +498,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n    animated #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-chip *ngFor=\"let servico of servicosSelecionados\" color=\"primary\" (click)=\"removeServico(servico)\">\n   \n    <ion-label>{{servico.nomeServico}}</ion-label>\n    <ion-icon name=\"close\"></ion-icon>\n  </ion-chip>\n\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n    animated #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n          <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n</div>  </ion-toolbar>\n</ion-footer>");
 
 /***/ }),
 
@@ -931,10 +931,12 @@ let ModalServicosPage = class ModalServicosPage {
         this.navParams = navParams;
         this.dominioServicos = [];
         this.servicos = [];
+        this.servicosSelecionados = [];
+        this.nomeServico = null;
         this.dominioServicos = this.navParams.data.servicos;
-        this.servicos = this.dominioServicos;
     }
     ngOnInit() {
+        this.recuperaServicos(null);
     }
     ngAfterViewInit() {
         setTimeout(() => {
@@ -942,19 +944,43 @@ let ModalServicosPage = class ModalServicosPage {
         }, 800);
     }
     recuperaServicos(ev) {
-        const val = ev.target.value;
+        let val = "";
+        if (ev && ev.target) {
+            val = ev.target.value;
+        }
         if (val && val.trim() !== '') {
             this.servicos = this.dominioServicos.filter(item => { return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1; });
         }
         else {
-            this.servicos = this.dominioServicos;
+            this.servicos = [...this.dominioServicos];
         }
+        this.nomeServico = val;
+        this.servicos = this.servicos.filter(x => { return this.servicosSelecionados.filter(y => y.servicoId == x.servicoId).length == 0; });
+        if (this.servicos.length > 10)
+            this.servicos.length = 10;
     }
     closeModal() {
         this.modalController.dismiss(null, 'cancel');
     }
     selecionarServico(item) {
-        this.modalController.dismiss(item, 'success');
+        this.servicosSelecionados.push(item);
+        let index = this.servicos.findIndex(y => y.servicoId == item.servicoId); //find index in your array
+        this.servicos.splice(index, 1); //remove element from array
+        let obj = {
+            target: { value: this.nomeServico }
+        };
+        this.recuperaServicos(obj);
+    }
+    removeServico(item) {
+        let index = this.servicosSelecionados.findIndex(y => y.servicoId == item.servicoId); //find index in your array
+        this.servicosSelecionados.splice(index, 1); //remove element from array
+        let obj = {
+            target: { value: this.nomeServico }
+        };
+        this.recuperaServicos(obj);
+    }
+    ok() {
+        this.modalController.dismiss(this.servicosSelecionados, 'success');
     }
 };
 ModalServicosPage.ctorParameters = () => [

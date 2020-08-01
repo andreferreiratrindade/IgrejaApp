@@ -137,7 +137,6 @@ let ModalUFPage = class ModalUFPage {
         this.dominioUF = [];
         this.itens = [];
         this.dominioUF = this.navParams.data.UFs;
-        this.recuperaItens(null);
     }
     ngAfterViewInit() {
         setTimeout(() => {
@@ -145,6 +144,7 @@ let ModalUFPage = class ModalUFPage {
         }, 800);
     }
     ngOnInit() {
+        this.recuperaItens(null);
     }
     recuperaItens(ev) {
         let val = "";

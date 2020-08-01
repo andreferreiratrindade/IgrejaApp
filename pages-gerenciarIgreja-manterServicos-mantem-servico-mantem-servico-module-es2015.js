@@ -387,7 +387,7 @@ let DominioServicoRepositoryService = class DominioServicoRepositoryService exte
     }
     recuperaDominioServico() {
         return new Promise((response, resp) => {
-            this.db.collection("dominioServico").get()
+            this.db.collection("dominioServico").orderBy("nomeServico").get()
                 .then((result) => {
                 let lst = [];
                 result.forEach(function (doc) {
@@ -401,6 +401,7 @@ let DominioServicoRepositoryService = class DominioServicoRepositoryService exte
         return new Promise((response, resp) => {
             this.db.collection("dominioServico")
                 .where("deletado", "==", false)
+                .orderBy("nomeServico")
                 .get()
                 .then((result) => {
                 let lst = [];

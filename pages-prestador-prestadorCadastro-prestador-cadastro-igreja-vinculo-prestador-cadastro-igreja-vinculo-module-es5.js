@@ -275,7 +275,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.dominioUF = [];
         this.itens = [];
         this.dominioUF = this.navParams.data.UFs;
-        this.recuperaItens(null);
       }
 
       _createClass(ModalUFPage, [{
@@ -289,7 +288,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
       }, {
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          this.recuperaItens(null);
+        }
       }, {
         key: "recuperaItens",
         value: function recuperaItens(ev) {

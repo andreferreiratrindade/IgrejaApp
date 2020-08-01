@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar color=\"secondary\" value=\"0.60\" buffer=\"0.80\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Serviços</ion-card-title>\n      <div class=\"ion-text-end\">\n        <ion-button color=\"primary\" (click)=\"abreModalSelecionaServico()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-list style=\"margin-top: 20px;\">\n        <ion-item *ngFor=\"let item of prestadorServicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"editarServico(item)\">\n          <ion-icon slot=\"end\" color=\"primary\" name=\"ellipsis-vertical\"></ion-icon>\n          <ion-label>{{item.nomeServico}}</ion-label>\n          <ion-label>{{item.breveDescricao}}</ion-label>\n\n        </ion-item>\n      </ion-list>\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Prosseguir\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar color=\"secondary\" value=\"0.60\" buffer=\"0.80\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\">\n        <ion-button color=\"primary\" (click)=\"abreModalSelecionaServico()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Serviços</ion-card-title>\n      \n    </ion-card-header>\n    <ion-card-content>\n\n\n        <ion-item *ngFor=\"let item of prestadorServicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"editarServico(item)\">\n          <ion-label class=\"ion-text-wrap \"><h3>{{item.nomeServico}}</h3> <p>{{item.breveDescricao}}</p></ion-label>\n          <ion-icon slot=\"end\" color=\"primary\" name=\"ellipsis-vertical\"></ion-icon>\n\n        </ion-item>\n\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Prosseguir\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -123,6 +123,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _prestador_cadastro_servico_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./prestador-cadastro-servico-routing.module */ "./src/app/pages/prestador/prestadorCadastro/prestador-cadastro-servico/prestador-cadastro-servico-routing.module.ts");
 /* harmony import */ var _prestador_cadastro_servico_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./prestador-cadastro-servico.page */ "./src/app/pages/prestador/prestadorCadastro/prestador-cadastro-servico/prestador-cadastro-servico.page.ts");
 /* harmony import */ var src_app_components_components_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/components/components.module */ "./src/app/components/components.module.ts");
+/* harmony import */ var src_app_pipes_pipes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/pipes/pipes */ "./src/app/pipes/pipes.ts");
+
 
 
 
@@ -140,6 +142,7 @@ PrestadorCadastroServicoPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
             src_app_components_components_module__WEBPACK_IMPORTED_MODULE_7__["ComponentsModule"],
+            src_app_pipes_pipes__WEBPACK_IMPORTED_MODULE_8__["PipesModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
             _prestador_cadastro_servico_routing_module__WEBPACK_IMPORTED_MODULE_5__["PrestadorCadastroServicoPageRoutingModule"]
         ],
@@ -160,7 +163,7 @@ PrestadorCadastroServicoPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvcHJlc3RhZG9yL3ByZXN0YWRvckNhZGFzdHJvL3ByZXN0YWRvci1jYWRhc3Ryby1zZXJ2aWNvL3ByZXN0YWRvci1jYWRhc3Ryby1zZXJ2aWNvLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvcHJlc3RhZG9yL3ByZXN0YWRvckNhZGFzdHJvL3ByZXN0YWRvci1jYWRhc3Ryby1zZXJ2aWNvL3ByZXN0YWRvci1jYWRhc3Ryby1zZXJ2aWNvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDRCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9wcmVzdGFkb3IvcHJlc3RhZG9yQ2FkYXN0cm8vcHJlc3RhZG9yLWNhZGFzdHJvLXNlcnZpY28vcHJlc3RhZG9yLWNhZGFzdHJvLXNlcnZpY28ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("ion-card-content {\n  padding-left: 0px !important;\n  padding-right: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvcHJlc3RhZG9yL3ByZXN0YWRvckNhZGFzdHJvL3ByZXN0YWRvci1jYWRhc3Ryby1zZXJ2aWNvL3ByZXN0YWRvci1jYWRhc3Ryby1zZXJ2aWNvLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvcHJlc3RhZG9yL3ByZXN0YWRvckNhZGFzdHJvL3ByZXN0YWRvci1jYWRhc3Ryby1zZXJ2aWNvL3ByZXN0YWRvci1jYWRhc3Ryby1zZXJ2aWNvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDRCQUFBO0VBQ0EsbUJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3JDYWRhc3Ryby9wcmVzdGFkb3ItY2FkYXN0cm8tc2Vydmljby9wcmVzdGFkb3ItY2FkYXN0cm8tc2Vydmljby5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY2FyZC1jb250ZW50e1xuICAgIHBhZGRpbmctbGVmdDogMHB4ICFpbXBvcnRhbnQ7XG4gICAgcGFkZGluZy1yaWdodDogMTBweDtcbiAgfVxuICAiLCJpb24tY2FyZC1jb250ZW50IHtcbiAgcGFkZGluZy1sZWZ0OiAwcHggIWltcG9ydGFudDtcbiAgcGFkZGluZy1yaWdodDogMTBweDtcbn0iXX0= */");
 
 /***/ }),
 
@@ -186,6 +189,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
 /* harmony import */ var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/providers/prestador/prestador.service */ "./src/app/providers/prestador/prestador.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/pipes/sortBy/sort-by.pipe */ "./src/app/pipes/sortBy/sort-by.pipe.ts");
+
 
 
 
@@ -199,7 +204,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
-    constructor(dominioServicoService, loadingContr, prestadorService, modalCtrl, toastCtrl, alertController, ngZone, router) {
+    constructor(dominioServicoService, loadingContr, prestadorService, modalCtrl, toastCtrl, alertController, ngZone, router, sortBy) {
         this.dominioServicoService = dominioServicoService;
         this.loadingContr = loadingContr;
         this.prestadorService = prestadorService;
@@ -208,6 +213,7 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
         this.alertController = alertController;
         this.ngZone = ngZone;
         this.router = router;
+        this.sortBy = sortBy;
     }
     ngOnInit() {
         this.loadingContr.showLoader();
@@ -223,6 +229,7 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
                     listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
                     return listItem;
                 });
+                this.ordenaServicos();
                 this.loadingContr.hideLoader();
                 if (!this.prestadorServicos || this.prestadorServicos.length == 0) {
                     this.abreModalSelecionaServico();
@@ -244,24 +251,25 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
         }).then((modal) => {
             modal.present();
             modal.onWillDismiss().then(resultModal => {
-                this.servicoAdicionado = resultModal.data;
-                if (this.servicoAdicionado) {
-                    this.loadingContr.showLoader();
-                    this.prestadorService
-                        .AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia()
-                        .recuperaUsuario().usuarioId, {
-                        servicoId: this.servicoAdicionado.servicoId,
-                        usuarioId: src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia()
-                            .recuperaUsuario().usuarioId
-                    })
-                        .then((result) => {
-                        this.prestadorServicos.push(this.servicoAdicionado);
-                        this.loadingContr.hideLoader();
-                        src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(this.toastCtrl);
-                    }).catch(err => {
-                        src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, this.toastCtrl);
-                        this.loadingContr.hideLoader();
+                if (!resultModal.data) {
+                    return false;
+                }
+                if (resultModal.data.length > 0) {
+                    src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(this.toastCtrl);
+                    resultModal.data.forEach(element => {
+                        this.prestadorServicos.push(element);
+                        this.prestadorService
+                            .AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia()
+                            .recuperaUsuario().usuarioId, {
+                            servicoId: element.servicoId,
+                            usuarioId: src_app_config__WEBPACK_IMPORTED_MODULE_5__["Config"].RecuperaInstancia()
+                                .recuperaUsuario().usuarioId
+                        }).catch(err => {
+                            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(err, this.toastCtrl);
+                            this.loadingContr.hideLoader();
+                        });
                     });
+                    this.ordenaServicos();
                 }
             });
         }).catch(err => {
@@ -339,6 +347,9 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
     }
     editarServico(item) {
     }
+    ordenaServicos() {
+        this.sortBy.transform(this.prestadorServicos, "nomeServico");
+    }
 };
 PrestadorCadastroServicoPage.ctorParameters = () => [
     { type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_8__["DominioServicoService"] },
@@ -348,7 +359,8 @@ PrestadorCadastroServicoPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ToastController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["AlertController"] },
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"] },
+    { type: src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_12__["SortByPipe"] }
 ];
 PrestadorCadastroServicoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -466,7 +478,7 @@ let DominioServicoRepositoryService = class DominioServicoRepositoryService exte
     }
     recuperaDominioServico() {
         return new Promise((response, resp) => {
-            this.db.collection("dominioServico").get()
+            this.db.collection("dominioServico").orderBy("nomeServico").get()
                 .then((result) => {
                 let lst = [];
                 result.forEach(function (doc) {
@@ -480,6 +492,7 @@ let DominioServicoRepositoryService = class DominioServicoRepositoryService exte
         return new Promise((response, resp) => {
             this.db.collection("dominioServico")
                 .where("deletado", "==", false)
+                .orderBy("nomeServico")
                 .get()
                 .then((result) => {
                 let lst = [];

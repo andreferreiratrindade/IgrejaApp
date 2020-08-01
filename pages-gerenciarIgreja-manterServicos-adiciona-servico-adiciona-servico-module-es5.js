@@ -435,7 +435,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this3 = this;
 
           return new Promise(function (response, resp) {
-            _this3.db.collection("dominioServico").get().then(function (result) {
+            _this3.db.collection("dominioServico").orderBy("nomeServico").get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({
@@ -454,7 +454,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this4 = this;
 
           return new Promise(function (response, resp) {
-            _this4.db.collection("dominioServico").where("deletado", "==", false).get().then(function (result) {
+            _this4.db.collection("dominioServico").where("deletado", "==", false).orderBy("nomeServico").get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({

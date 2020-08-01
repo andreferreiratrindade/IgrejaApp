@@ -1,3 +1,15 @@
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -758,7 +770,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n    animated #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-chip *ngFor=\"let servico of servicosSelecionados\" color=\"primary\" (click)=\"removeServico(servico)\">\n   \n    <ion-label>{{servico.nomeServico}}</ion-label>\n    <ion-icon name=\"close\"></ion-icon>\n  </ion-chip>\n\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n    animated #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n          <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n</div>  </ion-toolbar>\n</ion-footer>";
     /***/
   },
 
@@ -1486,13 +1498,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.navParams = navParams;
         this.dominioServicos = [];
         this.servicos = [];
+        this.servicosSelecionados = [];
+        this.nomeServico = null;
         this.dominioServicos = this.navParams.data.servicos;
-        this.servicos = this.dominioServicos;
       }
 
       _createClass(ModalServicosPage, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          this.recuperaServicos(null);
+        }
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
@@ -1505,15 +1520,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         key: "recuperaServicos",
         value: function recuperaServicos(ev) {
-          var val = ev.target.value;
+          var _this9 = this;
+
+          var val = "";
+
+          if (ev && ev.target) {
+            val = ev.target.value;
+          }
 
           if (val && val.trim() !== '') {
             this.servicos = this.dominioServicos.filter(function (item) {
               return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1;
             });
           } else {
-            this.servicos = this.dominioServicos;
+            this.servicos = _toConsumableArray(this.dominioServicos);
           }
+
+          this.nomeServico = val;
+          this.servicos = this.servicos.filter(function (x) {
+            return _this9.servicosSelecionados.filter(function (y) {
+              return y.servicoId == x.servicoId;
+            }).length == 0;
+          });
+          if (this.servicos.length > 10) this.servicos.length = 10;
         }
       }, {
         key: "closeModal",
@@ -1523,7 +1552,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         key: "selecionarServico",
         value: function selecionarServico(item) {
-          this.modalController.dismiss(item, 'success');
+          this.servicosSelecionados.push(item);
+          var index = this.servicos.findIndex(function (y) {
+            return y.servicoId == item.servicoId;
+          }); //find index in your array
+
+          this.servicos.splice(index, 1); //remove element from array
+
+          var obj = {
+            target: {
+              value: this.nomeServico
+            }
+          };
+          this.recuperaServicos(obj);
+        }
+      }, {
+        key: "removeServico",
+        value: function removeServico(item) {
+          var index = this.servicosSelecionados.findIndex(function (y) {
+            return y.servicoId == item.servicoId;
+          }); //find index in your array
+
+          this.servicosSelecionados.splice(index, 1); //remove element from array
+
+          var obj = {
+            target: {
+              value: this.nomeServico
+            }
+          };
+          this.recuperaServicos(obj);
+        }
+      }, {
+        key: "ok",
+        value: function ok() {
+          this.modalController.dismiss(this.servicosSelecionados, 'success');
         }
       }]);
 

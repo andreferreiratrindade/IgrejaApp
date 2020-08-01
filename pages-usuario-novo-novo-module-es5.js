@@ -4,17 +4,17 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-sign-up-sign-up-module"], {
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-usuario-novo-novo-module"], {
   /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/sign-up/sign-up.page.html":
-  /*!***************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/sign-up/sign-up.page.html ***!
-    \***************************************************************************************/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/usuario/novo/novo.page.html":
+  /*!*****************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/usuario/novo/novo.page.html ***!
+    \*****************************************************************************************/
 
   /*! exports provided: default */
 
   /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppPagesSignUpSignUpPageHtml(module, __webpack_exports__, __webpack_require__) {
+  function node_modulesRawLoaderDistCjsJsSrcAppPagesUsuarioNovoNovoPageHtml(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
@@ -128,23 +128,83 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
-  "./src/app/pages/sign-up/sign-up.module.ts":
-  /*!*************************************************!*\
-    !*** ./src/app/pages/sign-up/sign-up.module.ts ***!
-    \*************************************************/
+  "./src/app/pages/usuario/novo/novo-routing.module.ts":
+  /*!***********************************************************!*\
+    !*** ./src/app/pages/usuario/novo/novo-routing.module.ts ***!
+    \***********************************************************/
 
-  /*! exports provided: SignUpPageModule */
+  /*! exports provided: NovoPageRoutingModule */
 
   /***/
-  function srcAppPagesSignUpSignUpModuleTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppPagesUsuarioNovoNovoRoutingModuleTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "SignUpPageModule", function () {
-      return SignUpPageModule;
+    __webpack_require__.d(__webpack_exports__, "NovoPageRoutingModule", function () {
+      return NovoPageRoutingModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _novo_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./novo.page */
+    "./src/app/pages/usuario/novo/novo.page.ts");
+
+    var routes = [{
+      path: '',
+      component: _novo_page__WEBPACK_IMPORTED_MODULE_3__["NovoPage"]
+    }];
+
+    var NovoPageRoutingModule = function NovoPageRoutingModule() {
+      _classCallCheck(this, NovoPageRoutingModule);
+    };
+
+    NovoPageRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+    })], NovoPageRoutingModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/usuario/novo/novo.module.ts":
+  /*!***************************************************!*\
+    !*** ./src/app/pages/usuario/novo/novo.module.ts ***!
+    \***************************************************/
+
+  /*! exports provided: NovoPageModule */
+
+  /***/
+  function srcAppPagesUsuarioNovoNovoModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "NovoPageModule", function () {
+      return NovoPageModule;
     });
     /* harmony import */
 
@@ -179,15 +239,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _sign_up_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./sign-up.page */
-    "./src/app/pages/sign-up/sign-up.page.ts");
+    var _novo_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./novo-routing.module */
+    "./src/app/pages/usuario/novo/novo-routing.module.ts");
     /* harmony import */
 
 
-    var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-    /*! @angular/router */
-    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+    var _novo_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./novo.page */
+    "./src/app/pages/usuario/novo/novo.page.ts");
     /* harmony import */
 
 
@@ -195,60 +255,55 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*! src/app/components/components.module */
     "./src/app/components/components.module.ts");
 
-    var routes = [{
-      path: '',
-      component: _sign_up_page__WEBPACK_IMPORTED_MODULE_5__["SignUpPage"]
-    }];
-
-    var SignUpPageModule = function SignUpPageModule() {
-      _classCallCheck(this, SignUpPageModule);
+    var NovoPageModule = function NovoPageModule() {
+      _classCallCheck(this, NovoPageModule);
     };
 
-    SignUpPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], src_app_components_components_module__WEBPACK_IMPORTED_MODULE_7__["ComponentsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forChild(routes)],
-      declarations: [_sign_up_page__WEBPACK_IMPORTED_MODULE_5__["SignUpPage"]]
-    })], SignUpPageModule);
+    NovoPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"], src_app_components_components_module__WEBPACK_IMPORTED_MODULE_7__["ComponentsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"], _novo_routing_module__WEBPACK_IMPORTED_MODULE_5__["NovoPageRoutingModule"]],
+      declarations: [_novo_page__WEBPACK_IMPORTED_MODULE_6__["NovoPage"]]
+    })], NovoPageModule);
     /***/
   },
 
   /***/
-  "./src/app/pages/sign-up/sign-up.page.scss":
-  /*!*************************************************!*\
-    !*** ./src/app/pages/sign-up/sign-up.page.scss ***!
-    \*************************************************/
+  "./src/app/pages/usuario/novo/novo.page.scss":
+  /*!***************************************************!*\
+    !*** ./src/app/pages/usuario/novo/novo.page.scss ***!
+    \***************************************************/
 
   /*! exports provided: default */
 
   /***/
-  function srcAppPagesSignUpSignUpPageScss(module, __webpack_exports__, __webpack_require__) {
+  function srcAppPagesUsuarioNovoNovoPageScss(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvc2lnbi11cC9zaWduLXVwLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvc2lnbi11cC9zaWduLXVwLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDRCQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy9zaWduLXVwL3NpZ24tdXAucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgcGFkZGluZy1sZWZ0OiAwcHggIWltcG9ydGFudDtcbn1cbiIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
+    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvdXN1YXJpby9ub3ZvL25vdm8ucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy91c3VhcmlvL25vdm8vbm92by5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSw0QkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvdXN1YXJpby9ub3ZvL25vdm8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
     /***/
   },
 
   /***/
-  "./src/app/pages/sign-up/sign-up.page.ts":
-  /*!***********************************************!*\
-    !*** ./src/app/pages/sign-up/sign-up.page.ts ***!
-    \***********************************************/
+  "./src/app/pages/usuario/novo/novo.page.ts":
+  /*!*************************************************!*\
+    !*** ./src/app/pages/usuario/novo/novo.page.ts ***!
+    \*************************************************/
 
-  /*! exports provided: SignUpPage */
+  /*! exports provided: NovoPage */
 
   /***/
-  function srcAppPagesSignUpSignUpPageTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppPagesUsuarioNovoNovoPageTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "SignUpPage", function () {
-      return SignUpPage;
+    __webpack_require__.d(__webpack_exports__, "NovoPage", function () {
+      return NovoPage;
     });
     /* harmony import */
 
@@ -317,11 +372,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*! src/app/helpers/handlerError */
     "./src/app/helpers/handlerError.ts");
 
-    var SignUpPage = /*#__PURE__*/function () {
-      function SignUpPage(angularFire, router, ngZone, authService, usuarioService, loadCtr, toastCtrl) {
+    var NovoPage = /*#__PURE__*/function () {
+      function NovoPage(angularFire, router, ngZone, authService, usuarioService, loadCtr, toastCtrl) {
         var _this = this;
 
-        _classCallCheck(this, SignUpPage);
+        _classCallCheck(this, NovoPage);
 
         this.angularFire = angularFire;
         this.router = router;
@@ -373,7 +428,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       // redirect the user to the profile page
 
 
-      _createClass(SignUpPage, [{
+      _createClass(NovoPage, [{
         key: "redirectLoggedUserToProfilePage",
         value: function redirectLoggedUserToProfilePage() {
           var _this2 = this;
@@ -474,10 +529,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
       }]);
 
-      return SignUpPage;
+      return NovoPage;
     }();
 
-    SignUpPage.ctorParameters = function () {
+    NovoPage.ctorParameters = function () {
       return [{
         type: _angular_fire_auth__WEBPACK_IMPORTED_MODULE_2__["AngularFireAuth"]
       }, {
@@ -495,16 +550,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }];
     };
 
-    SignUpPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-sign-up',
+    NovoPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-novo',
       template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-      /*! raw-loader!./sign-up.page.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/sign-up/sign-up.page.html"))["default"],
+      /*! raw-loader!./novo.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/usuario/novo/novo.page.html"))["default"],
       styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-      /*! ./sign-up.page.scss */
-      "./src/app/pages/sign-up/sign-up.page.scss"))["default"]]
-    })], SignUpPage);
+      /*! ./novo.page.scss */
+      "./src/app/pages/usuario/novo/novo.page.scss"))["default"]]
+    })], NovoPage);
     /***/
   }
 }]);
-//# sourceMappingURL=pages-sign-up-sign-up-module-es5.js.map
+//# sourceMappingURL=pages-usuario-novo-novo-module-es5.js.map

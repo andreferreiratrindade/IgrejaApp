@@ -252,7 +252,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.dominioUF = [];
         this.itens = [];
         this.dominioUF = this.navParams.data.UFs;
-        this.recuperaItens(null);
       }
 
       _createClass(ModalUFPage, [{
@@ -266,7 +265,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          this.recuperaItens(null);
+        }
       }, {
         key: "recuperaItens",
         value: function recuperaItens(ev) {
