@@ -92,7 +92,7 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
     }).then((modal) => {
       modal.present();
       modal.onWillDismiss().then(resultModal => {
-        if (resultModal) {
+        if (resultModal.data) {
           this.formulario.controls["nomeIgreja"].setValue(resultModal.data.nomeIgreja);
           this.formulario.controls["igrejaId"].setValue(resultModal.data.id);
         }
