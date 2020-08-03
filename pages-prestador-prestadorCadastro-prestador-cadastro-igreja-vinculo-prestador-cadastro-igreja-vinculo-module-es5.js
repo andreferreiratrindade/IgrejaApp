@@ -861,7 +861,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }).then(function (modal) {
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
-              if (resultModal) {
+              if (resultModal.data) {
                 _this4.formulario.controls["nomeIgreja"].setValue(resultModal.data.nomeIgreja);
 
                 _this4.formulario.controls["igrejaId"].setValue(resultModal.data.id);
