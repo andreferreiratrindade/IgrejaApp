@@ -369,6 +369,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_providers_favorito_favorito_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! src/app/providers/favorito/favorito.service */ "./src/app/providers/favorito/favorito.service.ts");
 /* harmony import */ var src_app_config__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! src/app/config */ "./src/app/config.ts");
 /* harmony import */ var _visualizar_prestador_visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../visualizar-prestador/visualizar-prestador.page */ "./src/app/pages/prestador/visualizar-prestador/visualizar-prestador.page.ts");
+/* harmony import */ var src_app_providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! src/app/providers/buscaCEP/buscar-cep.service */ "./src/app/providers/buscaCEP/buscar-cep.service.ts");
+
 
 
 
@@ -391,7 +393,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let PrestadorConsultarPage = class PrestadorConsultarPage {
-    constructor(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl, favoritoService) {
+    constructor(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl, buscarCEPService, favoritoService) {
         this.prestadorService = prestadorService;
         this.toastCtrl = toastCtrl;
         this.igrejaService = igrejaService;
@@ -400,6 +402,7 @@ let PrestadorConsultarPage = class PrestadorConsultarPage {
         this.dominioServicoService = dominioServicoService;
         this.router = router;
         this.modalCtrl = modalCtrl;
+        this.buscarCEPService = buscarCEPService;
         this.favoritoService = favoritoService;
         this.nomeServicoSelecionado = "Todos";
         this.servicosSelecionados = [];
@@ -425,27 +428,16 @@ let PrestadorConsultarPage = class PrestadorConsultarPage {
             this.loadingContr.hideLoader();
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, this.toastCtrl);
         });
-        this.prestadorService.RecuperaUfPrestadorDisponiveis()
-            .then(result => {
-            this.UfList = result.map(x => { return src_app_utils_constants__WEBPACK_IMPORTED_MODULE_17__["Constants"].ListagemUF.RecuperaObjetoPorUF(x); });
-            this.loadingContr.hideLoader();
-        }).catch(x => {
-            this.loadingContr.hideLoader();
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, this.toastCtrl);
-        });
     }
     buscarCidades(uf) {
         this.loadingContr.showLoader();
         this.formulario.controls['cidade'].setValue(null);
         this.cidadeList = [];
-        this.prestadorService.RecuperaCidadePrestadorDisponiveis(uf)
+        this.buscarCEPService.buscarMunicipiosPorUF(uf)
             .then(result => {
             this.cidadeList = result;
             this.loadingContr.hideLoader();
-        }).catch(x => {
-            this.loadingContr.hideLoader();
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, this.toastCtrl);
-        });
+        }).catch(err => { this.loadingContr.hideLoader(); });
     }
     ConsultarPrestador() {
         if (!this.formularioValido()) {
@@ -518,7 +510,7 @@ let PrestadorConsultarPage = class PrestadorConsultarPage {
     abrirModalUF() {
         const modal = this.modalCtrl.create({
             component: _UF_modal_uf_modal_uf_page__WEBPACK_IMPORTED_MODULE_15__["ModalUFPage"],
-            componentProps: { UFs: this.UfList },
+            componentProps: { UFs: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_17__["Constants"].ListagemUF.RecuperaListagem() },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();
@@ -610,6 +602,7 @@ PrestadorConsultarPage.ctorParameters = () => [
     { type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_9__["DominioServicoService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"] },
+    { type: src_app_providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_21__["BuscarCEPService"] },
     { type: src_app_providers_favorito_favorito_service__WEBPACK_IMPORTED_MODULE_18__["FavoritoService"] }
 ];
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

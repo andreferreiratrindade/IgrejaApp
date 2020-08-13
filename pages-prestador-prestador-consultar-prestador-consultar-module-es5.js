@@ -726,9 +726,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _visualizar_prestador_visualizar_prestador_page__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
     /*! ../visualizar-prestador/visualizar-prestador.page */
     "./src/app/pages/prestador/visualizar-prestador/visualizar-prestador.page.ts");
+    /* harmony import */
+
+
+    var src_app_providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
+    /*! src/app/providers/buscaCEP/buscar-cep.service */
+    "./src/app/providers/buscaCEP/buscar-cep.service.ts");
 
     var PrestadorConsultarPage = /*#__PURE__*/function () {
-      function PrestadorConsultarPage(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl, favoritoService) {
+      function PrestadorConsultarPage(prestadorService, toastCtrl, igrejaService, usuarioService, loadingContr, dominioServicoService, router, modalCtrl, buscarCEPService, favoritoService) {
         _classCallCheck(this, PrestadorConsultarPage);
 
         this.prestadorService = prestadorService;
@@ -739,6 +745,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.dominioServicoService = dominioServicoService;
         this.router = router;
         this.modalCtrl = modalCtrl;
+        this.buscarCEPService = buscarCEPService;
         this.favoritoService = favoritoService;
         this.nomeServicoSelecionado = "Todos";
         this.servicosSelecionados = [];
@@ -768,17 +775,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this3.toastCtrl);
           });
-          this.prestadorService.RecuperaUfPrestadorDisponiveis().then(function (result) {
-            _this3.UfList = result.map(function (x) {
-              return src_app_utils_constants__WEBPACK_IMPORTED_MODULE_17__["Constants"].ListagemUF.RecuperaObjetoPorUF(x);
-            });
-
-            _this3.loadingContr.hideLoader();
-          })["catch"](function (x) {
-            _this3.loadingContr.hideLoader();
-
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this3.toastCtrl);
-          });
         }
       }, {
         key: "buscarCidades",
@@ -788,14 +784,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.loadingContr.showLoader();
           this.formulario.controls['cidade'].setValue(null);
           this.cidadeList = [];
-          this.prestadorService.RecuperaCidadePrestadorDisponiveis(uf).then(function (result) {
+          this.buscarCEPService.buscarMunicipiosPorUF(uf).then(function (result) {
             _this4.cidadeList = result;
 
             _this4.loadingContr.hideLoader();
-          })["catch"](function (x) {
+          })["catch"](function (err) {
             _this4.loadingContr.hideLoader();
-
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this4.toastCtrl);
           });
         }
       }, {
@@ -907,7 +901,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var modal = this.modalCtrl.create({
             component: _UF_modal_uf_modal_uf_page__WEBPACK_IMPORTED_MODULE_15__["ModalUFPage"],
             componentProps: {
-              UFs: this.UfList
+              UFs: src_app_utils_constants__WEBPACK_IMPORTED_MODULE_17__["Constants"].ListagemUF.RecuperaListagem()
             },
             backdropDismiss: false
           }).then(function (modal) {
@@ -1040,6 +1034,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ModalController"]
+      }, {
+        type: src_app_providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_21__["BuscarCEPService"]
       }, {
         type: src_app_providers_favorito_favorito_service__WEBPACK_IMPORTED_MODULE_18__["FavoritoService"]
       }];
