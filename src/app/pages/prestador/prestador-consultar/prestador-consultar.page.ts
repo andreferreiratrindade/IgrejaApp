@@ -20,6 +20,7 @@ import { FavoritoService } from 'src/app/providers/favorito/favorito.service';
 import { Config } from 'src/app/config';
 import { VisualizarPrestadorPage } from '../visualizar-prestador/visualizar-prestador.page';
 import { MaskTelefonePipe } from 'src/app/pipes/mask-telefone.pipe';
+import { BuscarCEPService } from 'src/app/providers/buscaCEP/buscar-cep.service';
 @Component({
     selector: 'app-prestador-consultar',
     templateUrl: './prestador-consultar.page.html',
@@ -42,6 +43,7 @@ export class PrestadorConsultarPage implements OnInit {
         public dominioServicoService: DominioServicoService,
         public router: Router,
         public modalCtrl: ModalController,
+        private buscarCEPService: BuscarCEPService,
         private favoritoService: FavoritoService,
 
     ) {
@@ -70,29 +72,20 @@ export class PrestadorConsultarPage implements OnInit {
                 this.loadingContr.hideLoader();
                 HandlerError.handler(x, this.toastCtrl);
             });
-
-        this.prestadorService.RecuperaUfPrestadorDisponiveis()
-            .then(result => {
-                this.UfList = result.map(x => { return Constants.ListagemUF.RecuperaObjetoPorUF(x) });
-                this.loadingContr.hideLoader();
-            }).catch(x => {
-                this.loadingContr.hideLoader();
-                HandlerError.handler(x, this.toastCtrl);
-            });
     }
 
     buscarCidades(uf: string) {
         this.loadingContr.showLoader();
         this.formulario.controls['cidade'].setValue(null);
         this.cidadeList = [];
-        this.prestadorService.RecuperaCidadePrestadorDisponiveis(uf)
+         this.buscarCEPService.buscarMunicipiosPorUF(uf)
             .then(result => {
-                this.cidadeList = result;
-                this.loadingContr.hideLoader();
-            }).catch(x => {
-                this.loadingContr.hideLoader();
-                HandlerError.handler(x, this.toastCtrl);
-            });
+
+              this.cidadeList = result;
+              this.loadingContr.hideLoader();
+            }
+            ).catch(err => { this.loadingContr.hideLoader(); });
+       
     }
 
     ConsultarPrestador() {
@@ -184,7 +177,7 @@ export class PrestadorConsultarPage implements OnInit {
     public abrirModalUF() {
         const modal = this.modalCtrl.create({
             component: ModalUFPage,
-            componentProps: { UFs: this.UfList },
+            componentProps: { UFs: Constants.ListagemUF.RecuperaListagem() },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();
