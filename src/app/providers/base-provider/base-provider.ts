@@ -13,7 +13,6 @@ export class BaseProvider {
 
 
   apiGet(url: string):Promise<any> {
-    console.log(url)
     return this.http.get( url)
     .toPromise()
     .then(data => {
@@ -44,7 +43,6 @@ export class BaseProvider {
 
 
   private handleError(error: Response) {
-    console.error(error);
     // return Observable.throw(error.json() || 'Server error');
   }
 

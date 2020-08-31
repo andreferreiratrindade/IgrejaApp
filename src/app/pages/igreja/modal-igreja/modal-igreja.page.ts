@@ -37,7 +37,6 @@ export class ModalIgrejaPage implements OnInit, AfterViewInit {
         }).catch(err => {
 
           loadingContr.hideLoader();
-          console.log(err);
         });
     }
   }

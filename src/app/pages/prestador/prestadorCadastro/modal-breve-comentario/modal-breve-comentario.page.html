@@ -1,0 +1,23 @@
+<ion-header translucent={true}>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="closeModal()" text="Voltar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{servico.nomeServico}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item class="input-item">
+    <ion-label position="stacked">Breve Comentário
+    </ion-label>
+    <ion-input type="text"  [(ngModel)]="breveDescricao" >
+    </ion-input>
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="ion-text-end">
+      <ion-button class="primary" type="button" (click)="ok()">OK</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

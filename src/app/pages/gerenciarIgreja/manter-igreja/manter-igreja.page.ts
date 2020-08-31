@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
 import { CriarIgrejaPage } from '../criar-igreja/criar-igreja.page';
 import { ModalController } from '@ionic/angular';
-import { Console } from 'console';
 
 @Component({
   selector: 'app-manter-igreja',
@@ -20,7 +19,6 @@ export class ManterIgrejaPage implements OnInit {
   ngOnInit() {
     this.igrejaService.RecuperaTodasAsIgrejas().then(result => {
       this.igrejas = result;
-      console.log(result);
       this.dominioIgrejas = result;
     })
   }
@@ -40,7 +38,6 @@ export class ManterIgrejaPage implements OnInit {
   }
 
   public adicionarNovaIgreja() {
-    console.log('Teste');
     const modal = this.modalCtrl.create({
       component: CriarIgrejaPage,
       backdropDismiss: false,

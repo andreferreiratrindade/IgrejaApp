@@ -56,7 +56,6 @@ export class UsuarioService {
   }
 
   recuperaUsuarioLogado(): Promise<any> {
-    console.log("Verifica Usuario Logado;");
     return new Promise((resolve, reject) => {
 
       this.firebaseAutentication.verificaUsuarioLogado().then(user => {

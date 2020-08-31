@@ -6,7 +6,6 @@ export class HandlerError {
         var data = err;
         let message = data.error ? data.error.message : data;
         
-        console.log(message);
         ToastCustom.errorToast(message, toastCtrl);
     }
 }

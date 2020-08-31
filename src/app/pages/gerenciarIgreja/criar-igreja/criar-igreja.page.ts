@@ -78,7 +78,6 @@ export class CriarIgrejaPage implements OnInit {
     
       if(this.igrejaId){
         this.igrejaService.RecuperaIgrejaPorIgrejaId(this.igrejaId).then((result) =>{
-          console.log(result);
           this.formData.controls['administradorUsuarioId'].setValue(result.administradorUsuarioId);
           this.formData.controls['bairro'].setValue(result.bairro);
           this.formData.controls['cep'].setValue(result.cep);

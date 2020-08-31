@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {  UsuarioLogadoValidation } from './providers/AuthGuard/UsuarioLogadoValidation';
-import { PrestadorSituacaoValidation } from './providers/AuthGuard/PrestadorSituacaoValidation';
 import { PerfilValidation_AdministradorSistema } from './providers/AuthGuard/PerfilValidation_AdministradorSistema';
 import { PerfilValidation_AdministradorIgreja } from './providers/AuthGuard/PerfilValidation_AdministradorIgreja';
 import { TablinksPage } from './pages/tablinks/tablinks.page';
@@ -164,7 +163,14 @@ const routes: Routes = [
     canActivate: [UsuarioLogadoValidation],
 
     loadChildren: () => import('./pages/usuario/meu-usuario/meu-usuario.module').then( m => m.MeuUsuarioPageModule)
+  },
+
+  {
+    path: 'modal-breve-comentario',
+    loadChildren: () => import('./pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.module').then( m => m.ModalBreveComentarioPageModule)
   }
+
+
 
 
 

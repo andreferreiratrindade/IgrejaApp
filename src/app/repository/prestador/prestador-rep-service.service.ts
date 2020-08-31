@@ -242,7 +242,6 @@ export class PrestadorRepServiceService extends BaseRepository {
                 });
                 resolve(lst)
             }).catch(err => {
-                console.log(err);
                 reject(err);
             });
         });
