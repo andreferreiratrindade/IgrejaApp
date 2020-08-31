@@ -31,7 +31,7 @@
         <ion-list-header >
           Igrejas
         </ion-list-header>
-        <ion-item *ngFor="let item of igrejas" class="ion-no-border" button  detail="false">
+        <ion-item *ngFor="let item of igrejas" class="ion-no-border" button  detail="false" (click)="editarIgreja(item)">
           <ion-icon *ngIf="!item.deletado" slot="end" color="primary" name="ellipsis-vertical"></ion-icon>
           <ion-label class="ion-text-wrap on-no-border">{{item.nomeIgreja}}<p>{{item.deletado?"deletado":""}}</p></ion-label>
         </ion-item>

@@ -50,14 +50,11 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
       ])),
       'nomeIgreja': new FormControl('', Validators.compose([
         Validators.required
-      ])),
-      'staMembro': new FormControl('', Validators.compose([
-        Validators.required
       ]))
 
     });
 
-    this.formulario.controls["staMembro"].setValue(true);
+ 
   }
 
   ngOnInit() {
@@ -71,7 +68,7 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
               this.formulario.controls['uf'].setValue(igreja.data.uf);
               this.formulario.controls['cidade'].setValue(igreja.data.cidade);
               this.formulario.controls['nomeIgreja'].setValue(igreja.data.nomeIgreja);
-              this.formulario.controls['staMembro'].setValue(resultPrestador.staMembro);
+
               this.formulario.controls['igrejaId'].setValue(igreja.id);
               this.formulario.controls['ufApresentacao'].setValue(Constants.ListagemUF.RecuperaDescricaoPorUF(igreja.data.uf));
             }
@@ -157,7 +154,6 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
     this.loadingContr.showLoader();
     let obj = {
       igrejaId: this.formulario.value.igrejaId
-      , staMembro: this.formulario.value.staMembro
     };
 
     this.prestadorService

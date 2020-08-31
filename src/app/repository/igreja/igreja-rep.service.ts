@@ -43,6 +43,23 @@ export class IgrejaRepService extends BaseRepository {
 
   }
 
+  AdicionaNovaIgreja(item: any, id: string): Promise<any> {
+
+		let idTemp = id ? id : this.db.collection(this._collectionName).doc().id;
+    item.id = idTemp;
+    item.igrejaId = idTemp;
+		return new Promise((resolve, reject) => {
+			this.db.collection(this._collectionName)
+				.doc(idTemp)
+				.set({ ...item }, {merge: true})
+				.then((obj: any) => {
+					resolve(obj);
+				})
+				.catch((error: any) => {
+					reject(error);
+				});
+		});
+	}
 
 
   RecuperaIgrejaPorAdministrador(usuarioId): Promise<any[]> {
@@ -71,7 +88,7 @@ export class IgrejaRepService extends BaseRepository {
     return this.find({ elemento: "cidade", tipoComparacao: "==", comparacao: cidade });
   }
 
-  RecuperaNomeIgreja(igrejas: string[]) : Promise<any[]> {
+  RecuperaNomeIgreja(igrejas: string[]): Promise<any[]> {
 
     // return this.db.collection("igreja").where(firebase.firestore.FieldPath.documentId(),"array-contains",igrejas).get()
     return this.find({ elemento: "id", tipoComparacao: "in", comparacao: igrejas });
@@ -79,19 +96,32 @@ export class IgrejaRepService extends BaseRepository {
 
   RecuperaTodasAsIgrejas(): Promise<any[]> {
     return new Promise<any>((resolve, reject) => {
-      this.db.collection('igreja')
-      .get()
-      .then((result) => {
-        let lst = [];
-        result.forEach(function (doc) {
-          lst.push(doc.data());
+      this.db.collection(this._collectionName)
+        .get()
+        .then((result) => {
+          let lst = [];
+          result.forEach(function (doc) {
+            lst.push(doc.data());
+          });
+          resolve(lst)
+        })
+        .catch((err) => {
+          reject(err);
         });
-        resolve(lst)
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
+    });
+  }
 
-}
+  RecuperaIgrejaPorIgrejaId(igrejaId : string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.db.collection(this._collectionName).doc(igrejaId)
+        .get()
+        .then((result) => {
+
+          resolve(result.data());
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
 }

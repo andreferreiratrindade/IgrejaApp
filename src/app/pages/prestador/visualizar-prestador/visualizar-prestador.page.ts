@@ -51,7 +51,6 @@ export class VisualizarPrestadorPage implements OnInit {
         this.prestador.nomeSituacaoPrestador = Constants.ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(this.prestador.situacaoPrestador);
         this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
           this.prestador.nomeIgreja = result[0].data.nomeIgreja;
-          this.prestador.staMembro = result[0].data.staMembro;
           this.loadingContr.hideLoader();
         }).catch(err => {
           HandlerError.handler(err, this.toastCtrl);

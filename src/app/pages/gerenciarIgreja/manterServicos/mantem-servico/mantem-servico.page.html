@@ -40,7 +40,7 @@
 
       <ion-list style="margin-top: 20px;">
         <ion-item *ngFor="let item of servicos" class="ion-no-border" button detail="false"
-          (click)="excluirServico(item.servicoId)">
+          (click)="excluirServicoConfirm(item)">
           <ion-icon *ngIf="!item.deletado" slot="end" color="danger" name="trash-outline"></ion-icon>
           <ion-label>{{item.nomeServico}}<p>{{item.deletado?"deletado":""}}</p></ion-label>
         </ion-item>

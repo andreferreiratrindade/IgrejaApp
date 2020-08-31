@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-servico.service';
 import { AdicionaServicoPage } from '../adiciona-servico/adiciona-servico.page';
-import { ModalController, LoadingController, ToastController } from '@ionic/angular';
+import { ModalController, LoadingController, ToastController, AlertController } from '@ionic/angular';
 import { HandlerError } from 'src/app/helpers/handlerError';
 import { Constants } from 'src/app/utils/constants';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
+import { ConfirmAlert } from 'src/app/helpers/confirmAlert';
 
 @Component({
   selector: 'app-mantem-servico',
@@ -21,6 +22,9 @@ export class MantemServicoPage implements OnInit {
   constructor(public servicoService: DominioServicoService,
     public modalCtrl: ModalController,
     public loadingContr: LoadingContr,
+    public confirmAlert: ConfirmAlert,
+    public alertController: AlertController,
+    private _cdr: ChangeDetectorRef,
     public toastCtrl: ToastController) { }
 
   ngOnInit() {
@@ -45,7 +49,7 @@ export class MantemServicoPage implements OnInit {
         return false;
       } else {
 
-        this.servicoService.adicionaServico({ nomeServico: this.nomeServico,deletado:false })
+        this.servicoService.adicionaServico({ nomeServico: this.nomeServico, deletado: false })
           .then(result => {
             this.nomeServico = null;
             ToastCustom.SucessoToast(this.toastCtrl);
@@ -92,9 +96,31 @@ export class MantemServicoPage implements OnInit {
     if (this.servicos.length > 10) this.servicos.length = 10;
   }
 
-  public excluirServico(servicoId: string) {
-    this.servicoService.excluirServico(servicoId).then(result => {
-      this.ngOnInit();
+  public excluirServicoConfirm(item: any) {
+
+    const result = this.confirmAlert.confirmationAlert(this.alertController,
+      'Deseja excluir o serviço <strong>' + item.nomeServico + '</strong>?'
+    ).then(result => {
+      if (result) {
+        this.excluirServico(item.servicoId);
+      }
     });
   }
+
+  public excluirServico(servicoId: string) {
+    this.loadingContr.showLoader();
+
+    this.servicoService.excluirServico(servicoId).then(result => {
+      this._cdr.detectChanges();
+
+      this.loadingContr.hideLoader();
+      ToastCustom.SucessoToast(this.toastCtrl);
+      this.ngOnInit();
+    }).catch(err => {
+      HandlerError.handler(err, this.toastCtrl);
+      this.loadingContr.hideLoader();
+    });
+
+  }
+
 }

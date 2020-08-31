@@ -9,6 +9,10 @@ export class IgrejaService {
     return this.igrejaRepService.RecuperaTodasAsIgrejas();
   }
 
+  RecuperaIgrejaPorIgrejaId(igrejaId : string): Promise<any>{
+    return this.igrejaRepService.RecuperaIgrejaPorIgrejaId(igrejaId);
+  }
+
 
   constructor(public igrejaRepService: IgrejaRepService) { }
 
@@ -19,7 +23,7 @@ export class IgrejaService {
   }
 
   AdicionarNovaIgreja(obj : any) : Promise<any>{
-    return  this.igrejaRepService.add(obj,null);
+    return  this.igrejaRepService.AdicionaNovaIgreja(obj, obj.igrejaId);
   }
 
   RecuperaIgrejasPorCidade(cidade:string) : Promise<any[]>{

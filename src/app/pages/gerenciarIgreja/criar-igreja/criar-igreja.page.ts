@@ -7,7 +7,7 @@ import { Config } from 'src/app/config';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
 import { HandlerError } from 'src/app/helpers/handlerError';
-import { ToastController, ModalController } from '@ionic/angular';
+import { ToastController, ModalController, NavParams } from '@ionic/angular';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { Constants } from 'src/app/utils/constants';
@@ -23,6 +23,7 @@ export class CriarIgrejaPage implements OnInit {
   public formData: FormGroup;
   public enderecoParte1: string;
   public enderecoParte2: string;
+  public igrejaId : string;
   validation_messages = {
     'nomeIgreja': [
       { type: 'required', message: 'Campo de preenchimento obrigatório.' },
@@ -42,8 +43,10 @@ export class CriarIgrejaPage implements OnInit {
     public loadingControll: LoadingContr,
     public ngZone: NgZone,
     public usuarioService: UsuarioService,
-    public modalController:ModalController
+    public modalController:ModalController,
+    private navParams :NavParams
   ) {
+    
 
     this.formData = new FormGroup({
       'cep': new FormControl('', Validators.compose([
@@ -67,18 +70,32 @@ export class CriarIgrejaPage implements OnInit {
       ])), 'administradorUsuarioId': new FormControl('', Validators.compose([
         Validators.required
       ])),
-
-
     });
-
+     this.igrejaId = this.navParams.data.igrejaId;
   }
 
   ngOnInit() {
-
+    
+      if(this.igrejaId){
+        this.igrejaService.RecuperaIgrejaPorIgrejaId(this.igrejaId).then((result) =>{
+          console.log(result);
+          this.formData.controls['administradorUsuarioId'].setValue(result.administradorUsuarioId);
+          this.formData.controls['bairro'].setValue(result.bairro);
+          this.formData.controls['cep'].setValue(result.cep);
+          this.formData.controls['cidade'].setValue(result.cidade);
+          this.formData.controls['emailAdministrador'].setValue(result.emailAdministrador);
+          this.formData.controls['logradouro'].setValue(result.logradouro);
+          this.formData.controls['uf'].setValue(result.uf);
+          this.formData.controls['nomeAdministrador'].setValue(result.nomeAdministrador);
+          this.formData.controls['nomeIgreja'].setValue(result.nomeIgreja);
+        }).catch((error) => {
+          HandlerError.handler(error, this.toastCtrl);
+          this.loadingControll.hideLoader();
+        });
+      }
   }
 
   buscarEnderecoPorCEP() {
-
     this.formData.controls['cidade'].setValue(null);
     this.formData.controls['bairro'].setValue(null);
     this.formData.controls['uf'].setValue(null);

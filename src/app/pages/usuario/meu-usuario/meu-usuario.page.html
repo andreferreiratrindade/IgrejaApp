@@ -20,12 +20,19 @@
         <ion-input type="text" [(ngModel)]="usuario.nome" clearInput autocapitalize="off"></ion-input>
       </ion-item>
       <ion-item class="input-item">
-        <p>{{usuario.email}}</p>
+        <ion-label position="floating">Email <ion-text color="danger">*</ion-text>
+        </ion-label>
+
+        <ion-input type="text" [(ngModel)]="usuario.email" disabled clearInput autocapitalize="off"></ion-input>
       </ion-item>
+      <!-- <ion-item class="input-item">
+        <p>{{usuario.email}}</p>
+      </ion-item> -->
 
       <ion-item>
-       
-        <p *ngFor="let perfil of perfis">{{perfil}}</p>
+        <ion-label position="floating">Perfil <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input *ngFor="let perfil of perfis" type="text" [(ngModel)]="perfis" disabled clearInput autocapitalize="off"></ion-input>
         
       </ion-item>
       <div class="ion-text-end" style="margin-top: 20px;">
