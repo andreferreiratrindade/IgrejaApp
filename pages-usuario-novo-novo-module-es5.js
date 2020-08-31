@@ -61,7 +61,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function handler(err, toastCtrl) {
           var data = err;
           var message = data.error ? data.error.message : data;
-          console.log(message);
 
           _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
         }

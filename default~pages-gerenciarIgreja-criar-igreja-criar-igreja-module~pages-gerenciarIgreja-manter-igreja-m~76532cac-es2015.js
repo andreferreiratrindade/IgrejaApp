@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Adicionar Igreja</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formData\" (ngSubmit)=\"salvarIgreja()\">\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Nome Igreja <ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n\n          <ion-input type=\"text\" formControlName=\"nomeIgreja\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <app-mensagem-validacao [validation_messages_object]=\"validation_messages.nomeIgreja\" [form]=\"formData\"\n          [nomeCampo]=\"'nomeIgreja'\"></app-mensagem-validacao>\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Cep <ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n          <ion-input type=\"text\" formControlName=\"cep\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <div class=\"ion-text-center\">\n          <ion-button color=\"primary\" size=\"small\" (click)=\"buscarEnderecoPorCEP()\">\n            <ion-icon name=\"search-outline\" style=\"margin-right: 10px;\"></ion-icon>\n            <ion-label>Buscar Endereço</ion-label>\n          </ion-button>\n        </div>\n\n        <ion-item class=\"input-item\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formData.value.logradouro\">\n            <p>{{formData.value.logradouro}}, {{formData.value.bairro}} - {{formData.value.cidade}} /\n              {{formData.value.uf}}</p>\n          </ion-label>\n\n          <app-mensagem-validacao [validation_messages_object]=\"validation_messages.cep\" [form]=\"formData\"\n            [nomeCampo]=\"'cep'\"></app-mensagem-validacao>\n        </ion-item>\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\" class=\"ion-text-wrap\">Email do administrador da igreja <ion-text\n              color=\"danger\">*</ion-text>\n          </ion-label>\n          <ion-input type=\"text\" formControlName=\"emailAdministrador\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <div class=\"ion-text-center\">\n          <ion-button color=\"primary\" size=\"small\" (click)=\"buscarUsuarioAdministradorIgreja()\">\n            <ion-icon name=\"search-outline\" style=\"margin-right: 10px;\"></ion-icon>\n            <ion-label>Buscar Administrador</ion-label>\n          </ion-button>\n        </div>\n        <ion-item class=\"input-item\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formData.value.administradorUsuarioId\">\n            <p>{{formData.value.emailAdministrador}}</p>\n            <p>{{formData.value.nomeAdministrador}}</p>\n          </ion-label>\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n          <ion-button color=\"success\" type=\"submit\" clear>\n            <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n            </ion-icon>\n            Criar Igreja\n          </ion-button>\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title *ngIf=\"igrejaId\">Mantem Igreja</ion-card-title>\n      <ion-card-title *ngIf=\"!igrejaId\">Adicionar Igreja</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formData\" (ngSubmit)=\"salvarIgreja()\">\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Nome Igreja <ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n\n          <ion-input type=\"text\" formControlName=\"nomeIgreja\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <app-mensagem-validacao [validation_messages_object]=\"validation_messages.nomeIgreja\" [form]=\"formData\"\n          [nomeCampo]=\"'nomeIgreja'\"></app-mensagem-validacao>\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Cep <ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n          <ion-input type=\"text\" formControlName=\"cep\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <div class=\"ion-text-center\">\n          <ion-button color=\"primary\" size=\"small\" (click)=\"buscarEnderecoPorCEP()\">\n            <ion-icon name=\"search-outline\" style=\"margin-right: 10px;\"></ion-icon>\n            <ion-label>Buscar Endereço</ion-label>\n          </ion-button>\n        </div>\n\n        <ion-item class=\"input-item\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formData.value.logradouro\">\n            <p>{{formData.value.logradouro}}, {{formData.value.bairro}} - {{formData.value.cidade}} /\n              {{formData.value.uf}}</p>\n          </ion-label>\n\n          <app-mensagem-validacao [validation_messages_object]=\"validation_messages.cep\" [form]=\"formData\"\n            [nomeCampo]=\"'cep'\"></app-mensagem-validacao>\n        </ion-item>\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\" class=\"ion-text-wrap\">Email do administrador da igreja <ion-text\n              color=\"danger\">*</ion-text>\n          </ion-label>\n          <ion-input type=\"text\" formControlName=\"emailAdministrador\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <div class=\"ion-text-center\">\n          <ion-button color=\"primary\" size=\"small\" (click)=\"buscarUsuarioAdministradorIgreja()\">\n            <ion-icon name=\"search-outline\" style=\"margin-right: 10px;\"></ion-icon>\n            <ion-label>Buscar Administrador</ion-label>\n          </ion-button>\n        </div>\n        <ion-item class=\"input-item\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formData.value.administradorUsuarioId\">\n            <p>{{formData.value.emailAdministrador}}</p>\n            <p>{{formData.value.nomeAdministrador}}</p>\n          </ion-label>\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n          <ion-button color=\"success\" type=\"submit\" clear>\n            <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n            </ion-icon>\n            Salvar\n          </ion-button>\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -29,7 +29,6 @@ class HandlerError {
     static handler(err, toastCtrl) {
         var data = err;
         let message = data.error ? data.error.message : data;
-        console.log(message);
         _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
     }
 }
@@ -116,7 +115,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CriarIgrejaPage = class CriarIgrejaPage {
-    constructor(buscarCEPService, igrejaService, router, toastCtrl, loadingControll, ngZone, usuarioService, modalController) {
+    constructor(buscarCEPService, igrejaService, router, toastCtrl, loadingControll, ngZone, usuarioService, modalController, navParams) {
         this.buscarCEPService = buscarCEPService;
         this.igrejaService = igrejaService;
         this.router = router;
@@ -125,6 +124,7 @@ let CriarIgrejaPage = class CriarIgrejaPage {
         this.ngZone = ngZone;
         this.usuarioService = usuarioService;
         this.modalController = modalController;
+        this.navParams = navParams;
         this.igrejaEntity = {};
         this.validation_messages = {
             'nomeIgreja': [
@@ -161,8 +161,25 @@ let CriarIgrejaPage = class CriarIgrejaPage {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required
             ])),
         });
+        this.igrejaId = this.navParams.data.igrejaId;
     }
     ngOnInit() {
+        if (this.igrejaId) {
+            this.igrejaService.RecuperaIgrejaPorIgrejaId(this.igrejaId).then((result) => {
+                this.formData.controls['administradorUsuarioId'].setValue(result.administradorUsuarioId);
+                this.formData.controls['bairro'].setValue(result.bairro);
+                this.formData.controls['cep'].setValue(result.cep);
+                this.formData.controls['cidade'].setValue(result.cidade);
+                this.formData.controls['emailAdministrador'].setValue(result.emailAdministrador);
+                this.formData.controls['logradouro'].setValue(result.logradouro);
+                this.formData.controls['uf'].setValue(result.uf);
+                this.formData.controls['nomeAdministrador'].setValue(result.nomeAdministrador);
+                this.formData.controls['nomeIgreja'].setValue(result.nomeIgreja);
+            }).catch((error) => {
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, this.toastCtrl);
+                this.loadingControll.hideLoader();
+            });
+        }
     }
     buscarEnderecoPorCEP() {
         this.formData.controls['cidade'].setValue(null);
@@ -248,7 +265,8 @@ CriarIgrejaPage.ctorParameters = () => [
     { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_9__["LoadingContr"] },
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
     { type: src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_6__["UsuarioService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["ModalController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["ModalController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["NavParams"] }
 ];
 CriarIgrejaPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -285,11 +303,14 @@ let IgrejaService = class IgrejaService {
     RecuperaTodasAsIgrejas() {
         return this.igrejaRepService.RecuperaTodasAsIgrejas();
     }
+    RecuperaIgrejaPorIgrejaId(igrejaId) {
+        return this.igrejaRepService.RecuperaIgrejaPorIgrejaId(igrejaId);
+    }
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
     }
     AdicionarNovaIgreja(obj) {
-        return this.igrejaRepService.add(obj, null);
+        return this.igrejaRepService.AdicionaNovaIgreja(obj, obj.igrejaId);
     }
     RecuperaIgrejasPorCidade(cidade) {
         return this.igrejaRepService.RecuperaIgrejasPorCidade(cidade);
@@ -358,6 +379,22 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
             });
         });
     }
+    AdicionaNovaIgreja(item, id) {
+        let idTemp = id ? id : this.db.collection(this._collectionName).doc().id;
+        item.id = idTemp;
+        item.igrejaId = idTemp;
+        return new Promise((resolve, reject) => {
+            this.db.collection(this._collectionName)
+                .doc(idTemp)
+                .set(Object.assign({}, item), { merge: true })
+                .then((obj) => {
+                resolve(obj);
+            })
+                .catch((error) => {
+                reject(error);
+            });
+        });
+    }
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return new Promise((resolve, reject) => {
             this.db.collection('igreja')
@@ -384,7 +421,7 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
     }
     RecuperaTodasAsIgrejas() {
         return new Promise((resolve, reject) => {
-            this.db.collection('igreja')
+            this.db.collection(this._collectionName)
                 .get()
                 .then((result) => {
                 let lst = [];
@@ -392,6 +429,18 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
                     lst.push(doc.data());
                 });
                 resolve(lst);
+            })
+                .catch((err) => {
+                reject(err);
+            });
+        });
+    }
+    RecuperaIgrejaPorIgrejaId(igrejaId) {
+        return new Promise((resolve, reject) => {
+            this.db.collection(this._collectionName).doc(igrejaId)
+                .get()
+                .then((result) => {
+                resolve(result.data());
             })
                 .catch((err) => {
                 reject(err);

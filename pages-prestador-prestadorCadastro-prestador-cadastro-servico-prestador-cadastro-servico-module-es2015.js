@@ -29,7 +29,6 @@ class HandlerError {
     static handler(err, toastCtrl) {
         var data = err;
         let message = data.error ? data.error.message : data;
-        console.log(message);
         _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
     }
 }
@@ -190,6 +189,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/pipes/sortBy/sort-by.pipe */ "./src/app/pipes/sortBy/sort-by.pipe.ts");
 /* harmony import */ var src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/helpers/confirmAlert */ "./src/app/helpers/confirmAlert.ts");
+/* harmony import */ var _modal_breve_comentario_modal_breve_comentario_page__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../modal-breve-comentario/modal-breve-comentario.page */ "./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.ts");
+
 
 
 
@@ -317,6 +318,20 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
                     {
                         text: 'Breve comentário',
                         handler: () => {
+                            const modal = this.modalCtrl.create({
+                                component: _modal_breve_comentario_modal_breve_comentario_page__WEBPACK_IMPORTED_MODULE_13__["ModalBreveComentarioPage"],
+                                componentProps: { servico: item },
+                                backdropDismiss: false,
+                            }).then((modal) => {
+                                modal.present();
+                                modal.onWillDismiss().then(resultModal => {
+                                    var _a;
+                                    if (resultModal.data) {
+                                        item.breveDescricao = (_a = resultModal.data.breveDescricao) !== null && _a !== void 0 ? _a : "";
+                                        this.salvarBreveDescricao(item);
+                                    }
+                                });
+                            });
                         }
                     },
                     {
@@ -347,22 +362,6 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
             return false;
         }
         this.router.navigate(['prestador-cadastro-igreja-vinculo']);
-        // this.loadingContr.showLoader();
-        // let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
-        // if (this.prestador) {
-        //   obj.situacaoPrestador = this.prestador.situacaoPrestador;
-        // }
-        // this.prestadorService
-        //   .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
-        //     this.loadingContr.hideLoader();
-        //     ToastCustom.SucessoToast(this.toastCtrl);
-        //     this.ngZone.run(() => {
-        //       this.router.navigate(['prestador-cadastro-igreja-vinculo']);
-        //     });
-        //   }).catch(err => {
-        //     HandlerError.handler(err, this.toastCtrl);
-        //     this.loadingContr.hideLoader();
-        //   });
     }
     voltar() {
         this.router.navigate(['prestador-local-atendimento']);

@@ -203,6 +203,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return this.igrejaRepService.RecuperaTodasAsIgrejas();
         }
       }, {
+        key: "RecuperaIgrejaPorIgrejaId",
+        value: function RecuperaIgrejaPorIgrejaId(igrejaId) {
+          return this.igrejaRepService.RecuperaIgrejaPorIgrejaId(igrejaId);
+        }
+      }, {
         key: "RecuperaIgrejaPorAdministrador",
         value: function RecuperaIgrejaPorAdministrador(usuarioId) {
           return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
@@ -210,7 +215,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "AdicionarNovaIgreja",
         value: function AdicionarNovaIgreja(obj) {
-          return this.igrejaRepService.add(obj, null);
+          return this.igrejaRepService.AdicionaNovaIgreja(obj, obj.igrejaId);
         }
       }, {
         key: "RecuperaIgrejasPorCidade",
@@ -325,12 +330,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
         }
       }, {
-        key: "RecuperaIgrejaPorAdministrador",
-        value: function RecuperaIgrejaPorAdministrador(usuarioId) {
+        key: "AdicionaNovaIgreja",
+        value: function AdicionaNovaIgreja(item, id) {
           var _this3 = this;
 
+          var idTemp = id ? id : this.db.collection(this._collectionName).doc().id;
+          item.id = idTemp;
+          item.igrejaId = idTemp;
           return new Promise(function (resolve, reject) {
-            _this3.db.collection('igreja').where("administradores", "array-contains", usuarioId).get().then(function (result) {
+            _this3.db.collection(_this3._collectionName).doc(idTemp).set(Object.assign({}, item), {
+              merge: true
+            }).then(function (obj) {
+              resolve(obj);
+            })["catch"](function (error) {
+              reject(error);
+            });
+          });
+        }
+      }, {
+        key: "RecuperaIgrejaPorAdministrador",
+        value: function RecuperaIgrejaPorAdministrador(usuarioId) {
+          var _this4 = this;
+
+          return new Promise(function (resolve, reject) {
+            _this4.db.collection('igreja').where("administradores", "array-contains", usuarioId).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());
@@ -363,15 +386,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "RecuperaTodasAsIgrejas",
         value: function RecuperaTodasAsIgrejas() {
-          var _this4 = this;
+          var _this5 = this;
 
           return new Promise(function (resolve, reject) {
-            _this4.db.collection('igreja').get().then(function (result) {
+            _this5.db.collection(_this5._collectionName).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());
               });
               resolve(lst);
+            })["catch"](function (err) {
+              reject(err);
+            });
+          });
+        }
+      }, {
+        key: "RecuperaIgrejaPorIgrejaId",
+        value: function RecuperaIgrejaPorIgrejaId(igrejaId) {
+          var _this6 = this;
+
+          return new Promise(function (resolve, reject) {
+            _this6.db.collection(_this6._collectionName).doc(igrejaId).get().then(function (result) {
+              resolve(result.data());
             })["catch"](function (err) {
               reject(err);
             });

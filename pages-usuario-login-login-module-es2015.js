@@ -29,7 +29,6 @@ class HandlerError {
     static handler(err, toastCtrl) {
         var data = err;
         let message = data.error ? data.error.message : data;
-        console.log(message);
         _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
     }
 }

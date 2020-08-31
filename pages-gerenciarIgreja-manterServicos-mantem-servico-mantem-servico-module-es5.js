@@ -47,7 +47,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Serviços\n      </ion-title>\n    </ion-toolbar>\n\n\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Adicionar Serviço</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item>\n        <ion-label position=\"floating\">Serviço<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"nomeServico\" autofocus clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"primary\" (click)=\"salvar()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Serviços</ion-card-title>\n      <ion-searchbar type=\"text\" debounce=1 placeholder=\"Pesquisar\" animated #searchbar\n        (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-list style=\"margin-top: 20px;\">\n        <ion-item *ngFor=\"let item of servicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"excluirServico(item.servicoId)\">\n          <ion-icon *ngIf=\"!item.deletado\" slot=\"end\" color=\"danger\" name=\"trash-outline\"></ion-icon>\n          <ion-label>{{item.nomeServico}}<p>{{item.deletado?\"deletado\":\"\"}}</p></ion-label>\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Serviços\n      </ion-title>\n    </ion-toolbar>\n\n\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Adicionar Serviço</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item>\n        <ion-label position=\"floating\">Serviço<ion-text color=\"danger\">*</ion-text>\n        </ion-label>\n        <ion-input type=\"text\" [(ngModel)]=\"nomeServico\" autofocus clearInput autocapitalize=\"off\"></ion-input>\n      </ion-item>\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"primary\" (click)=\"salvar()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Serviços</ion-card-title>\n      <ion-searchbar type=\"text\" debounce=1 placeholder=\"Pesquisar\" animated #searchbar\n        (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-list style=\"margin-top: 20px;\">\n        <ion-item *ngFor=\"let item of servicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"excluirServicoConfirm(item)\">\n          <ion-icon *ngIf=\"!item.deletado\" slot=\"end\" color=\"danger\" name=\"trash-outline\"></ion-icon>\n          <ion-label>{{item.nomeServico}}<p>{{item.deletado?\"deletado\":\"\"}}</p></ion-label>\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -87,7 +87,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function handler(err, toastCtrl) {
           var data = err;
           var message = data.error ? data.error.message : data;
-          console.log(message);
 
           _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
         }
@@ -379,14 +378,23 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! src/app/helpers/loadingContr */
     "./src/app/helpers/loadingContr.ts");
+    /* harmony import */
+
+
+    var src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! src/app/helpers/confirmAlert */
+    "./src/app/helpers/confirmAlert.ts");
 
     var MantemServicoPage = /*#__PURE__*/function () {
-      function MantemServicoPage(servicoService, modalCtrl, loadingContr, toastCtrl) {
+      function MantemServicoPage(servicoService, modalCtrl, loadingContr, confirmAlert, alertController, _cdr, toastCtrl) {
         _classCallCheck(this, MantemServicoPage);
 
         this.servicoService = servicoService;
         this.modalCtrl = modalCtrl;
         this.loadingContr = loadingContr;
+        this.confirmAlert = confirmAlert;
+        this.alertController = alertController;
+        this._cdr = _cdr;
         this.toastCtrl = toastCtrl;
         this.servicos = [];
         this.dominioServicos = [];
@@ -477,12 +485,34 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           if (this.servicos.length > 10) this.servicos.length = 10;
         }
       }, {
-        key: "excluirServico",
-        value: function excluirServico(servicoId) {
+        key: "excluirServicoConfirm",
+        value: function excluirServicoConfirm(item) {
           var _this3 = this;
 
+          var result = this.confirmAlert.confirmationAlert(this.alertController, 'Deseja excluir o serviço <strong>' + item.nomeServico + '</strong>?').then(function (result) {
+            if (result) {
+              _this3.excluirServico(item.servicoId);
+            }
+          });
+        }
+      }, {
+        key: "excluirServico",
+        value: function excluirServico(servicoId) {
+          var _this4 = this;
+
+          this.loadingContr.showLoader();
           this.servicoService.excluirServico(servicoId).then(function (result) {
-            _this3.ngOnInit();
+            _this4._cdr.detectChanges();
+
+            _this4.loadingContr.hideLoader();
+
+            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_7__["ToastCustom"].SucessoToast(_this4.toastCtrl);
+
+            _this4.ngOnInit();
+          })["catch"](function (err) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(err, _this4.toastCtrl);
+
+            _this4.loadingContr.hideLoader();
           });
         }
       }]);
@@ -497,6 +527,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
       }, {
         type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__["LoadingContr"]
+      }, {
+        type: src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_9__["ConfirmAlert"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"]
       }];
@@ -648,12 +684,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
        *
        */
       function DominioServicoRepositoryService() {
-        var _this4;
+        var _this5;
 
         _classCallCheck(this, DominioServicoRepositoryService);
 
-        _this4 = _super.call(this);
-        _this4.servicoConverter = {
+        _this5 = _super.call(this);
+        _this5.servicoConverter = {
           toFirestore: function toFirestore(servico) {
             return {
               servicoId: servico.servicoId,
@@ -661,19 +697,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             };
           }
         };
-        _this4._collectionName = "dominioServico";
-        return _this4;
+        _this5._collectionName = "dominioServico";
+        return _this5;
       }
 
       _createClass(DominioServicoRepositoryService, [{
         key: "recuperaServicoAutoComplete",
         value: function recuperaServicoAutoComplete(query) {
-          var _this5 = this;
+          var _this6 = this;
 
           return new Promise(function (response, resp) {
             var endText = query + "\uF8FF";
 
-            _this5.db.collection("dominioServico").orderBy("nomeServico").limit(10).where("nomeServico", ">=", query).where("nomeServico", "<=", endText) // .startAt(query)
+            _this6.db.collection("dominioServico").orderBy("nomeServico").limit(10).where("nomeServico", ">=", query).where("nomeServico", "<=", endText) // .startAt(query)
             // .endAt(endText)
             .get().then(function (result) {
               var lst = [];
@@ -692,10 +728,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "recuperaDominioServico",
         value: function recuperaDominioServico() {
-          var _this6 = this;
+          var _this7 = this;
 
           return new Promise(function (response, resp) {
-            _this6.db.collection("dominioServico").orderBy("nomeServico").get().then(function (result) {
+            _this7.db.collection("dominioServico").orderBy("nomeServico").get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({
@@ -711,10 +747,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "recuperaDominioServicoAtivo",
         value: function recuperaDominioServicoAtivo() {
-          var _this7 = this;
+          var _this8 = this;
 
           return new Promise(function (response, resp) {
-            _this7.db.collection("dominioServico").where("deletado", "==", false).orderBy("nomeServico").get().then(function (result) {
+            _this8.db.collection("dominioServico").where("deletado", "==", false).orderBy("nomeServico").get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({

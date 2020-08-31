@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Prestadores\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Consultar Prestadores</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formConsultarPrestadorADM\" (ngSubmit)=\"ConsultarPrestador()\">\n\n        <ion-item (click)=\"abrirModalIgreja()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Igreja</ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formConsultarPrestadorADM.value.nomeIgreja}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <ion-item (click)=\"abrirModalSituacaoPrestador()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Situação Prestador\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formConsultarPrestadorADM.value.nomeSituacaoPrestador}}\n                </ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n\n          <ion-button class=\"primary\" type=\"submit\"><ion-icon name=\"search-outline\" style=\"margin-right:10px;\"></ion-icon>Pesquisar</ion-button>\n\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}} </h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item class=\"ion-no-border\">\n      <ion-icon name=\"business-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeIgreja}} </h2>\n      </ion-label>\n      <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"item.staMembro\">\n        membro\n      </ion-note>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"golf-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeSituacaoPrestador}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button size=\"small\" (click)=\"configuracoes(item.usuarioId)\">Configurações</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Prestadores\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Consultar Prestadores</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formConsultarPrestadorADM\" (ngSubmit)=\"ConsultarPrestador()\">\n\n        <ion-item (click)=\"abrirModalIgreja()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Igreja</ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formConsultarPrestadorADM.value.nomeIgreja}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <ion-item (click)=\"abrirModalSituacaoPrestador()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Situação Prestador\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formConsultarPrestadorADM.value.nomeSituacaoPrestador}}\n                </ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n\n          <ion-button class=\"primary\" type=\"submit\"><ion-icon name=\"search-outline\" style=\"margin-right:10px;\"></ion-icon>Pesquisar</ion-button>\n\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}} </h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item class=\"ion-no-border\">\n      <ion-icon name=\"business-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeIgreja}} </h2>\n      </ion-label>\n      \n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"golf-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeSituacaoPrestador}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button size=\"small\" (click)=\"configuracoes(item.usuarioId)\">Configurações</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -29,7 +29,6 @@ class HandlerError {
     static handler(err, toastCtrl) {
         var data = err;
         let message = data.error ? data.error.message : data;
-        console.log(message);
         _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
     }
 }
@@ -434,11 +433,14 @@ let IgrejaService = class IgrejaService {
     RecuperaTodasAsIgrejas() {
         return this.igrejaRepService.RecuperaTodasAsIgrejas();
     }
+    RecuperaIgrejaPorIgrejaId(igrejaId) {
+        return this.igrejaRepService.RecuperaIgrejaPorIgrejaId(igrejaId);
+    }
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
     }
     AdicionarNovaIgreja(obj) {
-        return this.igrejaRepService.add(obj, null);
+        return this.igrejaRepService.AdicionaNovaIgreja(obj, obj.igrejaId);
     }
     RecuperaIgrejasPorCidade(cidade) {
         return this.igrejaRepService.RecuperaIgrejasPorCidade(cidade);
@@ -598,6 +600,22 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
             });
         });
     }
+    AdicionaNovaIgreja(item, id) {
+        let idTemp = id ? id : this.db.collection(this._collectionName).doc().id;
+        item.id = idTemp;
+        item.igrejaId = idTemp;
+        return new Promise((resolve, reject) => {
+            this.db.collection(this._collectionName)
+                .doc(idTemp)
+                .set(Object.assign({}, item), { merge: true })
+                .then((obj) => {
+                resolve(obj);
+            })
+                .catch((error) => {
+                reject(error);
+            });
+        });
+    }
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return new Promise((resolve, reject) => {
             this.db.collection('igreja')
@@ -624,7 +642,7 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
     }
     RecuperaTodasAsIgrejas() {
         return new Promise((resolve, reject) => {
-            this.db.collection('igreja')
+            this.db.collection(this._collectionName)
                 .get()
                 .then((result) => {
                 let lst = [];
@@ -632,6 +650,18 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
                     lst.push(doc.data());
                 });
                 resolve(lst);
+            })
+                .catch((err) => {
+                reject(err);
+            });
+        });
+    }
+    RecuperaIgrejaPorIgrejaId(igrejaId) {
+        return new Promise((resolve, reject) => {
+            this.db.collection(this._collectionName).doc(igrejaId)
+                .get()
+                .then((result) => {
+                resolve(result.data());
             })
                 .catch((err) => {
                 reject(err);

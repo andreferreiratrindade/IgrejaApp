@@ -102,11 +102,14 @@ let IgrejaService = class IgrejaService {
     RecuperaTodasAsIgrejas() {
         return this.igrejaRepService.RecuperaTodasAsIgrejas();
     }
+    RecuperaIgrejaPorIgrejaId(igrejaId) {
+        return this.igrejaRepService.RecuperaIgrejaPorIgrejaId(igrejaId);
+    }
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
     }
     AdicionarNovaIgreja(obj) {
-        return this.igrejaRepService.add(obj, null);
+        return this.igrejaRepService.AdicionaNovaIgreja(obj, obj.igrejaId);
     }
     RecuperaIgrejasPorCidade(cidade) {
         return this.igrejaRepService.RecuperaIgrejasPorCidade(cidade);
@@ -175,6 +178,22 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
             });
         });
     }
+    AdicionaNovaIgreja(item, id) {
+        let idTemp = id ? id : this.db.collection(this._collectionName).doc().id;
+        item.id = idTemp;
+        item.igrejaId = idTemp;
+        return new Promise((resolve, reject) => {
+            this.db.collection(this._collectionName)
+                .doc(idTemp)
+                .set(Object.assign({}, item), { merge: true })
+                .then((obj) => {
+                resolve(obj);
+            })
+                .catch((error) => {
+                reject(error);
+            });
+        });
+    }
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return new Promise((resolve, reject) => {
             this.db.collection('igreja')
@@ -201,7 +220,7 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
     }
     RecuperaTodasAsIgrejas() {
         return new Promise((resolve, reject) => {
-            this.db.collection('igreja')
+            this.db.collection(this._collectionName)
                 .get()
                 .then((result) => {
                 let lst = [];
@@ -209,6 +228,18 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
                     lst.push(doc.data());
                 });
                 resolve(lst);
+            })
+                .catch((err) => {
+                reject(err);
+            });
+        });
+    }
+    RecuperaIgrejaPorIgrejaId(igrejaId) {
+        return new Promise((resolve, reject) => {
+            this.db.collection(this._collectionName).doc(igrejaId)
+                .get()
+                .then((result) => {
+                resolve(result.data());
             })
                 .catch((err) => {
                 reject(err);

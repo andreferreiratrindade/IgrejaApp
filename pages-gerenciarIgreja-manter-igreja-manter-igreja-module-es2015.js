@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Igrejas\n      </ion-title>\n    </ion-toolbar>\n\n\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;margin-bottom: 20px;\">\n        <ion-button color=\"primary\" (click)=\"adicionarNovaIgreja()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Consultar Igrejas</ion-card-title>\n     \n    </ion-card-header>\n    \n    <ion-card-content>\n      <ion-searchbar type=\"text\" debounce=1 placeholder=\"Pesquisar\" animated #searchbar\n      (ionChange)=\"recuperaItens($event)\" animated></ion-searchbar>\n\n      <ion-list style=\"margin-top: 20px;\" *ngIf=\"igrejas.length > 0\">\n        <ion-list-header >\n          Igrejas\n        </ion-list-header>\n        <ion-item *ngFor=\"let item of igrejas\" class=\"ion-no-border\" button  detail=\"false\">\n          <ion-icon *ngIf=\"!item.deletado\" slot=\"end\" color=\"primary\" name=\"ellipsis-vertical\"></ion-icon>\n          <ion-label class=\"ion-text-wrap on-no-border\">{{item.nomeIgreja}}<p>{{item.deletado?\"deletado\":\"\"}}</p></ion-label>\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Igrejas\n      </ion-title>\n    </ion-toolbar>\n\n\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;margin-bottom: 20px;\">\n        <ion-button color=\"primary\" (click)=\"adicionarNovaIgreja()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Consultar Igrejas</ion-card-title>\n     \n    </ion-card-header>\n    \n    <ion-card-content>\n      <ion-searchbar type=\"text\" debounce=1 placeholder=\"Pesquisar\" animated #searchbar\n      (ionChange)=\"recuperaItens($event)\" animated></ion-searchbar>\n\n      <ion-list style=\"margin-top: 20px;\" *ngIf=\"igrejas.length > 0\">\n        <ion-list-header >\n          Igrejas\n        </ion-list-header>\n        <ion-item *ngFor=\"let item of igrejas\" class=\"ion-no-border\" button  detail=\"false\" (click)=\"editarIgreja(item)\">\n          <ion-icon *ngIf=\"!item.deletado\" slot=\"end\" color=\"primary\" name=\"ellipsis-vertical\"></ion-icon>\n          <ion-label class=\"ion-text-wrap on-no-border\">{{item.nomeIgreja}}<p>{{item.deletado?\"deletado\":\"\"}}</p></ion-label>\n        </ion-item>\n      </ion-list>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -157,6 +157,20 @@ let ManterIgrejaPage = class ManterIgrejaPage {
     adicionarNovaIgreja() {
         const modal = this.modalCtrl.create({
             component: _criar_igreja_criar_igreja_page__WEBPACK_IMPORTED_MODULE_3__["CriarIgrejaPage"],
+            backdropDismiss: false,
+        }).then((modal) => {
+            modal.present();
+            modal.onWillDismiss().then(resultModal => {
+                this.ngOnInit();
+            });
+        });
+    }
+    editarIgreja(item) {
+        var _a;
+        let igrejaId = (_a = item.igrejaId) !== null && _a !== void 0 ? _a : item.id;
+        const modal = this.modalCtrl.create({
+            component: _criar_igreja_criar_igreja_page__WEBPACK_IMPORTED_MODULE_3__["CriarIgrejaPage"],
+            componentProps: { igrejaId: igrejaId },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();

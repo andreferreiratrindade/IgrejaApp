@@ -654,6 +654,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.MeuUsuarioPageModule;
         });
       }
+    }, {
+      path: 'modal-breve-comentario',
+      loadChildren: function loadChildren() {
+        return Promise.all(
+        /*! import() | pages-prestador-prestadorCadastro-modal-breve-comentario-modal-breve-comentario-module */
+        [__webpack_require__.e("common"), __webpack_require__.e("pages-prestador-prestadorCadastro-modal-breve-comentario-modal-breve-comentario-module")]).then(__webpack_require__.bind(null,
+        /*! ./pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.module */
+        "./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.module.ts")).then(function (m) {
+          return m.ModalBreveComentarioPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
@@ -1741,9 +1752,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     return alert.present();
 
                   case 6:
-                    alert.onDidDismiss().then(function () {
-                      // this update will happen after "alert" dismiss and within the scope of the HomePage component. 
-                      console.log("onDidDismiss");
+                    alert.onDidDismiss().then(function () {// this update will happen after "alert" dismiss and within the scope of the HomePage component. 
                     });
                     return _context3.abrupt("return", promise);
 
@@ -1753,6 +1762,63 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             }, _callee3);
+          }));
+        }
+      }, {
+        key: "InputAlert",
+        value: function InputAlert(alertController, message) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+            var resolveFunction, promise, alert;
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    promise = new Promise(function (resolve) {
+                      resolveFunction = resolve;
+                    });
+                    _context4.next = 3;
+                    return alertController.create({
+                      // header: 'Atenção',
+                      message: message,
+                      inputs: [{
+                        name: 'input1',
+                        type: 'text',
+                        placeholder: ''
+                      }],
+                      buttons: [{
+                        text: 'Cancelar',
+                        handler: function handler() {
+                          return resolveFunction({
+                            ok: false
+                          });
+                        }
+                      }, {
+                        text: 'Salvar',
+                        handler: function handler(alertData) {
+                          return resolveFunction({
+                            ok: true,
+                            text: alertData.input1
+                          });
+                        }
+                      }]
+                    });
+
+                  case 3:
+                    alert = _context4.sent;
+                    _context4.next = 6;
+                    return alert.present();
+
+                  case 6:
+                    alert.onDidDismiss().then(function () {// this update will happen after "alert" dismiss and within the scope of the HomePage component. 
+                    });
+                    return _context4.abrupt("return", promise);
+
+                  case 8:
+                  case "end":
+                    return _context4.stop();
+                }
+              }
+            }, _callee4);
           }));
         }
       }]);
@@ -1815,15 +1881,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(LoadingContr, [{
         key: "showLoader",
         value: function showLoader() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
             var _this3 = this;
 
-            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+            return regeneratorRuntime.wrap(function _callee5$(_context5) {
               while (1) {
-                switch (_context4.prev = _context4.next) {
+                switch (_context5.prev = _context5.next) {
                   case 0:
                     this.isLoading = true;
-                    _context4.next = 3;
+                    _context5.next = 3;
                     return this.loadingController.create({// duration: 5000,
                     }).then(function (a) {
                       a.present().then(function () {
@@ -1834,30 +1900,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
 
                   case 3:
-                    return _context4.abrupt("return", _context4.sent);
-
-                  case 4:
-                  case "end":
-                    return _context4.stop();
-                }
-              }
-            }, _callee4, this);
-          }));
-        } // Hide the loader if already created otherwise return error
-
-      }, {
-        key: "hideLoader",
-        value: function hideLoader() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-            return regeneratorRuntime.wrap(function _callee5$(_context5) {
-              while (1) {
-                switch (_context5.prev = _context5.next) {
-                  case 0:
-                    this.isLoading = false;
-                    _context5.next = 3;
-                    return this.loadingController.dismiss();
-
-                  case 3:
                     return _context5.abrupt("return", _context5.sent);
 
                   case 4:
@@ -1866,6 +1908,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             }, _callee5, this);
+          }));
+        } // Hide the loader if already created otherwise return error
+
+      }, {
+        key: "hideLoader",
+        value: function hideLoader() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            return regeneratorRuntime.wrap(function _callee6$(_context6) {
+              while (1) {
+                switch (_context6.prev = _context6.next) {
+                  case 0:
+                    this.isLoading = false;
+                    _context6.next = 3;
+                    return this.loadingController.dismiss();
+
+                  case 3:
+                    return _context6.abrupt("return", _context6.sent);
+
+                  case 4:
+                  case "end":
+                    return _context6.stop();
+                }
+              }
+            }, _callee6, this);
           }));
         }
       }], [{
@@ -2632,7 +2698,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(BaseProvider, [{
         key: "apiGet",
         value: function apiGet(url) {
-          console.log(url);
           return this.http.get(url).toPromise().then(function (data) {
             return data.json();
           })["catch"](this.handleError);
@@ -2661,8 +2726,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "handleError",
-        value: function handleError(error) {
-          console.error(error); // return Observable.throw(error.json() || 'Server error');
+        value: function handleError(error) {// return Observable.throw(error.json() || 'Server error');
         }
       }, {
         key: "extractData",
@@ -3252,7 +3316,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function recuperaUsuarioLogado() {
           var _this10 = this;
 
-          console.log("Verifica Usuario Logado;");
           return new Promise(function (resolve, reject) {
             _this10.firebaseAutentication.verificaUsuarioLogado().then(function (user) {
               if (user != null) {
@@ -3610,7 +3673,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               });
               resolve(lst);
             })["catch"](function (err) {
-              console.log(err);
               reject(err);
             });
           });
@@ -3752,19 +3814,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         // success
         this.addCollection = function (item) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this26, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-            return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this26, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+            return regeneratorRuntime.wrap(function _callee7$(_context7) {
               while (1) {
-                switch (_context6.prev = _context6.next) {
+                switch (_context7.prev = _context7.next) {
                   case 0:
-                    return _context6.abrupt("return", null);
+                    return _context7.abrupt("return", null);
 
                   case 1:
                   case "end":
-                    return _context6.stop();
+                    return _context7.stop();
                 }
               }
-            }, _callee6);
+            }, _callee7);
           }));
         };
 

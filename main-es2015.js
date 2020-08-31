@@ -498,6 +498,10 @@ const routes = [
         path: 'profile',
         canActivate: [_providers_AuthGuard_UsuarioLogadoValidation__WEBPACK_IMPORTED_MODULE_3__["UsuarioLogadoValidation"]],
         loadChildren: () => __webpack_require__.e(/*! import() | pages-usuario-meu-usuario-meu-usuario-module */ "pages-usuario-meu-usuario-meu-usuario-module").then(__webpack_require__.bind(null, /*! ./pages/usuario/meu-usuario/meu-usuario.module */ "./src/app/pages/usuario/meu-usuario/meu-usuario.module.ts")).then(m => m.MeuUsuarioPageModule)
+    },
+    {
+        path: 'modal-breve-comentario',
+        loadChildren: () => Promise.all(/*! import() | pages-prestador-prestadorCadastro-modal-breve-comentario-modal-breve-comentario-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-prestador-prestadorCadastro-modal-breve-comentario-modal-breve-comentario-module")]).then(__webpack_require__.bind(null, /*! ./pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.module */ "./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.module.ts")).then(m => m.ModalBreveComentarioPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -1143,7 +1147,40 @@ class ConfirmAlert {
             yield alert.present();
             alert.onDidDismiss().then(() => {
                 // this update will happen after "alert" dismiss and within the scope of the HomePage component. 
-                console.log("onDidDismiss");
+            });
+            return promise;
+        });
+    }
+    InputAlert(alertController, message) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            let resolveFunction;
+            const promise = new Promise(resolve => {
+                resolveFunction = resolve;
+            });
+            const alert = yield alertController.create({
+                // header: 'Atenção',
+                message,
+                inputs: [
+                    {
+                        name: 'input1',
+                        type: 'text',
+                        placeholder: ''
+                    }
+                ],
+                buttons: [
+                    {
+                        text: 'Cancelar',
+                        handler: () => resolveFunction({ ok: false })
+                    },
+                    {
+                        text: 'Salvar',
+                        handler: (alertData) => resolveFunction({ ok: true, text: alertData.input1 })
+                    }
+                ]
+            });
+            yield alert.present();
+            alert.onDidDismiss().then(() => {
+                // this update will happen after "alert" dismiss and within the scope of the HomePage component. 
             });
             return promise;
         });
@@ -1609,7 +1646,6 @@ let BaseProvider = class BaseProvider {
         this.http = http;
     }
     apiGet(url) {
-        console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(data => {
@@ -1635,7 +1671,6 @@ let BaseProvider = class BaseProvider {
         return new _angular_http__WEBPACK_IMPORTED_MODULE_2__["RequestOptions"]({ headers: headers });
     }
     handleError(error) {
-        console.error(error);
         // return Observable.throw(error.json() || 'Server error');
     }
     extractData(res) {
@@ -1985,7 +2020,6 @@ let UsuarioService = class UsuarioService {
         return this.usuarioSubject;
     }
     recuperaUsuarioLogado() {
-        console.log("Verifica Usuario Logado;");
         return new Promise((resolve, reject) => {
             this.firebaseAutentication.verificaUsuarioLogado().then(user => {
                 if (user != null) {
@@ -2254,7 +2288,6 @@ let PrestadorRepServiceService = class PrestadorRepServiceService extends _repos
                 });
                 resolve(lst);
             }).catch(err => {
-                console.log(err);
                 reject(err);
             });
         });

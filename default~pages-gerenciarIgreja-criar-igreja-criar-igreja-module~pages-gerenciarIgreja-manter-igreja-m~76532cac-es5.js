@@ -35,7 +35,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Adicionar Igreja</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formData\" (ngSubmit)=\"salvarIgreja()\">\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Nome Igreja <ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n\n          <ion-input type=\"text\" formControlName=\"nomeIgreja\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <app-mensagem-validacao [validation_messages_object]=\"validation_messages.nomeIgreja\" [form]=\"formData\"\n          [nomeCampo]=\"'nomeIgreja'\"></app-mensagem-validacao>\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Cep <ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n          <ion-input type=\"text\" formControlName=\"cep\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <div class=\"ion-text-center\">\n          <ion-button color=\"primary\" size=\"small\" (click)=\"buscarEnderecoPorCEP()\">\n            <ion-icon name=\"search-outline\" style=\"margin-right: 10px;\"></ion-icon>\n            <ion-label>Buscar Endereço</ion-label>\n          </ion-button>\n        </div>\n\n        <ion-item class=\"input-item\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formData.value.logradouro\">\n            <p>{{formData.value.logradouro}}, {{formData.value.bairro}} - {{formData.value.cidade}} /\n              {{formData.value.uf}}</p>\n          </ion-label>\n\n          <app-mensagem-validacao [validation_messages_object]=\"validation_messages.cep\" [form]=\"formData\"\n            [nomeCampo]=\"'cep'\"></app-mensagem-validacao>\n        </ion-item>\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\" class=\"ion-text-wrap\">Email do administrador da igreja <ion-text\n              color=\"danger\">*</ion-text>\n          </ion-label>\n          <ion-input type=\"text\" formControlName=\"emailAdministrador\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <div class=\"ion-text-center\">\n          <ion-button color=\"primary\" size=\"small\" (click)=\"buscarUsuarioAdministradorIgreja()\">\n            <ion-icon name=\"search-outline\" style=\"margin-right: 10px;\"></ion-icon>\n            <ion-label>Buscar Administrador</ion-label>\n          </ion-button>\n        </div>\n        <ion-item class=\"input-item\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formData.value.administradorUsuarioId\">\n            <p>{{formData.value.emailAdministrador}}</p>\n            <p>{{formData.value.nomeAdministrador}}</p>\n          </ion-label>\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n          <ion-button color=\"success\" type=\"submit\" clear>\n            <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n            </ion-icon>\n            Criar Igreja\n          </ion-button>\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title *ngIf=\"igrejaId\">Mantem Igreja</ion-card-title>\n      <ion-card-title *ngIf=\"!igrejaId\">Adicionar Igreja</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formData\" (ngSubmit)=\"salvarIgreja()\">\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Nome Igreja <ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n\n          <ion-input type=\"text\" formControlName=\"nomeIgreja\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <app-mensagem-validacao [validation_messages_object]=\"validation_messages.nomeIgreja\" [form]=\"formData\"\n          [nomeCampo]=\"'nomeIgreja'\"></app-mensagem-validacao>\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Cep <ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n          <ion-input type=\"text\" formControlName=\"cep\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <div class=\"ion-text-center\">\n          <ion-button color=\"primary\" size=\"small\" (click)=\"buscarEnderecoPorCEP()\">\n            <ion-icon name=\"search-outline\" style=\"margin-right: 10px;\"></ion-icon>\n            <ion-label>Buscar Endereço</ion-label>\n          </ion-button>\n        </div>\n\n        <ion-item class=\"input-item\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formData.value.logradouro\">\n            <p>{{formData.value.logradouro}}, {{formData.value.bairro}} - {{formData.value.cidade}} /\n              {{formData.value.uf}}</p>\n          </ion-label>\n\n          <app-mensagem-validacao [validation_messages_object]=\"validation_messages.cep\" [form]=\"formData\"\n            [nomeCampo]=\"'cep'\"></app-mensagem-validacao>\n        </ion-item>\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\" class=\"ion-text-wrap\">Email do administrador da igreja <ion-text\n              color=\"danger\">*</ion-text>\n          </ion-label>\n          <ion-input type=\"text\" formControlName=\"emailAdministrador\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <div class=\"ion-text-center\">\n          <ion-button color=\"primary\" size=\"small\" (click)=\"buscarUsuarioAdministradorIgreja()\">\n            <ion-icon name=\"search-outline\" style=\"margin-right: 10px;\"></ion-icon>\n            <ion-label>Buscar Administrador</ion-label>\n          </ion-button>\n        </div>\n        <ion-item class=\"input-item\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formData.value.administradorUsuarioId\">\n            <p>{{formData.value.emailAdministrador}}</p>\n            <p>{{formData.value.nomeAdministrador}}</p>\n          </ion-label>\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n          <ion-button color=\"success\" type=\"submit\" clear>\n            <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n            </ion-icon>\n            Salvar\n          </ion-button>\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -75,7 +75,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function handler(err, toastCtrl) {
           var data = err;
           var message = data.error ? data.error.message : data;
-          console.log(message);
 
           _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
         }
@@ -254,7 +253,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     "./src/app/utils/constants.ts");
 
     var CriarIgrejaPage = /*#__PURE__*/function () {
-      function CriarIgrejaPage(buscarCEPService, igrejaService, router, toastCtrl, loadingControll, ngZone, usuarioService, modalController) {
+      function CriarIgrejaPage(buscarCEPService, igrejaService, router, toastCtrl, loadingControll, ngZone, usuarioService, modalController, navParams) {
         _classCallCheck(this, CriarIgrejaPage);
 
         this.buscarCEPService = buscarCEPService;
@@ -265,6 +264,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.ngZone = ngZone;
         this.usuarioService = usuarioService;
         this.modalController = modalController;
+        this.navParams = navParams;
         this.igrejaEntity = {};
         this.validation_messages = {
           'nomeIgreja': [{
@@ -295,15 +295,44 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           'nomeAdministrador': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])),
           'administradorUsuarioId': new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]))
         });
+        this.igrejaId = this.navParams.data.igrejaId;
       }
 
       _createClass(CriarIgrejaPage, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          var _this = this;
+
+          if (this.igrejaId) {
+            this.igrejaService.RecuperaIgrejaPorIgrejaId(this.igrejaId).then(function (result) {
+              _this.formData.controls['administradorUsuarioId'].setValue(result.administradorUsuarioId);
+
+              _this.formData.controls['bairro'].setValue(result.bairro);
+
+              _this.formData.controls['cep'].setValue(result.cep);
+
+              _this.formData.controls['cidade'].setValue(result.cidade);
+
+              _this.formData.controls['emailAdministrador'].setValue(result.emailAdministrador);
+
+              _this.formData.controls['logradouro'].setValue(result.logradouro);
+
+              _this.formData.controls['uf'].setValue(result.uf);
+
+              _this.formData.controls['nomeAdministrador'].setValue(result.nomeAdministrador);
+
+              _this.formData.controls['nomeIgreja'].setValue(result.nomeIgreja);
+            })["catch"](function (error) {
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this.toastCtrl);
+
+              _this.loadingControll.hideLoader();
+            });
+          }
+        }
       }, {
         key: "buscarEnderecoPorCEP",
         value: function buscarEnderecoPorCEP() {
-          var _this = this;
+          var _this2 = this;
 
           this.formData.controls['cidade'].setValue(null);
           this.formData.controls['bairro'].setValue(null);
@@ -318,30 +347,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.loadingControll.showLoader();
           this.buscarCEPService.buscarCEP(this.formData.value.cep).then(function (x) {
             if (x && !x.erro) {
-              _this.formData.controls['cidade'].setValue(x.localidade);
+              _this2.formData.controls['cidade'].setValue(x.localidade);
 
-              _this.formData.controls['bairro'].setValue(x.bairro);
+              _this2.formData.controls['bairro'].setValue(x.bairro);
 
-              _this.formData.controls['uf'].setValue(x.uf);
+              _this2.formData.controls['uf'].setValue(x.uf);
 
-              _this.formData.controls['logradouro'].setValue(x.logradouro);
+              _this2.formData.controls['logradouro'].setValue(x.logradouro);
 
-              _this.loadingControll.hideLoader();
+              _this2.loadingControll.hideLoader();
             } else {
-              _this.loadingControll.hideLoader();
+              _this2.loadingControll.hideLoader();
 
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Favor inserir CEP válido, antes de continuar.", _this.toastCtrl);
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Favor inserir CEP válido, antes de continuar.", _this2.toastCtrl);
             }
           })["catch"](function (x) {
-            _this.loadingControll.hideLoader();
+            _this2.loadingControll.hideLoader();
 
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(x, _this.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(x, _this2.toastCtrl);
           });
         }
       }, {
         key: "salvarIgreja",
         value: function salvarIgreja() {
-          var _this2 = this;
+          var _this3 = this;
 
           if (!this.formData.value.cidade) {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Favor inserir CEP válido, antes de continuar.", this.toastCtrl);
@@ -357,45 +386,45 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.igrejaEntity = this.formData.value;
           this.igrejaEntity.administradores = [this.formData.value.administradorUsuarioId];
           this.igrejaService.AdicionarNovaIgreja(this.igrejaEntity).then(function () {
-            _this2.usuarioService.AdicionaPerfilAoUsuario(_this2.formData.value.administradorUsuarioId, src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].PerfilUsuario.AdministradorIgreja).then(function () {
-              src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this2.toastCtrl);
+            _this3.usuarioService.AdicionaPerfilAoUsuario(_this3.formData.value.administradorUsuarioId, src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].PerfilUsuario.AdministradorIgreja).then(function () {
+              src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this3.toastCtrl);
 
-              _this2.loadingControll.hideLoader();
+              _this3.loadingControll.hideLoader();
 
-              _this2.closeModal();
+              _this3.closeModal();
             })["catch"](function (error) {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this2.toastCtrl);
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this3.toastCtrl);
 
-              _this2.loadingControll.hideLoader();
+              _this3.loadingControll.hideLoader();
             });
           })["catch"](function (error) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this2.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this3.toastCtrl);
 
-            _this2.loadingControll.hideLoader();
+            _this3.loadingControll.hideLoader();
           });
         }
       }, {
         key: "buscarUsuarioAdministradorIgreja",
         value: function buscarUsuarioAdministradorIgreja() {
-          var _this3 = this;
+          var _this4 = this;
 
           this.loadingControll.showLoader();
           this.usuarioService.RecuperaUsuarioPorEmail(this.formData.value.emailAdministrador).then(function (result) {
             if (result.length > 0) {
-              _this3.formData.controls['administradorUsuarioId'].setValue(result[0].data.usuarioId);
+              _this4.formData.controls['administradorUsuarioId'].setValue(result[0].data.usuarioId);
 
-              _this3.formData.controls['emailAdministrador'].setValue(result[0].data.email);
+              _this4.formData.controls['emailAdministrador'].setValue(result[0].data.email);
 
-              _this3.formData.controls['nomeAdministrador'].setValue(result[0].data.nome);
+              _this4.formData.controls['nomeAdministrador'].setValue(result[0].data.nome);
             } else {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Nenhum usuário encontrado com este e-mail.", _this3.toastCtrl);
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler("Nenhum usuário encontrado com este e-mail.", _this4.toastCtrl);
             }
 
-            _this3.loadingControll.hideLoader();
+            _this4.loadingControll.hideLoader();
           })["catch"](function (error) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this3.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(error, _this4.toastCtrl);
 
-            _this3.loadingControll.hideLoader();
+            _this4.loadingControll.hideLoader();
           });
         }
       }, {
@@ -425,6 +454,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: src_app_providers_usuario_usuario_service__WEBPACK_IMPORTED_MODULE_6__["UsuarioService"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["ModalController"]
+      }, {
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["NavParams"]
       }];
     };
 
@@ -491,6 +522,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.igrejaRepService.RecuperaTodasAsIgrejas();
         }
       }, {
+        key: "RecuperaIgrejaPorIgrejaId",
+        value: function RecuperaIgrejaPorIgrejaId(igrejaId) {
+          return this.igrejaRepService.RecuperaIgrejaPorIgrejaId(igrejaId);
+        }
+      }, {
         key: "RecuperaIgrejaPorAdministrador",
         value: function RecuperaIgrejaPorAdministrador(usuarioId) {
           return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
@@ -498,7 +534,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "AdicionarNovaIgreja",
         value: function AdicionarNovaIgreja(obj) {
-          return this.igrejaRepService.add(obj, null);
+          return this.igrejaRepService.AdicionaNovaIgreja(obj, obj.igrejaId);
         }
       }, {
         key: "RecuperaIgrejasPorCidade",
@@ -576,22 +612,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       var _super = _createSuper(IgrejaRepService);
 
       function IgrejaRepService() {
-        var _this4;
+        var _this5;
 
         _classCallCheck(this, IgrejaRepService);
 
-        _this4 = _super.call(this);
-        _this4._collectionName = "igreja";
-        return _this4;
+        _this5 = _super.call(this);
+        _this5._collectionName = "igreja";
+        return _this5;
       }
 
       _createClass(IgrejaRepService, [{
         key: "RecuperaIgrejasPorEndereco",
         value: function RecuperaIgrejasPorEndereco(uf, cidade, bairro) {
-          var _this5 = this;
+          var _this6 = this;
 
           return new Promise(function (resolve, reject) {
-            var query = _this5.db.collection('igreja').where("uf", "==", uf);
+            var query = _this6.db.collection('igreja').where("uf", "==", uf);
 
             if (cidade) {
               query = query.where("cidade", "==", cidade);
@@ -613,12 +649,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
         }
       }, {
+        key: "AdicionaNovaIgreja",
+        value: function AdicionaNovaIgreja(item, id) {
+          var _this7 = this;
+
+          var idTemp = id ? id : this.db.collection(this._collectionName).doc().id;
+          item.id = idTemp;
+          item.igrejaId = idTemp;
+          return new Promise(function (resolve, reject) {
+            _this7.db.collection(_this7._collectionName).doc(idTemp).set(Object.assign({}, item), {
+              merge: true
+            }).then(function (obj) {
+              resolve(obj);
+            })["catch"](function (error) {
+              reject(error);
+            });
+          });
+        }
+      }, {
         key: "RecuperaIgrejaPorAdministrador",
         value: function RecuperaIgrejaPorAdministrador(usuarioId) {
-          var _this6 = this;
+          var _this8 = this;
 
           return new Promise(function (resolve, reject) {
-            _this6.db.collection('igreja').where("administradores", "array-contains", usuarioId).get().then(function (result) {
+            _this8.db.collection('igreja').where("administradores", "array-contains", usuarioId).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());
@@ -651,15 +705,28 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "RecuperaTodasAsIgrejas",
         value: function RecuperaTodasAsIgrejas() {
-          var _this7 = this;
+          var _this9 = this;
 
           return new Promise(function (resolve, reject) {
-            _this7.db.collection('igreja').get().then(function (result) {
+            _this9.db.collection(_this9._collectionName).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());
               });
               resolve(lst);
+            })["catch"](function (err) {
+              reject(err);
+            });
+          });
+        }
+      }, {
+        key: "RecuperaIgrejaPorIgrejaId",
+        value: function RecuperaIgrejaPorIgrejaId(igrejaId) {
+          var _this10 = this;
+
+          return new Promise(function (resolve, reject) {
+            _this10.db.collection(_this10._collectionName).doc(igrejaId).get().then(function (result) {
+              resolve(result.data());
             })["catch"](function (err) {
               reject(err);
             });

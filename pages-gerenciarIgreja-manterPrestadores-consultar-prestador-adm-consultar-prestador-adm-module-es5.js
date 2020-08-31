@@ -35,7 +35,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Prestadores\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Consultar Prestadores</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formConsultarPrestadorADM\" (ngSubmit)=\"ConsultarPrestador()\">\n\n        <ion-item (click)=\"abrirModalIgreja()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Igreja</ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formConsultarPrestadorADM.value.nomeIgreja}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <ion-item (click)=\"abrirModalSituacaoPrestador()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Situação Prestador\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formConsultarPrestadorADM.value.nomeSituacaoPrestador}}\n                </ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n\n          <ion-button class=\"primary\" type=\"submit\"><ion-icon name=\"search-outline\" style=\"margin-right:10px;\"></ion-icon>Pesquisar</ion-button>\n\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}} </h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item class=\"ion-no-border\">\n      <ion-icon name=\"business-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeIgreja}} </h2>\n      </ion-label>\n      <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"item.staMembro\">\n        membro\n      </ion-note>\n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"golf-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeSituacaoPrestador}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button size=\"small\" (click)=\"configuracoes(item.usuarioId)\">Configurações</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Mantem Prestadores\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Consultar Prestadores</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formConsultarPrestadorADM\" (ngSubmit)=\"ConsultarPrestador()\">\n\n        <ion-item (click)=\"abrirModalIgreja()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Igreja</ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formConsultarPrestadorADM.value.nomeIgreja}}</ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <ion-item (click)=\"abrirModalSituacaoPrestador()\">\n          <ion-grid>\n            <ion-row>\n              <ion-col size=\"12\">\n                <ion-label>Situação Prestador\n                </ion-label>\n              </ion-col>\n              <ion-col size=\"12\">\n                <ion-note color=\"primary\"> {{formConsultarPrestadorADM.value.nomeSituacaoPrestador}}\n                </ion-note>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n\n          <ion-icon name=\"chevron-down-outline\" slot=\"end\"></ion-icon>\n\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n\n          <ion-button class=\"primary\" type=\"submit\"><ion-icon name=\"search-outline\" style=\"margin-right:10px;\"></ion-icon>Pesquisar</ion-button>\n\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-card *ngFor=\"let item of prestadores\" class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>{{item.nome}} </h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item class=\"ion-no-border\">\n      <ion-icon name=\"business-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeIgreja}} </h2>\n      </ion-label>\n      \n    </ion-item>\n    <ion-item>\n      <ion-icon name=\"golf-outline\" slot=\"start\"></ion-icon>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.bairro}} - {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-label class=\"ion-text-wrap on-no-border\">\n        <h2>{{item.nomeSituacaoPrestador}}</h2>\n      </ion-label>\n    </ion-item>\n    <ion-grid>\n      <ion-row>\n        <ion-col size=\"4\">\n          <ion-button size=\"small\" (click)=\"configuracoes(item.usuarioId)\">Configurações</ion-button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -75,7 +75,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function handler(err, toastCtrl) {
           var data = err;
           var message = data.error ? data.error.message : data;
-          console.log(message);
 
           _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
         }
@@ -790,6 +789,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.igrejaRepService.RecuperaTodasAsIgrejas();
         }
       }, {
+        key: "RecuperaIgrejaPorIgrejaId",
+        value: function RecuperaIgrejaPorIgrejaId(igrejaId) {
+          return this.igrejaRepService.RecuperaIgrejaPorIgrejaId(igrejaId);
+        }
+      }, {
         key: "RecuperaIgrejaPorAdministrador",
         value: function RecuperaIgrejaPorAdministrador(usuarioId) {
           return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
@@ -797,7 +801,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "AdicionarNovaIgreja",
         value: function AdicionarNovaIgreja(obj) {
-          return this.igrejaRepService.add(obj, null);
+          return this.igrejaRepService.AdicionaNovaIgreja(obj, obj.igrejaId);
         }
       }, {
         key: "RecuperaIgrejasPorCidade",
@@ -1049,12 +1053,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
         }
       }, {
-        key: "RecuperaIgrejaPorAdministrador",
-        value: function RecuperaIgrejaPorAdministrador(usuarioId) {
+        key: "AdicionaNovaIgreja",
+        value: function AdicionaNovaIgreja(item, id) {
           var _this13 = this;
 
+          var idTemp = id ? id : this.db.collection(this._collectionName).doc().id;
+          item.id = idTemp;
+          item.igrejaId = idTemp;
           return new Promise(function (resolve, reject) {
-            _this13.db.collection('igreja').where("administradores", "array-contains", usuarioId).get().then(function (result) {
+            _this13.db.collection(_this13._collectionName).doc(idTemp).set(Object.assign({}, item), {
+              merge: true
+            }).then(function (obj) {
+              resolve(obj);
+            })["catch"](function (error) {
+              reject(error);
+            });
+          });
+        }
+      }, {
+        key: "RecuperaIgrejaPorAdministrador",
+        value: function RecuperaIgrejaPorAdministrador(usuarioId) {
+          var _this14 = this;
+
+          return new Promise(function (resolve, reject) {
+            _this14.db.collection('igreja').where("administradores", "array-contains", usuarioId).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());
@@ -1087,15 +1109,28 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "RecuperaTodasAsIgrejas",
         value: function RecuperaTodasAsIgrejas() {
-          var _this14 = this;
+          var _this15 = this;
 
           return new Promise(function (resolve, reject) {
-            _this14.db.collection('igreja').get().then(function (result) {
+            _this15.db.collection(_this15._collectionName).get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push(doc.data());
               });
               resolve(lst);
+            })["catch"](function (err) {
+              reject(err);
+            });
+          });
+        }
+      }, {
+        key: "RecuperaIgrejaPorIgrejaId",
+        value: function RecuperaIgrejaPorIgrejaId(igrejaId) {
+          var _this16 = this;
+
+          return new Promise(function (resolve, reject) {
+            _this16.db.collection(_this16._collectionName).doc(igrejaId).get().then(function (result) {
+              resolve(result.data());
             })["catch"](function (err) {
               reject(err);
             });

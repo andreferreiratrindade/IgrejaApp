@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n  <ion-card class=\"ion-no-border\">\n    <ion-button (click)=\"closeModal()\" fill=\"clear\" style=\"margin-left: -9px; margin-top: 0px;\">\n      <ion-icon slot=\"icon-only\" name=\"close-circle-outline\"></ion-icon>\n    </ion-button>\n    <ion-card-header style=\"padding-top: 0px;margin-top: -20px;\">\n\n      <ion-card-title>\n        <h3>{{prestador.nome}}</h3>\n        <ion-label size=\"12\">\n          <p>{{prestador.descricaoServicos}}</p>\n        </ion-label>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item (click)=\"ligarTelefone(prestador.telefone)\" class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-phone-alt\" style=\"padding-right: 11px;margin-left: 3px;\"></ion-icon>\n        <ion-button color=\"tertiary\" size=\"small\" type=\"button\">{{prestador.telefone | maskTelefone}}</ion-button>\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-church\" style=\"padding-right: 11px;\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{prestador.nomeIgreja}} </h2>\n          <div class=\"ion-text-end\">\n            <ion-note color=\"tertiary\" slot=\"end\" *ngIf=\"prestador.staMembro\">\n              membro\n            </ion-note>\n          </div>\n        </ion-label>\n\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-map-marker-alt\" style=\"padding-right: 11px;margin-left: 7px;\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{prestador.bairro}} - {{prestador.cidade}} / {{prestador.uf}}</h2>\n        </ion-label>\n      </ion-item>\n      <div class=\"ion-text-end\">\n        <ion-button size=\"small\" (click)=\"ShareGeneric(item)\" color=\"light\">\n          <ion-icon name=\"share-social\"></ion-icon>\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Local Atendimento</h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item *ngFor=\"let item of prestador.locaisAtendimento; let i = index\">\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{i+1}}. {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n  </ion-card>\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Serviços</h3>\n      </ion-card-title>\n    </ion-card-header>\n\n    <ion-item *ngFor=\"let item of prestadorServicos\">\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{item.nomeServico}}</h2>\n        <h3>{{item.breveDescricao}}</h3>\n      </ion-label>\n    </ion-item>\n  </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content>\n  <ion-card class=\"ion-no-border\">\n    <ion-button (click)=\"closeModal()\" fill=\"clear\" style=\"margin-left: -9px; margin-top: 0px;\">\n      <ion-icon slot=\"icon-only\" name=\"close-circle-outline\"></ion-icon>\n    </ion-button>\n    <ion-card-header style=\"padding-top: 0px;margin-top: -20px;\">\n\n      <ion-card-title>\n        <h3>{{prestador.nome}}</h3>\n        <ion-label size=\"12\">\n          <p>{{prestador.descricaoServicos}}</p>\n        </ion-label>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n\n      <ion-item (click)=\"ligarTelefone(prestador.telefone)\" class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-phone-alt\" style=\"padding-right: 11px;margin-left: 3px;\"></ion-icon>\n        <ion-button color=\"tertiary\" size=\"small\" type=\"button\">{{prestador.telefone | maskTelefone}}</ion-button>\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-church\" style=\"padding-right: 11px;\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{prestador.nomeIgreja}} </h2>\n         \n        </ion-label>\n\n      </ion-item>\n      <ion-item class=\"ion-no-border\">\n        <ion-icon class=\"fas fa-map-marker-alt\" style=\"padding-right: 11px;margin-left: 7px;\"></ion-icon>\n        <ion-label class=\"ion-text-wrap on-no-border\">\n          <h2>{{prestador.bairro}} - {{prestador.cidade}} / {{prestador.uf}}</h2>\n        </ion-label>\n      </ion-item>\n      <div class=\"ion-text-end\">\n        <ion-button size=\"small\" (click)=\"ShareGeneric(item)\" color=\"light\">\n          <ion-icon name=\"share-social\"></ion-icon>\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Local Atendimento</h3>\n      </ion-card-title>\n    </ion-card-header>\n    <ion-item *ngFor=\"let item of prestador.locaisAtendimento; let i = index\">\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{i+1}}. {{item.cidade}} / {{item.uf}}</h2>\n      </ion-label>\n    </ion-item>\n  </ion-card>\n  <ion-card class=\"ion-no-border\">\n    <ion-card-header>\n\n      <ion-card-title>\n        <h3>Serviços</h3>\n      </ion-card-title>\n    </ion-card-header>\n\n    <ion-item *ngFor=\"let item of prestadorServicos\">\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{item.nomeServico}}</h2>\n        <h3>{{item.breveDescricao}}</h3>\n      </ion-label>\n    </ion-item>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -29,7 +29,6 @@ class HandlerError {
     static handler(err, toastCtrl) {
         var data = err;
         let message = data.error ? data.error.message : data;
-        console.log(message);
         _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
     }
 }
@@ -144,7 +143,6 @@ let VisualizarPrestadorPage = class VisualizarPrestadorPage {
             this.prestador.nomeSituacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_9__["Constants"].ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(this.prestador.situacaoPrestador);
             this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
                 this.prestador.nomeIgreja = result[0].data.nomeIgreja;
-                this.prestador.staMembro = result[0].data.staMembro;
                 this.loadingContr.hideLoader();
             }).catch(err => {
                 src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(err, this.toastCtrl);
@@ -289,11 +287,14 @@ let IgrejaService = class IgrejaService {
     RecuperaTodasAsIgrejas() {
         return this.igrejaRepService.RecuperaTodasAsIgrejas();
     }
+    RecuperaIgrejaPorIgrejaId(igrejaId) {
+        return this.igrejaRepService.RecuperaIgrejaPorIgrejaId(igrejaId);
+    }
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return this.igrejaRepService.RecuperaIgrejaPorAdministrador(usuarioId);
     }
     AdicionarNovaIgreja(obj) {
-        return this.igrejaRepService.add(obj, null);
+        return this.igrejaRepService.AdicionaNovaIgreja(obj, obj.igrejaId);
     }
     RecuperaIgrejasPorCidade(cidade) {
         return this.igrejaRepService.RecuperaIgrejasPorCidade(cidade);
@@ -453,6 +454,22 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
             });
         });
     }
+    AdicionaNovaIgreja(item, id) {
+        let idTemp = id ? id : this.db.collection(this._collectionName).doc().id;
+        item.id = idTemp;
+        item.igrejaId = idTemp;
+        return new Promise((resolve, reject) => {
+            this.db.collection(this._collectionName)
+                .doc(idTemp)
+                .set(Object.assign({}, item), { merge: true })
+                .then((obj) => {
+                resolve(obj);
+            })
+                .catch((error) => {
+                reject(error);
+            });
+        });
+    }
     RecuperaIgrejaPorAdministrador(usuarioId) {
         return new Promise((resolve, reject) => {
             this.db.collection('igreja')
@@ -479,7 +496,7 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
     }
     RecuperaTodasAsIgrejas() {
         return new Promise((resolve, reject) => {
-            this.db.collection('igreja')
+            this.db.collection(this._collectionName)
                 .get()
                 .then((result) => {
                 let lst = [];
@@ -487,6 +504,18 @@ let IgrejaRepService = class IgrejaRepService extends _repository_interface_Repo
                     lst.push(doc.data());
                 });
                 resolve(lst);
+            })
+                .catch((err) => {
+                reject(err);
+            });
+        });
+    }
+    RecuperaIgrejaPorIgrejaId(igrejaId) {
+        return new Promise((resolve, reject) => {
+            this.db.collection(this._collectionName).doc(igrejaId)
+                .get()
+                .then((result) => {
+                resolve(result.data());
             })
                 .catch((err) => {
                 reject(err);

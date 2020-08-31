@@ -75,7 +75,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function handler(err, toastCtrl) {
           var data = err;
           var message = data.error ? data.error.message : data;
-          console.log(message);
 
           _toastCustom__WEBPACK_IMPORTED_MODULE_0__["ToastCustom"].errorToast(message, toastCtrl);
         }
@@ -403,6 +402,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! src/app/helpers/confirmAlert */
     "./src/app/helpers/confirmAlert.ts");
+    /* harmony import */
+
+
+    var _modal_breve_comentario_modal_breve_comentario_page__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! ../modal-breve-comentario/modal-breve-comentario.page */
+    "./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.ts");
 
     var PrestadorCadastroServicoPage = /*#__PURE__*/function () {
       function PrestadorCadastroServicoPage(dominioServicoService, loadingContr, prestadorService, modalCtrl, toastCtrl, alertController, ngZone, router, sortBy, actionSheetCtrl, confirmAlert, _cdr) {
@@ -565,7 +570,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                       header: item.nomeServico,
                       buttons: [{
                         text: 'Breve comentário',
-                        handler: function handler() {}
+                        handler: function handler() {
+                          var modal = _this5.modalCtrl.create({
+                            component: _modal_breve_comentario_modal_breve_comentario_page__WEBPACK_IMPORTED_MODULE_13__["ModalBreveComentarioPage"],
+                            componentProps: {
+                              servico: item
+                            },
+                            backdropDismiss: false
+                          }).then(function (modal) {
+                            modal.present();
+                            modal.onWillDismiss().then(function (resultModal) {
+                              var _a;
+
+                              if (resultModal.data) {
+                                item.breveDescricao = (_a = resultModal.data.breveDescricao) !== null && _a !== void 0 ? _a : "";
+
+                                _this5.salvarBreveDescricao(item);
+                              }
+                            });
+                          });
+                        }
                       }, {
                         text: 'Remover',
                         role: 'destructive',
@@ -604,22 +628,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             return false;
           }
 
-          this.router.navigate(['prestador-cadastro-igreja-vinculo']); // this.loadingContr.showLoader();
-          // let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
-          // if (this.prestador) {
-          //   obj.situacaoPrestador = this.prestador.situacaoPrestador;
-          // }
-          // this.prestadorService
-          //   .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
-          //     this.loadingContr.hideLoader();
-          //     ToastCustom.SucessoToast(this.toastCtrl);
-          //     this.ngZone.run(() => {
-          //       this.router.navigate(['prestador-cadastro-igreja-vinculo']);
-          //     });
-          //   }).catch(err => {
-          //     HandlerError.handler(err, this.toastCtrl);
-          //     this.loadingContr.hideLoader();
-          //   });
+          this.router.navigate(['prestador-cadastro-igreja-vinculo']);
         }
       }, {
         key: "voltar",

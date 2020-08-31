@@ -489,6 +489,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.html":
+/*!*************************************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.html ***!
+  \*************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>{{servico.nomeServico}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-item class=\"input-item\">\n    <ion-label position=\"stacked\">Breve Comentário\n    </ion-label>\n    <ion-input type=\"text\"  [(ngModel)]=\"breveDescricao\" >\n    </ion-input>\n  </ion-item>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n      <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n    </div>\n  </ion-toolbar>\n</ion-footer>");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/servico/modal-servicos/modal-servicos.page.html":
 /*!*************************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/servico/modal-servicos/modal-servicos.page.html ***!
@@ -843,7 +856,6 @@ let ModalIgrejaPage = class ModalIgrejaPage {
                 loadingContr.hideLoader();
             }).catch(err => {
                 loadingContr.hideLoader();
-                console.log(err);
             });
         }
     }
@@ -887,6 +899,66 @@ ModalIgrejaPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./modal-igreja.page.scss */ "./src/app/pages/igreja/modal-igreja/modal-igreja.page.scss")).default]
     })
 ], ModalIgrejaPage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.scss":
+/*!***********************************************************************************************************!*\
+  !*** ./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.scss ***!
+  \***********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3JDYWRhc3Ryby9tb2RhbC1icmV2ZS1jb21lbnRhcmlvL21vZGFsLWJyZXZlLWNvbWVudGFyaW8ucGFnZS5zY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.ts":
+/*!*********************************************************************************************************!*\
+  !*** ./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.ts ***!
+  \*********************************************************************************************************/
+/*! exports provided: ModalBreveComentarioPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalBreveComentarioPage", function() { return ModalBreveComentarioPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
+
+
+let ModalBreveComentarioPage = class ModalBreveComentarioPage {
+    constructor(navParams, modalController) {
+        var _a;
+        this.navParams = navParams;
+        this.modalController = modalController;
+        this.servico = this.navParams.data.servico;
+        this.breveDescricao = (_a = this.servico.breveDescricao) !== null && _a !== void 0 ? _a : "";
+    }
+    closeModal() {
+        this.modalController.dismiss(null, 'cancel');
+    }
+    ok() {
+        this.modalController.dismiss({ breveDescricao: this.breveDescricao }, 'success');
+    }
+};
+ModalBreveComentarioPage.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] }
+];
+ModalBreveComentarioPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-modal-breve-comentario',
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./modal-breve-comentario.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./modal-breve-comentario.page.scss */ "./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.scss")).default]
+    })
+], ModalBreveComentarioPage);
 
 
 
