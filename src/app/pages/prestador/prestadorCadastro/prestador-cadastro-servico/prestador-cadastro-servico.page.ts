@@ -92,29 +92,43 @@ export class PrestadorCadastroServicoPage implements OnInit {
         }
         if (resultModal.data.length > 0) {
 
-          ToastCustom.SucessoToast(this.toastCtrl);
-
-          resultModal.data.forEach(element => {
-            this.prestadorServicos.push(element);
-            this.prestadorService
-              .AdicionaServicoAoPrestador(Config.RecuperaInstancia()
-                .recuperaUsuario().usuarioId, {
-                servicoId: element.servicoId,
-                usuarioId: Config.RecuperaInstancia()
-                  .recuperaUsuario().usuarioId
-
-              }).catch(err => {
-                HandlerError.handler(err, this.toastCtrl);
-                this.loadingContr.hideLoader();
-              })
-          });
-          this.ordenaServicos();
+          if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+            const result = this.confirmAlert.confirmationAlert(this.alertController,
+              'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?'
+            ).then(result => {
+              if (result) {
+                this.adicionaServico(resultModal.data);
+              }
+            });
+          } else {
+            this.adicionaServico(resultModal.data);
+          }
         }
       });
     }).catch(err => {
       HandlerError.handler(err, this.toastCtrl);
       this.loadingContr.hideLoader();
     });
+  }
+
+  public adicionaServico(obj: [any]) {
+    ToastCustom.SucessoToast(this.toastCtrl);
+
+    obj.forEach(element => {
+      this.prestadorServicos.push(element);
+      this.prestadorService
+        .AdicionaServicoAoPrestador(Config.RecuperaInstancia()
+          .recuperaUsuario().usuarioId, {
+          servicoId: element.servicoId,
+          usuarioId: Config.RecuperaInstancia()
+            .recuperaUsuario().usuarioId
+
+        }).catch(err => {
+          HandlerError.handler(err, this.toastCtrl);
+          this.loadingContr.hideLoader();
+        })
+    });
+    this.ordenaServicos();
   }
 
 

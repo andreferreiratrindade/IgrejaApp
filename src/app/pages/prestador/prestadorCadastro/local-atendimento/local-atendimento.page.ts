@@ -113,7 +113,7 @@ export class LocalAtendimentoPage implements OnInit {
       .ExcluirLocalAtendimento(Config.RecuperaInstancia()
         .recuperaUsuario().usuarioId, item)
       .then((result) => {
-        this.locaisAtendimentos = this.locaisAtendimentos.filter(y => { return y.cidade == item.cidade && y.uf == item.uf });
+        this.locaisAtendimentos = this.locaisAtendimentos.filter(y => { return y.cidade != item.cidade || y.uf != item.uf });
         this._cdr.detectChanges();
 
         this.loadingContr.hideLoader();
