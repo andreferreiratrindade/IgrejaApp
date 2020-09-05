@@ -498,7 +498,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>{{servico.nomeServico}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-item class=\"input-item\">\n    <ion-label position=\"stacked\">Breve Comentário\n    </ion-label>\n    <ion-input type=\"text\"  [(ngModel)]=\"breveDescricao\" maxlength=\"5\">\n    </ion-input>\n  </ion-item>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n      <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n    </div>\n  </ion-toolbar>\n</ion-footer>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>{{servico.nomeServico}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-item class=\"input-item\">\n    <ion-label position=\"stacked\">Breve Comentário\n    </ion-label>\n    <ion-input type=\"text\"  [(ngModel)]=\"breveDescricao\" maxlength=\"500\">\n    </ion-input>\n  </ion-item>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n      <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n    </div>\n  </ion-toolbar>\n</ion-footer>");
 
 /***/ }),
 
