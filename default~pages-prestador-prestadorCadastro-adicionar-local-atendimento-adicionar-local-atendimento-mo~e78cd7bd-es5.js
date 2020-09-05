@@ -191,8 +191,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           } else {
             this.itens = _toConsumableArray(this.dominioUF);
           }
-
-          if (this.itens.length > 10) this.itens.length = 10;
         }
       }, {
         key: "closeModal",

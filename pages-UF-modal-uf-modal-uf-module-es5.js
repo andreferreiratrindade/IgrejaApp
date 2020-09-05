@@ -284,8 +284,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } else {
             this.itens = _toConsumableArray(this.dominioUF);
           }
-
-          if (this.itens.length > 10) this.itens.length = 10;
         }
       }, {
         key: "closeModal",

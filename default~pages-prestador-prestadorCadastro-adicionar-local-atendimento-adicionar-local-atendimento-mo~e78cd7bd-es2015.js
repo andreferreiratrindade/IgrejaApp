@@ -104,8 +104,6 @@ let ModalUFPage = class ModalUFPage {
         else {
             this.itens = [...this.dominioUF];
         }
-        if (this.itens.length > 10)
-            this.itens.length = 10;
     }
     closeModal() {
         this.modalController.dismiss(null, 'cancel');

@@ -21,7 +21,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar color=\"secondary\" value=\"0.40\" buffer=\"0.60\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\">\n        <ion-button color=\"primary\" (click)=\"abreModalSelecionarLocalAtendimento()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon> Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Locais de Atendimento</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-list style=\"margin-top: 20px;\">\n        <ion-item *ngFor=\"let item of locaisAtendimentos; let i = index\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"excluirButtonClick(item)\">\n          <ion-icon slot=\"end\" name=\"trash-outline\" color=\"danger\"></ion-icon>\n          <ion-label class=\"ion-text-wrap\">{{item.cidade}} / {{item.uf}}</ion-label>\n\n        </ion-item>\n      </ion-list>\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Prosseguir\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar  *ngIf=\"prestador.situacaoPrestador == 1\" color=\"secondary\" value=\"0.40\" buffer=\"0.60\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\">\n        <ion-button color=\"primary\" (click)=\"abreModalSelecionarLocalAtendimento()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon> Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Locais de Atendimento</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-list style=\"margin-top: 20px;\">\n        <ion-item *ngFor=\"let item of locaisAtendimentos; let i = index\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"excluirButtonClick(item)\">\n          <ion-icon slot=\"end\" name=\"trash-outline\" color=\"danger\"></ion-icon>\n          <ion-label class=\"ion-text-wrap\">{{item.cidade}} / {{item.uf}}</ion-label>\n\n        </ion-item>\n      </ion-list>\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          {{prestador.SituacaoPrestador == 1 ? \"Prosseguir\" : \"Salvar\"}}\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -403,7 +403,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.confirmAlert = confirmAlert;
         this._cdr = _cdr;
         this.locaisAtendimentos = [];
-        this.prestador = null;
+        this.prestador = {};
         this.formulario = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
           'uf': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])),
           'ufApresentacao': new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])),
@@ -422,10 +422,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             _this.prestador = result;
             _this.locaisAtendimentos = result.locaisAtendimento;
 
-            _this.loadingContr.hideLoader(); // if (!this.locaisAtendimentos || this.locaisAtendimentos.length == 0) {
-            //   this.abreModalSelecionarLocalAtendimento();
-            // }
-
+            _this.loadingContr.hideLoader();
           })["catch"](function (err) {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this.toastCtrl);
 
@@ -463,7 +460,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.confirmAlert.confirmationAlert(this.alertController, 'Deseja excluir local de atendimento <strong>' + item.cidade + " / " + item.uf + '</strong>?').then(function (result) {
             if (result) {
-              _this2.excluirLocalizacao(item);
+              if (_this2.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+                var _result = _this2.confirmAlert.confirmationAlert(_this2.alertController, 'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?').then(function (result) {
+                  if (result) {
+                    _this2.excluirLocalizacao(item);
+                  }
+                });
+              } else {
+                _this2.excluirLocalizacao(item);
+              }
             }
           });
         }
@@ -471,12 +476,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "excluirLocalizacao",
         value: function excluirLocalizacao(item) {
           var _this3 = this;
-
-          var index = this.locaisAtendimentos.findIndex(function (y) {
-            return y.cidade == item.cidade && y.uf == item.uf;
-          }); //find index in your array
-
-          this.locaisAtendimentos.splice(index, 1); //remove element from array
 
           this.loadingContr.showLoader();
           this.prestadorService.ExcluirLocalAtendimento(src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, item).then(function (result) {
@@ -496,6 +495,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
         }
       }, {
+        key: "ExcluirLocalAtendimento",
+        value: function ExcluirLocalAtendimento() {}
+      }, {
         key: "prosseguir",
         value: function prosseguir() {
           if (this.locaisAtendimentos.length == 0) {
@@ -503,25 +505,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             return false;
           }
 
-          this.router.navigate(['prestador-cadastro-servico']); // this.loadingContr.showLoader();
-          // let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
-          // if (this.prestador) {
-          //   obj.situacaoPrestador = this.prestador.situacaoPrestador;
-          // }
-          // this.prestadorService
-          //   .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
-          //     this.loadingContr.hideLoader();
-          //     ToastCustom.SucessoToast(this.toastCtrl);
-          //     this.router.navigate(['prestador-cadastro-servico']);
-          //   }).catch(err => {
-          //     HandlerError.handler(err, this.toastCtrl);
-          //     this.loadingContr.hideLoader();
-          //   });
+          if (this.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+            this.router.navigate(['meu-cadastro-prestador']);
+          } else {
+            this.router.navigate(['prestador-cadastro-servico']);
+          }
         }
       }, {
         key: "voltar",
         value: function voltar() {
-          this.router.navigate(['dados-empresa']);
+          if (this.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+            this.router.navigate(['meu-cadastro-prestador']);
+          } else {
+            this.router.navigate(['dados-empresa']);
+          }
         }
       }, {
         key: "abreModalSelecionarLocalAtendimento",
@@ -547,27 +544,41 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   return false;
                 }
 
-                _this4.loadingContr.showLoader();
-
-                _this4.prestadorService.AdicionaLocalAtendimento(localAtendimento, src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function () {
-                  if (!_this4.locaisAtendimentos) {
-                    _this4.locaisAtendimentos = [];
-                  }
-
-                  _this4.locaisAtendimentos.push(localAtendimento);
-
-                  _this4.formulario.reset();
-
-                  _this4.loadingContr.hideLoader();
-
-                  src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this4.toastCtrl);
-                })["catch"](function (err) {
-                  src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this4.toastCtrl);
-
-                  _this4.loadingContr.hideLoader();
-                });
+                if (_this4.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+                  var result = _this4.confirmAlert.confirmationAlert(_this4.alertController, 'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?').then(function (result) {
+                    if (result) {
+                      _this4.adicionaLocalAtendimento(localAtendimento);
+                    }
+                  });
+                } else {
+                  _this4.adicionaLocalAtendimento(localAtendimento);
+                }
               }
             });
+          });
+        }
+      }, {
+        key: "adicionaLocalAtendimento",
+        value: function adicionaLocalAtendimento(localAtendimento) {
+          var _this5 = this;
+
+          this.loadingContr.showLoader();
+          this.prestadorService.AdicionaLocalAtendimento(localAtendimento, src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function () {
+            if (!_this5.locaisAtendimentos) {
+              _this5.locaisAtendimentos = [];
+            }
+
+            _this5.locaisAtendimentos.push(localAtendimento);
+
+            _this5.formulario.reset();
+
+            _this5.loadingContr.hideLoader();
+
+            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(_this5.toastCtrl);
+          })["catch"](function (err) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_9__["HandlerError"].handler(err, _this5.toastCtrl);
+
+            _this5.loadingContr.hideLoader();
           });
         }
       }]);

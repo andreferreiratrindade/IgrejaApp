@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar color=\"secondary\" value=\"0.20\" buffer=\"0.40\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Dados da Empresa</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formulario\">\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Razão Social <ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n\n          <ion-input type=\"text\" formControlName=\"razaoSocial\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Telefone<ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n\n          <ion-input type=\"number\" formControlName=\"telefone\" clearInput autocapitalize=\"off\">\n          </ion-input>\n        </ion-item>\n\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">CEP Comercial ou residencial<ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n          <ion-input type=\"number\" maxlength=\"8\" formControlName=\"cep\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <div class=\"ion-text-center\">\n          <ion-button color=\"primary\" size=\"small\" (click)=\"buscarEnderecoPorCEP()\">\n            <ion-icon name=\"search-outline\" style=\"margin-right: 10px;\"></ion-icon>\n            <ion-label>Buscar Endereço</ion-label>\n          </ion-button>\n        </div>\n\n\n        <ion-item class=\"ion-no-border\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formulario.value.logradouro\">\n            <h3>{{formulario.value.logradouro}}, {{formulario.value.bairro}} - {{formulario.value.cidade}} /\n              {{formulario.value.uf}}</h3>\n          </ion-label>\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n          <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n            clear>\n            <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n          </ion-button>\n          <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n            <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n            </ion-icon>\n            Prosseguir\n          </ion-button>\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  \n  <ion-progress-bar *ngIf=\"prestador.SituacaoPrestador == 1\" color=\"secondary\" value=\"0.20\" buffer=\"0.40\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <ion-card-title>Dados da Empresa</ion-card-title>\n    </ion-card-header>\n    <ion-card-content>\n      <form [formGroup]=\"formulario\">\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Razão Social <ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n\n          <ion-input type=\"text\" formControlName=\"razaoSocial\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">Telefone<ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n\n          <ion-input type=\"number\" formControlName=\"telefone\" clearInput autocapitalize=\"off\">\n          </ion-input>\n        </ion-item>\n\n\n        <ion-item class=\"input-item\">\n          <ion-label position=\"floating\">CEP Comercial ou residencial<ion-text color=\"danger\">*</ion-text>\n          </ion-label>\n          <ion-input type=\"number\" maxlength=\"8\" formControlName=\"cep\" clearInput autocapitalize=\"off\"></ion-input>\n        </ion-item>\n        <div class=\"ion-text-center\">\n          <ion-button color=\"primary\" size=\"small\" (click)=\"buscarEnderecoPorCEP()\">\n            <ion-icon name=\"search-outline\" style=\"margin-right: 10px;\"></ion-icon>\n            <ion-label>Buscar Endereço</ion-label>\n          </ion-button>\n        </div>\n\n\n        <ion-item class=\"ion-no-border\">\n          <ion-label class=\"ion-text-wrap\" *ngIf=\"formulario.value.logradouro\">\n            <h3>{{formulario.value.logradouro}}, {{formulario.value.bairro}} - {{formulario.value.cidade}} /\n              {{formulario.value.uf}}</h3>\n          </ion-label>\n        </ion-item>\n        <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n          <ion-button color=\"medium\" type=\"button\" *ngIf=\"prestador.SituacaoPrestador != 1\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n            clear>\n            <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n          </ion-button>\n          <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n            <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n            </ion-icon>\n          {{prestador.SituacaoPrestador == 1 ? \"Prosseguir\" : \"Salvar\"}}\n          </ion-button>\n        </div>\n      </form>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -186,6 +186,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/config */ "./src/app/config.ts");
 /* harmony import */ var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/utils/constants */ "./src/app/utils/constants.ts");
 /* harmony import */ var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/helpers/toastCustom */ "./src/app/helpers/toastCustom.ts");
+/* harmony import */ var src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/helpers/confirmAlert */ "./src/app/helpers/confirmAlert.ts");
+
 
 
 
@@ -200,7 +202,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let DadosEmpresaPage = class DadosEmpresaPage {
-    constructor(usuarioService, router, toastCtrl, ngZone, prestadorService, buscarCEPService, loadingContr) {
+    constructor(usuarioService, router, toastCtrl, ngZone, prestadorService, buscarCEPService, loadingContr, confirmAlert, alertController) {
         this.usuarioService = usuarioService;
         this.router = router;
         this.toastCtrl = toastCtrl;
@@ -208,6 +210,8 @@ let DadosEmpresaPage = class DadosEmpresaPage {
         this.prestadorService = prestadorService;
         this.buscarCEPService = buscarCEPService;
         this.loadingContr = loadingContr;
+        this.confirmAlert = confirmAlert;
+        this.alertController = alertController;
         this.prestador = {};
         this.validation_messages = {
             'telefone': [
@@ -243,6 +247,8 @@ let DadosEmpresaPage = class DadosEmpresaPage {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required
             ]))
         });
+    }
+    ngOnInit() {
         this.prestadorService.RecuperaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_10__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
             .then((result) => {
             this.prestador = result;
@@ -255,12 +261,13 @@ let DadosEmpresaPage = class DadosEmpresaPage {
                 this.formulario.controls['logradouro'].setValue(result.logradouro);
                 this.formulario.controls['razaoSocial'].setValue(result.razaoSocial);
             }
+            else {
+                this.prestador.situacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao;
+            }
         }).catch(err => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();
         });
-    }
-    ngOnInit() {
     }
     buscarEnderecoPorCEP() {
         if (!this.formulario.value['cep'] || this.formulario.value['cep'].toString().length != "8") {
@@ -297,10 +304,23 @@ let DadosEmpresaPage = class DadosEmpresaPage {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].Mensagens.CamposObrigatorios, this.toastCtrl);
             return false;
         }
+        // Caso situação do prestador serja diferente de Em edição, sistema deverá alertar usuário sobre a alteração da situação
+        if (this.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+            const result = this.confirmAlert.confirmationAlert(this.alertController, 'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?').then(result => {
+                if (result) {
+                    this.atualizaSituacaoPrestador(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PendenteAutorizacao, 'meu-cadastro-prestador');
+                }
+            });
+        }
+        else {
+            this.atualizaSituacaoPrestador(src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao, 'prestador-local-atendimento');
+        }
+    }
+    atualizaSituacaoPrestador(situacaoPrestador, redirectURL) {
         this.loadingContr.showLoader();
         let obj = this.formulario.value;
         obj.usuarioId = src_app_config__WEBPACK_IMPORTED_MODULE_10__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId;
-        obj.situacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao;
+        obj.situacaoPrestador = situacaoPrestador;
         if (this.prestador) {
             obj.situacaoPrestador = this.prestador.situacaoPrestador;
         }
@@ -309,13 +329,18 @@ let DadosEmpresaPage = class DadosEmpresaPage {
             this.loadingContr.hideLoader();
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_12__["ToastCustom"].SucessoToast(this.toastCtrl);
             this.ngZone.run(() => {
-                this.router.navigate(['prestador-local-atendimento']);
+                this.router.navigate([redirectURL]);
             });
         })
             .catch((error) => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(error, this.toastCtrl);
             this.loadingContr.hideLoader();
         });
+    }
+    voltar() {
+        if (this.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+            this.router.navigate(['meu-cadastro-prestador']);
+        }
     }
 };
 DadosEmpresaPage.ctorParameters = () => [
@@ -325,7 +350,9 @@ DadosEmpresaPage.ctorParameters = () => [
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
     { type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_6__["PrestadorService"] },
     { type: src_app_providers_buscaCEP_buscar_cep_service__WEBPACK_IMPORTED_MODULE_9__["BuscarCEPService"] },
-    { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__["LoadingContr"] }
+    { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_8__["LoadingContr"] },
+    { type: src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_13__["ConfirmAlert"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"] }
 ];
 DadosEmpresaPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

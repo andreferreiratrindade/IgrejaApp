@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar color=\"secondary\" value=\"0.60\" buffer=\"0.80\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\">\n        <ion-button color=\"primary\" (click)=\"abreModalSelecionaServico()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Serviços</ion-card-title>\n      \n    </ion-card-header>\n    <ion-card-content>\n\n\n        <ion-item *ngFor=\"let item of prestadorServicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"servicoOpcoes(item)\">\n          <ion-label class=\"ion-text-wrap \"><h3>{{item.nomeServico}}</h3> <p>{{item.breveDescricao}}</p></ion-label>\n          <ion-icon slot=\"end\" color=\"primary\" name=\"ellipsis-vertical\"></ion-icon>\n\n        </ion-item>\n\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          Prosseguir\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content fullscreen>\n  <ion-header class=\"ion-no-border\">\n    <ion-toolbar>\n      <ion-buttons slot=\"start\">\n        <ion-menu-button></ion-menu-button>\n      </ion-buttons>\n      <ion-title>\n        Cadastro Prestador\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-progress-bar *ngIf=\"prestador.SituacaoPrestador == 1\" color=\"secondary\" value=\"0.60\" buffer=\"0.80\"></ion-progress-bar>\n\n  <ion-card>\n    <ion-card-header>\n      <div class=\"ion-text-end\">\n        <ion-button color=\"primary\" (click)=\"abreModalSelecionaServico()\">\n          <ion-icon name=\"add-outline\" style=\"margin-right:10px;\"></ion-icon>Novo\n        </ion-button>\n      </div>\n      <ion-card-title>Serviços</ion-card-title>\n      \n    </ion-card-header>\n    <ion-card-content>\n\n\n        <ion-item *ngFor=\"let item of prestadorServicos\" class=\"ion-no-border\" button detail=\"false\"\n          (click)=\"servicoOpcoes(item)\">\n          <ion-label class=\"ion-text-wrap \"><h3>{{item.nomeServico}}</h3> <p>{{item.breveDescricao}}</p></ion-label>\n          <ion-icon slot=\"end\" color=\"primary\" name=\"ellipsis-vertical\"></ion-icon>\n\n        </ion-item>\n\n\n      <div class=\"ion-text-end\" style=\"margin-top: 20px;\">\n        <ion-button color=\"medium\" type=\"button\" (click)=\"voltar()\" style=\"margin-right: 20px!important;\" size=\"4\"\n          clear>\n          <ion-icon name=\"chevron-back-outline\" style=\"margin-right:10px;\"></ion-icon>Voltar\n        </ion-button>\n        <ion-button color=\"success\" type=\"button\" (click)=\"prosseguir()\" clear>\n          <ion-icon name=\"checkmark\" style=\"margin-right:10px;\">\n          </ion-icon>\n          {{prestador.SituacaoPrestador == 1 ? \"Prosseguir\" : \"Salvar\"}}\n\n        </ion-button>\n      </div>\n    </ion-card-content>\n  </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -190,6 +190,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/pipes/sortBy/sort-by.pipe */ "./src/app/pipes/sortBy/sort-by.pipe.ts");
 /* harmony import */ var src_app_helpers_confirmAlert__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/helpers/confirmAlert */ "./src/app/helpers/confirmAlert.ts");
 /* harmony import */ var _modal_breve_comentario_modal_breve_comentario_page__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../modal-breve-comentario/modal-breve-comentario.page */ "./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.page.ts");
+/* harmony import */ var src_app_utils_constants__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! src/app/utils/constants */ "./src/app/utils/constants.ts");
+
 
 
 
@@ -218,10 +220,17 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
         this.actionSheetCtrl = actionSheetCtrl;
         this.confirmAlert = confirmAlert;
         this._cdr = _cdr;
-        this.prestador = null;
+        this.prestador = {};
     }
     ngOnInit() {
         this.loadingContr.showLoader();
+        this.prestadorService.RecuperaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
+            .then((result) => {
+            this.prestador = result;
+        }).catch(err => {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, this.toastCtrl);
+            this.loadingContr.hideLoader();
+        });
         this.prestadorService.recuperaServicosPorPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
             .then(result => {
             this.prestadorServicos = result;
@@ -236,9 +245,6 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
                 });
                 this.ordenaServicos();
                 this.loadingContr.hideLoader();
-                // if (!this.prestadorServicos || this.prestadorServicos.length == 0) {
-                //   this.abreModalSelecionaServico();
-                // }
             });
         }).catch(err => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, this.toastCtrl);
@@ -328,7 +334,16 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
                                     var _a;
                                     if (resultModal.data) {
                                         item.breveDescricao = (_a = resultModal.data.breveDescricao) !== null && _a !== void 0 ? _a : "";
-                                        this.salvarBreveDescricao(item);
+                                        if (this.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_14__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+                                            const result = this.confirmAlert.confirmationAlert(this.alertController, 'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?').then(result => {
+                                                if (result) {
+                                                    this.salvarBreveDescricao(item);
+                                                }
+                                            });
+                                        }
+                                        else {
+                                            this.salvarBreveDescricao(item);
+                                        }
                                     }
                                 });
                             });
@@ -361,10 +376,20 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].CustomToast(this.toastCtrl, "Favor adicionar serviço, antes de continuar", "danger", 4000);
             return false;
         }
-        this.router.navigate(['prestador-cadastro-igreja-vinculo']);
+        if (this.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_14__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+            this.router.navigate(['meu-cadastro-prestador']);
+        }
+        else {
+            this.router.navigate(['prestador-cadastro-igreja-vinculo']);
+        }
     }
     voltar() {
-        this.router.navigate(['prestador-local-atendimento']);
+        if (this.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_14__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+            this.router.navigate(['meu-cadastro-prestador']);
+        }
+        else {
+            this.router.navigate(['prestador-local-atendimento']);
+        }
     }
     editarServico(item) {
     }
