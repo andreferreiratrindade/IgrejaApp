@@ -275,7 +275,7 @@ let LocalAtendimentoPage = class LocalAtendimentoPage {
             .ExcluirLocalAtendimento(src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia()
             .recuperaUsuario().usuarioId, item)
             .then((result) => {
-            this.locaisAtendimentos = this.locaisAtendimentos.filter(y => { return y.cidade == item.cidade && y.uf == item.uf; });
+            this.locaisAtendimentos = this.locaisAtendimentos.filter(y => { return y.cidade != item.cidade || y.uf != item.uf; });
             this._cdr.detectChanges();
             this.loadingContr.hideLoader();
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_10__["ToastCustom"].SucessoToast(this.toastCtrl);

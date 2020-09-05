@@ -500,21 +500,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               }
 
               if (resultModal.data.length > 0) {
-                src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(_this2.toastCtrl);
-                resultModal.data.forEach(function (element) {
-                  _this2.prestadorServicos.push(element);
-
-                  _this2.prestadorService.AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, {
-                    servicoId: element.servicoId,
-                    usuarioId: src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId
-                  })["catch"](function (err) {
-                    src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, _this2.toastCtrl);
-
-                    _this2.loadingContr.hideLoader();
+                if (_this2.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_14__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+                  var result = _this2.confirmAlert.confirmationAlert(_this2.alertController, 'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?').then(function (result) {
+                    if (result) {
+                      _this2.adicionaServico(resultModal.data);
+                    }
                   });
-                });
-
-                _this2.ordenaServicos();
+                } else {
+                  _this2.adicionaServico(resultModal.data);
+                }
               }
             });
           })["catch"](function (err) {
@@ -524,37 +518,35 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
         }
       }, {
+        key: "adicionaServico",
+        value: function adicionaServico(obj) {
+          var _this3 = this;
+
+          src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(this.toastCtrl);
+          obj.forEach(function (element) {
+            _this3.prestadorServicos.push(element);
+
+            _this3.prestadorService.AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, {
+              servicoId: element.servicoId,
+              usuarioId: src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId
+            })["catch"](function (err) {
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, _this3.toastCtrl);
+
+              _this3.loadingContr.hideLoader();
+            });
+          });
+          this.ordenaServicos();
+        }
+      }, {
         key: "salvarBreveDescricao",
         value: function salvarBreveDescricao(item) {
-          var _this3 = this;
+          var _this4 = this;
 
           var servico = {
             servicoId: item.servicoId,
             breveDescricao: item.breveDescricao
           };
           this.prestadorService.AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, servico).then(function (result) {
-            _this3.loadingContr.hideLoader();
-
-            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(_this3.toastCtrl);
-          })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, _this3.toastCtrl);
-
-            _this3.loadingContr.hideLoader();
-          });
-        }
-      }, {
-        key: "excluirServico",
-        value: function excluirServico(item) {
-          var _this4 = this;
-
-          this.loadingContr.showLoader();
-          this.prestadorService.ExcluirServico(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, item.servicoId).then(function (result) {
-            _this4.prestadorServicos = _this4.prestadorServicos.filter(function (y) {
-              return y.servicoId != item.servicoId;
-            });
-
-            _this4._cdr.detectChanges();
-
             _this4.loadingContr.hideLoader();
 
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(_this4.toastCtrl);
@@ -565,10 +557,32 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
         }
       }, {
+        key: "excluirServico",
+        value: function excluirServico(item) {
+          var _this5 = this;
+
+          this.loadingContr.showLoader();
+          this.prestadorService.ExcluirServico(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, item.servicoId).then(function (result) {
+            _this5.prestadorServicos = _this5.prestadorServicos.filter(function (y) {
+              return y.servicoId != item.servicoId;
+            });
+
+            _this5._cdr.detectChanges();
+
+            _this5.loadingContr.hideLoader();
+
+            src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(_this5.toastCtrl);
+          })["catch"](function (err) {
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, _this5.toastCtrl);
+
+            _this5.loadingContr.hideLoader();
+          });
+        }
+      }, {
         key: "servicoOpcoes",
         value: function servicoOpcoes(item) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var _this5 = this;
+            var _this6 = this;
 
             var actionSheet;
             return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -581,7 +595,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                       buttons: [{
                         text: 'Breve comentário',
                         handler: function handler() {
-                          var modal = _this5.modalCtrl.create({
+                          var modal = _this6.modalCtrl.create({
                             component: _modal_breve_comentario_modal_breve_comentario_page__WEBPACK_IMPORTED_MODULE_13__["ModalBreveComentarioPage"],
                             componentProps: {
                               servico: item
@@ -595,14 +609,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                               if (resultModal.data) {
                                 item.breveDescricao = (_a = resultModal.data.breveDescricao) !== null && _a !== void 0 ? _a : "";
 
-                                if (_this5.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_14__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
-                                  var result = _this5.confirmAlert.confirmationAlert(_this5.alertController, 'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?').then(function (result) {
+                                if (_this6.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_14__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+                                  var result = _this6.confirmAlert.confirmationAlert(_this6.alertController, 'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?').then(function (result) {
                                     if (result) {
-                                      _this5.salvarBreveDescricao(item);
+                                      _this6.salvarBreveDescricao(item);
                                     }
                                   });
                                 } else {
-                                  _this5.salvarBreveDescricao(item);
+                                  _this6.salvarBreveDescricao(item);
                                 }
                               }
                             });
@@ -612,9 +626,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                         text: 'Remover',
                         role: 'destructive',
                         handler: function handler() {
-                          var result = _this5.confirmAlert.confirmationAlert(_this5.alertController, 'Deseja excluir o serviço <strong>' + item.nomeServico + '</strong>?').then(function (result) {
+                          var result = _this6.confirmAlert.confirmationAlert(_this6.alertController, 'Deseja excluir o serviço <strong>' + item.nomeServico + '</strong>?').then(function (result) {
                             if (result) {
-                              _this5.excluirServico(item);
+                              _this6.excluirServico(item);
                             }
                           });
                         }
@@ -848,12 +862,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
        *
        */
       function DominioServicoRepositoryService() {
-        var _this6;
+        var _this7;
 
         _classCallCheck(this, DominioServicoRepositoryService);
 
-        _this6 = _super.call(this);
-        _this6.servicoConverter = {
+        _this7 = _super.call(this);
+        _this7.servicoConverter = {
           toFirestore: function toFirestore(servico) {
             return {
               servicoId: servico.servicoId,
@@ -861,19 +875,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             };
           }
         };
-        _this6._collectionName = "dominioServico";
-        return _this6;
+        _this7._collectionName = "dominioServico";
+        return _this7;
       }
 
       _createClass(DominioServicoRepositoryService, [{
         key: "recuperaServicoAutoComplete",
         value: function recuperaServicoAutoComplete(query) {
-          var _this7 = this;
+          var _this8 = this;
 
           return new Promise(function (response, resp) {
             var endText = query + "\uF8FF";
 
-            _this7.db.collection("dominioServico").orderBy("nomeServico").limit(10).where("nomeServico", ">=", query).where("nomeServico", "<=", endText) // .startAt(query)
+            _this8.db.collection("dominioServico").orderBy("nomeServico").limit(10).where("nomeServico", ">=", query).where("nomeServico", "<=", endText) // .startAt(query)
             // .endAt(endText)
             .get().then(function (result) {
               var lst = [];
@@ -892,10 +906,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "recuperaDominioServico",
         value: function recuperaDominioServico() {
-          var _this8 = this;
+          var _this9 = this;
 
           return new Promise(function (response, resp) {
-            _this8.db.collection("dominioServico").orderBy("nomeServico").get().then(function (result) {
+            _this9.db.collection("dominioServico").orderBy("nomeServico").get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({
@@ -911,10 +925,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "recuperaDominioServicoAtivo",
         value: function recuperaDominioServicoAtivo() {
-          var _this9 = this;
+          var _this10 = this;
 
           return new Promise(function (response, resp) {
-            _this9.db.collection("dominioServico").where("deletado", "==", false).orderBy("nomeServico").get().then(function (result) {
+            _this10.db.collection("dominioServico").where("deletado", "==", false).orderBy("nomeServico").get().then(function (result) {
               var lst = [];
               result.forEach(function (doc) {
                 lst.push({

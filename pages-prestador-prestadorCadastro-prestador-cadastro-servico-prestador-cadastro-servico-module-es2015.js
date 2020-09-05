@@ -266,27 +266,39 @@ let PrestadorCadastroServicoPage = class PrestadorCadastroServicoPage {
                     return false;
                 }
                 if (resultModal.data.length > 0) {
-                    src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(this.toastCtrl);
-                    resultModal.data.forEach(element => {
-                        this.prestadorServicos.push(element);
-                        this.prestadorService
-                            .AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia()
-                            .recuperaUsuario().usuarioId, {
-                            servicoId: element.servicoId,
-                            usuarioId: src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia()
-                                .recuperaUsuario().usuarioId
-                        }).catch(err => {
-                            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, this.toastCtrl);
-                            this.loadingContr.hideLoader();
+                    if (this.prestador.situacaoPrestador != src_app_utils_constants__WEBPACK_IMPORTED_MODULE_14__["Constants"].TipoSituacaoPrestador.PrestadorEmEdicao) {
+                        const result = this.confirmAlert.confirmationAlert(this.alertController, 'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?').then(result => {
+                            if (result) {
+                                this.adicionaServico(resultModal.data);
+                            }
                         });
-                    });
-                    this.ordenaServicos();
+                    }
+                    else {
+                        this.adicionaServico(resultModal.data);
+                    }
                 }
             });
         }).catch(err => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();
         });
+    }
+    adicionaServico(obj) {
+        src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_2__["ToastCustom"].SucessoToast(this.toastCtrl);
+        obj.forEach(element => {
+            this.prestadorServicos.push(element);
+            this.prestadorService
+                .AdicionaServicoAoPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia()
+                .recuperaUsuario().usuarioId, {
+                servicoId: element.servicoId,
+                usuarioId: src_app_config__WEBPACK_IMPORTED_MODULE_4__["Config"].RecuperaInstancia()
+                    .recuperaUsuario().usuarioId
+            }).catch(err => {
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_3__["HandlerError"].handler(err, this.toastCtrl);
+                this.loadingContr.hideLoader();
+            });
+        });
+        this.ordenaServicos();
     }
     salvarBreveDescricao(item) {
         let servico = { servicoId: item.servicoId, breveDescricao: item.breveDescricao };

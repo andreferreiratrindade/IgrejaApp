@@ -408,50 +408,72 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function ngOnInit() {
           var _this = this;
 
-          this.loadingContr.showLoader();
-          this.usuario = src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario();
-          this.prestadorService.RecuperaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function (result) {
-            _this.prestador = result;
-            _this.prestador.descricaoSituacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(_this.prestador.situacaoPrestador);
+          // override the route reuse strategy
+          this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+          };
 
-            _this.igrejaService.RecuperaNomeIgreja([_this.prestador.igrejaId]).then(function (result) {
-              _this.prestador.nomeIgreja = result[0].data.nomeIgreja;
+          this.router.events.subscribe(function (evt) {
+            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_9__["NavigationEnd"] && evt.url == "/meu-cadastro-prestador") {
+              _this.prestador = {};
+              _this.prestadorUsuario = {};
+              _this.prestadorServicos = [];
+              _this.usuario = {};
 
-              _this.loadingContr.hideLoader();
-            })["catch"](function (err) {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, _this.toastCtrl);
+              _this.loadingContr.showLoader();
 
-              _this.loadingContr.hideLoader();
-            });
-          })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, _this.toastCtrl);
+              _this.usuario = src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario();
 
-            _this.loadingContr.hideLoader();
-          });
-          this.prestadorService.recuperaServicosPorPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function (result) {
-            _this.prestadorServicos = result;
+              _this.prestadorService.RecuperaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function (result) {
+                _this.prestador = result;
+                _this.prestador.descricaoSituacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(_this.prestador.situacaoPrestador);
 
-            _this.dominioServicoService.recuperaDominioServico().then(function (x) {
-              _this.prestadorServicos.map(function (listItem) {
-                var _a;
+                _this.igrejaService.RecuperaNomeIgreja([_this.prestador.igrejaId]).then(function (result) {
+                  _this.prestador.nomeIgreja = result[0].data.nomeIgreja;
 
-                listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
-                listItem.nomeServico = x.filter(function (y) {
-                  return y.servicoId == listItem.servicoId;
-                })[0].nomeServico;
-                return listItem;
+                  _this.loadingContr.hideLoader();
+                })["catch"](function (err) {
+                  src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, _this.toastCtrl);
+
+                  _this.loadingContr.hideLoader();
+                });
+              })["catch"](function (err) {
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, _this.toastCtrl);
+
+                _this.loadingContr.hideLoader();
               });
 
-              _this.loadingContr.hideLoader();
-            })["catch"](function (err) {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, _this.toastCtrl);
+              _this.prestadorService.recuperaServicosPorPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId).then(function (result) {
+                _this.prestadorServicos = result;
 
-              _this.loadingContr.hideLoader();
-            });
-          })["catch"](function (err) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, _this.toastCtrl);
+                _this.dominioServicoService.recuperaDominioServico().then(function (x) {
+                  _this.prestadorServicos.map(function (listItem) {
+                    var _a;
 
-            _this.loadingContr.hideLoader();
+                    listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
+                    listItem.nomeServico = x.filter(function (y) {
+                      return y.servicoId == listItem.servicoId;
+                    })[0].nomeServico;
+                    return listItem;
+                  });
+
+                  _this.loadingContr.hideLoader();
+                })["catch"](function (err) {
+                  src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, _this.toastCtrl);
+
+                  _this.loadingContr.hideLoader();
+                });
+              })["catch"](function (err) {
+                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, _this.toastCtrl);
+
+                _this.loadingContr.hideLoader();
+              }); // trick the Router into believing it's last link wasn't previously loaded
+
+
+              _this.router.navigated = false; // if you need to scroll back to top, here is the right place
+
+              window.scrollTo(0, 0);
+            }
           });
         }
       }, {

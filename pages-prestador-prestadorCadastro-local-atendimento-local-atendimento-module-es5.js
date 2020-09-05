@@ -480,7 +480,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.loadingContr.showLoader();
           this.prestadorService.ExcluirLocalAtendimento(src_app_config__WEBPACK_IMPORTED_MODULE_8__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId, item).then(function (result) {
             _this3.locaisAtendimentos = _this3.locaisAtendimentos.filter(function (y) {
-              return y.cidade == item.cidade && y.uf == item.uf;
+              return y.cidade != item.cidade || y.uf != item.uf;
             });
 
             _this3._cdr.detectChanges();

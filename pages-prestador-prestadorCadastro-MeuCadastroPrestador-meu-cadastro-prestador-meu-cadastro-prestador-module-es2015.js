@@ -209,41 +209,57 @@ let MeuCadastroPrestadorPage = class MeuCadastroPrestadorPage {
         this.usuario = {};
     }
     ngOnInit() {
-        this.loadingContr.showLoader();
-        this.usuario = src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario();
-        this.prestadorService.RecuperaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
-            .then((result) => {
-            this.prestador = result;
-            this.prestador.descricaoSituacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(this.prestador.situacaoPrestador);
-            this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
-                this.prestador.nomeIgreja = result[0].data.nomeIgreja;
-                this.loadingContr.hideLoader();
-            }).catch(err => {
-                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, this.toastCtrl);
-                this.loadingContr.hideLoader();
-            });
-        }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, this.toastCtrl);
-            this.loadingContr.hideLoader();
-        });
-        this.prestadorService.recuperaServicosPorPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
-            .then(result => {
-            this.prestadorServicos = result;
-            this.dominioServicoService.recuperaDominioServico().then(x => {
-                this.prestadorServicos.map((listItem) => {
-                    var _a;
-                    listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
-                    listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
-                    return listItem;
+        // override the route reuse strategy
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+        };
+        this.router.events.subscribe((evt) => {
+            if (evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_9__["NavigationEnd"] && evt.url == "/meu-cadastro-prestador") {
+                this.prestador = {};
+                this.prestadorUsuario = {};
+                this.prestadorServicos = [];
+                this.usuario = {};
+                this.loadingContr.showLoader();
+                this.usuario = src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario();
+                this.prestadorService.RecuperaPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
+                    .then((result) => {
+                    this.prestador = result;
+                    this.prestador.descricaoSituacaoPrestador = src_app_utils_constants__WEBPACK_IMPORTED_MODULE_11__["Constants"].ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(this.prestador.situacaoPrestador);
+                    this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
+                        this.prestador.nomeIgreja = result[0].data.nomeIgreja;
+                        this.loadingContr.hideLoader();
+                    }).catch(err => {
+                        src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, this.toastCtrl);
+                        this.loadingContr.hideLoader();
+                    });
+                }).catch(err => {
+                    src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, this.toastCtrl);
+                    this.loadingContr.hideLoader();
                 });
-                this.loadingContr.hideLoader();
-            }).catch(err => {
-                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, this.toastCtrl);
-                this.loadingContr.hideLoader();
-            });
-        }).catch(err => {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, this.toastCtrl);
-            this.loadingContr.hideLoader();
+                this.prestadorService.recuperaServicosPorPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
+                    .then(result => {
+                    this.prestadorServicos = result;
+                    this.dominioServicoService.recuperaDominioServico().then(x => {
+                        this.prestadorServicos.map((listItem) => {
+                            var _a;
+                            listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
+                            listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
+                            return listItem;
+                        });
+                        this.loadingContr.hideLoader();
+                    }).catch(err => {
+                        src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, this.toastCtrl);
+                        this.loadingContr.hideLoader();
+                    });
+                }).catch(err => {
+                    src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_2__["HandlerError"].handler(err, this.toastCtrl);
+                    this.loadingContr.hideLoader();
+                });
+                // trick the Router into believing it's last link wasn't previously loaded
+                this.router.navigated = false;
+                // if you need to scroll back to top, here is the right place
+                window.scrollTo(0, 0);
+            }
         });
     }
     redirect(url) {
