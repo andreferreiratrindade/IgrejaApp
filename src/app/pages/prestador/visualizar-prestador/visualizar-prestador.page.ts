@@ -97,9 +97,9 @@ export class VisualizarPrestadorPage implements OnInit {
     this.modalController.dismiss(null, 'cancel');
   }
 
-  ShareGeneric(prestador: any) {
+  ShareGeneric() {
 
-    let texto = prestador.nome + " / " + prestador.telefone;
+    let texto = this.prestador.nome + " / " + this.prestador.telefone;
 
     this.socialSharing.share(texto, null, null);
   }
