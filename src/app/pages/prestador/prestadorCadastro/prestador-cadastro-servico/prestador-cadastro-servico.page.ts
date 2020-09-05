@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { SortByPipe } from 'src/app/pipes/sortBy/sort-by.pipe';
 import { ConfirmAlert } from 'src/app/helpers/confirmAlert';
 import { ModalBreveComentarioPage } from '../modal-breve-comentario/modal-breve-comentario.page';
+import { Constants } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-prestador-cadastro-servico',
@@ -22,7 +23,7 @@ export class PrestadorCadastroServicoPage implements OnInit {
 
   dominioServicos: any[];
   prestadorServicos: any[];
-  prestador: any = null;
+  prestador: any = {};
   constructor(public dominioServicoService: DominioServicoService,
     public loadingContr: LoadingContr,
     public prestadorService: PrestadorService,
@@ -40,6 +41,15 @@ export class PrestadorCadastroServicoPage implements OnInit {
   ngOnInit() {
     this.loadingContr.showLoader()
 
+    this.prestadorService.RecuperaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+      .then((result) => {
+        this.prestador = result;
+      }).catch(err => {
+        HandlerError.handler(err, this.toastCtrl);
+        this.loadingContr.hideLoader();
+      });
+
+
     this.prestadorService.recuperaServicosPorPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
       .then(result => {
         this.prestadorServicos = result;
@@ -55,11 +65,6 @@ export class PrestadorCadastroServicoPage implements OnInit {
           this.ordenaServicos();
 
           this.loadingContr.hideLoader();
-
-          // if (!this.prestadorServicos || this.prestadorServicos.length == 0) {
-          //   this.abreModalSelecionaServico();
-          // }
-
         });
 
       }).catch(err => {
@@ -166,10 +171,20 @@ export class PrestadorCadastroServicoPage implements OnInit {
               modal.present();
 
               modal.onWillDismiss().then(resultModal => {
-                
+
                 if (resultModal.data) {
                   item.breveDescricao = resultModal.data.breveDescricao ?? "";
-                  this.salvarBreveDescricao(item);
+                  if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+                    const result = this.confirmAlert.confirmationAlert(this.alertController,
+                      'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?'
+                    ).then(result => {
+                      if (result) {
+                        this.salvarBreveDescricao(item);
+                      }
+                    });
+                  } else {
+                    this.salvarBreveDescricao(item);
+                  }
                 }
               });
             });
@@ -189,9 +204,6 @@ export class PrestadorCadastroServicoPage implements OnInit {
                 this.excluirServico(item);
               }
             });
-
-
-
           }
         },
         {
@@ -213,11 +225,19 @@ export class PrestadorCadastroServicoPage implements OnInit {
       ToastCustom.CustomToast(this.toastCtrl, "Favor adicionar serviço, antes de continuar", "danger", 4000);
       return false;
     }
-    this.router.navigate(['prestador-cadastro-igreja-vinculo']);
+    if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+      this.router.navigate(['meu-cadastro-prestador']);
+    } else {
+      this.router.navigate(['prestador-cadastro-igreja-vinculo']);
+    }
   }
-
   public voltar() {
-    this.router.navigate(['prestador-local-atendimento']);
+    if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+      this.router.navigate(['meu-cadastro-prestador']);
+    } else {
+
+      this.router.navigate(['prestador-local-atendimento']);
+    }
   }
 
   public editarServico(item: any) {

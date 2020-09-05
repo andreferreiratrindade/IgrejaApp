@@ -1,11 +1,17 @@
-<ion-content>
-  <ion-card class="ion-no-border">
-    <ion-button (click)="closeModal()" fill="clear" style="margin-left: -9px; margin-top: 0px;">
-      <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
-    </ion-button>
-    <ion-card-header style="padding-top: 0px;margin-top: -20px;">
+<ion-header translucent={true}>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="closeModal()" text="Voltar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes Prestador</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-      <ion-card-title>
+<ion-content fullscreen>
+ 
+  <ion-card class="ion-no-border">
+    <ion-card-header >
+    <ion-card-title>
         <h3>{{prestador.nome}}</h3>
         <ion-label size="12">
           <p>{{prestador.descricaoServicos}}</p>
@@ -19,7 +25,7 @@
         <ion-button color="tertiary" size="small" type="button">{{prestador.telefone | maskTelefone}}</ion-button>
       </ion-item>
       <ion-item class="ion-no-border">
-        <ion-icon class="fas fa-church" style="padding-right: 11px;"></ion-icon>
+        <ion-icon class="fas fa-church" style="padding-right: 17px;"></ion-icon>
         <ion-label class="ion-text-wrap on-no-border">
           <h2>{{prestador.nomeIgreja}} </h2>
          
@@ -48,18 +54,16 @@
     </ion-card-header>
     <ion-item *ngFor="let item of prestador.locaisAtendimento; let i = index">
       <ion-label class="ion-text-wrap">
-        <h2>{{i+1}}. {{item.cidade}} / {{item.uf}}</h2>
+        <h2>{{item.cidade}} / {{item.uf}}</h2>
       </ion-label>
     </ion-item>
   </ion-card>
   <ion-card class="ion-no-border">
     <ion-card-header>
-
       <ion-card-title>
         <h3>Serviços</h3>
       </ion-card-title>
     </ion-card-header>
-
     <ion-item *ngFor="let item of prestadorServicos">
       <ion-label class="ion-text-wrap">
         <h2>{{item.nomeServico}}</h2>

@@ -61,7 +61,6 @@ export class VisualizarPrestadorPage implements OnInit {
         this.loadingContr.hideLoader();
       });
 
-
     this.prestadorService.recuperaServicosPorPrestador(this.usuarioId)
       .then(result => {
         this.prestadorServicos = result;

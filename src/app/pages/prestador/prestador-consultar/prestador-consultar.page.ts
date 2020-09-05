@@ -265,4 +265,10 @@ export class PrestadorConsultarPage implements OnInit {
         this.favoritoService.RemovePrestadorFavorito(usuarioId, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
             .then(() => { });
     }
+
+    public limparFiltros(){
+        this.servicosSelecionados = [];
+        this.nomeServicoSelecionado = "Todos";
+
+    }
 }

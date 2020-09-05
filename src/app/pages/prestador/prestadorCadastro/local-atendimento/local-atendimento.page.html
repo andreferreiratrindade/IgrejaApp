@@ -10,7 +10,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-progress-bar color="secondary" value="0.40" buffer="0.60"></ion-progress-bar>
+  <ion-progress-bar  *ngIf="prestador.situacaoPrestador == 1" color="secondary" value="0.40" buffer="0.60"></ion-progress-bar>
 
   <ion-card>
     <ion-card-header>
@@ -39,7 +39,7 @@
         <ion-button color="success" type="button" (click)="prosseguir()" clear>
           <ion-icon name="checkmark" style="margin-right:10px;">
           </ion-icon>
-          Prosseguir
+          {{prestador.SituacaoPrestador == 1 ? "Prosseguir" : "Salvar"}}
         </ion-button>
       </div>
     </ion-card-content>

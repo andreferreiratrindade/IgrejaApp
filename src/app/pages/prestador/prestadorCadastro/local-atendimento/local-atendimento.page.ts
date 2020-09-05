@@ -24,7 +24,7 @@ export class LocalAtendimentoPage implements OnInit {
   formulario: FormGroup;
   locaisAtendimentos: any[] = [];
   cidades: string[];
-  prestador: any = null;
+  prestador: any = {};
   constructor(public prestadorService: PrestadorService,
     public toastCtrl: ToastController,
     public loadingContr: LoadingContr,
@@ -58,10 +58,6 @@ export class LocalAtendimentoPage implements OnInit {
         this.prestador = result;
         this.locaisAtendimentos = result.locaisAtendimento;
         this.loadingContr.hideLoader();
-
-        // if (!this.locaisAtendimentos || this.locaisAtendimentos.length == 0) {
-        //   this.abreModalSelecionarLocalAtendimento();
-        // }
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
@@ -95,18 +91,22 @@ export class LocalAtendimentoPage implements OnInit {
       'Deseja excluir local de atendimento <strong>' + item.cidade + " / " + item.uf + '</strong>?'
     ).then(result => {
       if (result) {
-
-        this.excluirLocalizacao(item);
-
+        if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+          const result = this.confirmAlert.confirmationAlert(this.alertController,
+            'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?'
+          ).then(result => {
+            if (result) {
+              this.excluirLocalizacao(item);
+            }
+          });
+        } else {
+          this.excluirLocalizacao(item);
+        }
       }
     });
   }
 
   private excluirLocalizacao(item: any) {
-
-    let index = this.locaisAtendimentos.findIndex(y => y.cidade == item.cidade && y.uf == item.uf); //find index in your array
-    this.locaisAtendimentos.splice(index, 1);//remove element from array
-
     this.loadingContr.showLoader();
 
     this.prestadorService
@@ -124,38 +124,31 @@ export class LocalAtendimentoPage implements OnInit {
       });
   }
 
+  public ExcluirLocalAtendimento() {
+
+  }
+
   public prosseguir() {
 
     if (this.locaisAtendimentos.length == 0) {
       HandlerError.handler("Favor informar local de atendimento.", this.toastCtrl);
       return false;
     }
-
-    this.router.navigate(['prestador-cadastro-servico']);
-
-    // this.loadingContr.showLoader();
-    // let obj = { situacaoPrestador: Constants.TipoSituacaoPrestador.PrestadorEmEdicao };
-
-    // if (this.prestador) {
-    //   obj.situacaoPrestador = this.prestador.situacaoPrestador;
-    // }
-    // this.prestadorService
-    //   .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
-
-    //     this.loadingContr.hideLoader();
-    //     ToastCustom.SucessoToast(this.toastCtrl);
-
-    //     this.router.navigate(['prestador-cadastro-servico']);
-
-    //   }).catch(err => {
-    //     HandlerError.handler(err, this.toastCtrl);
-    //     this.loadingContr.hideLoader();
-    //   });
+    if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+      this.router.navigate(['meu-cadastro-prestador']);
+    } else {
+      this.router.navigate(['prestador-cadastro-servico']);
+    }
   }
 
 
   public voltar() {
-    this.router.navigate(['dados-empresa']);
+    if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+      this.router.navigate(['meu-cadastro-prestador']);
+    } else {
+
+      this.router.navigate(['dados-empresa']);
+    }
   }
 
   public abreModalSelecionarLocalAtendimento() {
@@ -173,24 +166,37 @@ export class LocalAtendimentoPage implements OnInit {
             HandlerError.handler(msg.mensagem, this.toastCtrl);
             return false;
           }
-          this.loadingContr.showLoader();
-
-          this.prestadorService.AdicionaLocalAtendimento(localAtendimento, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
-            .then(() => {
-              if (!this.locaisAtendimentos) {
-                this.locaisAtendimentos = [];
+          if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+            const result = this.confirmAlert.confirmationAlert(this.alertController,
+              'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?'
+            ).then(result => {
+              if (result) {
+                this.adicionaLocalAtendimento(localAtendimento);
               }
-              this.locaisAtendimentos.push(localAtendimento);
-              this.formulario.reset();
-              this.loadingContr.hideLoader();
-              ToastCustom.SucessoToast(this.toastCtrl);
-            }).catch(err => {
-              HandlerError.handler(err, this.toastCtrl);
-              this.loadingContr.hideLoader();
             });
+          } else {
+            this.adicionaLocalAtendimento(localAtendimento);
+          }
         }
       });
     });
+  }
+
+  public adicionaLocalAtendimento(localAtendimento: any) {
+    this.loadingContr.showLoader();
+    this.prestadorService.AdicionaLocalAtendimento(localAtendimento, Config.RecuperaInstancia().recuperaUsuario().usuarioId)
+      .then(() => {
+        if (!this.locaisAtendimentos) {
+          this.locaisAtendimentos = [];
+        }
+        this.locaisAtendimentos.push(localAtendimento);
+        this.formulario.reset();
+        this.loadingContr.hideLoader();
+        ToastCustom.SucessoToast(this.toastCtrl);
+      }).catch(err => {
+        HandlerError.handler(err, this.toastCtrl);
+        this.loadingContr.hideLoader();
+      });
   }
 
 }

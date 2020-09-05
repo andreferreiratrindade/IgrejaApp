@@ -8,6 +8,7 @@ import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { Router } from '@angular/router';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
+import { Constants } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-meu-cadastro-prestador',
@@ -36,6 +37,7 @@ export class MeuCadastroPrestadorPage implements OnInit {
     this.prestadorService.RecuperaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
       .then((result) => {
         this.prestador = result;
+        this.prestador.descricaoSituacaoPrestador = Constants.ListTipoSituacaoPrestador.RecuperaDescricaoPorValor(this.prestador.situacaoPrestador);
         this.igrejaService.RecuperaNomeIgreja([this.prestador.igrejaId]).then(result => {
           this.prestador.nomeIgreja = result[0].data.nomeIgreja;
           this.loadingContr.hideLoader();

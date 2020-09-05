@@ -10,7 +10,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-progress-bar color="secondary" value="0.20" buffer="0.40"></ion-progress-bar>
+  
+  <ion-progress-bar *ngIf="prestador.SituacaoPrestador == 1" color="secondary" value="0.20" buffer="0.40"></ion-progress-bar>
 
   <ion-card>
     <ion-card-header>
@@ -55,14 +56,14 @@
           </ion-label>
         </ion-item>
         <div class="ion-text-end" style="margin-top: 20px;">
-          <ion-button color="medium" type="button" (click)="voltar()" style="margin-right: 20px!important;" size="4"
+          <ion-button color="medium" type="button" *ngIf="prestador.SituacaoPrestador != 1" (click)="voltar()" style="margin-right: 20px!important;" size="4"
             clear>
             <ion-icon name="chevron-back-outline" style="margin-right:10px;"></ion-icon>Voltar
           </ion-button>
           <ion-button color="success" type="button" (click)="prosseguir()" clear>
             <ion-icon name="checkmark" style="margin-right:10px;">
             </ion-icon>
-            Prosseguir
+          {{prestador.SituacaoPrestador == 1 ? "Prosseguir" : "Salvar"}}
           </ion-button>
         </div>
       </form>

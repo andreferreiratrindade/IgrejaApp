@@ -3,7 +3,7 @@ import { HandlerError } from 'src/app/helpers/handlerError';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { UsuarioService } from 'src/app/providers/usuario/usuario.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { Router } from '@angular/router';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
@@ -11,6 +11,7 @@ import { BuscarCEPService } from 'src/app/providers/buscaCEP/buscar-cep.service'
 import { Config } from 'src/app/config';
 import { Constants } from 'src/app/utils/constants';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
+import { ConfirmAlert } from 'src/app/helpers/confirmAlert';
 
 @Component({
   selector: 'app-dados-empresa',
@@ -43,7 +44,9 @@ export class DadosEmpresaPage implements OnInit {
     private ngZone: NgZone,
     public prestadorService: PrestadorService,
     public buscarCEPService: BuscarCEPService,
-    public loadingContr: LoadingContr
+    public loadingContr: LoadingContr,
+    public confirmAlert: ConfirmAlert,
+    public alertController: AlertController
   ) {
 
     this.formulario = new FormGroup({
@@ -68,11 +71,15 @@ export class DadosEmpresaPage implements OnInit {
       ]))
     });
 
+  }
+
+  ngOnInit() {
+
     this.prestadorService.RecuperaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
       .then((result) => {
         this.prestador = result;
         if (result) {
-          
+
           this.formulario.controls['telefone'].setValue(result.telefone);
           this.formulario.controls['cep'].setValue(result.cep);
           this.formulario.controls['uf'].setValue(result.uf);
@@ -80,14 +87,13 @@ export class DadosEmpresaPage implements OnInit {
           this.formulario.controls['bairro'].setValue(result.bairro);
           this.formulario.controls['logradouro'].setValue(result.logradouro);
           this.formulario.controls['razaoSocial'].setValue(result.razaoSocial);
+        } else {
+          this.prestador.situacaoPrestador = Constants.TipoSituacaoPrestador.PrestadorEmEdicao;
         }
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
       });
-  }
-
-  ngOnInit() {
 
   }
 
@@ -134,12 +140,28 @@ export class DadosEmpresaPage implements OnInit {
       return false;
     }
 
+    // Caso situação do prestador serja diferente de Em edição, sistema deverá alertar usuário sobre a alteração da situação
+    if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+      const result = this.confirmAlert.confirmationAlert(this.alertController,
+        'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?'
+      ).then(result => {
+        if (result) {
+          this.atualizaSituacaoPrestador(Constants.TipoSituacaoPrestador.PendenteAutorizacao, 'meu-cadastro-prestador');
+        }
+      });
+    } else {
+      this.atualizaSituacaoPrestador(Constants.TipoSituacaoPrestador.PrestadorEmEdicao, 'prestador-local-atendimento');
+    }
+  }
+
+  public atualizaSituacaoPrestador(situacaoPrestador: number, redirectURL: string) {
+
     this.loadingContr.showLoader()
     let obj = this.formulario.value;
     obj.usuarioId = Config.RecuperaInstancia().recuperaUsuario().usuarioId
-    obj.situacaoPrestador = Constants.TipoSituacaoPrestador.PrestadorEmEdicao ;
+    obj.situacaoPrestador = situacaoPrestador;
 
-    if(this.prestador){
+    if (this.prestador) {
       obj.situacaoPrestador = this.prestador.situacaoPrestador;
     }
 
@@ -148,12 +170,18 @@ export class DadosEmpresaPage implements OnInit {
         this.loadingContr.hideLoader();
         ToastCustom.SucessoToast(this.toastCtrl);
         this.ngZone.run(() => {
-          this.router.navigate(['prestador-local-atendimento']);
+          this.router.navigate([redirectURL]);
         });
       })
       .catch((error) => {
         HandlerError.handler(error, this.toastCtrl);
         this.loadingContr.hideLoader();
       });
+  }
+
+  public voltar() {
+    if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+      this.router.navigate(['meu-cadastro-prestador']);
+    }
   }
 }

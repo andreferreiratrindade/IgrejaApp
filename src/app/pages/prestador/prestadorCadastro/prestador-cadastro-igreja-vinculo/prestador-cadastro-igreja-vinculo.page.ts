@@ -13,6 +13,7 @@ import { Config } from 'src/app/config';
 import { ToastCustom } from 'src/app/helpers/toastCustom';
 import { HandlerError } from 'src/app/helpers/handlerError';
 import { IgrejaService } from 'src/app/providers/igreja/igreja.service';
+import { ConfirmAlert } from 'src/app/helpers/confirmAlert';
 
 @Component({
   selector: 'app-prestador-cadastro-igreja-vinculo',
@@ -24,15 +25,16 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
   formulario: FormGroup;
   locaisAtendimentos: any[] = [];
   cidades: string[];
-  prestador:any = null;
+  prestador: any = {};
   constructor(public prestadorService: PrestadorService,
     public toastCtrl: ToastController,
     public loadingContr: LoadingContr,
     public router: Router,
     public modalCtrl: ModalController,
     public igrejaService: IgrejaService,
-    public alertController: AlertController,
-    public buscarCEPService: BuscarCEPService
+    public buscarCEPService: BuscarCEPService,
+    public confirmAlert: ConfirmAlert,
+    public alertController: AlertController
   ) {
 
     this.formulario = new FormGroup({
@@ -54,7 +56,7 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
 
     });
 
- 
+
   }
 
   ngOnInit() {
@@ -151,17 +153,33 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
       HandlerError.handler(Constants.Mensagens.CamposObrigatorios, this.toastCtrl);
       return false;
     }
+
+    // Caso situação do prestador serja diferente de Em edição, sistema deverá alertar usuário sobre a alteração da situação
+    if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+      const result = this.confirmAlert.confirmationAlert(this.alertController,
+        'Toda atualização depende de aprovação e o cadastro ficará suspenso temporariamente, deseja continuar?'
+      ).then(result => {
+        if (result) {
+          this.atualizaSituacaoPrestador(Constants.TipoSituacaoPrestador.PendenteAutorizacao, 'meu-cadastro-prestador');
+        }
+      });
+    } else {
+      this.atualizaSituacaoPrestador(Constants.TipoSituacaoPrestador.PrestadorEmEdicao, 'prestador-cadastro-finalizar');
+    }
+  }
+  public atualizaSituacaoPrestador(situacaoPrestador: number, redirectURL: string) {
+
     this.loadingContr.showLoader();
     let obj = {
-      igrejaId: this.formulario.value.igrejaId
+      igrejaId: this.formulario.value.igrejaId,
+      situacaoPrestador: situacaoPrestador
     };
-
     this.prestadorService
       .AtualizaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId, obj).then(() => {
 
         this.loadingContr.hideLoader();
         ToastCustom.SucessoToast(this.toastCtrl);
-        this.router.navigate(['prestador-cadastro-finalizar']);
+        this.router.navigate([redirectURL]);
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
@@ -169,6 +187,11 @@ export class PrestadorCadastroIgrejaVinculoPage implements OnInit {
   }
 
   public voltar() {
-    this.router.navigate(['prestador-cadastro-servico']);
+    if (this.prestador.situacaoPrestador != Constants.TipoSituacaoPrestador.PrestadorEmEdicao) {
+      this.router.navigate(['meu-cadastro-prestador']);
+    } else {
+
+      this.router.navigate(['prestador-cadastro-servico']);
+    }
   }
 }
