@@ -186,7 +186,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2NpZGFkZS9tb2RhbC1jaWRhZGUvbW9kYWwtY2lkYWRlLnBhZ2Uuc2NzcyJ9 */";
+    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvY2lkYWRlL21vZGFsLWNpZGFkZS9tb2RhbC1jaWRhZGUucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9jaWRhZGUvbW9kYWwtY2lkYWRlL21vZGFsLWNpZGFkZS5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSw0QkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvY2lkYWRlL21vZGFsLWNpZGFkZS9tb2RhbC1jaWRhZGUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
     /***/
   },
 
@@ -239,28 +239,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/providers/prestador/prestador.service */
     "./src/app/providers/prestador/prestador.service.ts");
+    /* harmony import */
+
+
+    var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! src/app/pipes/sortBy/sort-by.pipe */
+    "./src/app/pipes/sortBy/sort-by.pipe.ts");
 
     var ModalCidadePage = /*#__PURE__*/function () {
-      function ModalCidadePage(loadingContr, toastCtrl, prestadorService, modalController, navParams) {
+      function ModalCidadePage(loadingContr, toastCtrl, prestadorService, modalController, sortBy, navParams) {
         _classCallCheck(this, ModalCidadePage);
 
         this.loadingContr = loadingContr;
         this.toastCtrl = toastCtrl;
         this.prestadorService = prestadorService;
         this.modalController = modalController;
+        this.sortBy = sortBy;
         this.navParams = navParams;
         this.dominioCidade = [];
         this.itens = [];
-        this.dominioCidade = this.navParams.data.cidades;
-        this.recuperaItens(null); // this.prestadorService.RecuperaCidadePrestadorDisponiveis( this.navParams.data.uf)
-        //   .then(result => {
-        //     this.dominioCidade = result;
-        //     this.itens = result;
-        //     this.loadingContr.hideLoader();
-        //   }).catch(x => {
-        //     this.loadingContr.hideLoader();
-        //     HandlerError.handler(x, this.toastCtrl);
-        //   });
+        this.dominioCidade = this.navParams.data.cidades.sort();
+        this.recuperaItens(null);
       }
 
       _createClass(ModalCidadePage, [{
@@ -318,6 +317,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__["PrestadorService"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
+      }, {
+        type: src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_5__["SortByPipe"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
       }];

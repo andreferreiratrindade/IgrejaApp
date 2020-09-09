@@ -107,7 +107,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL1VGL21vZGFsLXVmL21vZGFsLXVmLnBhZ2Uuc2NzcyJ9 */";
+    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvVUYvbW9kYWwtdWYvbW9kYWwtdWYucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9VRi9tb2RhbC11Zi9tb2RhbC11Zi5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSw0QkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvVUYvbW9kYWwtdWYvbW9kYWwtdWYucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
     /***/
   },
 
@@ -264,7 +264,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2NpZGFkZS9tb2RhbC1jaWRhZGUvbW9kYWwtY2lkYWRlLnBhZ2Uuc2NzcyJ9 */";
+    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvY2lkYWRlL21vZGFsLWNpZGFkZS9tb2RhbC1jaWRhZGUucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9jaWRhZGUvbW9kYWwtY2lkYWRlL21vZGFsLWNpZGFkZS5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSw0QkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvY2lkYWRlL21vZGFsLWNpZGFkZS9tb2RhbC1jaWRhZGUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
     /***/
   },
 
@@ -317,28 +317,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/providers/prestador/prestador.service */
     "./src/app/providers/prestador/prestador.service.ts");
+    /* harmony import */
+
+
+    var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! src/app/pipes/sortBy/sort-by.pipe */
+    "./src/app/pipes/sortBy/sort-by.pipe.ts");
 
     var ModalCidadePage = /*#__PURE__*/function () {
-      function ModalCidadePage(loadingContr, toastCtrl, prestadorService, modalController, navParams) {
+      function ModalCidadePage(loadingContr, toastCtrl, prestadorService, modalController, sortBy, navParams) {
         _classCallCheck(this, ModalCidadePage);
 
         this.loadingContr = loadingContr;
         this.toastCtrl = toastCtrl;
         this.prestadorService = prestadorService;
         this.modalController = modalController;
+        this.sortBy = sortBy;
         this.navParams = navParams;
         this.dominioCidade = [];
         this.itens = [];
-        this.dominioCidade = this.navParams.data.cidades;
-        this.recuperaItens(null); // this.prestadorService.RecuperaCidadePrestadorDisponiveis( this.navParams.data.uf)
-        //   .then(result => {
-        //     this.dominioCidade = result;
-        //     this.itens = result;
-        //     this.loadingContr.hideLoader();
-        //   }).catch(x => {
-        //     this.loadingContr.hideLoader();
-        //     HandlerError.handler(x, this.toastCtrl);
-        //   });
+        this.dominioCidade = this.navParams.data.cidades.sort();
+        this.recuperaItens(null);
       }
 
       _createClass(ModalCidadePage, [{
@@ -396,6 +395,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: src_app_providers_prestador_prestador_service__WEBPACK_IMPORTED_MODULE_4__["PrestadorService"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
+      }, {
+        type: src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_5__["SortByPipe"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
       }];
@@ -761,39 +762,28 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(PrestadorConsultarPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this3 = this;
-
           this.loadingContr.showLoader();
-          this.dominioServicoService.recuperaDominioServico().then(function (result) {
-            _this3.servicos = result;
-
-            _this3.loadingContr.hideLoader();
-          })["catch"](function (x) {
-            _this3.loadingContr.hideLoader();
-
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this3.toastCtrl);
-          });
         }
       }, {
         key: "buscarCidades",
         value: function buscarCidades(uf) {
-          var _this4 = this;
+          var _this3 = this;
 
           this.loadingContr.showLoader();
           this.formulario.controls['cidade'].setValue(null);
           this.cidadeList = [];
           this.buscarCEPService.buscarMunicipiosPorUF(uf).then(function (result) {
-            _this4.cidadeList = result;
+            _this3.cidadeList = result;
 
-            _this4.loadingContr.hideLoader();
+            _this3.loadingContr.hideLoader();
           })["catch"](function (err) {
-            _this4.loadingContr.hideLoader();
+            _this3.loadingContr.hideLoader();
           });
         }
       }, {
         key: "ConsultarPrestador",
         value: function ConsultarPrestador() {
-          var _this5 = this;
+          var _this4 = this;
 
           if (!this.formularioValido()) {
             src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_11__["ToastCustom"].CustomToast(this.toastCtrl, src_app_utils_constants__WEBPACK_IMPORTED_MODULE_17__["Constants"].Mensagens.CamposObrigatorios, "danger", 4000);
@@ -806,9 +796,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             return y.servicoId;
           }), this.formulario.value.igrejaId).then(function (prestadoresResult) {
             if (!prestadoresResult || prestadoresResult.length == 0) {
-              src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_11__["ToastCustom"].CustomToast(_this5.toastCtrl, "Nenhum prestador encontrado.", "danger", 4000);
+              src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_11__["ToastCustom"].CustomToast(_this4.toastCtrl, "Nenhum prestador encontrado.", "danger", 4000);
 
-              _this5.loadingContr.hideLoader();
+              _this4.loadingContr.hideLoader();
 
               return false;
             }
@@ -817,10 +807,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             lstusuarioId = prestadoresResult.map(function (x) {
               return x.usuarioId;
             });
-            _this5.prestadores = prestadoresResult;
+            _this4.prestadores = prestadoresResult;
 
-            _this5.usuarioService.RecuperaNomeUsuarios(lstusuarioId).then(function (usuariosResult) {
-              _this5.prestadores.map(function (x) {
+            _this4.usuarioService.RecuperaNomeUsuarios(lstusuarioId).then(function (usuariosResult) {
+              _this4.prestadores.map(function (x) {
                 x.nome = usuariosResult.find(function (y) {
                   return y.data.usuarioId == x.usuarioId;
                 }).data.nome;
@@ -829,18 +819,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 }).data.email;
               });
 
-              _this5.loadingContr.hideLoader();
+              _this4.loadingContr.hideLoader();
 
-              _this5.ionContent.scrollToPoint(0, 350, 800);
+              _this4.ionContent.scrollToPoint(0, 350, 800);
             })["catch"](function (x) {
-              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this5.toastCtrl);
+              src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this4.toastCtrl);
 
-              _this5.loadingContr.hideLoader();
+              _this4.loadingContr.hideLoader();
             });
 
-            _this5.prestadores.forEach(function (x) {
+            _this4.prestadores.forEach(function (x) {
               x.servicos.forEach(function (y) {
-                y.nomeServico = _this5.servicos.filter(function (w) {
+                y.nomeServico = _this4.servicos.filter(function (w) {
                   return w.servicoId == y.servicoId;
                 })[0].nomeServico;
               });
@@ -849,9 +839,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               }).join(', ');
             });
           })["catch"](function (x) {
-            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this5.toastCtrl);
+            src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_4__["HandlerError"].handler(x, _this4.toastCtrl);
 
-            _this5.loadingContr.hideLoader();
+            _this4.loadingContr.hideLoader();
           });
         }
       }, {
@@ -871,7 +861,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModalServicos",
         value: function abrirModalServicos() {
-          var _this6 = this;
+          var _this5 = this;
 
           var modal = this.modalCtrl.create({
             component: _servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_12__["ModalServicosPage"],
@@ -883,8 +873,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
               if (resultModal.data) {
-                _this6.servicosSelecionados = resultModal.data;
-                _this6.nomeServicoSelecionado = _this6.servicosSelecionados.map(function (y) {
+                _this5.servicosSelecionados = resultModal.data;
+                _this5.nomeServicoSelecionado = _this5.servicosSelecionados.map(function (y) {
                   return y.nomeServico;
                 }).join('; ');
               }
@@ -894,7 +884,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModalUF",
         value: function abrirModalUF() {
-          var _this7 = this;
+          var _this6 = this;
 
           var modal = this.modalCtrl.create({
             component: _UF_modal_uf_modal_uf_page__WEBPACK_IMPORTED_MODULE_15__["ModalUFPage"],
@@ -906,19 +896,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
               if (resultModal.data) {
-                _this7.formulario.controls["ufApresentacao"].setValue(resultModal.data.nome + " / " + resultModal.data.sigla);
+                _this6.formulario.controls["ufApresentacao"].setValue(resultModal.data.nome + " / " + resultModal.data.sigla);
 
-                _this7.formulario.controls["uf"].setValue(resultModal.data.sigla);
+                _this6.formulario.controls["uf"].setValue(resultModal.data.sigla);
 
-                _this7.formulario.controls["cidade"].setValue(null);
+                _this6.formulario.controls["cidade"].setValue(null);
 
-                _this7.formulario.controls["bairro"].setValue(null);
+                _this6.formulario.controls["bairro"].setValue(null);
 
-                _this7.formulario.controls["nomeIgreja"].setValue(null);
+                _this6.formulario.controls["nomeIgreja"].setValue(null);
 
-                _this7.formulario.controls["igrejaId"].setValue(null);
+                _this6.formulario.controls["igrejaId"].setValue(null);
 
-                _this7.buscarCidades(resultModal.data.sigla);
+                _this6.buscarCidades(resultModal.data.sigla);
               }
             });
           });
@@ -926,7 +916,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModalCidade",
         value: function abrirModalCidade() {
-          var _this8 = this;
+          var _this7 = this;
 
           var modal = this.modalCtrl.create({
             component: _cidade_modal_cidade_modal_cidade_page__WEBPACK_IMPORTED_MODULE_14__["ModalCidadePage"],
@@ -938,10 +928,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
               if (resultModal.data) {
-                _this8.formulario.value.cidade = resultModal.data;
-                _this8.formulario.value.bairro = null;
-                _this8.formulario.value.nomeIgreja = null;
-                _this8.formulario.value.igrejaId = null;
+                _this7.formulario.value.cidade = resultModal.data;
+                _this7.formulario.value.bairro = null;
+                _this7.formulario.value.nomeIgreja = null;
+                _this7.formulario.value.igrejaId = null;
               }
             });
           });
@@ -949,7 +939,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModalBairro",
         value: function abrirModalBairro() {
-          var _this9 = this;
+          var _this8 = this;
 
           var modal = this.modalCtrl.create({
             component: _bairro_modal_bairro_modal_bairro_page__WEBPACK_IMPORTED_MODULE_13__["ModalBairroPage"],
@@ -962,9 +952,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
               if (resultModal.data) {
-                _this9.formulario.value.bairro = resultModal.data;
-                _this9.formulario.value.nomeIgreja = null;
-                _this9.formulario.value.igrejaId = null;
+                _this8.formulario.value.bairro = resultModal.data;
+                _this8.formulario.value.nomeIgreja = null;
+                _this8.formulario.value.igrejaId = null;
               }
             });
           });
@@ -972,7 +962,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "abrirModalIgreja",
         value: function abrirModalIgreja() {
-          var _this10 = this;
+          var _this9 = this;
 
           var modal = this.modalCtrl.create({
             component: _igreja_modal_igreja_modal_igreja_page__WEBPACK_IMPORTED_MODULE_16__["ModalIgrejaPage"],
@@ -986,8 +976,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             modal.present();
             modal.onWillDismiss().then(function (resultModal) {
               if (resultModal.data) {
-                _this10.formulario.value.nomeIgreja = resultModal.data.nomeIgreja;
-                _this10.formulario.value.igrejaId = resultModal.data.id;
+                _this9.formulario.value.nomeIgreja = resultModal.data.nomeIgreja;
+                _this9.formulario.value.igrejaId = resultModal.data.id;
               }
             });
           });
@@ -1176,7 +1166,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(FavoritoRepService, [{
         key: "AdicionaPrestadorFavorito",
         value: function AdicionaPrestadorFavorito(prestadorUsuarioId, usuarioId) {
-          var _this11 = this;
+          var _this10 = this;
 
           var ref = this.db.collection("favorito").doc(usuarioId);
           var obj = [{
@@ -1184,7 +1174,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             usuarioId: usuarioId
           }];
           return new Promise(function (retorno, reject) {
-            _this11.db.runTransaction(function (transaction) {
+            _this10.db.runTransaction(function (transaction) {
               // This code may get re-run multiple times if there are conflicts.
               return transaction.get(ref).then(function (doc) {
                 var favorito = doc.data();
@@ -1210,7 +1200,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "RemovePrestadorFavorito",
         value: function RemovePrestadorFavorito(prestadorUsuarioId, usuarioId) {
-          var _this12 = this;
+          var _this11 = this;
 
           var ref = this.db.collection("favorito").doc(usuarioId);
           var obj = [{
@@ -1218,7 +1208,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             usuarioId: usuarioId
           }];
           return new Promise(function (retorno, reject) {
-            _this12.db.runTransaction(function (transaction) {
+            _this11.db.runTransaction(function (transaction) {
               // This code may get re-run multiple times if there are conflicts.
               return transaction.get(ref).then(function (doc) {
                 var prestadores = [];

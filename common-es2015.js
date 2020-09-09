@@ -511,7 +511,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-chip *ngFor=\"let servico of servicosSelecionados\" color=\"primary\" (click)=\"removeServico(servico)\">\n   \n    <ion-label>{{servico.nomeServico}}</ion-label>\n    <ion-icon name=\"close\"></ion-icon>\n  </ion-chip>\n\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n     #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n          <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n</div>  </ion-toolbar>\n</ion-footer>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-chip *ngFor=\"let servico of servicosSelecionados\" color=\"primary\" (click)=\"removeServico(servico)\">\n   \n    <ion-label>{{servico.nomeServico}}</ion-label>\n    <ion-icon name=\"close\"></ion-icon>\n  </ion-chip>\n\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Digite aqui...\"\n     #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n          <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n</div>  </ion-toolbar>\n</ion-footer>");
 
 /***/ }),
 
@@ -913,7 +913,7 @@ ModalIgrejaPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3JDYWRhc3Ryby9tb2RhbC1icmV2ZS1jb21lbnRhcmlvL21vZGFsLWJyZXZlLWNvbWVudGFyaW8ucGFnZS5zY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvcHJlc3RhZG9yL3ByZXN0YWRvckNhZGFzdHJvL21vZGFsLWJyZXZlLWNvbWVudGFyaW8vbW9kYWwtYnJldmUtY29tZW50YXJpby5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3JDYWRhc3Ryby9tb2RhbC1icmV2ZS1jb21lbnRhcmlvL21vZGFsLWJyZXZlLWNvbWVudGFyaW8ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksNEJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3JDYWRhc3Ryby9tb2RhbC1icmV2ZS1jb21lbnRhcmlvL21vZGFsLWJyZXZlLWNvbWVudGFyaW8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */");
 
 /***/ }),
 
@@ -992,17 +992,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/providers/dominioServico/dominio-servico.service */ "./src/app/providers/dominioServico/dominio-servico.service.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
+/* harmony import */ var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/helpers/toastCustom */ "./src/app/helpers/toastCustom.ts");
+/* harmony import */ var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/pipes/sortBy/sort-by.pipe */ "./src/app/pipes/sortBy/sort-by.pipe.ts");
+
+
 
 
 
 
 
 let ModalServicosPage = class ModalServicosPage {
-    constructor(toast, loadControl, modalController, navParams, dominioServicoService) {
+    constructor(toast, loadControl, modalController, navParams, sortBy, dominioServicoService) {
         this.toast = toast;
         this.loadControl = loadControl;
         this.modalController = modalController;
         this.navParams = navParams;
+        this.sortBy = sortBy;
         this.dominioServicoService = dominioServicoService;
         this.dominioServicos = [];
         this.servicos = [];
@@ -1019,8 +1024,12 @@ let ModalServicosPage = class ModalServicosPage {
             val = ev.target.value;
         }
         if (val && val.trim() !== '') {
-            this.dominioServicoService.recuperaServicoAutoComplete(val).then(result => {
+            this.dominioServicoService.recuperaServicoAutoComplete(val)
+                .then(result => {
                 this.servicos = result;
+                if (this.servicos.length == 0) {
+                    src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_5__["ToastCustom"].CustomToast(this.toast, "Nenhum serviço encontrado.", "warning", 4000);
+                }
             });
         }
         else {
@@ -1058,6 +1067,7 @@ ModalServicosPage.ctorParameters = () => [
     { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_4__["LoadingContr"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"] },
+    { type: src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_6__["SortByPipe"] },
     { type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__["DominioServicoService"] }
 ];
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

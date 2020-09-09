@@ -778,7 +778,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-chip *ngFor=\"let servico of servicosSelecionados\" color=\"primary\" (click)=\"removeServico(servico)\">\n   \n    <ion-label>{{servico.nomeServico}}</ion-label>\n    <ion-icon name=\"close\"></ion-icon>\n  </ion-chip>\n\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n     #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n          <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n</div>  </ion-toolbar>\n</ion-footer>";
+    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-chip *ngFor=\"let servico of servicosSelecionados\" color=\"primary\" (click)=\"removeServico(servico)\">\n   \n    <ion-label>{{servico.nomeServico}}</ion-label>\n    <ion-icon name=\"close\"></ion-icon>\n  </ion-chip>\n\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Digite aqui...\"\n     #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n          <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n</div>  </ion-toolbar>\n</ion-footer>";
     /***/
   },
 
@@ -1447,7 +1447,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3JDYWRhc3Ryby9tb2RhbC1icmV2ZS1jb21lbnRhcmlvL21vZGFsLWJyZXZlLWNvbWVudGFyaW8ucGFnZS5zY3NzIn0= */";
+    __webpack_exports__["default"] = "ion-card-content {\n  padding-left: 0px !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3RyYXZpcy9idWlsZC9hbmRyZWZlcnJlaXJhdHJpbmRhZGUvSWdyZWphQXBwL3NyYy9hcHAvcGFnZXMvcHJlc3RhZG9yL3ByZXN0YWRvckNhZGFzdHJvL21vZGFsLWJyZXZlLWNvbWVudGFyaW8vbW9kYWwtYnJldmUtY29tZW50YXJpby5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3JDYWRhc3Ryby9tb2RhbC1icmV2ZS1jb21lbnRhcmlvL21vZGFsLWJyZXZlLWNvbWVudGFyaW8ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksNEJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3ByZXN0YWRvci9wcmVzdGFkb3JDYWRhc3Ryby9tb2RhbC1icmV2ZS1jb21lbnRhcmlvL21vZGFsLWJyZXZlLWNvbWVudGFyaW8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQtY29udGVudHtcbiAgICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xuICB9XG4gICIsImlvbi1jYXJkLWNvbnRlbnQge1xuICBwYWRkaW5nLWxlZnQ6IDBweCAhaW1wb3J0YW50O1xufSJdfQ== */";
     /***/
   },
 
@@ -1607,15 +1607,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/helpers/loadingContr */
     "./src/app/helpers/loadingContr.ts");
+    /* harmony import */
+
+
+    var src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! src/app/helpers/toastCustom */
+    "./src/app/helpers/toastCustom.ts");
+    /* harmony import */
+
+
+    var src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! src/app/pipes/sortBy/sort-by.pipe */
+    "./src/app/pipes/sortBy/sort-by.pipe.ts");
 
     var ModalServicosPage = /*#__PURE__*/function () {
-      function ModalServicosPage(toast, loadControl, modalController, navParams, dominioServicoService) {
+      function ModalServicosPage(toast, loadControl, modalController, navParams, sortBy, dominioServicoService) {
         _classCallCheck(this, ModalServicosPage);
 
         this.toast = toast;
         this.loadControl = loadControl;
         this.modalController = modalController;
         this.navParams = navParams;
+        this.sortBy = sortBy;
         this.dominioServicoService = dominioServicoService;
         this.dominioServicos = [];
         this.servicos = [];
@@ -1643,6 +1656,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           if (val && val.trim() !== '') {
             this.dominioServicoService.recuperaServicoAutoComplete(val).then(function (result) {
               _this8.servicos = result;
+
+              if (_this8.servicos.length == 0) {
+                src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_5__["ToastCustom"].CustomToast(_this8.toast, "Nenhum serviço encontrado.", "warning", 4000);
+              }
             });
           } else {
             this.servicos = [];
@@ -1712,6 +1729,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
       }, {
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
+      }, {
+        type: src_app_pipes_sortBy_sort_by_pipe__WEBPACK_IMPORTED_MODULE_6__["SortByPipe"]
       }, {
         type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__["DominioServicoService"]
       }];

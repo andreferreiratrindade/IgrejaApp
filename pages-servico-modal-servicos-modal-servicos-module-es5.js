@@ -12,13 +12,67 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-servico-modal-servicos-modal-servicos-module"], {
+  /***/
+  "./src/app/helpers/toastCustom.ts":
+  /*!****************************************!*\
+    !*** ./src/app/helpers/toastCustom.ts ***!
+    \****************************************/
+
+  /*! exports provided: ToastCustom */
+
+  /***/
+  function srcAppHelpersToastCustomTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ToastCustom", function () {
+      return ToastCustom;
+    });
+
+    var ToastCustom = /*#__PURE__*/function () {
+      function ToastCustom() {
+        _classCallCheck(this, ToastCustom);
+      }
+
+      _createClass(ToastCustom, null, [{
+        key: "errorToast",
+        value: function errorToast(msg, toastCtrl) {
+          this.CustomToast(toastCtrl, msg, "danger", 4000);
+        }
+      }, {
+        key: "SucessoToast",
+        value: function SucessoToast(toastCtrl) {
+          this.CustomToast(toastCtrl, "Operação realizada com sucesso.", "success", 4000);
+        }
+      }, {
+        key: "CustomToast",
+        value: function CustomToast(toastCtrl, message, color, duration) {
+          toastCtrl.create({
+            message: message,
+            duration: duration,
+            color: color
+          }).then(function (x) {
+            x.present();
+          });
+        }
+      }]);
+
+      return ToastCustom;
+    }();
+    /***/
+
+  },
+
   /***/
   "./src/app/pages/servico/modal-servicos/modal-servicos-routing.module.ts":
   /*!*******************************************************************************!*\
