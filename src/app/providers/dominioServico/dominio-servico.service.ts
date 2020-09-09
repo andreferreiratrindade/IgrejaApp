@@ -23,6 +23,7 @@ export class DominioServicoService {
 
   public adicionaServico(servico:any) : Promise<any>{
   
+    servico.nomeServico_insensitive = servico.nomeServico.toLowerCase();
     return this.dominioServico.add(servico,null);
   }
 

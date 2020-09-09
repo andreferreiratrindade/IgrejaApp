@@ -25,17 +25,20 @@ export class DominioServicoRepositoryService extends BaseRepository {
     recuperaServicoAutoComplete(query: string): Promise<any> {
 
         return new Promise<any>((response, resp) => {
+            query = query.toLowerCase()
             const endText = query + '\uf8ff'; 
             this.db.collection("dominioServico")
-                .orderBy("nomeServico")
+                .orderBy("nomeServico_insensitive")
                 .limit(10)
-                .where("nomeServico",">=",query)
-                .where("nomeServico","<=",endText)
+                .startAt(query)
+                .endAt(endText)
+         
+                // .where("nomeServico",">=",query)
+                // .where("nomeServico","<=",endText)
                 // .startAt(query)
                 // .endAt(endText)
                 .get()
                 .then((result) => {
-
                     let lst = [];
                     result.forEach(function (doc) {
 

@@ -1,0 +1,30 @@
+<ion-content>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Esqueceu sua senha?</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+        <ion-item class="input-item">
+          <ion-label position="floating">Email <ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input type="email" [(ngModel)]="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
+        </ion-item>
+
+        <div class="ion-text-center" >
+
+          <ion-button color="primary" (click)="recover()">
+            Recuperar 
+          </ion-button>
+        </div>
+      
+    </ion-card-content>
+  </ion-card>
+</ion-content>

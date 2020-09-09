@@ -5,11 +5,11 @@ export module Constants {
       public static AdministradorIgreja: number = 2;
       public static Prestador: number = 3;
 
-      public static RecuperaListagem():any[]{
+      public static RecuperaListagem(): any[] {
          return [
-            {valor:this.AdministradorIgreja,descricao:"Administrador Igreja"},
-            {valor:this.AdministradorSistema,descricao:"Administrador Sistema"},
-            {valor:this.Prestador,descricao:"Prestador"}
+            { valor: this.AdministradorIgreja, descricao: "Administrador Igreja" },
+            { valor: this.AdministradorSistema, descricao: "Administrador Sistema" },
+            { valor: this.Prestador, descricao: "Prestador" }
 
          ]
       }
@@ -17,7 +17,7 @@ export module Constants {
       public static RecuperaDescricaoPorValor(valor: any): string {
          return this.RecuperaListagem().filter(y => y.valor == valor)[0].descricao;
       }
-      
+
    }
 
    export class Mensagens {
@@ -40,7 +40,7 @@ export module Constants {
    }
 
    export class TipoSituacaoPrestador {
-      public static PrestadorEmEdicao : number = 1;
+      public static PrestadorEmEdicao: number = 1;
       public static PendenteAutorizacao: number = 2;
       public static Ativo: number = 3;
       public static Suspenso: number = 4;
@@ -135,6 +135,6 @@ export module Constants {
          let obj = this.RecuperaObjetoPorUF(uf);
          return obj.nome + " / " + obj.sigla;
       }
-   }
 
+   }
 }

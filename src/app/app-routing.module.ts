@@ -168,7 +168,11 @@ const routes: Routes = [
   {
     path: 'modal-breve-comentario',
     loadChildren: () => import('./pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.module').then( m => m.ModalBreveComentarioPageModule)
+  },  {
+    path: 'esqueci-minha-senha',
+    loadChildren: () => import('./pages/usuario/esqueci-minha-senha/esqueci-minha-senha.module').then( m => m.EsqueciMinhaSenhaPageModule)
   }
+
 
 
 

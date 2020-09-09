@@ -9,7 +9,7 @@ import { LoadingContr } from 'src/app/helpers/loadingContr';
   templateUrl: './modal-servicos.page.html',
   styleUrls: ['./modal-servicos.page.scss'],
 })
-export class ModalServicosPage implements OnInit, AfterViewInit {
+export class ModalServicosPage implements OnInit {
 
   private dominioServicos: any[] = [];
   servicos: any[] = [];
@@ -21,7 +21,8 @@ export class ModalServicosPage implements OnInit, AfterViewInit {
     public toast: ToastController,
     public loadControl: LoadingContr,
     public modalController: ModalController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    private dominioServicoService: DominioServicoService) {
     this.dominioServicos = this.navParams.data.servicos;
 
   }
@@ -31,13 +32,6 @@ export class ModalServicosPage implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit() {
-
-    setTimeout(() => {
-      this.inputElement.setFocus();
-    }, 800);
-  }
-
   recuperaServicos(ev: any) {
 
     let val = "";
@@ -45,17 +39,16 @@ export class ModalServicosPage implements OnInit, AfterViewInit {
       val = ev.target.value;
     }
     if (val && val.trim() !== '') {
-      this.servicos = this.dominioServicos.filter(item => { return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1 });
+      this.dominioServicoService.recuperaServicoAutoComplete(val).then(result => {
+        this.servicos = result;
+      })
     } else {
-      this.servicos = [...this.dominioServicos];
+      this.servicos = [];
     }
 
     this.nomeServico = val;
 
     this.servicos = this.servicos.filter(x => { return this.servicosSelecionados.filter(y => y.servicoId == x.servicoId).length == 0 });
-
-    if (this.servicos.length > 10) this.servicos.length = 10;
-
   }
 
   closeModal() {
@@ -86,9 +79,7 @@ export class ModalServicosPage implements OnInit, AfterViewInit {
     this.recuperaServicos(obj);
   }
 
-  ok(){
+  ok() {
     this.modalController.dismiss(this.servicosSelecionados, 'success');
-
   }
-
 }
