@@ -665,6 +665,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return m.ModalBreveComentarioPageModule;
         });
       }
+    }, {
+      path: 'esqueci-minha-senha',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-usuario-esqueci-minha-senha-esqueci-minha-senha-module */
+        "pages-usuario-esqueci-minha-senha-esqueci-minha-senha-module").then(__webpack_require__.bind(null,
+        /*! ./pages/usuario/esqueci-minha-senha/esqueci-minha-senha.module */
+        "./src/app/pages/usuario/esqueci-minha-senha/esqueci-minha-senha.module.ts")).then(function (m) {
+          return m.EsqueciMinhaSenhaPageModule;
+        });
+      }
     }];
 
     var AppRoutingModule = function AppRoutingModule() {

@@ -511,7 +511,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-chip *ngFor=\"let servico of servicosSelecionados\" color=\"primary\" (click)=\"removeServico(servico)\">\n   \n    <ion-label>{{servico.nomeServico}}</ion-label>\n    <ion-icon name=\"close\"></ion-icon>\n  </ion-chip>\n\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n    animated #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n          <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n</div>  </ion-toolbar>\n</ion-footer>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-chip *ngFor=\"let servico of servicosSelecionados\" color=\"primary\" (click)=\"removeServico(servico)\">\n   \n    <ion-label>{{servico.nomeServico}}</ion-label>\n    <ion-icon name=\"close\"></ion-icon>\n  </ion-chip>\n\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n     #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n          <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n</div>  </ion-toolbar>\n</ion-footer>");
 
 /***/ }),
 
@@ -989,18 +989,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalServicosPage", function() { return ModalServicosPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
+/* harmony import */ var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/providers/dominioServico/dominio-servico.service */ "./src/app/providers/dominioServico/dominio-servico.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/helpers/loadingContr */ "./src/app/helpers/loadingContr.ts");
+
 
 
 
 
 let ModalServicosPage = class ModalServicosPage {
-    constructor(toast, loadControl, modalController, navParams) {
+    constructor(toast, loadControl, modalController, navParams, dominioServicoService) {
         this.toast = toast;
         this.loadControl = loadControl;
         this.modalController = modalController;
         this.navParams = navParams;
+        this.dominioServicoService = dominioServicoService;
         this.dominioServicos = [];
         this.servicos = [];
         this.servicosSelecionados = [];
@@ -1010,26 +1013,21 @@ let ModalServicosPage = class ModalServicosPage {
     ngOnInit() {
         this.recuperaServicos(null);
     }
-    ngAfterViewInit() {
-        setTimeout(() => {
-            this.inputElement.setFocus();
-        }, 800);
-    }
     recuperaServicos(ev) {
         let val = "";
         if (ev && ev.target) {
             val = ev.target.value;
         }
         if (val && val.trim() !== '') {
-            this.servicos = this.dominioServicos.filter(item => { return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1; });
+            this.dominioServicoService.recuperaServicoAutoComplete(val).then(result => {
+                this.servicos = result;
+            });
         }
         else {
-            this.servicos = [...this.dominioServicos];
+            this.servicos = [];
         }
         this.nomeServico = val;
         this.servicos = this.servicos.filter(x => { return this.servicosSelecionados.filter(y => y.servicoId == x.servicoId).length == 0; });
-        if (this.servicos.length > 10)
-            this.servicos.length = 10;
     }
     closeModal() {
         this.modalController.dismiss(null, 'cancel');
@@ -1056,10 +1054,11 @@ let ModalServicosPage = class ModalServicosPage {
     }
 };
 ModalServicosPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] },
-    { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_3__["LoadingContr"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
+    { type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_4__["LoadingContr"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"] },
+    { type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__["DominioServicoService"] }
 ];
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('searchbar')

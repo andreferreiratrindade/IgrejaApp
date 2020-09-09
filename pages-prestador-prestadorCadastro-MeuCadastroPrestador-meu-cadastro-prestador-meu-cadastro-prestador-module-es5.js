@@ -581,6 +581,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "adicionaServico",
         value: function adicionaServico(servico) {
+          servico.nomeServico_insensitive = servico.nomeServico.toLowerCase();
           return this.dominioServico.add(servico, null);
         }
       }, {
@@ -772,9 +773,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this3 = this;
 
           return new Promise(function (response, resp) {
+            query = query.toLowerCase();
             var endText = query + "\uF8FF";
 
-            _this3.db.collection("dominioServico").orderBy("nomeServico").limit(10).where("nomeServico", ">=", query).where("nomeServico", "<=", endText) // .startAt(query)
+            _this3.db.collection("dominioServico").orderBy("nomeServico_insensitive").limit(10).startAt(query).endAt(endText) // .where("nomeServico",">=",query)
+            // .where("nomeServico","<=",endText)
+            // .startAt(query)
             // .endAt(endText)
             .get().then(function (result) {
               var lst = [];

@@ -1,15 +1,3 @@
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -790,7 +778,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-chip *ngFor=\"let servico of servicosSelecionados\" color=\"primary\" (click)=\"removeServico(servico)\">\n   \n    <ion-label>{{servico.nomeServico}}</ion-label>\n    <ion-icon name=\"close\"></ion-icon>\n  </ion-chip>\n\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n    animated #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n          <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n</div>  </ion-toolbar>\n</ion-footer>";
+    __webpack_exports__["default"] = "<ion-header translucent={true}>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"\" (click)=\"closeModal()\" text=\"Voltar\"></ion-back-button>\n    </ion-buttons>\n    <ion-title>Serviços</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <ion-chip *ngFor=\"let servico of servicosSelecionados\" color=\"primary\" (click)=\"removeServico(servico)\">\n   \n    <ion-label>{{servico.nomeServico}}</ion-label>\n    <ion-icon name=\"close\"></ion-icon>\n  </ion-chip>\n\n    <ion-searchbar type=\"text\" \n    debounce = 1\n    placeholder=\"Pesquisar\"\n     #searchbar\n    (ionChange)=\"recuperaServicos($event)\" animated></ion-searchbar>\n  <ion-list>\n      <ion-item *ngFor=\"let item of servicos\" (click)=\"selecionarServico(item)\" detail>\n        <ion-label>{{item.nomeServico}}</ion-label>\n      </ion-item>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-toolbar>\n    <div class=\"ion-text-end\">\n          <ion-button class=\"primary\" type=\"button\" (click)=\"ok()\">OK</ion-button>\n</div>  </ion-toolbar>\n</ion-footer>";
     /***/
   },
 
@@ -1604,24 +1592,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /* harmony import */
 
 
-    var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! src/app/providers/dominioServico/dominio-servico.service */
+    "./src/app/providers/dominioServico/dominio-servico.service.ts");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @ionic/angular */
     "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
     /* harmony import */
 
 
-    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/helpers/loadingContr */
     "./src/app/helpers/loadingContr.ts");
 
     var ModalServicosPage = /*#__PURE__*/function () {
-      function ModalServicosPage(toast, loadControl, modalController, navParams) {
+      function ModalServicosPage(toast, loadControl, modalController, navParams, dominioServicoService) {
         _classCallCheck(this, ModalServicosPage);
 
         this.toast = toast;
         this.loadControl = loadControl;
         this.modalController = modalController;
         this.navParams = navParams;
+        this.dominioServicoService = dominioServicoService;
         this.dominioServicos = [];
         this.servicos = [];
         this.servicosSelecionados = [];
@@ -1635,18 +1630,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           this.recuperaServicos(null);
         }
       }, {
-        key: "ngAfterViewInit",
-        value: function ngAfterViewInit() {
-          var _this8 = this;
-
-          setTimeout(function () {
-            _this8.inputElement.setFocus();
-          }, 800);
-        }
-      }, {
         key: "recuperaServicos",
         value: function recuperaServicos(ev) {
-          var _this9 = this;
+          var _this8 = this;
 
           var val = "";
 
@@ -1655,20 +1641,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
 
           if (val && val.trim() !== '') {
-            this.servicos = this.dominioServicos.filter(function (item) {
-              return item.nomeServico.toLowerCase().indexOf(val.toLowerCase()) > -1;
+            this.dominioServicoService.recuperaServicoAutoComplete(val).then(function (result) {
+              _this8.servicos = result;
             });
           } else {
-            this.servicos = _toConsumableArray(this.dominioServicos);
+            this.servicos = [];
           }
 
           this.nomeServico = val;
           this.servicos = this.servicos.filter(function (x) {
-            return _this9.servicosSelecionados.filter(function (y) {
+            return _this8.servicosSelecionados.filter(function (y) {
               return y.servicoId == x.servicoId;
             }).length == 0;
           });
-          if (this.servicos.length > 10) this.servicos.length = 10;
         }
       }, {
         key: "closeModal",
@@ -1720,13 +1705,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     ModalServicosPage.ctorParameters = function () {
       return [{
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]
       }, {
-        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_3__["LoadingContr"]
+        type: src_app_helpers_loadingContr__WEBPACK_IMPORTED_MODULE_4__["LoadingContr"]
       }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
       }, {
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavParams"]
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
+      }, {
+        type: src_app_providers_dominioServico_dominio_servico_service__WEBPACK_IMPORTED_MODULE_2__["DominioServicoService"]
       }];
     };
 

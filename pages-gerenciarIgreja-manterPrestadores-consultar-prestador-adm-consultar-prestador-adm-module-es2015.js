@@ -391,6 +391,7 @@ let DominioServicoService = class DominioServicoService {
         return this.dominioServico.recuperaDominioServicoAtivo();
     }
     adicionaServico(servico) {
+        servico.nomeServico_insensitive = servico.nomeServico.toLowerCase();
         return this.dominioServico.add(servico, null);
     }
     excluirServico(servicoId) {
@@ -497,12 +498,15 @@ let DominioServicoRepositoryService = class DominioServicoRepositoryService exte
     }
     recuperaServicoAutoComplete(query) {
         return new Promise((response, resp) => {
+            query = query.toLowerCase();
             const endText = query + '\uf8ff';
             this.db.collection("dominioServico")
-                .orderBy("nomeServico")
+                .orderBy("nomeServico_insensitive")
                 .limit(10)
-                .where("nomeServico", ">=", query)
-                .where("nomeServico", "<=", endText)
+                .startAt(query)
+                .endAt(endText)
+                // .where("nomeServico",">=",query)
+                // .where("nomeServico","<=",endText)
                 // .startAt(query)
                 // .endAt(endText)
                 .get()

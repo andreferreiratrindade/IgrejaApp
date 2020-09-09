@@ -502,6 +502,10 @@ const routes = [
     {
         path: 'modal-breve-comentario',
         loadChildren: () => Promise.all(/*! import() | pages-prestador-prestadorCadastro-modal-breve-comentario-modal-breve-comentario-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-prestador-prestadorCadastro-modal-breve-comentario-modal-breve-comentario-module")]).then(__webpack_require__.bind(null, /*! ./pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.module */ "./src/app/pages/prestador/prestadorCadastro/modal-breve-comentario/modal-breve-comentario.module.ts")).then(m => m.ModalBreveComentarioPageModule)
+    },
+    {
+        path: 'esqueci-minha-senha',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-usuario-esqueci-minha-senha-esqueci-minha-senha-module */ "pages-usuario-esqueci-minha-senha-esqueci-minha-senha-module").then(__webpack_require__.bind(null, /*! ./pages/usuario/esqueci-minha-senha/esqueci-minha-senha.module */ "./src/app/pages/usuario/esqueci-minha-senha/esqueci-minha-senha.module.ts")).then(m => m.EsqueciMinhaSenhaPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
