@@ -120,6 +120,7 @@ export class PrestadorCadastroServicoPage implements OnInit {
         .AdicionaServicoAoPrestador(Config.RecuperaInstancia()
           .recuperaUsuario().usuarioId, {
           servicoId: element.servicoId,
+          nomeServico:element.nomeServico,
           usuarioId: Config.RecuperaInstancia()
             .recuperaUsuario().usuarioId
 

@@ -63,15 +63,6 @@ export class PrestadorConsultarPage implements OnInit {
 
     ngOnInit() {
         this.loadingContr.showLoader();
-
-        this.dominioServicoService.recuperaDominioServico()
-            .then(result => {
-                this.servicos = result;
-                this.loadingContr.hideLoader();
-            }).catch(x => {
-                this.loadingContr.hideLoader();
-                HandlerError.handler(x, this.toastCtrl);
-            });
     }
 
     buscarCidades(uf: string) {

@@ -3,6 +3,8 @@ import { DominioServicoService } from 'src/app/providers/dominioServico/dominio-
 import { ToastController, ModalController, NavParams, IonInput } from '@ionic/angular';
 import { HandlerError } from 'src/app/helpers/handlerError';
 import { LoadingContr } from 'src/app/helpers/loadingContr';
+import { ToastCustom } from 'src/app/helpers/toastCustom';
+import { SortByPipe } from 'src/app/pipes/sortBy/sort-by.pipe';
 
 @Component({
   selector: 'app-modal-servicos',
@@ -22,6 +24,7 @@ export class ModalServicosPage implements OnInit {
     public loadControl: LoadingContr,
     public modalController: ModalController,
     public navParams: NavParams,
+    public sortBy: SortByPipe,
     private dominioServicoService: DominioServicoService) {
     this.dominioServicos = this.navParams.data.servicos;
 
@@ -39,9 +42,14 @@ export class ModalServicosPage implements OnInit {
       val = ev.target.value;
     }
     if (val && val.trim() !== '') {
-      this.dominioServicoService.recuperaServicoAutoComplete(val).then(result => {
-        this.servicos = result;
-      })
+      this.dominioServicoService.recuperaServicoAutoComplete(val)
+        .then(result => {
+          this.servicos = result;
+
+          if (this.servicos.length == 0) {
+            ToastCustom.CustomToast(this.toast, "Nenhum serviço encontrado.", "warning", 4000);
+          }
+        });
     } else {
       this.servicos = [];
     }
@@ -49,6 +57,9 @@ export class ModalServicosPage implements OnInit {
     this.nomeServico = val;
 
     this.servicos = this.servicos.filter(x => { return this.servicosSelecionados.filter(y => y.servicoId == x.servicoId).length == 0 });
+
+
+
   }
 
   closeModal() {

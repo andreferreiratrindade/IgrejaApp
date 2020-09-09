@@ -10,7 +10,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-progress-bar *ngIf="prestador.SituacaoPrestador == 1" color="success" value="1"></ion-progress-bar>
+  <ion-progress-bar *ngIf="prestador.situacaoPrestador == 1" color="success" value="1"></ion-progress-bar>
 
 
   <ion-card class="ion-no-border">
@@ -142,7 +142,7 @@
       <ion-icon name="chevron-back-outline" style="margin-right:10px;"></ion-icon>Voltar
     </ion-button>
 
-    <ion-button *ngIf="prestador.SituacaoPrestador == 1" color="success" type="button" (click)="finalizar()" clear>
+    <ion-button *ngIf="prestador.situacaoPrestador == 1" color="success" type="button" (click)="finalizar()" clear>
       <ion-icon name="checkmark" style="margin-right:10px;">
       </ion-icon>Finalizar
     </ion-button>

@@ -78,6 +78,7 @@ export class DadosEmpresaPage implements OnInit {
     this.prestadorService.RecuperaPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
       .then((result) => {
         this.prestador = result;
+        debugger
         if (result) {
 
           this.formulario.controls['telefone'].setValue(result.telefone);
@@ -88,6 +89,7 @@ export class DadosEmpresaPage implements OnInit {
           this.formulario.controls['logradouro'].setValue(result.logradouro);
           this.formulario.controls['razaoSocial'].setValue(result.razaoSocial);
         } else {
+          this.prestador = {};
           this.prestador.situacaoPrestador = Constants.TipoSituacaoPrestador.PrestadorEmEdicao;
         }
       }).catch(err => {

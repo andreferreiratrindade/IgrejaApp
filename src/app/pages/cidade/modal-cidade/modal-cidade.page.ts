@@ -3,6 +3,7 @@ import { LoadingContr } from 'src/app/helpers/loadingContr';
 import { ToastController, ModalController, NavParams, IonInput } from '@ionic/angular';
 import { PrestadorService } from 'src/app/providers/prestador/prestador.service';
 import { HandlerError } from 'src/app/helpers/handlerError';
+import { SortByPipe } from 'src/app/pipes/sortBy/sort-by.pipe';
 
 @Component({
   selector: 'app-modal-cidade',
@@ -20,20 +21,12 @@ export class ModalCidadePage implements OnInit, AfterViewInit {
     public toastCtrl: ToastController,
     public prestadorService: PrestadorService,
     public modalController: ModalController,
+    public sortBy : SortByPipe,
     public navParams: NavParams) {
 
-    this.dominioCidade = this.navParams.data.cidades;
-    this.recuperaItens(null);
-    // this.prestadorService.RecuperaCidadePrestadorDisponiveis( this.navParams.data.uf)
-    //   .then(result => {
-    //     this.dominioCidade = result;
-    //     this.itens = result;
-    //     this.loadingContr.hideLoader();
+    this.dominioCidade = this.navParams.data.cidades.sort();
 
-    //   }).catch(x => {
-    //     this.loadingContr.hideLoader();
-    //     HandlerError.handler(x, this.toastCtrl);
-    //   });
+    this.recuperaItens(null);
   }
 
   ngOnInit() {
@@ -52,6 +45,7 @@ export class ModalCidadePage implements OnInit, AfterViewInit {
     } 
     if (val && val.trim() !== '') {
       this.itens = this.dominioCidade.filter(item => { return item.toLowerCase().indexOf(val.toLowerCase()) > -1 });
+
     } else {
       this.itens = [...this.dominioCidade];
     }
