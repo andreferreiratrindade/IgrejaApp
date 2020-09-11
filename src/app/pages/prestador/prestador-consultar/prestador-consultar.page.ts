@@ -62,7 +62,7 @@ export class PrestadorConsultarPage implements OnInit {
     }
 
     ngOnInit() {
-        this.loadingContr.showLoader();
+        
     }
 
     buscarCidades(uf: string) {
