@@ -412,7 +412,6 @@ let PrestadorConsultarPage = class PrestadorConsultarPage {
         this.prestadores = [];
     }
     ngOnInit() {
-        this.loadingContr.showLoader();
     }
     buscarCidades(uf) {
         this.loadingContr.showLoader();

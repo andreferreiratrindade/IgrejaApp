@@ -761,9 +761,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
       _createClass(PrestadorConsultarPage, [{
         key: "ngOnInit",
-        value: function ngOnInit() {
-          this.loadingContr.showLoader();
-        }
+        value: function ngOnInit() {}
       }, {
         key: "buscarCidades",
         value: function buscarCidades(uf) {
