@@ -454,9 +454,6 @@ let PrestadorConsultarPage = class PrestadorConsultarPage {
                 this.loadingContr.hideLoader();
             });
             this.prestadores.forEach(x => {
-                x.servicos.forEach(y => {
-                    y.nomeServico = this.servicos.filter(w => { return w.servicoId == y.servicoId; })[0].nomeServico;
-                });
                 x.descricaoServicos = x.servicos.map(y => y.nomeServico).join(', ');
             });
         }).catch(x => {
@@ -479,7 +476,6 @@ let PrestadorConsultarPage = class PrestadorConsultarPage {
     abrirModalServicos() {
         const modal = this.modalCtrl.create({
             component: _servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_12__["ModalServicosPage"],
-            componentProps: { servicos: this.servicos },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();

@@ -155,17 +155,14 @@ let VisualizarPrestadorPage = class VisualizarPrestadorPage {
         this.prestadorService.recuperaServicosPorPrestador(this.usuarioId)
             .then(result => {
             this.prestadorServicos = result;
-            this.dominioServicoService.recuperaDominioServico().then(x => {
-                this.prestadorServicos.map((listItem) => {
-                    var _a;
-                    listItem.expanded = false;
-                    listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
-                    listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
-                    return listItem;
-                });
-                this.prestador.descricaoServicos = this.prestadorServicos.map(y => { return y.nomeServico; }).join(', ');
-                this.loadingContr.hideLoader();
+            this.prestadorServicos.map((listItem) => {
+                var _a;
+                listItem.expanded = false;
+                listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
+                return listItem;
             });
+            this.prestador.descricaoServicos = this.prestadorServicos.map(y => { return y.nomeServico; }).join(', ');
+            this.loadingContr.hideLoader();
         }).catch(err => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();

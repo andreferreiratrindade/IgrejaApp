@@ -827,11 +827,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             });
 
             _this4.prestadores.forEach(function (x) {
-              x.servicos.forEach(function (y) {
-                y.nomeServico = _this4.servicos.filter(function (w) {
-                  return w.servicoId == y.servicoId;
-                })[0].nomeServico;
-              });
               x.descricaoServicos = x.servicos.map(function (y) {
                 return y.nomeServico;
               }).join(', ');
@@ -863,9 +858,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           var modal = this.modalCtrl.create({
             component: _servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_12__["ModalServicosPage"],
-            componentProps: {
-              servicos: this.servicos
-            },
             backdropDismiss: false
           }).then(function (modal) {
             modal.present();

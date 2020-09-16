@@ -230,19 +230,13 @@ let PrestadorCadastroFinalizarPage = class PrestadorCadastroFinalizarPage {
         this.prestadorService.recuperaServicosPorPrestador(src_app_config__WEBPACK_IMPORTED_MODULE_3__["Config"].RecuperaInstancia().recuperaUsuario().usuarioId)
             .then(result => {
             this.prestadorServicos = result;
-            this.dominioServicoService.recuperaDominioServico().then(x => {
-                this.prestadorServicos.map((listItem) => {
-                    var _a;
-                    listItem.expanded = false;
-                    listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
-                    listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
-                    return listItem;
-                });
-                this.loadingContr.hideLoader();
-            }).catch(err => {
-                src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(err, this.toastCtrl);
-                this.loadingContr.hideLoader();
+            this.prestadorServicos.map((listItem) => {
+                var _a;
+                listItem.expanded = false;
+                listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
+                return listItem;
             });
+            this.loadingContr.hideLoader();
         }).catch(err => {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_5__["HandlerError"].handler(err, this.toastCtrl);
             this.loadingContr.hideLoader();

@@ -307,24 +307,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.prestadorService.recuperaServicosPorPrestador(this.usuarioId).then(function (result) {
             _this.prestadorServicos = result;
 
-            _this.dominioServicoService.recuperaDominioServico().then(function (x) {
-              _this.prestadorServicos.map(function (listItem) {
-                var _a;
+            _this.prestadorServicos.map(function (listItem) {
+              var _a;
 
-                listItem.expanded = false;
-                listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
-                listItem.nomeServico = x.filter(function (y) {
-                  return y.servicoId == listItem.servicoId;
-                })[0].nomeServico;
-                return listItem;
-              });
-
-              _this.prestador.descricaoServicos = _this.prestadorServicos.map(function (y) {
-                return y.nomeServico;
-              }).join(', ');
-
-              _this.loadingContr.hideLoader();
+              listItem.expanded = false;
+              listItem.breveDescricao = (_a = listItem.breveDescricao) !== null && _a !== void 0 ? _a : "";
+              return listItem;
             });
+
+            _this.prestador.descricaoServicos = _this.prestadorServicos.map(function (y) {
+              return y.nomeServico;
+            }).join(', ');
+
+            _this.loadingContr.hideLoader();
           })["catch"](function (err) {
             src_app_helpers_handlerError__WEBPACK_IMPORTED_MODULE_7__["HandlerError"].handler(err, _this.toastCtrl);
 
