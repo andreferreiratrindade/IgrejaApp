@@ -19,9 +19,9 @@ import { PrestadorService } from 'src/app/providers/prestador/prestador.service'
 export class PrestadorCadastroFinalizarPage implements OnInit {
 
   prestador: any = {};
-  prestadorUsuario :any= {};
-  prestadorServicos :any[]= [];
-  usuario : any = {};
+  prestadorUsuario: any = {};
+  prestadorServicos: any[] = [];
+  usuario: any = {};
   constructor(public prestadorService: PrestadorService,
     public dominioServicoService: DominioServicoService,
     public loadingContr: LoadingContr,
@@ -56,21 +56,13 @@ export class PrestadorCadastroFinalizarPage implements OnInit {
     this.prestadorService.recuperaServicosPorPrestador(Config.RecuperaInstancia().recuperaUsuario().usuarioId)
       .then(result => {
         this.prestadorServicos = result;
-        this.dominioServicoService.recuperaDominioServico().then(x => {
+        this.prestadorServicos.map((listItem) => {
+          listItem.expanded = false;
 
-          this.prestadorServicos.map((listItem) => {
-            listItem.expanded = false;
-
-            listItem.breveDescricao = listItem.breveDescricao ?? "";
-            listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
-            return listItem;
-          });
-          this.loadingContr.hideLoader();
-        }).catch(err => {
-          HandlerError.handler(err, this.toastCtrl);
-          this.loadingContr.hideLoader();
+          listItem.breveDescricao = listItem.breveDescricao ?? "";
+          return listItem;
         });
-
+        this.loadingContr.hideLoader();
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
         this.loadingContr.hideLoader();
@@ -106,10 +98,10 @@ export class PrestadorCadastroFinalizarPage implements OnInit {
       });
   }
 
-  public voltar(){
+  public voltar() {
     this.router.navigate(['prestador-cadastro-igreja-vinculo']);
   }
-  public redirect(url){
+  public redirect(url) {
     this.router.navigate([url]);
   }
 }

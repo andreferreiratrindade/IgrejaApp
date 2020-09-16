@@ -121,10 +121,6 @@ export class PrestadorConsultarPage implements OnInit {
                     });
                     
                 this.prestadores.forEach(x => {
-
-                    x.servicos.forEach(y => {
-                        y.nomeServico = this.servicos.filter(w => { return w.servicoId == y.servicoId })[0].nomeServico;
-                    })
                     x.descricaoServicos = x.servicos.map(y => y.nomeServico).join(', ');
                 });
 
@@ -152,7 +148,6 @@ export class PrestadorConsultarPage implements OnInit {
     public abrirModalServicos() {
         const modal = this.modalCtrl.create({
             component: ModalServicosPage,
-            componentProps: { servicos: this.servicos },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();

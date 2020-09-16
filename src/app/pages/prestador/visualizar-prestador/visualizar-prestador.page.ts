@@ -64,18 +64,17 @@ export class VisualizarPrestadorPage implements OnInit {
     this.prestadorService.recuperaServicosPorPrestador(this.usuarioId)
       .then(result => {
         this.prestadorServicos = result;
-        this.dominioServicoService.recuperaDominioServico().then(x => {
 
-          this.prestadorServicos.map((listItem) => {
-            listItem.expanded = false;
 
-            listItem.breveDescricao = listItem.breveDescricao ?? "";
-            listItem.nomeServico = x.filter(y => y.servicoId == listItem.servicoId)[0].nomeServico;
-            return listItem;
-          });
-          this.prestador.descricaoServicos = this.prestadorServicos.map(y => { return y.nomeServico }).join(', ');
-          this.loadingContr.hideLoader();
+        this.prestadorServicos.map((listItem) => {
+          listItem.expanded = false;
+
+          listItem.breveDescricao = listItem.breveDescricao ?? "";
+          return listItem;
         });
+        this.prestador.descricaoServicos = this.prestadorServicos.map(y => { return y.nomeServico }).join(', ');
+        this.loadingContr.hideLoader();
+
 
       }).catch(err => {
         HandlerError.handler(err, this.toastCtrl);
