@@ -1013,12 +1013,13 @@ let ModalServicosPage = class ModalServicosPage {
         this.servicos = [];
         this.servicosSelecionados = [];
         this.nomeServico = null;
-        this.dominioServicos = this.navParams.data.servicos;
+        this.servicosSelecionados = this.navParams.data.servicosSelecionados;
     }
     ngOnInit() {
         this.recuperaServicos(null);
     }
     recuperaServicos(ev) {
+        debugger;
         let val = "";
         if (ev && ev.target) {
             val = ev.target.value;
@@ -1027,6 +1028,7 @@ let ModalServicosPage = class ModalServicosPage {
             this.dominioServicoService.recuperaServicoAutoComplete(val)
                 .then(result => {
                 this.servicos = result;
+                this.atualizaListagemServicosSelecionados();
                 if (this.servicos.length == 0) {
                     src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_5__["ToastCustom"].CustomToast(this.toast, "Nenhum serviço encontrado.", "warning", 4000);
                 }
@@ -1036,6 +1038,8 @@ let ModalServicosPage = class ModalServicosPage {
             this.servicos = [];
         }
         this.nomeServico = val;
+    }
+    atualizaListagemServicosSelecionados() {
         this.servicos = this.servicos.filter(x => { return this.servicosSelecionados.filter(y => y.servicoId == x.servicoId).length == 0; });
     }
     closeModal() {
@@ -1043,12 +1047,7 @@ let ModalServicosPage = class ModalServicosPage {
     }
     selecionarServico(item) {
         this.servicosSelecionados.push(item);
-        let index = this.servicos.findIndex(y => y.servicoId == item.servicoId); //find index in your array
-        this.servicos.splice(index, 1); //remove element from array
-        let obj = {
-            target: { value: this.nomeServico }
-        };
-        this.recuperaServicos(obj);
+        this.atualizaListagemServicosSelecionados();
     }
     removeServico(item) {
         let index = this.servicosSelecionados.findIndex(y => y.servicoId == item.servicoId); //find index in your array

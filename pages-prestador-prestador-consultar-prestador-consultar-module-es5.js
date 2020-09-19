@@ -858,6 +858,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           var modal = this.modalCtrl.create({
             component: _servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_12__["ModalServicosPage"],
+            componentProps: {
+              servicosSelecionados: this.servicosSelecionados
+            },
             backdropDismiss: false
           }).then(function (modal) {
             modal.present();
@@ -867,6 +870,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 _this5.nomeServicoSelecionado = _this5.servicosSelecionados.map(function (y) {
                   return y.nomeServico;
                 }).join('; ');
+              }
+
+              if (_this5.servicosSelecionados.length == 0) {
+                _this5.servicosSelecionados = [];
+                _this5.nomeServicoSelecionado = "Todos";
               }
             });
           });

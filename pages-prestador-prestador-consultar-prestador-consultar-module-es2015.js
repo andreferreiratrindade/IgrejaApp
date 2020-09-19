@@ -476,6 +476,7 @@ let PrestadorConsultarPage = class PrestadorConsultarPage {
     abrirModalServicos() {
         const modal = this.modalCtrl.create({
             component: _servico_modal_servicos_modal_servicos_page__WEBPACK_IMPORTED_MODULE_12__["ModalServicosPage"],
+            componentProps: { servicosSelecionados: this.servicosSelecionados },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();
@@ -483,6 +484,10 @@ let PrestadorConsultarPage = class PrestadorConsultarPage {
                 if (resultModal.data) {
                     this.servicosSelecionados = resultModal.data;
                     this.nomeServicoSelecionado = this.servicosSelecionados.map(y => { return y.nomeServico; }).join('; ');
+                }
+                if (this.servicosSelecionados.length == 0) {
+                    this.servicosSelecionados = [];
+                    this.nomeServicoSelecionado = "Todos";
                 }
             });
         });

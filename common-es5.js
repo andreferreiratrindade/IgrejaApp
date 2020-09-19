@@ -1634,7 +1634,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.servicos = [];
         this.servicosSelecionados = [];
         this.nomeServico = null;
-        this.dominioServicos = this.navParams.data.servicos;
+        this.servicosSelecionados = this.navParams.data.servicosSelecionados;
       }
 
       _createClass(ModalServicosPage, [{
@@ -1647,6 +1647,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: function recuperaServicos(ev) {
           var _this8 = this;
 
+          debugger;
           var val = "";
 
           if (ev && ev.target) {
@@ -1657,6 +1658,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             this.dominioServicoService.recuperaServicoAutoComplete(val).then(function (result) {
               _this8.servicos = result;
 
+              _this8.atualizaListagemServicosSelecionados();
+
               if (_this8.servicos.length == 0) {
                 src_app_helpers_toastCustom__WEBPACK_IMPORTED_MODULE_5__["ToastCustom"].CustomToast(_this8.toast, "Nenhum serviço encontrado.", "warning", 4000);
               }
@@ -1666,8 +1669,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
 
           this.nomeServico = val;
+        }
+      }, {
+        key: "atualizaListagemServicosSelecionados",
+        value: function atualizaListagemServicosSelecionados() {
+          var _this9 = this;
+
           this.servicos = this.servicos.filter(function (x) {
-            return _this8.servicosSelecionados.filter(function (y) {
+            return _this9.servicosSelecionados.filter(function (y) {
               return y.servicoId == x.servicoId;
             }).length == 0;
           });
@@ -1681,18 +1690,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         key: "selecionarServico",
         value: function selecionarServico(item) {
           this.servicosSelecionados.push(item);
-          var index = this.servicos.findIndex(function (y) {
-            return y.servicoId == item.servicoId;
-          }); //find index in your array
-
-          this.servicos.splice(index, 1); //remove element from array
-
-          var obj = {
-            target: {
-              value: this.nomeServico
-            }
-          };
-          this.recuperaServicos(obj);
+          this.atualizaListagemServicosSelecionados();
         }
       }, {
         key: "removeServico",
