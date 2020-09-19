@@ -251,6 +251,7 @@ export class PrestadorRepServiceService extends BaseRepository {
 
         return new Promise((resolve, reject) => {
             this.db.collectionGroup("prestador")
+            
                 .where("situacaoPrestador", "==", Constants.TipoSituacaoPrestador.Ativo)
                 .get().then(result => {
 

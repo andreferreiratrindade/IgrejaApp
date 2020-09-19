@@ -26,8 +26,8 @@ export class ModalServicosPage implements OnInit {
     public navParams: NavParams,
     public sortBy: SortByPipe,
     private dominioServicoService: DominioServicoService) {
-    this.dominioServicos = this.navParams.data.servicos;
-
+    
+    this.servicosSelecionados = this.navParams.data.servicosSelecionados;
   }
 
   ngOnInit() {
@@ -37,6 +37,7 @@ export class ModalServicosPage implements OnInit {
 
   recuperaServicos(ev: any) {
 
+    debugger
     let val = "";
     if (ev && ev.target) {
       val = ev.target.value;
@@ -45,7 +46,7 @@ export class ModalServicosPage implements OnInit {
       this.dominioServicoService.recuperaServicoAutoComplete(val)
         .then(result => {
           this.servicos = result;
-
+          this.atualizaListagemServicosSelecionados()
           if (this.servicos.length == 0) {
             ToastCustom.CustomToast(this.toast, "Nenhum serviço encontrado.", "warning", 4000);
           }
@@ -56,9 +57,13 @@ export class ModalServicosPage implements OnInit {
 
     this.nomeServico = val;
 
+
+
+
+  }
+
+  atualizaListagemServicosSelecionados(){
     this.servicos = this.servicos.filter(x => { return this.servicosSelecionados.filter(y => y.servicoId == x.servicoId).length == 0 });
-
-
 
   }
 
@@ -69,14 +74,8 @@ export class ModalServicosPage implements OnInit {
   selecionarServico(item: any) {
 
     this.servicosSelecionados.push(item);
-    let index = this.servicos.findIndex(y => y.servicoId == item.servicoId); //find index in your array
-    this.servicos.splice(index, 1);//remove element from array
+    this.atualizaListagemServicosSelecionados()
 
-    let obj = {
-      target:
-        { value: this.nomeServico }
-    };
-    this.recuperaServicos(obj);
   }
 
   removeServico(item: any) {

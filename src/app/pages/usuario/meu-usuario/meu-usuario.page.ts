@@ -29,6 +29,7 @@ export class MeuUsuarioPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.usuarioService.recuperaUsuarioLogado().then(result => {
         this.usuario = result;
+        debugger
         if (result.perfis) {
           this.perfis = result.perfis.map(y => { return Constants.PerfilUsuario.RecuperaDescricaoPorValor(y) });
         }

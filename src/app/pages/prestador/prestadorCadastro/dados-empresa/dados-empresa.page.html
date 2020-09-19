@@ -39,7 +39,8 @@
         <ion-item class="input-item">
           <ion-label position="floating">CEP Comercial ou residencial<ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input type="number" maxlength="8" formControlName="cep" clearInput autocapitalize="off"></ion-input>
+          <ion-input type="number" maxlength="8" formControlName="cep" 
+          clearInput autocapitalize="off" (keyup)="buscarCepKeyUp($event)"></ion-input>
         </ion-item>
         <div class="ion-text-center">
           <ion-button color="primary" size="small" (click)="buscarEnderecoPorCEP()">

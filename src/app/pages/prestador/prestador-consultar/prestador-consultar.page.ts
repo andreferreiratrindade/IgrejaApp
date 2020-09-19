@@ -62,21 +62,21 @@ export class PrestadorConsultarPage implements OnInit {
     }
 
     ngOnInit() {
-        
+
     }
 
     buscarCidades(uf: string) {
         this.loadingContr.showLoader();
         this.formulario.controls['cidade'].setValue(null);
         this.cidadeList = [];
-         this.buscarCEPService.buscarMunicipiosPorUF(uf)
+        this.buscarCEPService.buscarMunicipiosPorUF(uf)
             .then(result => {
 
-              this.cidadeList = result;
-              this.loadingContr.hideLoader();
+                this.cidadeList = result;
+                this.loadingContr.hideLoader();
             }
             ).catch(err => { this.loadingContr.hideLoader(); });
-       
+
     }
 
     ConsultarPrestador() {
@@ -119,7 +119,7 @@ export class PrestadorConsultarPage implements OnInit {
                         HandlerError.handler(x, this.toastCtrl);
                         this.loadingContr.hideLoader();
                     });
-                    
+
                 this.prestadores.forEach(x => {
                     x.descricaoServicos = x.servicos.map(y => y.nomeServico).join(', ');
                 });
@@ -148,6 +148,7 @@ export class PrestadorConsultarPage implements OnInit {
     public abrirModalServicos() {
         const modal = this.modalCtrl.create({
             component: ModalServicosPage,
+            componentProps: { servicosSelecionados: this.servicosSelecionados },
             backdropDismiss: false,
         }).then((modal) => {
             modal.present();
@@ -155,6 +156,11 @@ export class PrestadorConsultarPage implements OnInit {
                 if (resultModal.data) {
                     this.servicosSelecionados = resultModal.data;
                     this.nomeServicoSelecionado = this.servicosSelecionados.map(y => { return y.nomeServico }).join('; ');
+                }
+
+                if (this.servicosSelecionados.length == 0) {
+                    this.servicosSelecionados = [];
+                    this.nomeServicoSelecionado = "Todos";
                 }
             });
         });
@@ -252,7 +258,7 @@ export class PrestadorConsultarPage implements OnInit {
             .then(() => { });
     }
 
-    public limparFiltros(){
+    public limparFiltros() {
         this.servicosSelecionados = [];
         this.nomeServicoSelecionado = "Todos";
 

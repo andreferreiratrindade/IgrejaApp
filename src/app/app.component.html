@@ -22,14 +22,14 @@
               <ion-icon name="log-out-outline"></ion-icon>
             </ion-chip>
           </span>
-
-          <ion-menu-toggle *ngFor="let p of paginas">
+          <!-- ion-menu-toggle -->
+          <span *ngFor="let p of paginas">
             <ion-item routerDirection="root" [routerLink]="p.url" detail="false">
               <ion-icon style="padding-right: 15px;" class="{{p.icon}}" ></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
             
-          </ion-menu-toggle>
+          </span>
 
         </ion-list>
         <!-- <ion-footer class="ion-no-border">

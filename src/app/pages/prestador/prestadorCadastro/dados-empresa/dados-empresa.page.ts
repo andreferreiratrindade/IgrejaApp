@@ -186,4 +186,16 @@ export class DadosEmpresaPage implements OnInit {
       this.router.navigate(['meu-cadastro-prestador']);
     }
   }
+
+  buscarCepKeyUp(ev: any){
+
+    let val = "";
+    if (ev && ev.target) {
+      val = ev.target.value;
+    }
+
+    if(val.length == 8){
+      this.buscarEnderecoPorCEP();
+    }
+  }
 }

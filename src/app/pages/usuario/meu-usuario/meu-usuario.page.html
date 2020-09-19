@@ -32,7 +32,9 @@
       <ion-item *ngIf="perfis.length > 0">
         <ion-label position="floating" disabled>Perfil
         </ion-label>
-        <ion-input *ngFor="let perfil of perfis" type="text" [(ngModel)]="perfil" disabled clearInput autocapitalize="off"></ion-input>
+        <span *ngFor="let perfil of perfis" type="text"  disabled clearInput autocapitalize="off">
+          {{perfil}}
+        </span>
         
       </ion-item>
       <div class="ion-text-end" style="margin-top: 20px;">
